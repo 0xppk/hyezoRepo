@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "eslint": "^8.32.0",
+    "eslint-config-hyezo": "workspace:*",
+    "prettier": "^2.8.3",
+    "turbo": "^1.7.0"
+  },
+  "packageManager": "pnpm@7.25.1"
+}

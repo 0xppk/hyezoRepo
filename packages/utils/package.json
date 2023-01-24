@@ -1,5 +1,5 @@
 {
-  "name": "@hyezo/ui",
+  "name": "@hyezo/utils",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

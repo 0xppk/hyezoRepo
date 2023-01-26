@@ -1,4 +1,4 @@
-import { Button } from "@hyezo/ui/_Button";
+import { Button } from "@hyezo/ui";
 
 export default function Web() {
   return (

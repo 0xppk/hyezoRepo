@@ -27,5 +27,5 @@ export default function useEventListener(
     // const handler = (e: Event) => cb(e);
     element.addEventListener(eventType, cb);
     return () => element.removeEventListener(eventType, cb);
-  }, [eventType, element]);
+  }, [eventType, element, cb]);
 }

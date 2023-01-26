@@ -18,5 +18,5 @@ export default function useDebounce(
 
   useEffect(reset, [...dependencies, reset]);
   // 걸자마자 시작되면 안 되므로 최초 마운트시엔 클리어
-  useEffect(clear, []);
+  useEffect(clear, [clear]);
 }

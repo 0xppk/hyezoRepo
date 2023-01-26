@@ -4,7 +4,10 @@ import { useState, useCallback, useEffect } from "react";
  * @param {Function} callback - A promise you gonna execute.
  * @param {Array} dependencies - Dependency array.
  */
-export default function useAsync(callback: () => Promise<any>, dependencies: any[] = []) {
+export default function useAsync(
+  callback: () => Promise<any>,
+  dependencies: any[],
+) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [data, setData] = useState();
@@ -17,7 +20,7 @@ export default function useAsync(callback: () => Promise<any>, dependencies: any
       .then(setData)
       .catch(setError)
       .finally(() => setLoading(false));
-  }, dependencies);
+  }, [callback, ...dependencies]);
 
   useEffect(() => {
     callbackMemorized();

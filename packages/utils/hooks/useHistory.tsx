@@ -1,12 +1,12 @@
 import { useCallback, useRef, useState } from "react";
 
-export default function useHistory(defaultValue, { capacity = 10 } = {}) {
+export default function useHistory(defaultValue: any, { capacity = 10 } = {}) {
   const [value, setValue] = useState(defaultValue);
   const historyRef = useRef([value]);
   const cursorRef = useRef(0);
 
   const set = useCallback(
-    v => {
+    (v: typeof defaultValue) => {
       const resolvedValue = typeof v === "function" ? v(value) : v;
       if (historyRef.current[cursorRef.current] !== resolvedValue) {
         if (cursorRef.current < historyRef.current.length - 1) {
@@ -45,6 +45,12 @@ export default function useHistory(defaultValue, { capacity = 10 } = {}) {
   return [
     value,
     set,
-    { history: historyRef.current, cursor: cursorRef.current, back, go, forward },
+    {
+      history: historyRef.current,
+      cursor: cursorRef.current,
+      back,
+      go,
+      forward,
+    },
   ] as const;
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function useGeolocation(options) {
+export default function useGeolocation(options?: PositionOptions) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState({});
@@ -17,9 +17,17 @@ export default function useGeolocation(options) {
       setLoading(false);
     };
 
-    navigator.geolocation.getCurrentPosition(successHandler, errorHandler, options);
+    navigator.geolocation.getCurrentPosition(
+      successHandler,
+      errorHandler,
+      options,
+    );
 
-    const id = navigator.geolocation.watchPosition(successHandler, errorHandler, options);
+    const id = navigator.geolocation.watchPosition(
+      successHandler,
+      errorHandler,
+      options,
+    );
 
     return () => {
       navigator.geolocation.clearWatch(id);

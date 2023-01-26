@@ -13,11 +13,12 @@ export default function useStateValidation(
 
   const onChange = useCallback(
     (nextState: any) => {
-      const updatedState = typeof nextState === "function" ? nextState(state) : nextState;
+      const updatedState =
+        typeof nextState === "function" ? nextState(state) : nextState;
       setState(updatedState);
       setIsValid(inspectFunc(updatedState));
     },
-    [inspectFunc],
+    [inspectFunc, state],
   );
 
   return [state, onChange, isValid] as const;

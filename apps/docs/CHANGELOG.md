@@ -1,5 +1,12 @@
 # docs
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [029253d]
+  - @hyezo/ui@1.1.0
+
 ## 1.0.0
 
 ### Major Changes

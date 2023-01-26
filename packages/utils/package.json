@@ -23,7 +23,11 @@
     "eslint-config-hyezo": "workspace:*",
     "react": "^18.2.0",
     "tsup": "^6.5.0",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "@types/js-cookie": "^3.0.2",
+    "@types/lodash": "^4.14.191",
+    "js-cookie": "^3.0.1",
+    "lodash": "^4.17.21"
   },
   "publishConfig": {
     "access": "public"

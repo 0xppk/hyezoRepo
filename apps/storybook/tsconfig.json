@@ -1,0 +1,11 @@
+{
+  "extends": "@hyezo/tsconfig/nextjs.json",
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@ui/*": ["./src/components/ui/*"]
+    }
+  }
+}

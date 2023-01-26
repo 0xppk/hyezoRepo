@@ -1,0 +1,46 @@
+{
+  "name": "story",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
+    "clean": "rm -rf .turbo && rm -rf node_modules",
+    "storybook": "concurrently \"storybook dev -p 6006\" \"tailwindcss -i ./stories/tailwind.css -o ./public/tailwind.css --watch\""
+  },
+  "dependencies": {
+    "@hyezo/ui": "workspace:*",
+    "@hyezo/utils": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "next": "^13.1.5"
+  },
+  "devDependencies": {
+    "@hyezo/tsconfig": "workspace:*",
+    "@storybook/addon-essentials": "^7.0.0-beta.34",
+    "@storybook/addon-interactions": "^7.0.0-beta.34",
+    "@storybook/addon-links": "^7.0.0-beta.34",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/blocks": "^7.0.0-beta.34",
+    "@storybook/nextjs": "^7.0.0-beta.34",
+    "@storybook/react": "^7.0.0-beta.34",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "autoprefixer": "^10.4.13",
+    "clsx": "^1.2.1",
+    "concurrently": "^7.6.0",
+    "css-loader": "^6.7.3",
+    "cssnano": "^5.1.14",
+    "cva": "npm:class-variance-authority@^0.4.0",
+    "eslint-config-hyezo": "workspace:*",
+    "postcss": "^8.4.21",
+    "postcss-import": "^15.1.0",
+    "postcss-loader": "^7.0.2",
+    "storybook": "^7.0.0-beta.34",
+    "style-loader": "^3.3.1",
+    "tailwindcss": "^3.2.4",
+    "tailwind-config-hyezo": "workspace:*"
+  }
+}

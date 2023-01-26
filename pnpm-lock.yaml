@@ -20,31 +20,6 @@ importers:
     specifiers:
       '@hyezo/tsconfig': workspace:*
       '@hyezo/ui': workspace:*
-      '@types/node': ^18.11.18
-      '@types/react': ^18.0.27
-      '@types/react-dom': ^18.0.10
-      eslint-config-hyezo: workspace:*
-      next: ^13.1.5
-      react: ^18.2.0
-      react-dom: ^18.2.0
-      typescript: ^4.9.4
-    dependencies:
-      '@hyezo/ui': link:../../packages/ui
-      next: 13.1.5_biqbaboplfbrettd7655fr4n2y
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    devDependencies:
-      '@hyezo/tsconfig': link:../../packages/tsconfig
-      '@types/node': 18.11.18
-      '@types/react': 18.0.27
-      '@types/react-dom': 18.0.10
-      eslint-config-hyezo: link:../../packages/eslint-config-hyezo
-      typescript: 4.9.4
-
-  apps/storybook:
-    specifiers:
-      '@hyezo/tsconfig': workspace:*
-      '@hyezo/ui': workspace:*
       '@hyezo/utils': workspace:*
       '@storybook/addon-essentials': ^7.0.0-beta.34
       '@storybook/addon-interactions': ^7.0.0-beta.34
@@ -107,6 +82,31 @@ importers:
       tailwindcss: 3.2.4_postcss@8.4.21
 
   apps/web:
+    specifiers:
+      '@hyezo/tsconfig': workspace:*
+      '@hyezo/ui': workspace:*
+      '@types/node': ^18.11.18
+      '@types/react': ^18.0.27
+      '@types/react-dom': ^18.0.10
+      eslint-config-hyezo: workspace:*
+      next: ^13.1.5
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      typescript: ^4.9.4
+    dependencies:
+      '@hyezo/ui': link:../../packages/ui
+      next: 13.1.5_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    devDependencies:
+      '@hyezo/tsconfig': link:../../packages/tsconfig
+      '@types/node': 18.11.18
+      '@types/react': 18.0.27
+      '@types/react-dom': 18.0.10
+      eslint-config-hyezo: link:../../packages/eslint-config-hyezo
+      typescript: 4.9.4
+
+  apps/web2:
     specifiers:
       '@hyezo/tsconfig': workspace:*
       '@hyezo/ui': workspace:*

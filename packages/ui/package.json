@@ -1,40 +1,34 @@
 {
   "name": "@hyezo/ui",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "sideEffects": false,
+  "type": "module",
   "license": "MIT",
+  "sideEffects": false,
   "files": [
-    "dist/**"
+    "public/*"
   ],
-  "exports": {
-    ".": "./dist",
-    "./styles.css": "./dist/styles.css"
-  },
   "scripts": {
-    "build": "tsup src/index.tsx --format esm,cjs --dts --external react && tailwindcss -i ./src/styles.css -o ./dist/styles.css",
-    "dev": "concurrently \"tsup src/index.tsx --format esm,cjs --dts --external react --watch\" \"tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch\"",
-    "clean": "rm -rf dist",
+    "build": "tsup --external react && tailwindcss -i ./src/styles.css -o ./public/styles.css",
+    "dev": "concurrently \"tsup --external react\" \"tailwindcss -i ./src/styles.css -o ./public/styles.css --watch\"",
+    "clean": "rm -rf public",
     "lint": "TIMING=1 eslint \"./**/*.ts*\""
   },
-  "dependencies": {},
   "devDependencies": {
+    "@hyezo/tsconfig": "workspace:*",
     "@next/font": "13.1.5",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
-    "@hyezo/tsconfig": "workspace:*",
+    "concurrently": "^7.6.0",
+    "cva": "npm:class-variance-authority@^0.4.0",
     "eslint": "^8.32.0",
     "eslint-config-hyezo": "workspace:*",
-    "concurrently": "^7.6.0",
     "next": "^13.1.5",
-    "react-dom": "^18.2.0",
     "react": "^18.2.0",
-    "cva": "npm:class-variance-authority@^0.4.0",
+    "react-dom": "^18.2.0",
     "tailwind-config-hyezo": "workspace:*",
     "tailwindcss": "^3.2.4",
+    "tiny-glob": "^0.2.9",
     "tsup": "^6.5.0",
     "typescript": "^4.9.4"
   },

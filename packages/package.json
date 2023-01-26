@@ -1,0 +1,25 @@
+{
+  "name": "hyezo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "files": [
+    "ui/public/*",
+    "utils/dist/*",
+    "tsconfig/*",
+    "eslint-config-hyezo/*",
+    "tailwind-config-hyezo/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "React Custom Hooks",
+    "React Custom Components"
+  ],
+  "author": "hyezoprk",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

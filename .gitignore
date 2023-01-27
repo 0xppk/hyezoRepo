@@ -37,3 +37,10 @@ yarn-error.log*
 
 # dist
 dist
+
+# storybook
+apps/docs/src/components/*
+
+# packages
+packages/ui/src/*
+packages/utils/hooks/*

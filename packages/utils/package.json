@@ -1,19 +1,19 @@
 {
   "name": "@hyezo/utils",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "public/index.js",
+  "module": "public/index.mjs",
+  "types": "public/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
   "files": [
-    "dist/**"
+    "public/**"
   ],
   "scripts": {
-    "build": "tsup \"./**/*.tsx\" --format esm,cjs --dts --external react",
-    "dev": "tsup \"./**/*.tsx\" --format esm,cjs --watch --dts --external react",
+    "build": "tsup \"./src/**/*.tsx\" --format esm,cjs --dts --external react",
+    "dev": "tsup \"./src/**/*.tsx\" --format esm,cjs --watch --dts --external react",
     "lint": "TIMING=1 eslint \"./**/*.ts*\"",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf public"
   },
   "devDependencies": {
     "@hyezo/tsconfig": "workspace:*",

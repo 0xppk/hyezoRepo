@@ -18,8 +18,8 @@ const defaultConfig: Options = {
 };
 
 export default defineConfig((): Options[] => {
-  const AllFolders = getAllFolderNames(Path);
-  return AllFolders.map((folder) => {
+  const allFolders = getAllFolderNames(Path);
+  return allFolders.map((folder) => {
     return {
       ...defaultConfig,
       entry: [`${__dirname}/src/${folder}/index.ts`],
@@ -29,6 +29,7 @@ export default defineConfig((): Options[] => {
 });
 
 const Path = path.join(__dirname, "src");
+
 const getAllFolderNames = (dir: string): string[] => {
   const allFileNames = fs.readdirSync(dir);
   const allFolderNames = allFileNames.reduce((acc: string[], each: string) => {

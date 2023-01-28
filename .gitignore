@@ -42,5 +42,5 @@ dist
 apps/docs/src/components/*
 
 # packages
-packages/ui/src/*
+packages/ui/src
 packages/utils/hooks/*

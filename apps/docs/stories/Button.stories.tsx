@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Button } from "@ui/Button";
 
 export default {
@@ -7,6 +7,9 @@ export default {
   tags: ["autodocs"],
   argTypes: {
     fullWidth: {
+      type: "boolean",
+    },
+    outline: {
       type: "boolean",
     },
   },
@@ -20,3 +23,4 @@ export const Primary = Template.bind({});
 Primary.args = {
   intent: "primary",
 };
+

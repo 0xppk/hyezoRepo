@@ -4,17 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "storybook dev -p 6006",
-    "build": "storybook build",
+    "dev": "concurrently \"storybook dev -p 6006\" \"tailwindcss -i ./stories/tailwind.css -o ./public/tailwind.css --watch\"",
+    "build": "storybook build -o public",
     "clean": "rm -rf .turbo && rm -rf node_modules",
-    "storybook": "concurrently \"storybook dev -p 6006\" \"tailwindcss -i ./stories/tailwind.css -o ./public/tailwind.css --watch\""
+    "release": "chromatic -t CHROMATIC_PROJECT_TOKEN -d public --exit-zero-on-changes main --auto-accept-changes main --exit-once-uploaded main"
   },
   "dependencies": {
     "@hyezo/ui": "workspace:*",
     "@hyezo/utils": "workspace:*",
+    "next": "^13.1.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "next": "^13.1.5"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@hyezo/tsconfig": "workspace:*",
@@ -29,6 +29,7 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "autoprefixer": "^10.4.13",
+    "chromatic": "^6.15.0",
     "clsx": "^1.2.1",
     "concurrently": "^7.6.0",
     "css-loader": "^6.7.3",
@@ -40,7 +41,7 @@
     "postcss-loader": "^7.0.2",
     "storybook": "^7.0.0-beta.34",
     "style-loader": "^3.3.1",
-    "tailwindcss": "^3.2.4",
-    "tailwind-config-hyezo": "workspace:*"
+    "tailwind-config-hyezo": "workspace:*",
+    "tailwindcss": "^3.2.4"
   }
 }

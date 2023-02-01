@@ -7,7 +7,7 @@
     "dev": "concurrently \"storybook dev -p 6006\" \"tailwindcss -i ./stories/tailwind.css -o ./public/tailwind.css --watch\"",
     "build": "storybook build -o public",
     "clean": "rm -rf .turbo && rm -rf node_modules",
-    "build-storybook": "chromatic -t CHROMATIC_PROJECT_TOKEN -d public --exit-zero-on-changes main --auto-accept-changes main --exit-once-uploaded main"
+    "build-storybook": "dotenv cross-var chromatic -t %CHROMATIC_PROJECT_TOKEN% -d public --exit-zero-on-changes main --auto-accept-changes main --exit-once-uploaded main"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",

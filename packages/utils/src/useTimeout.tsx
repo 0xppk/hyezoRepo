@@ -4,14 +4,9 @@ import { useCallback, useEffect, useRef } from "react";
  * @param {function} callback - A function you gonna execute to.
  * @param {number} delay - A timer that trigger callback be executed.
  */
-export default function useTimeout(
-  callback: (...args: any[]) => any,
-  delay: number,
-) {
+export default function useTimeout(callback: (...args: any[]) => any, delay: number) {
   const callbackRef = useRef(callback);
-
-  // NodeJS.Timeout
-  const timeoutRef = useRef<number>();
+  const timeoutRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
     if (callbackRef.current) callbackRef.current = callback;

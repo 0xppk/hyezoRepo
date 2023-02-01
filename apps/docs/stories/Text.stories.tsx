@@ -5,14 +5,27 @@ export default {
   title: "UI/Text",
   component: Text,
   tags: ["autodocs"],
+  argTypes: {
+    variant: {
+      description: "A combinations of size and weight.",
+      table: {
+        defaultValue: {
+          summary: `"sm/normal"`,
+        },
+      },
+    },
+    children: {
+      description: "`ReactNode`",
+    },
+  },
 } as Meta<typeof Text>;
 
 const Template: StoryFn<typeof Text> = (args) => <Text {...args}></Text>;
 
 export const Sample = Template.bind({});
 Sample.args = {
-  children: "아래 카탈로그를 참고해주세요",
-  variant: "medium/semibold",
+  children: "반응형 폰트 사이즈",
+  variant: "sm/semibold",
   color: "#37bbe1",
 };
 
@@ -32,14 +45,30 @@ const Proto = ({ variants }: StoryProps) => ({
   ),
 });
 
+export const Xsmall = Proto({
+  variants: ["xs/light", "xs/normal", "xs/semibold", "xs/bold"],
+});
+
 export const Small = Proto({
-  variants: ["small/light", "small/normal", "small/semibold", "small/bold"],
+  variants: ["sm/light", "sm/normal", "sm/semibold", "sm/bold"],
 });
 
 export const Medium = Proto({
-  variants: ["medium/light", "medium/normal", "medium/semibold", "medium/bold"],
+  variants: ["md/light", "md/normal", "md/semibold", "md/bold"],
 });
 
 export const Large = Proto({
-  variants: ["large/light", "large/normal", "large/semibold", "large/bold"],
+  variants: ["lg/light", "lg/normal", "lg/semibold", "lg/bold"],
+});
+
+export const Xlarge = Proto({
+  variants: ["xl/light", "xl/normal", "xl/semibold", "xl/bold"],
+});
+
+export const Xxlarge = Proto({
+  variants: ["2xl/light", "2xl/normal", "2xl/semibold", "2xl/bold"],
+});
+
+export const Xxxlarge = Proto({
+  variants: ["3xl/light", "3xl/normal", "3xl/semibold", "3xl/bold"],
 });

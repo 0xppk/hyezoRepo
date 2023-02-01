@@ -1,11 +1,7 @@
 {
   "name": "@hyezo/utils",
   "version": "1.0.0",
-  "main": "public/index.js",
-  "module": "public/index.mjs",
-  "types": "public/index.d.ts",
   "sideEffects": false,
-  "license": "MIT",
   "files": [
     "public/**"
   ],
@@ -17,17 +13,18 @@
   },
   "devDependencies": {
     "@hyezo/tsconfig": "workspace:*",
+    "@types/js-cookie": "^3.0.2",
+    "@types/lodash": "^4.14.191",
+    "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "eslint": "^8.32.0",
     "eslint-config-hyezo": "workspace:*",
+    "js-cookie": "^3.0.1",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "tsup": "^6.5.0",
-    "typescript": "^4.9.4",
-    "@types/js-cookie": "^3.0.2",
-    "@types/lodash": "^4.14.191",
-    "js-cookie": "^3.0.1",
-    "lodash": "^4.17.21"
+    "typescript": "^4.9.4"
   },
   "publishConfig": {
     "access": "public"

@@ -1,11 +1,13 @@
 {
   "name": "hyezo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "author": "hyezoprk",
+  "license": "MIT",
+  "description": "혜조 패키지",
+  "type": "module",
   "files": [
     "ui/public/*",
-    "utils/dist/*",
+    "utils/public/*",
     "tsconfig/*",
     "eslint-config-hyezo/*",
     "tailwind-config-hyezo/*"
@@ -17,8 +19,6 @@
     "React Custom Hooks",
     "React Custom Components"
   ],
-  "author": "hyezoprk",
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
   }

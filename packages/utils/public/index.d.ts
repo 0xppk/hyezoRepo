@@ -18,7 +18,7 @@ export { default as useWindowSize } from './useWindowSize.js';
 export { default as useStateValidation } from './useStateValidation.js';
 export { default as useSize } from './useSize.js';
 export { default as useEffectOnce } from './useEffectOnce.js';
-export { default as useInput } from './useInput.js';
+export { useInput } from './useInput.js';
 export { default as useDarkMode } from './useDarkMode.js';
 export { default as useCookie } from './useCookie.js';
 export { default as useOnlineStatus } from './useClickOutside.js';

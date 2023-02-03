@@ -33,7 +33,7 @@ function useDebugInformation(componentName, props) {
   useEffect(() => {
     previousProps.current = props;
     timeSinceLastRender.current = GetRelativeTime(Date.now());
-    console.log("[debug-info]", componentName, info);
+    console.log("[debug-info]\u{1F9A0}\u{1F9A0}\u{1F9A0}", componentName, info);
   });
   return info;
 }

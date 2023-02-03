@@ -51,7 +51,10 @@ exports.useWindowSize = useWindowSize;
 exports.useStateValidation = useStateValidation;
 exports.useSize = useSize;
 exports.useEffectOnce = useEffectOnce;
-exports.useInput = useInput;
+Object.defineProperty(exports, 'useInput', {
+  enumerable: true,
+  get: function () { return useInput.useInput; }
+});
 exports.useDarkMode = useDarkMode;
 exports.useCookie = useCookie;
 exports.useOnlineStatus = useClickOutside;

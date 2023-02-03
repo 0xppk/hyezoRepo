@@ -1,27 +1,49 @@
-import { ChangeEventHandler, FormEventHandler, useCallback, useMemo, useState } from "react";
+import { debounce } from "lodash";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  MouseEventHandler,
+  useCallback,
+  useMemo,
+  useState,
+} from "react";
+
+// type SubmitEventHandler =
+//   |
+//   | FormEventHandler<HTMLFormElement>;
 
 /**
  * Taking an input words into react state.
- * @param {string} [initialValue=""] - (optional) Default is ""
- * @param {Function} [callback] - (optional) A callback injected into submitHandler.
+ * @param {Function} [callback] - (optional) A callback that is injected into the submitHandler.
+ * @param {number} [debounceTime] - (default) The input state is updated after this input time has passed.
  * @example
- * const [value, changeHandler] = useInput()
+ * const [value, changeHandler, submitHandler] = useInput()
  *
  * return (
- *  <input onChange={changeHandler} value={value} />
+ *   <>
+ *     <input onChange={changeHandler} value={value} />
+ *     <button type="submit" onClick={submitHandler}
+ *   </>
  * )
- *
  */
-export default function useInput(initialValue: string = "", callback?: (...args: any[]) => any) {
-  const [inputValue, setInputValue] = useState(initialValue);
-  const cb = useMemo(() => callback, [callback]);
+export function useInput(
+  submitAction?: (inputValue: string, ...args: unknown[]) => void,
+  debounceTime: number = 300,
+) {
+  const [inputValue, setInputValue] = useState("");
+  const debounceInput = useCallback(
+    debounce((val: string) => setInputValue(val), debounceTime),
+    [debounceTime],
+  );
 
-  const changeHandler: ChangeEventHandler<HTMLInputElement> = e => setInputValue(e.target.value);
-  const submitHandler: FormEventHandler<HTMLFormElement> = useCallback(() => {
+  const changeHandler: ChangeEventHandler<HTMLInputElement> = e =>
+    debounceInput(e.target.value);
+  // FormEventHandler<HTMLFormElement>
+  const submitHandler: () => void = useCallback(() => {
     setInputValue("");
-    if (typeof cb === "undefined") return;
-    cb();
-  }, [cb]);
+    if (typeof submitAction === "undefined") return;
+    submitAction(inputValue);
+  }, [submitAction, inputValue]);
 
   return [inputValue, changeHandler, submitHandler] as const;
 }

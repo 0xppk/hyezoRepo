@@ -1,16 +1,20 @@
-import { useState, useMemo, useCallback } from 'react';
+import { debounce } from 'lodash';
+import { useState, useCallback } from 'react';
 
-function useInput(initialValue = "", callback) {
-  const [inputValue, setInputValue] = useState(initialValue);
-  const cb = useMemo(() => callback, [callback]);
-  const changeHandler = (e) => setInputValue(e.target.value);
+function useInput(submitAction, debounceTime = 300) {
+  const [inputValue, setInputValue] = useState("");
+  const debounceInput = useCallback(
+    debounce((val) => setInputValue(val), debounceTime),
+    [debounceTime]
+  );
+  const changeHandler = (e) => debounceInput(e.target.value);
   const submitHandler = useCallback(() => {
     setInputValue("");
-    if (typeof cb === "undefined")
+    if (typeof submitAction === "undefined")
       return;
-    cb();
-  }, [cb]);
+    submitAction(inputValue);
+  }, [submitAction, inputValue]);
   return [inputValue, changeHandler, submitHandler];
 }
 
-export { useInput as default };
+export { useInput };

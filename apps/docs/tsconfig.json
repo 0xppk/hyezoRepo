@@ -1,7 +1,7 @@
 {
   "extends": "@hyezo/tsconfig/nextjs.json",
   "include": ["."],
-  "exclude": ["dist", "build", "node_modules"],
+  "exclude": ["dist", "public", "build", "node_modules"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

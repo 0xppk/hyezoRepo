@@ -10,6 +10,7 @@
     "build-storybook": "chromatic -t $(grep CHROMATIC_PROJECT_TOKEN .env | cut -d '=' -f2) -d public --exit-zero-on-changes main --auto-accept-changes main --exit-once-uploaded main"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.8",
     "@hookform/resolvers": "^2.9.10",
     "@hyezo/ui": "workspace:*",
     "@hyezo/utils": "workspace:*",

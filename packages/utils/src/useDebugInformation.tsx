@@ -15,7 +15,7 @@ function GetRelativeTime(timestamp: number) {
 
 export default function useDebugInformation(
   componentName: string,
-  props: { [key: string]: any },
+  props: Record<string, any>,
 ) {
   const count = useRenderCount();
   const changedProps = useRef({});
@@ -40,7 +40,7 @@ export default function useDebugInformation(
   useEffect(() => {
     previousProps.current = props;
     timeSinceLastRender.current = GetRelativeTime(Date.now());
-    console.log("[debug-info]", componentName, info);
+    console.log("[debug-info]🦠🦠🦠", componentName, info);
   });
   return info;
 }

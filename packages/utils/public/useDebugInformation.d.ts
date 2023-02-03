@@ -1,6 +1,4 @@
-declare function useDebugInformation(componentName: string, props: {
-    [key: string]: any;
-}): {
+declare function useDebugInformation(componentName: string, props: Record<string, any>): {
     count: number;
     changedProps: {};
     timeSinceLastRender: string;

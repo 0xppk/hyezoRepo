@@ -1,8 +1,8 @@
 import { StoryFn, Meta } from "@storybook/react";
-import { Form } from "@ui/Form";
-import { Input } from "@ui/InputWithForm";
-import { SubmitButton } from "@ui/SubmitButton";
-import { TextArea } from "@ui/TextArea";
+import { Form } from "@hyezo/ui/Form";
+import { Input } from "@hyezo/ui/InputWithForm";
+import { SubmitButton } from "@hyezo/ui/SubmitButton";
+import { TextArea } from "@hyezo/ui/TextArea";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
 

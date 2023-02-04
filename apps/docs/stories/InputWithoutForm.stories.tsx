@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Input } from "@ui/InputWithoutForm";
+import { Input } from "@hyezo/ui/InputWithoutForm";
 
 export default {
   title: "UI/InputWithoutForm",

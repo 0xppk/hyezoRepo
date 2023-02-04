@@ -1,6 +1,6 @@
 import { StoryFn, Meta } from "@storybook/react";
-import { Menu, MenuButton, MenuItems, MenuItem } from "@ui/Menu";
-import { Button } from "@ui/Button";
+import { Menu, MenuButton, MenuItems, MenuItem } from "@hyezo/ui/Menu";
+import { Button } from "@hyezo/ui/Button";
 
 export default {
   title: "UI/Menu",

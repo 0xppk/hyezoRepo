@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Button } from "@ui/Button";
+import { Button } from "@hyezo/ui/Button";
 
 export default {
   title: "UI/Button",
@@ -41,9 +41,7 @@ export default {
   },
 } as Meta<typeof Button>;
 
-const Template: StoryFn<typeof Button> = (args) => (
-  <Button {...args}>으잉</Button>
-);
+const Template: StoryFn<typeof Button> = args => <Button {...args}>으잉</Button>;
 
 export const Blue = Template.bind({});
 Blue.args = {

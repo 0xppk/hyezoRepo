@@ -17,12 +17,6 @@ importers:
       prettier: 2.8.3
       prettier-plugin-tailwindcss: 0.2.2_prettier@2.8.3
       turbo: 1.7.0
-    publishDirectory:
-      - packages/ui/public/**/*
-      - packages/utils/public/**/*
-      - packages/tsconfig/**/*
-      - packages/eslint-config-hyezo/**/*
-      - packages/tailwind-config-hyezo/**/*
 
   apps/docs:
     specifiers:

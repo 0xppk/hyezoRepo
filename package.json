@@ -5,11 +5,11 @@
   "version": "1.0.0",
   "license": "MIT",
   "files": [
-    "packages/ui/public/",
-    "packages/utils/public/",
-    "packages/tsconfig/",
-    "packages/eslint-config-hyezo/",
-    "packages/tailwind-config-hyezo/"
+    "packages/ui/public/**/*",
+    "packages/utils/public/**/*",
+    "packages/tsconfig/**/*",
+    "packages/eslint-config-hyezo/**/*",
+    "packages/tailwind-config-hyezo/**/*"
   ],
   "scripts": {
     "build": "turbo run build",

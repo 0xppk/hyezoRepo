@@ -37,6 +37,7 @@ yarn-error.log*
 
 # dist
 dist
+packages/utils/public/package.json
 
 # apps
 apps/docs/src/components/*

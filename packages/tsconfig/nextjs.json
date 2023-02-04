@@ -16,11 +16,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "jsx": "preserve",
-    "target": "esnext",
-    "baseUrl": ".",
-    "paths": {
-      "@ui/*": ["./src/components/ui/*"]
-    }
+    "target": "esnext"
   },
   "include": ["src", "next-env.d.ts"],
   "exclude": ["node_modules"]

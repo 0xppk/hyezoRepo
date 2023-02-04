@@ -1,5 +1,5 @@
 import { StoryFn, Meta } from "@storybook/react";
-import { Text, type TextProps } from "@ui/Text";
+import { Text, type TextProps } from "@hyezo/ui/Text";
 
 export default {
   title: "UI/Text",

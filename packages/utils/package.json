@@ -12,7 +12,7 @@
     "dev": "concurrently \"tsup --external react\" \"tailwindcss -i ./src/ui/styles.css -o ./public/ui/styles.css --watch\"",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf public",
     "lint": "TIMING=1 eslint \"./**/*.ts*\"",
-    "rel": "pnpm run build && cp package.json public && cd public && pnpm publish"
+    "rel": "pnpm run build && node setup.js && cd public && pnpm publish"
   },
   "devDependencies": {
     "@hyezo/tsconfig": "workspace:*",

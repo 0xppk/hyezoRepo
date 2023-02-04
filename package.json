@@ -4,6 +4,13 @@
   "description": "짐꾸러미",
   "version": "1.0.0",
   "license": "MIT",
+  "files": [
+    "packages/ui/public/",
+    "packages/utils/public/",
+    "packages/tsconfig/",
+    "packages/eslint-config-hyezo/",
+    "packages/tailwind-config-hyezo/"
+  ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --no-cache --continue",

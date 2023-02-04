@@ -1,0 +1,5 @@
+---
+"hyezo": major
+---
+
+init

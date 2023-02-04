@@ -2,6 +2,9 @@
   "name": "@hyezo/utils",
   "version": "1.0.0",
   "sideEffects": false,
+  "files": [
+    "public/**"
+  ],
   "scripts": {
     "build": "tsup \"./src/**/*.tsx\" --format esm,cjs --dts --external react",
     "dev": "tsup \"./src/**/*.tsx\" --format esm,cjs --watch --dts --external react",

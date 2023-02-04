@@ -4,6 +4,9 @@
   "type": "module",
   "license": "MIT",
   "sideEffects": false,
+  "files": [
+    "public/**"
+  ],
   "scripts": {
     "build": "tsup --external react && tailwindcss -i ./src/styles.css -o ./public/styles.css",
     "dev": "concurrently \"tsup --external react\" \"tailwindcss -i ./src/styles.css -o ./public/styles.css --watch\"",

@@ -1,15 +1,17 @@
 {
-  "name": "@hyezo/utils",
-  "version": "1.1.0",
+  "name": "hyezo",
+  "version": "1.2.0",
+  "type": "module",
+  "license": "MIT",
   "sideEffects": false,
   "files": [
-    "public/**"
+    "public/**/*"
   ],
   "scripts": {
-    "build": "tsup \"./src/**/*.tsx\" --format esm,cjs --dts --external react",
-    "dev": "tsup \"./src/**/*.tsx\" --format esm,cjs --watch --dts --external react",
-    "lint": "TIMING=1 eslint \"./**/*.ts*\"",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf public"
+    "build": "tsup --external react && tailwindcss -i ./src/ui/styles.css -o ./public/ui/styles.css",
+    "dev": "concurrently \"tsup --external react\" \"tailwindcss -i ./src/ui/styles.css -o ./public/ui/styles.css --watch\"",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf public",
+    "lint": "TIMING=1 eslint \"./**/*.ts*\""
   },
   "devDependencies": {
     "@hyezo/tsconfig": "workspace:*",
@@ -18,18 +20,22 @@
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@next/font": "13.1.5",
+    "concurrently": "^7.6.0",
+    "cva": "npm:class-variance-authority@^0.4.0",
     "eslint": "^8.32.0",
     "eslint-config-hyezo": "workspace:*",
     "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
+    "next": "^13.1.5",
     "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwind-config-hyezo": "workspace:*",
+    "tailwindcss": "^3.2.4",
     "tsup": "^6.5.0",
     "typescript": "^4.9.4"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "zod": "^3.20.2"
   }
 }

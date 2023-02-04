@@ -2,6 +2,9 @@ import { StoryFn, Meta } from "@storybook/react";
 import { Form } from "@ui/Form";
 import { Input } from "@ui/InputWithForm";
 import { SubmitButton } from "@ui/SubmitButton";
+import { TextArea } from "@ui/TextArea";
+import { useRef } from "react";
+import { useForm } from "react-hook-form";
 
 export default {
   title: "UI/Form",
@@ -9,11 +12,22 @@ export default {
   tags: ["autodocs"],
 } as Meta<typeof Form>;
 
-const Template: StoryFn<typeof Form> = ({ form, onClick, ...args }) => {
+const Template: StoryFn<typeof Form> = ({ ...args }) => {
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+  const form = useForm();
+
   return (
-    <Form form={form} onClick={onClick} {...args}>
-      <Input label="인풋1" />
-      <SubmitButton>내가 누구게</SubmitButton>
+    <Form
+      form={form}
+      onSubmit={async data => {
+        await new Promise(r => setTimeout(r, 1000));
+        alert(JSON.stringify(data));
+      }}
+    >
+      <Input label="id" name="id" type="text" ref={inputRef1} />
+      <Input label="password" name="pass" type="password" ref={inputRef2} />
+      <SubmitButton>암호를 입력하세요</SubmitButton>
     </Form>
   );
 };

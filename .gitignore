@@ -38,11 +38,14 @@ yarn-error.log*
 # dist
 dist
 
-# storybook
+# apps
 apps/docs/src/components/*
+apps/web
+apps/web2
 
 # packages
 packages/ui/src
 packages/utils/hooks/*
 
+# 임시저장소
 .storage

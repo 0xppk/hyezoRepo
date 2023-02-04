@@ -8,7 +8,7 @@ export default {
   argTypes: {
     submitAction: {
       description:
-        "Submit Handler. Runs on clicking Button. Input value comes in a first parameter.",
+        "Submit Handler. Runs on clicking Button. Input value comes in as first parameter.",
       table: {
         type: { summary: "(inputState: string, ...args: unknown[]) => void" },
         defaultValue: { summary: "[optional]" },

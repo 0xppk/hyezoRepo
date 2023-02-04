@@ -1,5 +1,17 @@
 # docs
 
+## 1.1.0
+
+### Minor Changes
+
+- e0db0ed: .
+
+### Patch Changes
+
+- Updated dependencies [e0db0ed]
+  - @hyezo/ui@1.2.0
+  - @hyezo/utils@1.1.0
+
 ## 1.0.1
 
 ### Patch Changes

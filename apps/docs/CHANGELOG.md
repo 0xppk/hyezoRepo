@@ -1,5 +1,12 @@
 # docs
 
+## 1.2.2
+
+### Patch Changes
+
+- Updated dependencies
+  - hyezo@1.1.2
+
 ## 1.2.1
 
 ### Patch Changes

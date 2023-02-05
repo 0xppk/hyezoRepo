@@ -40,13 +40,14 @@ dist
 packages/utils/public/package.json
 
 # apps
-apps/docs/src/components/*
+apps/docs/src/components
+apps/docs/public
 apps/web
 apps/web2
 
 # packages
 packages/utils/src
-packages/utils2/hooks/*
+packages/utils/public
 
 # 임시저장소
 .storage

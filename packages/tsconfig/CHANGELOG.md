@@ -1,5 +1,23 @@
 # @hyezo/tsconfig
 
+## 1.2.0
+
+### Minor Changes
+
+- test
+
+## 1.1.2
+
+### Patch Changes
+
+- test
+
+## 1.1.1
+
+### Patch Changes
+
+- tets
+
 ## 1.1.0
 
 ### Minor Changes

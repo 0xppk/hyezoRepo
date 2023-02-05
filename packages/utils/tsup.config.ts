@@ -22,8 +22,11 @@ const defaultConfig: Options = {
   clean: true, // clean up the output folder
   dts: true, // generate dts files
   format: ["cjs", "esm"], // generate cjs and esm files
-  minify: env === "production", // minify the output size
-  bundle: env === "production",
+  minify: true, // minify the output size
+  minifyWhitespace: true,
+  minifySyntax: true,
+  minifyIdentifiers: true,
+  bundle: true,
   skipNodeModulesBundle: true,
   watch: env === "development",
   target: "es2020",
@@ -35,7 +38,7 @@ export default defineConfig((): Options[] => {
   return allFolders.map(folder => {
     return {
       ...defaultConfig,
-      entry: [`${__dirname}/src/${folder}/index.ts`],
+      entry: [`${__dirname}/src/${folder}/**/*.{ts,tsx}`],
       outDir: `public/${folder}`,
     };
   });

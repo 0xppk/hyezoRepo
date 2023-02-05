@@ -2,7 +2,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import { Input } from "@hyezo/ui/InputWithoutForm";
 
 export default {
-  title: "UI/InputWithoutForm",
+  title: "UI/Input",
   component: Input,
   tags: ["autodocs"],
   argTypes: {
@@ -19,12 +19,12 @@ export default {
 
 const Template: StoryFn<typeof Input> = args => <Input {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
+export const Sample = Template.bind({});
+Sample.args = {
   submitAction: value => alert(value + " 〰️ 닉네임 생성 완료"),
   placeholder: "닉네임을 입력하세요",
 };
-Default.parameters = {
+Sample.parameters = {
   docs: {
     source: {
       code: `<Input

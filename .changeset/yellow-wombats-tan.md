@@ -1,5 +1,0 @@
----
-"hyezo": major
----
-
-init

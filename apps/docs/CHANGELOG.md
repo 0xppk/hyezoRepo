@@ -1,5 +1,47 @@
 # docs
 
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies
+  - hyezo@1.1.1
+
+## 1.2.0
+
+### Minor Changes
+
+- test
+
+### Patch Changes
+
+- Updated dependencies
+  - hyezo@1.1.0
+
+## 1.1.3
+
+### Patch Changes
+
+- test
+- Updated dependencies
+  - hyezo@1.0.8
+
+## 1.1.2
+
+### Patch Changes
+
+- tets
+- Updated dependencies
+  - hyezo@1.0.7
+
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies [5147310]
+  - hyezo@2.0.0
+
 ## 1.1.0
 
 ### Minor Changes

@@ -1,4 +1,4 @@
-import "../stories/tailwind.css";
+import "../stories/styles.css";
 import { withTailwindTheme } from "./withTailwindTheme.decorator";
 
 export const parameters = {

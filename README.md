@@ -2,6 +2,8 @@
 
 `Turborepo`를 기반으로 한 모노레포. 현재는 두 개의 파트로 구성되어 있습니다.
 
+#### 미리보기
+
 - [Storybook](https://63d347ebd5c9899045f00f1a-fwosjznqoj.chromatic.com/) 🧤
 - [Packages](https://www.npmjs.com/package/hyezo?activeTab=explore) 📦
 
@@ -26,20 +28,21 @@
 
 apps/
 
-- `docs`: [Next.js](https://nextjs.org/)를 전제로 한 스토리북 문서들
+- `docs`: [Next.js](https://nextjs.org/)사용을 전제로 한 스토리북 문서들
 
 packages/
 
-- `utils`: 리액트 커스텀 훅과 UI 컴퍼넌트 모음들
+- `utils`: 리액트 커스텀 훅과 UI 컴퍼넌트 모음집
 - `tailwind-config-hyezo`: 모노레포 전반에 사용되는 `tailwind` 셋팅
 - `eslint-config-hyezo`: 모노레포 전반에 사용되는 `eslint` 셋팅 (`eslint-config-next`, `eslint-config-prettier`, `eslint-config-tailwind` 등 포함)
 - `@hyezo/tsconfig`: 모노레포 전반에 사용되는 `tsconfig.json` 셋팅
 
-## NPM Package
+## NPM Package Config
 
-`utils`의 커스텀훅과 디자인 컴퍼넌트 포함.
+`utils`의 커스텀훅과 디자인 컴퍼넌트가 포함됨.
 
-- format: `esm, cjs` 형식 모두 지원
+- sub-folder: 각각 하위폴더 `hooks`와 `ui`에 저장
+- format: `esm, cjs` 형식 모두 지원 (+`d.ts`)
 - treeshake: `import, export`시 사용되지 않는 변수(죽은 코드) 비활성화
 
 ### 설치 및 사용방법
@@ -55,4 +58,4 @@ import { Button } from "hyezo/ui";
 import { Button } from "hyezo/ui/Button";
 ```
 
-각각의 설명은 `JS-DOC`을 통해 확인할 수 있습니다.
+자세한 설명은 `JS-DOC`을 통해 확인할 수 있습니다.

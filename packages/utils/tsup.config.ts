@@ -29,6 +29,7 @@ const defaultConfig: Options = {
   bundle: true,
   skipNodeModulesBundle: true,
   watch: env === "development",
+  external: ["react"],
   target: "es2020",
   tsconfig: path.resolve(__dirname, "./tsconfig.json"),
 };

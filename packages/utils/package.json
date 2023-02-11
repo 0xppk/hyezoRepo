@@ -1,26 +1,29 @@
 {
   "name": "hyezo",
   "version": "1.1.2",
-  "type": "module",
   "license": "MIT",
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "scripts": {
     "build": "tsup --external react && tailwindcss -i ./src/ui/styles.css -o ./public/ui/styles.css",
     "dev": "concurrently \"tsup --external react\" \"tailwindcss -i ./src/ui/styles.css -o ./public/ui/styles.css --watch\"",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf public",
-    "lint": "TIMING=1 eslint \"./**/*.ts*\"",
+    "lint": "TIMING=1 eslint \"./* */*.ts*\"",
     "rel": "pnpm run build && node setup.js && cd public && pnpm publish --no-git-checks"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
     "next": "^13.1.5",
-    "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.0",
     "zod": "^3.20.2"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
   },
   "devDependencies": {
     "@hyezo/tsconfig": "workspace:*",

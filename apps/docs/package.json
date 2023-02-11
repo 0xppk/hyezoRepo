@@ -1,11 +1,9 @@
 {
   "name": "docs",
   "version": "1.2.2",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"storybook dev -p 6006\" \"tailwindcss -i ./stories/styles.css -o ./public/styles.css --watch\"",
-    "build": "storybook build -o public  && tailwindcss -i ./stories/styles.css -o ./public/styles.css",
+    "dev": "concurrently \"storybook dev -p 6006\" \"tailwindcss -i ./storiebook/styles.css -o ./public/styles.css --watch\"",
+    "build": "storybook build -o public  && tailwindcss -i ./storiebook/styles.css -o ./public/styles.css",
     "clean": "rm -rf .turbo && rm -rf node_modules",
     "build-storybook": "chromatic -t $(grep CHROMATIC_PROJECT_TOKEN .env | cut -d '=' -f2) -d public --exit-zero-on-changes main --auto-accept-changes main --exit-once-uploaded main"
   },
@@ -40,7 +38,6 @@
     "cva": "npm:class-variance-authority@^0.4.0",
     "eslint-config-hyezo": "workspace:*",
     "postcss": "^8.4.21",
-    "postcss-import": "^15.1.0",
     "postcss-loader": "^7.0.2",
     "storybook": "^7.0.0-beta.34",
     "style-loader": "^3.3.1",

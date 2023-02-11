@@ -20,7 +20,7 @@ export default {
   },
 } as Meta<typeof Text>;
 
-const Template: StoryFn<typeof Text> = (args) => <Text {...args}></Text>;
+const Template: StoryFn<typeof Text> = args => <Text {...args}></Text>;
 
 export const Sample = Template.bind({});
 Sample.args = {
@@ -36,7 +36,7 @@ interface StoryProps {
 const Proto = ({ variants }: StoryProps) => ({
   render: () => (
     <div>
-      {variants.map((variant) => (
+      {variants.map(variant => (
         <Text key={variant} variant={variant}>
           {variant}
         </Text>

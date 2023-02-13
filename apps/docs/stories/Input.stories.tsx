@@ -1,9 +1,9 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Input } from "@hyezo/ui/InputWithoutForm";
+import { InputSimple } from "@hyezo/ui";
 
 export default {
   title: "UI/Input",
-  component: Input,
+  component: InputSimple,
   tags: ["autodocs"],
   argTypes: {
     submitAction: {
@@ -15,9 +15,9 @@ export default {
       },
     },
   },
-} as Meta<typeof Input>;
+} as Meta<typeof InputSimple>;
 
-const Template: StoryFn<typeof Input> = args => <Input {...args} />;
+const Template: StoryFn<typeof InputSimple> = args => <InputSimple {...args} />;
 
 export const Sample = Template.bind({});
 Sample.args = {

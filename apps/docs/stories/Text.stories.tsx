@@ -1,5 +1,5 @@
 import { StoryFn, Meta } from "@storybook/react";
-import { Text, type TextProps } from "@hyezo/ui/Text";
+import { Text, type TextProps } from "@hyezo/ui";
 
 export default {
   title: "UI/Text",
@@ -43,10 +43,6 @@ const Proto = ({ variants }: StoryProps) => ({
       ))}
     </div>
   ),
-});
-
-export const Xsmall = Proto({
-  variants: ["xs/light", "xs/normal", "xs/semibold", "xs/bold"],
 });
 
 export const Small = Proto({

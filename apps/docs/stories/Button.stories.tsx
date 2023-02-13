@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Button } from "@hyezo/ui/Button";
+import { Button } from "@hyezo/ui";
 
 export default {
   title: "UI/Button",

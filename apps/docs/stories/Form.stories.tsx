@@ -1,7 +1,5 @@
 import { StoryFn, Meta } from "@storybook/react";
-import { Form } from "@hyezo/ui/Form";
-import { Input } from "@hyezo/ui/InputWithForm";
-import { SubmitButton } from "@hyezo/ui/SubmitButton";
+import { Form, Input, TextArea, SubmitButton } from "@hyezo/ui";
 
 export default {
   title: "UI/Form",
@@ -9,15 +7,26 @@ export default {
   tags: ["autodocs"],
 } as Meta<typeof Form>;
 
-const Template: StoryFn<typeof Form> = ({ ...args }) => {
+const Template: StoryFn<typeof Form> = ({ children, ...args }) => {
   return (
     <Form onSubmit={data => alert(JSON.stringify(data))}>
-      <Input label="email" type="email" />
-      <Input label="password" type="password" />
-    <SubmitButton>암호를 입력하세요</SubmitButton>
+      {children}
+      <SubmitButton>Submit</SubmitButton>
     </Form>
   );
 };
 
-export const Sample = Template.bind({});
-Sample.args = {};
+export const InputForm = Template.bind({});
+InputForm.args = {
+  children: (
+    <>
+      <Input label="email" type="email" />
+      <Input label="password" type="password" />
+    </>
+  ),
+};
+
+export const TextareaForm = Template.bind({});
+TextareaForm.args = {
+  children: <TextArea label="message" />,
+};

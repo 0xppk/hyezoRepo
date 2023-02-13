@@ -44,6 +44,7 @@ importers:
       hyezo: workspace:*
       next: ^13.1.5
       postcss: ^8.4.21
+      postcss-import: ^15.1.0
       postcss-loader: ^7.0.2
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -83,6 +84,7 @@ importers:
       cva: /class-variance-authority/0.4.0_typescript@4.9.5
       eslint-config-hyezo: link:../../packages/eslint-config-hyezo
       postcss: 8.4.21
+      postcss-import: 15.1.0_postcss@8.4.21
       postcss-loader: 7.0.2_6jdsrmfenkuhhw3gx4zvjlznce
       storybook: 7.0.0-beta.34
       style-loader: 3.3.1_webpack@5.75.0
@@ -163,10 +165,8 @@ importers:
 
   packages/tailwind-config-hyezo:
     specifiers:
-      postcss: ^8.4.21
       tailwindcss: ^3.2.4
     devDependencies:
-      postcss: 8.4.21
       tailwindcss: 3.2.4_postcss@8.4.21
 
   packages/tsconfig:
@@ -9678,6 +9678,18 @@ packages:
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.1
+
+  /postcss-import/15.1.0_postcss@8.4.21:
+    resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      postcss: ^8.0.0
+    dependencies:
+      postcss: 8.4.21
+      postcss-value-parser: 4.2.0
+      read-cache: 1.0.0
+      resolve: 1.22.1
+    dev: true
 
   /postcss-js/4.0.0_postcss@8.4.21:
     resolution: {integrity: sha512-77QESFBwgX4irogGVPgQ5s07vLvFqWr228qZY+w6lW599cRlK/HmnlivnnVUxkjHnCu4J16PDMHcH+e+2HbvTQ==}

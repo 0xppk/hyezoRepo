@@ -14,7 +14,7 @@ export default {
       description: "The group name of items.",
     },
     disable: {
-      description: "Making items in this array to be disabled.",
+      description: "Making items in this array disabled.",
     },
   },
 } as Meta<typeof SelectOption>;

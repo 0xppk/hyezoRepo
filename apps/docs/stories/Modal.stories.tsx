@@ -8,7 +8,7 @@ export default {
   tags: ["autodocs"],
   argTypes: {
     size: {
-      description: "The modal size in proportion of `parent <div>` size. It consist of `height/width`.",
+      description: "The modal size is in proportion of `parent <div>` size. It consist of `height/width`.",
       table: {
         defaultValue: {
           summary: `"long/wide"`,

@@ -6,6 +6,24 @@ export default {
   title: "UI/Modal",
   component: Modal,
   tags: ["autodocs"],
+  argTypes: {
+    size: {
+      description: "The modal size in proportion of `parent <div>` size. It consist of `height/width`.",
+      table: {
+        defaultValue: {
+          summary: `"long/wide"`,
+        },
+      },
+    },
+    color: {
+      description: "The background color of modal.",
+      table: {
+        defaultValue: {
+          summary: `"white"`,
+        },
+      },
+    }
+  },
 } as Meta<typeof Modal>;
 
 const Template: StoryFn<typeof Modal> = ({ ...args }) => {
@@ -15,12 +33,10 @@ const Template: StoryFn<typeof Modal> = ({ ...args }) => {
     <div style={{ height: "300px" }}>
       <Button onClick={() => setOpen(prev => !prev)}>{open ? "닫기" : "열기"}</Button>
       <Modal {...args} open={open} setOpen={setOpen}>
-        <div className="flex items-center space-x-3">
-          <Button color="blue">확인</Button>
-          <Button onClick={() => setOpen(prev => !prev)} color="red">
-            취소
-          </Button>
-        </div>
+        <Button color="blue">확인</Button>
+        <Button onClick={() => setOpen(prev => !prev)} color="red">
+          취소
+        </Button>
       </Modal>
     </div>
   );

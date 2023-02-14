@@ -1,5 +1,17 @@
 # @hyezo/ui
 
+## 1.3.0
+
+### Minor Changes
+
+- dependencies version update
+
+## 1.2.0
+
+### Minor Changes
+
+- turbo, eslint, prettier version up
+
 ## 1.1.2
 
 ### Patch Changes

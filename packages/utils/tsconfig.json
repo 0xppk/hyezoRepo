@@ -1,5 +1,9 @@
 {
   "extends": "@hyezo/tsconfig/react-library.json",
-  "include": ["."],
+  "include": [
+    ".",
+    "../../.storage/useMediaQuery.tsx",
+    "../../.storage/useOnlineStatus.tsx"
+  ],
   "exclude": ["dist", "public", "build", "node_modules"]
 }

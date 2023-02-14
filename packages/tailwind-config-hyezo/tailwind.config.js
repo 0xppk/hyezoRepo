@@ -91,8 +91,8 @@ module.exports = {
         },
       },
       cursor: {
-        fancy: "url('/images/2022/autumm/cursor.png'), default",
-        fancyHover: "url('/images/2022/autumm/cursor_hover.png'), pointer",
+        fancy: "url('../../apps/docs/src/assets/cursor.png'), default",
+        fancyHover: "url('../../apps/docs/src/assets/cursor_hover.png'), pointer",
       },
       scrollPadding: {
         vmax: "14vmax",

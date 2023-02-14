@@ -37,6 +37,7 @@ yarn-error.log*
 
 # dist
 dist
+public
 packages/utils/public/package.json
 
 # apps

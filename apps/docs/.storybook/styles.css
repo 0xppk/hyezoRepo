@@ -173,7 +173,3 @@
     background-size: 7.07px 7.07px;
   }
 }
-
-.docs-story {
-  @apply overflow-x-hidden;
-}

@@ -1,5 +1,23 @@
 # docs
 
+## 1.3.0
+
+### Minor Changes
+
+- dependencies version update
+
+### Patch Changes
+
+- Updated dependencies
+  - hyezo@1.3.0
+
+## 1.2.3
+
+### Patch Changes
+
+- Updated dependencies
+  - hyezo@1.2.0
+
 ## 1.2.2
 
 ### Patch Changes

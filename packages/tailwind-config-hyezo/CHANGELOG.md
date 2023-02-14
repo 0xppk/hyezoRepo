@@ -1,5 +1,11 @@
 # tailwind-config-hyezo
 
+## 1.2.0
+
+### Minor Changes
+
+- dependencies version update
+
 ## 1.1.0
 
 ### Minor Changes

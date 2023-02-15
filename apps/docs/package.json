@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "scripts": {
     "dev": "concurrently \"storybook dev -p 6006\" \"tailwindcss -i ./.storybook/styles.css -o ./public/styles.css --watch\"",
     "build": "storybook build -o public  && tailwindcss -i ./.storybook/styles.css -o ./public/styles.css",

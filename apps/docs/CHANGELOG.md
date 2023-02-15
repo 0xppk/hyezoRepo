@@ -1,5 +1,13 @@
 # docs
 
+## 1.3.4
+
+### Patch Changes
+
+- modal component fixed
+- Updated dependencies
+  - hyezo@1.4.3
+
 ## 1.3.3
 
 ### Patch Changes

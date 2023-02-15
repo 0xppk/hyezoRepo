@@ -98,7 +98,7 @@ importers:
       '@types/react': ^18.0.27
       '@types/react-dom': ^18.0.10
       eslint-config-hyezo: workspace:*
-      hyezo: workspace:*
+      hyezo: workspace:^1.4.1
       next: ^13.1.5
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -199,6 +199,9 @@ importers:
       zod: ^3.20.6
     dependencies:
       '@hookform/resolvers': 2.9.11_react-hook-form@7.43.1
+      cva: /class-variance-authority/0.4.0_typescript@4.9.5
+      js-cookie: 3.0.1
+      lodash: 4.17.21
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -213,11 +216,8 @@ importers:
       '@types/react': 18.0.28
       '@types/react-dom': 18.0.10
       concurrently: 7.6.0
-      cva: /class-variance-authority/0.4.0_typescript@4.9.5
       eslint: 8.34.0
       eslint-config-hyezo: link:../eslint-config-hyezo
-      js-cookie: 3.0.1
-      lodash: 4.17.21
       tailwind-config-hyezo: link:../tailwind-config-hyezo
       tailwindcss: 3.2.6_postcss@8.4.21
       tsup: 6.6.3_uujdqti2krmttzhqvubwnsmcci
@@ -5440,7 +5440,6 @@ packages:
         optional: true
     dependencies:
       typescript: 4.9.5
-    dev: true
 
   /clean-css/5.3.2:
     resolution: {integrity: sha512-JVJbM+f3d3Q704rF4bqQ5UUyTtuJ0JRKNbTKVEeujCCBoMdkEi+V+e8oktO9qGQNSvHrFTM6JZRXrUvGR1czww==}
@@ -8081,7 +8080,7 @@ packages:
   /js-cookie/3.0.1:
     resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
     engines: {node: '>=12'}
-    dev: true
+    dev: false
 
   /js-sdsl/4.3.0:
     resolution: {integrity: sha512-mifzlm2+5nZ+lEcLJMoBK0/IH/bDg8XnJfd/Wq6IP+xoCjLZsTOnV2QpxlVbX9bMnkl5PdEjNtBJ9Cj1NjifhQ==}
@@ -8443,7 +8442,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /loose-envify/1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}

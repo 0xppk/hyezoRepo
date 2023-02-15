@@ -32,7 +32,7 @@ const Template: StoryFn<typeof Modal> = ({ ...args }) => {
 
   return (
     <div style={{ height: "300px" }}>
-      <Button onClick={() => setOpen(prev => !prev)}>{open ? "닫기" : "열기"}</Button>
+      <Button onClick={() => setOpen(true)}>{open ? "닫기" : "열기"}</Button>
       <Modal {...args} open={open} setOpen={setOpen}>
         <Button color="blue">확인</Button>
         <Button onClick={() => setOpen(prev => !prev)} color="red">

@@ -1,5 +1,17 @@
 # tailwind-config-hyezo
 
+## 1.2.2
+
+### Patch Changes
+
+- devDependencies -> dependencies
+
+## 1.2.1
+
+### Patch Changes
+
+- for test
+
 ## 1.2.0
 
 ### Minor Changes

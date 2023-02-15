@@ -45,11 +45,39 @@ Basic.args = {
   label: "Basic",
   children: <SelectOption items={["사과", "딸기", "수박", "메론"]} />,
 };
+Basic.parameters = {
+  docs: {
+    source: {
+      code: `<Form onSubmit={data => alert(JSON.stringify(data))}>
+  <Select label={label} {...args}>
+    <SelectOption items={["사과", "딸기", "수박", "메론"]} />
+  </Select>
+  <SubmitButton>Submit</SubmitButton>
+</Form>`,
+    },
+    language: "tsx",
+    type: "auto",
+  },
+};
 
 export const Multiple = Template.bind({});
 Multiple.args = {
   multiple: true,
   children: <SelectOption items={["사과", "딸기", "수박", "메론"]} />,
+};
+Multiple.parameters = {
+  docs: {
+    source: {
+      code: `<Form onSubmit={data => alert(JSON.stringify(data))}>
+  <Select label={label} {...args} multiple>
+    <SelectOption items={["사과", "딸기", "수박", "메론"]} />
+  </Select>
+  <SubmitButton>Submit</SubmitButton>
+</Form>`,
+    },
+    language: "tsx",
+    type: "auto",
+  },
 };
 
 export const Group = Template.bind({});
@@ -57,8 +85,31 @@ Group.args = {
   label: "재고",
   children: (
     <>
-      <SelectOption category="과일" disable={["복숭아"]} items={["포도", "복숭아", "참외"]} />
+      <SelectOption
+        category="과일"
+        disable={["복숭아"]}
+        items={["포도", "복숭아", "참외"]}
+      />
       <SelectOption category="과자" items={["프링글스", "초코송이", "칸초"]} />
     </>
   ),
+};
+Group.parameters = {
+  docs: {
+    source: {
+      code: `<Form onSubmit={data => alert(JSON.stringify(data))}>
+  <Select label={label} {...args}>
+    <SelectOption
+      category="과일"
+      disable={["복숭아"]}
+      items={["포도", "복숭아", "참외"]}
+    />
+    <SelectOption category="과자" items={["프링글스", "초코송이", "칸초"]} />
+  </Select>
+  <SubmitButton>Submit</SubmitButton>
+</Form>`,
+    },
+    language: "tsx",
+    type: "auto",
+  },
 };

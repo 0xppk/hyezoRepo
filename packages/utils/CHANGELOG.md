@@ -1,5 +1,23 @@
 # @hyezo/ui
 
+## 1.4.2
+
+### Patch Changes
+
+- devDependencies -> dependencies
+
+## 1.4.1
+
+### Patch Changes
+
+- for test
+
+## 1.4.0
+
+### Minor Changes
+
+- form UI added
+
 ## 1.3.0
 
 ### Minor Changes

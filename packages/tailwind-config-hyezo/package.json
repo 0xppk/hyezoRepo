@@ -1,6 +1,6 @@
 {
   "name": "tailwind-config-hyezo",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "main": "index.js",
   "devDependencies": {
     "tailwindcss": "^3.2.6"

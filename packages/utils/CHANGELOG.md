@@ -1,5 +1,11 @@
 # @hyezo/ui
 
+## 1.4.3
+
+### Patch Changes
+
+- modal component fixed
+
 ## 1.4.2
 
 ### Patch Changes

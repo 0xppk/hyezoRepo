@@ -25,15 +25,15 @@ const Template: StoryFn<typeof SelectOption> = ({ ...args }) => (
 
 interface StoryProps {
   items: (string | number)[];
-  disable?: (string | number)[];
+  block?: (string | number)[];
   category?: string | undefined;
 }
 
-const Proto = ({ items, category, disable }: StoryProps) => ({
+const Proto = ({ items, category, block }: StoryProps) => ({
   render: () => (
     <Form onSubmit={data => alert(JSON.stringify(data))}>
       <Select label="Select" type="select" multiple={false}>
-        <SelectOption items={items} category={category} disable={disable} />
+        <SelectOption items={items} category={category} disable={block} />
       </Select>
       <SubmitButton>제출</SubmitButton>
     </Form>
@@ -43,5 +43,5 @@ const Proto = ({ items, category, disable }: StoryProps) => ({
 export const Sample = Proto({
   items: ["사과", "딸기", "바나나", "사과", "망고", "수박"],
   category: "과일",
-  disable: ["바나나", "딸기"],
+  block: ["바나나", "딸기"],
 });

@@ -41,7 +41,7 @@ export default {
   },
 } as Meta<typeof Button>;
 
-const Template: StoryFn<typeof Button> = args => <Button {...args}>으잉</Button>;
+const Template: StoryFn<typeof Button> = args => <Button {...args}>Button</Button>;
 
 export const Blue = Template.bind({});
 Blue.args = {
@@ -51,6 +51,8 @@ Blue.args = {
 export const Red = Template.bind({});
 Red.args = {
   color: "red",
+  outline: true,
+  disabled: true,
 };
 
 export const Orange = Template.bind({});
@@ -68,7 +70,7 @@ Twitter.args = {
   color: "twitter",
 };
 
-export const Smoke = Template.bind({});
-Smoke.args = {
-  color: "smoke",
+export const Black = Template.bind({});
+Black.args = {
+  color: "black",
 };

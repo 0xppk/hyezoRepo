@@ -8,14 +8,10 @@
     "build-storybook": "chromatic -t $(grep CHROMATIC_PROJECT_TOKEN .env | cut -d '=' -f2) -d public --exit-zero-on-changes main --auto-accept-changes main --exit-once-uploaded main"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.10",
-    "@hookform/resolvers": "^2.9.11",
     "hyezo": "workspace:*",
     "next": "^13.1.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.1",
-    "zod": "^3.20.6"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@hyezo/tsconfig": "workspace:*",
@@ -31,7 +27,6 @@
     "@types/react-dom": "^18.0.10",
     "autoprefixer": "^10.4.13",
     "chromatic": "^6.17.0",
-    "clsx": "^1.2.1",
     "concurrently": "^7.6.0",
     "css-loader": "^6.7.3",
     "cssnano": "^5.1.14",
@@ -40,9 +35,11 @@
     "postcss": "^8.4.21",
     "postcss-import": "^15.1.0",
     "postcss-loader": "^7.0.2",
+    "react-hook-form": "^7.43.1",
     "storybook": "7.0.0-beta.47",
     "style-loader": "^3.3.1",
     "tailwind-config-hyezo": "workspace:*",
-    "tailwindcss": "^3.2.6"
+    "tailwindcss": "3.2.4",
+    "zod": "^3.20.6"
   }
 }

@@ -1,68 +1,78 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Button, Modal } from "@hyezo/ui";
+import { Button, Modal, ModalContent } from "@hyezo/ui";
 import { useState } from "react";
 
 export default {
   title: "UI/Modal",
   component: Modal,
-  tags: ["autodocs"],
+  // tags: ["autodocs"],
   argTypes: {
-    size: {
-      description:
-        "The modal size is in proportion of `parent <div>` size. It consist of `height/width`.",
+    width: {
+      description: "The modal width.",
       table: {
         defaultValue: {
-          summary: `"long/wide"`,
+          summary: "regular",
         },
       },
     },
-    color: {
-      description: "The background color of modal.",
+    center: {
+      description: "If this is `true`, the modal will be centered.",
       table: {
         defaultValue: {
-          summary: `"white"`,
+          summary: false,
         },
       },
     },
   },
 } as Meta<typeof Modal>;
 
-const Template: StoryFn<typeof Modal> = ({ ...args }) => {
-  const [open, setOpen] = useState(true);
+const Template: StoryFn<typeof Modal> = ({ center, width, ...args }) => {
+  const [open, setOpen] = useState(false);
 
   return (
-    <div style={{ height: "300px" }}>
-      <Button onClick={() => setOpen(true)}>{open ? "닫기" : "열기"}</Button>
-      <Modal {...args} open={open} setOpen={setOpen}>
-        <Button color="blue">확인</Button>
-        <Button onClick={() => setOpen(prev => !prev)} color="red">
-          취소
+    <>
+      <div className="fixed inset-0 flex items-center justify-center">
+        <Button onClick={() => setOpen(true)} color="black">
+          Open Modal
         </Button>
+      </div>
+      <Modal
+        isOpen={open}
+        setIsOpen={setOpen}
+        width={width}
+        center={center}
+        title="It just Test"
+      >
+        <ModalContent>
+          I don'k know what you want to do. But if I find you need it, I can help.
+        </ModalContent>
+        <div className="mt-5 flex space-x-4">
+          <Button onClick={() => setOpen(false)} color="twitter" fullWidth={center}>
+            Okay, I understand.
+          </Button>
+        </div>
       </Modal>
-    </div>
+    </>
   );
 };
 
 export const Sample = Template.bind({});
 Sample.args = {
-  size: "long/regular",
-  color: "s-blue",
+  center: false,
+  width: "wide",
 };
-
-export const Mini = Template.bind({});
-Mini.args = {
-  size: "shorter/narrow",
-  color: "s-blue",
-};
-
-export const Basic = Template.bind({});
-Basic.args = {
-  size: "regular/regular",
-  color: "s-blue",
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  size: "longer/wide",
-  color: "s-blue",
+Sample.parameters = {
+  backgrounds: {
+    default: "default",
+    values: [
+      {
+        name: "default",
+        value: "linear-gradient(90deg, #8BC6EC 0%, #9599E2 100%)",
+      },
+      {
+        name: "facebook",
+        value: "#3b5998",
+      },
+    ],
+  },
 };

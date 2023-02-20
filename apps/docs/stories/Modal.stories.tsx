@@ -69,10 +69,6 @@ Sample.parameters = {
         name: "default",
         value: "linear-gradient(90deg, #8BC6EC 0%, #9599E2 100%)",
       },
-      {
-        name: "facebook",
-        value: "#3b5998",
-      },
     ],
   },
 };

@@ -121,5 +121,82 @@ module.exports = {
       content: "100vw",
     },
   },
-  plugins: [],
+  plugins: [
+    ({ addUtilities }) => {
+      /** @type {import('tailwindcss/types/config').PluginCreator} */
+      addUtilities({
+        ".keep-all": {
+          "word-break": "keep-all",
+        },
+        ".blue-dot": {
+          width: "8px",
+          height: "8px",
+          margin: "8px",
+          border: "2px solid rgb(102, 153, 204)",
+          "background-color": "rgb(102, 153, 204)",
+          "min-width": "8px",
+          "border-radius": "50%",
+        },
+        ".bg-stripes-gray": {
+          "background-color": "#9ca3af1a",
+          "background-image":
+            "linear-gradient(135deg, #6b728080 10%, transparent 0, transparent 50%, #6b728080 0, #6b728080 60%, transparent 0, transparent)",
+          "background-size": "7.07px 7.07px",
+        },
+        ".bg-stripes-cyan": {
+          "background-color": "#22d3ee1a",
+          "background-image":
+            "linear-gradient(135deg, #06b6d480 10%, transparent 0, transparent 50%, #06b6d480 0, #06b6d480 60%, transparent 0, transparent)",
+          "background-size": "7.07px 7.07px",
+        },
+        ".bg-stripes-sky": {
+          "background-color": "#38bdf81a",
+          "background-image":
+            "linear-gradient(135deg, #0ea5e980 10%, transparent 0, transparent 50%, #0ea5e980 0, #0ea5e980 60%, transparent 0, transparent)",
+          "background-size": "7.07px 7.07px",
+        },
+        ".bg-stripes-blue": {
+          "background-color": "#60a5fa1a",
+          "background-image":
+            "linear-gradient(135deg,#3b82f680 10%,transparent 0,transparent 50%,#3b82f680 0, #3b82f680 60%, transparent 0, transparent)",
+          "background-size": "7.07px 7.07px",
+        },
+        ".bg-stripes-indigo": {
+          "background-color": "#818cf81a",
+          "background-image":
+            "linear-gradient(135deg, #6366f180 10%, transparent 0, transparent 50%, #6366f180 0, #6366f180 60%, transparent 0, transparent)",
+          "background-size": "7.07px 7.07px",
+        },
+        ".bg-stripes-violet": {
+          "background-color": "#a78bfa1a",
+          "background-image":
+            "linear-gradient(135deg, #8b5cf680 10%, transparent 0, transparent 50%, #8b5cf680 0, #8b5cf680 60%, transparent 0, transparent)",
+          "background-size": "7.07px 7.07px",
+        },
+        ".bg-stripes-purple": {
+          "background-color": "#c084fc1a",
+          "background-image":
+            "linear-gradient(135deg, #a855f780 10%, transparent 0, transparent 50%, #a855f780 0, #a855f780 60%, transparent 0, transparent)",
+          "background-size": "7.07px 7.07px",
+        },
+        ".bg-stripes-fuchsia": {
+          "background-color": "#e879f91a",
+          "background-image":
+            "linear-gradient(135deg, #d946ef80 10%, transparent 0, transparent 50%, #d946ef80 0, #d946ef80 60%, transparent 0, transparent)",
+          "background-size": "7.07px 7.07px",
+        },
+        ".bg-stripes-pink": {
+          "background-color": "#f472b61a",
+          "background-image":
+            "linear-gradient(135deg, #ec489980 10%, transparent 0, transparent 50%, #ec489980 0, #ec489980 60%, transparent 0, transparent)",
+          "background-size": "7.07px 7.07px",
+        },
+        ".bg-stripes-white": {
+          "background-image":
+            "linear-gradient(135deg, hsla(0, 0%, 100%, 0.75) 10%, transparent 0, transparent 50%,hsla(0, 0%, 100%, 0.75) 0, hsla(0, 0%, 100%, 0.75) 60%, transparent 0, transparent)",
+          "background-size": "7.07px 7.07px",
+        },
+      });
+    },
+  ],
 };

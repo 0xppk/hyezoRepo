@@ -1,5 +1,5 @@
 {
   "extends": "@hyezo/tsconfig/react-library.json",
   "include": ["."],
-  "exclude": ["dist", "public", "build", "node_modules"]
+  "exclude": ["dist", "public", "build", "node_modules", "./storage"]
 }

@@ -1,5 +1,13 @@
 {
   "extends": "@hyezo/tsconfig/react-library.json",
   "include": ["."],
-  "exclude": ["dist", "public", "build", "node_modules", "./storage"]
+  "exclude": ["dist", "public", "build", "node_modules", "./storage"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@hyezo/ui": ["../utils/src/ui"],
+      "@hyezo/ui/*": ["../utils/src/ui/*"],
+      "@hyezo/hooks": ["../utils/src/hooks"]
+    }
+  }
 }

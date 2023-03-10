@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Text from "@hyezo/ui/Text";
 
 export default function MainPage() {

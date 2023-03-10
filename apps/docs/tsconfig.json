@@ -1,6 +1,6 @@
 {
   "extends": "@hyezo/tsconfig/nextjs.json",
-  "include": [".", "../../.storage/Select.stories.tsx"],
+  "include": ["."],
   "exclude": ["dist", "public", "build", "node_modules"],
   "compilerOptions": {
     "baseUrl": ".",

@@ -41,10 +41,7 @@ public
 packages/utils/public/package.json
 
 # apps
-apps/docs/src/components
-apps/docs/public
-apps/web
-apps/web2
+apps/3dWeb
 
 # packages
 packages/utils/src
@@ -52,3 +49,5 @@ packages/utils/public
 
 # 임시저장소
 .storage
+
+

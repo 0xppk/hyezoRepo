@@ -5,6 +5,7 @@ module.exports = {
   content: [
     // app content
     `src/**/*.{js,ts,jsx,tsx}`,
+    `app/**/*.{js,ts,jsx,tsx}`,
     // include packages if not transpiling
     `../../packages/utils/src/ui/**/*.{js,ts,jsx,tsx}`,
   ],
@@ -27,11 +28,17 @@ module.exports = {
           "0%": { transform: "translateY(150px)", opacity: 0 },
           "100%": { transform: "translateY(0px)", opacity: 1 },
         },
+        rot: {
+          from: { transform: "rotate(0deg)" },
+          "50%": { transform: "scale(1.2, 1.3)" },
+          to: { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         wiggle: "wiggle 1s ease-in-out infinite",
         swap: "swap 0.8s ease-in-out",
         swapReverse: "swapReverse 0.8s ease-in-out",
+        rot: "rot 20s infinite",
       },
       colors: {
         orange: {
@@ -97,6 +104,12 @@ module.exports = {
       scrollPadding: {
         vmax: "14vmax",
       },
+      objectPosition: {
+        "center-center": "center center",
+      },
+      gridTemplateRows: {
+        masonry: "masonry",
+      },
     },
     // overrides
     screens: {
@@ -113,12 +126,6 @@ module.exports = {
       xl: "clamp(1.25rem, calc(0.92rem + 1.37vw), 2.16rem)",
       "2xl": "clamp(1.40rem, calc(0.98rem + 1.79vw), 2.59rem)",
       "3xl": "clamp(1.58rem, calc(1.04rem + 2.30vw), 3.11rem)",
-    },
-    minHeight: {
-      content: "100vh",
-    },
-    minWidth: {
-      content: "100vw",
     },
   },
   plugins: [
@@ -196,6 +203,75 @@ module.exports = {
             "linear-gradient(135deg, hsla(0, 0%, 100%, 0.75) 10%, transparent 0, transparent 50%,hsla(0, 0%, 100%, 0.75) 0, hsla(0, 0%, 100%, 0.75) 60%, transparent 0, transparent)",
           "background-size": "7.07px 7.07px",
         },
+      });
+    },
+    ({ addComponents }) => {
+      /** @type {import('tailwindcss/types/config').PluginCreator} */
+      addComponents({
+        ".slider-image": {
+          width: "22vmin",
+          height: "33vmin",
+          objectFit: "cover",
+          objectPosition: "center center",
+        },
+        ".slider": {
+          display: "flex",
+          width: "max-content",
+          gap: "4vmin",
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(0%, -50%)",
+        },
+        ".masonryColumn": {
+          display: "flex",
+          flex: "1",
+          gap: "10px",
+          "flex-direction": "column",
+        },
+        ".masonryImageWrapper": {
+          position: "relative",
+          overflow: "hidden",
+          width: "100%",
+          height: "max-content",
+          "border-radius": "15px",
+        },
+
+        ".masonryOverlay": {
+          position: "absolute",
+          top: "0",
+          left: "0",
+          width: "100%",
+          height: "100%",
+          background: "#161616",
+          display: "flex",
+          "align-items": "center",
+          "justify-content": "center",
+          opacity: "0",
+          transition: "0.5s",
+        },
+
+        ".blob": {
+          "background-color": "white",
+          height: "300px",
+          "aspect-ratio": "1",
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          translate: "-50% -50%",
+          "border-radius": "50%",
+          "z-index": "-2",
+          background: "linear-gradient(to right, aquamarine, mediumpurple)",
+        },
+
+        ".blur": {
+          height: "100%",
+          width: "100%",
+          position: "fixed",
+          "z-index": "-1",
+          "backdrop-filter": "blur(200px)",
+        },
+        
       });
     },
   ],

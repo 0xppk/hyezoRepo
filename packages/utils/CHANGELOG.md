@@ -1,5 +1,11 @@
 # @hyezo/ui
 
+## 1.5.0
+
+### Minor Changes
+
+- slider, masonry components added
+
 ## 1.4.3
 
 ### Patch Changes

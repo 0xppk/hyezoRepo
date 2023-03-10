@@ -1,6 +1,6 @@
 "use client";
 
-import BlobMouseEffect from "@hyezo/ui/BlobMouseEffect";
+import { BlobMouseEffect } from "@hyezo/ui";
 import { ReactNode } from "react";
 import Nav from "./nav";
 import "./styles/tailwind.css";

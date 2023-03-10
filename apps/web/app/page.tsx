@@ -1,4 +1,5 @@
-import Text from "@hyezo/ui/Text";
+"use client";
+import { Text } from "@hyezo/ui";
 
 export default function MainPage() {
   return (

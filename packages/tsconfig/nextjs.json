@@ -20,9 +20,8 @@
 
     "baseUrl": ".",
     "paths": {
-      "@hyezo/ui": ["../utils/src/ui"],
-      "@hyezo/ui/*": ["../utils/src/ui/*"],
-      "@hyezo/hooks": ["../utils/src/hooks"]
+      "@hyezo/ui": ["../utils/public/ui"],
+      "@hyezo/hooks": ["../utils/public/hooks"]
     },
     "plugins": [
       {

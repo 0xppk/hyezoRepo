@@ -1,7 +1,7 @@
 "use client";
 import { useMediaQuery } from "@hyezo/hooks";
 import { images } from "./images";
-import MasonryGrid from "@hyezo/ui/MasonryGrid";
+import { MasonryGrid } from "@hyezo/ui";
 
 export default function Page() {
   const isSmall = useMediaQuery("(max-width: 470px)");

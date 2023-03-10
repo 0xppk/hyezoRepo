@@ -1,5 +1,5 @@
 "use client";
-import Slider from "@hyezo/ui/Slider";
+import { Slider } from "@hyezo/ui";
 import { images } from "./images";
 
 export default function Page() {

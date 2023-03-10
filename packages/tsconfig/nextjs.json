@@ -16,7 +16,19 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "jsx": "preserve",
-    "target": "esnext"
+    "target": "esnext",
+
+    "baseUrl": ".",
+    "paths": {
+      "@hyezo/ui": ["../utils/src/ui"],
+      "@hyezo/ui/*": ["../utils/src/ui/*"],
+      "@hyezo/hooks": ["../utils/src/hooks"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": ["src", "next-env.d.ts"],
   "exclude": ["node_modules"]

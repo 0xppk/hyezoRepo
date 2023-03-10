@@ -5,6 +5,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@hyezo/ui": ["../../packages/utils/src/ui"],
       "@hyezo/ui/*": ["../../packages/utils/src/ui/*"],
       "@hyezo/hooks": ["../../packages/utils/src/hooks"]
     },

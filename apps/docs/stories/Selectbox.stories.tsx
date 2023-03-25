@@ -8,11 +8,11 @@ export default {
 } as Meta<typeof SelectBox>;
 
 const people = [
-  { name: "Javascript" },
-  { name: "Typescript" },
-  { name: "React" },
-  { name: "Nextjs" },
-  { name: "Java" },
+  { title: "Javascript" },
+  { title: "Typescript" },
+  { title: "React" },
+  { title: "Nextjs" },
+  { title: "Java" },
 ];
 
 const Template: StoryFn<typeof SelectBox> = ({ ...args }) => {

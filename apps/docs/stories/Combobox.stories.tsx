@@ -8,18 +8,18 @@ export default {
 } as Meta<typeof ComboBox>;
 
 const List = [
-  { id: 1, name: "Javascript" },
-  { id: 2, name: "Typescript" },
-  { id: 3, name: "GraphQL" },
-  { id: 4, name: "Zod" },
-  { id: 5, name: "React" },
+  { id: 1, title: "Javascript" },
+  { id: 2, title: "Typescript" },
+  { id: 3, title: "GraphQL" },
+  { id: 4, title: "Zod" },
+  { id: 5, title: "React" },
 ];
 
 const Template: StoryFn<typeof ComboBox> = ({ ...args }) => {
   return (
     <div className="fixed inset-0 flex w-screen items-center justify-center">
       <Form onSubmit={data => alert(JSON.stringify(data))}>
-        <ComboBox {...args} list={List} />
+        <ComboBox list={List} />
         <SubmitButton>Submit</SubmitButton>
       </Form>
     </div>

@@ -1,21 +1,23 @@
 {
   "name": "hyezo",
-  "version": "1.5.0",
+  "version": "1.5.3",
   "license": "MIT",
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "pub": "tsup --external react && tailwindcss -i ./src/ui/styles.css -o ./public/ui/styles.css",
     "dev": "concurrently \"tsup --external react\" \"tailwindcss -i ./src/ui/styles.css -o ./public/ui/styles.css --watch\"",
+    "pub": "tsup --external react && tailwindcss -i ./src/ui/styles.css -o ./public/ui/styles.css",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf public",
     "lint": "TIMING=1 eslint \"./* */*.ts*\"",
     "rel": "pnpm run pub && node setup.js && cd public && pnpm publish --no-git-checks"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.11",
+    "@heroicons/react": "^2.0.15",
     "@hookform/resolvers": "^2.9.11",
+    "clsx": "^1.2.1",
     "cva": "npm:class-variance-authority@^0.4.0",
     "fuse.js": "^6.6.2",
     "js-cookie": "^3.0.1",
@@ -30,7 +32,6 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@heroicons/react": "^2.0.15",
     "@hyezo/tsconfig": "workspace:*",
     "@next/font": "13.1.5",
     "@types/js-cookie": "^3.0.2",

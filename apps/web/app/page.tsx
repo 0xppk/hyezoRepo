@@ -1,4 +1,3 @@
-"use client";
 import { Text } from "@hyezo/ui";
 
 export default function MainPage() {

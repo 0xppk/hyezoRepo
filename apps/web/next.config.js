@@ -3,7 +3,7 @@ module.exports = {
     appDir: true,
   },
   reactStrictMode: true,
-  // transpilePackages: ["ui"],
+  transpilePackages: ["utils/src/ui", "utils/src/hooks"],
   images: {
     domains: ["i.pinimg.com", "i1.adis.ws", "www.artnet.com", "dr.savee-cdn.com"],
   },

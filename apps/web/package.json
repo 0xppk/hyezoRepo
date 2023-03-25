@@ -1,15 +1,16 @@
 {
   "name": "web",
-  "version": "0.0.13",
+  "version": "0.0.15",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rm -rf .turbo && rm -rf node_modules"
   },
   "dependencies": {
-    "hyezo": "workspace:^1.4.3",
+    "hyezo": "workspace:*",
     "next": "^13.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

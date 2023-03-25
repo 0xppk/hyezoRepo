@@ -1,7 +1,11 @@
 "use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Page() {
+  const [query, setQuery] = useState<string>("ssss");
+
   return (
     <>
       <div className="flex p-5">
@@ -11,6 +15,14 @@ export default function Page() {
         <div className="basis-3/4">
           <h2>박혜조</h2>
           <p>안녕하세요. 제 이름은 박광훈입니다.</p>
+          <input
+            type="text"
+            className="text-black"
+            onChange={e => {
+              setQuery(e.target.value);
+            }}
+          />
+          <h1>{query}</h1>
         </div>
       </div>
     </>

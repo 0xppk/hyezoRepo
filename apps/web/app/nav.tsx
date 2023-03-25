@@ -1,8 +1,7 @@
 "use client";
 
-import { Text } from "@hyezo/ui";
 import Link from "next/link";
-import { useSelectedLayoutSegment, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 
 type Props = {
@@ -15,7 +14,7 @@ export default function Nav({ href, children }: Props) {
 
   return (
     <Link href={href} className={active ? "underline" : ""}>
-      <Text variant="lg/semibold">{children}</Text>
+      <h1>{children}</h1>
     </Link>
   );
 }

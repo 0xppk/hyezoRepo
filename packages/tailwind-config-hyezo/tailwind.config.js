@@ -110,6 +110,9 @@ module.exports = {
       gridTemplateRows: {
         masonry: "masonry",
       },
+      dropShadow: {
+        blue: "0 0 0.75rem #072375",
+      },
     },
     // overrides
     screens: {
@@ -264,14 +267,33 @@ module.exports = {
           background: "linear-gradient(to right, aquamarine, mediumpurple)",
         },
 
-        ".blur": {
+        ".bg-blur": {
           height: "100%",
           width: "100%",
           position: "fixed",
           "z-index": "-1",
           "backdrop-filter": "blur(200px)",
         },
-        
+
+        ".modal": {
+          position: "relative",
+        },
+
+        ".text-glow": {
+          "text-shadow": "0 0 0.3em currentColor",
+        },
+
+        ".text-outline": {
+          "-webkit-text-stroke": "2px black",
+        },
+
+        ".bg-mix": {
+          background: "hsl(224, 32%, 12%)",
+          "background-image":
+            "conic-gradient(from 0deg at 50% 50%, blue, purple, purple, blue)",
+          "background-blend-mode": "multiply",
+          "min-block-size": "100dvh",
+        },
       });
     },
   ],

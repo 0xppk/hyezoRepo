@@ -3,7 +3,7 @@ import { FiHome, FiLogIn, FiLogOut, FiUsers, FiGithub } from "react-icons/fi";
 import { type IconBaseProps } from "react-icons/lib";
 import { MdOutlineHowToVote } from "react-icons/md";
 import { FaDiscord } from "react-icons/fa";
-import { RiKakaoTalkFill } from "react-icons/Ri";
+import { RiKakaoTalkFill } from "react-icons/ri";
 import { FcLike } from "react-icons/fc";
 
 interface IconProps extends IconBaseProps {

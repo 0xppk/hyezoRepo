@@ -40,13 +40,6 @@ dist
 /public
 packages/utils/public/package.json
 
-# apps
-apps/3dWeb
-
-# packages
-packages/utils/src
-packages/utils/public
-
 # 임시저장소
 .storage
 

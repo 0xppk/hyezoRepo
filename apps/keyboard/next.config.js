@@ -4,7 +4,7 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  transpilePackages: ["./node_modules/hyezo/public/*"],
+  transpilePackages: ["../../packages/utils/src/*"],
   reactStrictMode: true,
 };
 

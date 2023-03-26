@@ -166,6 +166,7 @@ importers:
       nodemailer: 6.9.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-icons: 4.8.0_react@18.2.0
       zod: 3.21.4
     devDependencies:
       '@hyezo/tsconfig': link:../../packages/tsconfig
@@ -178,7 +179,6 @@ importers:
       eslint-config-hyezo: link:../../packages/eslint-config-hyezo
       postcss: 8.4.21
       prisma: 4.11.0
-      react-icons: 4.8.0_react@18.2.0
       tailwind-config-hyezo: link:../../packages/tailwind-config-hyezo
       tailwindcss: 3.2.7_postcss@8.4.21
       typescript: 4.9.5
@@ -3039,7 +3039,7 @@ packages:
       react-refresh: 0.11.0
       schema-utils: 3.1.1
       source-map: 0.7.4
-      webpack: 5.76.1_esbuild@0.17.8
+      webpack: 5.76.1_esbuild@0.16.17
     dev: true
 
   /@prisma/client/4.11.0_prisma@4.11.0:
@@ -6724,7 +6724,7 @@ packages:
       '@babel/core': 7.21.0
       find-cache-dir: 3.3.2
       schema-utils: 4.0.0
-      webpack: 5.76.1_esbuild@0.17.8
+      webpack: 5.76.1_esbuild@0.16.17
     dev: true
 
   /babel-plugin-add-react-displayname/0.0.5:
@@ -7505,7 +7505,7 @@ packages:
       postcss-value-parser: 4.2.0
       schema-utils: 2.7.1
       semver: 6.3.0
-      webpack: 5.76.1_esbuild@0.17.8
+      webpack: 5.76.1_esbuild@0.16.17
     dev: true
 
   /css-loader/6.7.3_webpack@5.76.1:
@@ -7522,7 +7522,7 @@ packages:
       postcss-modules-values: 4.0.0_postcss@8.4.21
       postcss-value-parser: 4.2.0
       semver: 7.3.8
-      webpack: 5.76.1_esbuild@0.17.8
+      webpack: 5.76.1_esbuild@0.16.17
     dev: true
 
   /css-select/4.3.0:
@@ -8961,7 +8961,7 @@ packages:
       semver: 7.3.8
       tapable: 2.2.1
       typescript: 4.9.5
-      webpack: 5.76.1_esbuild@0.17.8
+      webpack: 5.76.1_esbuild@0.16.17
     dev: true
 
   /form-data/3.0.1:
@@ -9445,7 +9445,7 @@ packages:
       lodash: 4.17.21
       pretty-error: 4.0.0
       tapable: 2.2.1
-      webpack: 5.76.1_esbuild@0.17.8
+      webpack: 5.76.1_esbuild@0.16.17
     dev: true
 
   /htmlparser2/6.1.0:
@@ -11571,7 +11571,7 @@ packages:
       postcss: 7.0.39
       schema-utils: 3.1.1
       semver: 7.3.8
-      webpack: 5.76.1_esbuild@0.17.8
+      webpack: 5.76.1_esbuild@0.16.17
     dev: true
 
   /postcss-loader/6.2.1_mquw4qchulb5tpkmg3p2j6qala:
@@ -11599,7 +11599,7 @@ packages:
       klona: 2.0.6
       postcss: 8.4.21
       semver: 7.3.8
-      webpack: 5.76.1_esbuild@0.17.8
+      webpack: 5.76.1_esbuild@0.16.17
     dev: true
 
   /postcss-merge-longhand/5.1.7_postcss@8.4.21:
@@ -12351,7 +12351,7 @@ packages:
       react: '*'
     dependencies:
       react: 18.2.0
-    dev: true
+    dev: false
 
   /react-inspector/6.0.1_react@18.2.0:
     resolution: {integrity: sha512-cxKSeFTf7jpSSVddm66sKdolG90qURAX3g1roTeaN6x0YEbtWc8JpmFN9+yIqLNH2uEkYerWLtJZIXRIFuBKrg==}
@@ -12775,7 +12775,7 @@ packages:
     dependencies:
       klona: 2.0.6
       neo-async: 2.6.2
-      webpack: 5.76.1_esbuild@0.17.8
+      webpack: 5.76.1_esbuild@0.16.17
     dev: true
 
   /scheduler/0.21.0:
@@ -13254,7 +13254,7 @@ packages:
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 2.7.1
-      webpack: 5.76.1_esbuild@0.17.8
+      webpack: 5.76.1_esbuild@0.16.17
     dev: true
 
   /style-loader/3.3.2_webpack@5.76.1:
@@ -13263,7 +13263,7 @@ packages:
     peerDependencies:
       webpack: ^5.0.0
     dependencies:
-      webpack: 5.76.1_esbuild@0.17.8
+      webpack: 5.76.1_esbuild@0.16.17
     dev: true
 
   /styled-jsx/5.1.1_q2tyk3gci27qk4qoatek53e4vi:
@@ -14261,7 +14261,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.0
-      webpack: 5.76.1_esbuild@0.17.8
+      webpack: 5.76.1_esbuild@0.16.17
     dev: true
 
   /webpack-hot-middleware/2.25.3:

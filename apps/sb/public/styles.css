@@ -603,6 +603,10 @@ input:-webkit-autofill,
           backdrop-filter: blur(200px);
 }
 
+.modal {
+  position: relative;
+}
+
 .pointer-events-none {
   pointer-events: none;
 }

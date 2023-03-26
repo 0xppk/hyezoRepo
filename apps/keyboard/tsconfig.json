@@ -7,7 +7,7 @@
     "paths": {
       "@/*": ["./app/*"],
       "~/*": ["./*"],
-      "@hyezo/*": ["./node_modules/hyezo/src/*"]
+      "@hyezo/*": ["./node_modules/hyezo/public/*"]
     },
     "strictNullChecks": true
   }

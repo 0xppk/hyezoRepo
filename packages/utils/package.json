@@ -2,6 +2,7 @@
   "name": "hyezo",
   "version": "1.5.3",
   "license": "MIT",
+  "main": "public",
   "sideEffects": false,
   "publishConfig": {
     "access": "public"

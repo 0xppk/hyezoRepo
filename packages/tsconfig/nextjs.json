@@ -6,7 +6,6 @@
     "strict": true,
     "strictNullChecks": true,
     "noEmit": true,
-    "allowJs": true,
     "skipLibCheck": true,
     "declaration": false,
     "declarationMap": false,

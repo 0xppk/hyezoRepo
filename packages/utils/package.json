@@ -2,7 +2,6 @@
   "name": "hyezo",
   "version": "1.5.3",
   "license": "MIT",
-  "main": "public/index.js",
   "sideEffects": false,
   "publishConfig": {
     "access": "public"

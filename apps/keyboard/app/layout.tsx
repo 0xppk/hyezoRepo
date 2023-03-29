@@ -19,11 +19,11 @@ export default async function RootLayout({ children }: LayoutProps) {
   const session = await getServerAuth();
 
   return (
-    <html lang="en" className={font.className}>
-      <body draggable={false}>
+    <html lang="en">
+      <body className={`bg-mix ${font.className}`} draggable={false}>
         <section className="container mx-auto flex min-h-screen max-w-7xl gap-5 p-10">
           <nav className="flex min-w-max flex-col gap-2">
-            {session?.user && <NavBar />}
+            {session?.user.nickname && <NavBar session={session} />}
           </nav>
           <main className="flex w-full justify-center">
             <Providers session={session}>{children}</Providers>

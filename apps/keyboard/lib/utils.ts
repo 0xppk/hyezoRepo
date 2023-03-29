@@ -25,10 +25,12 @@ export const fetcher = async <T>(endpoint: string) => {
 export const fetchPost = async (
   endpoint: string,
   body: { body: BodyInit | undefined | null },
-) => ({
-  method: "POST",
-  headers: {
-    ContentType: "application/json",
-  },
-  ...body,
-});
+) => {
+  return await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    ...body,
+  }).then(res => res.json());
+};

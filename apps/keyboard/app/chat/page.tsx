@@ -2,7 +2,7 @@ import { ChatRoom, ChatInput } from "~/components";
 import { env } from "~/env.mjs";
 import { fetcher } from "~/lib/utils";
 
-export const revalidate = 30;
+export const revalidate = 0;
 
 export default async function ChatList() {
   const messages = await fetcher<Message[]>(`${env.VERCEL_URL}/api/getMessages`);

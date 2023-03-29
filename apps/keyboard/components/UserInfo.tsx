@@ -16,7 +16,7 @@ export default function UserInfo({ user }: UserInfoProps) {
         alt="프로필"
         className="rounded-full"
       />
-      <div>{user?.nickname}</div>
+      <div>{user?.nickname?.replace(/"/g, "")}</div>
       <UserSetting />
       <SignOutBtn>
         <Icons.logout className="h-4 w-4" />

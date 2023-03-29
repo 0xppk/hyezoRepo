@@ -6,6 +6,9 @@ const nextConfig = {
   },
   transpilePackages: ["../../packages/utils/src/*"],
   reactStrictMode: true,
+  images: {
+    domains: ["avatars.githubusercontent.com", "cdn.discordapp.com"],
+  },
 };
 
 module.exports = nextConfig;

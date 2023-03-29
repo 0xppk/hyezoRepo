@@ -1,6 +1,3 @@
-"use client";
-
-import { Text } from "@hyezo/ui";
 import { OpeningWindow } from "~/components/";
 import { getCurrentUser } from "~/lib/session";
 
@@ -13,7 +10,7 @@ export default async function Page() {
         <OpeningWindow />
       ) : (
         <div>
-          <Text variant="3xl/bold">홈입니다</Text>
+          <p>홈입니다</p>
         </div>
       )}
     </>

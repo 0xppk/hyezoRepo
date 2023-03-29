@@ -35,6 +35,7 @@
     "@types/react-dom": "^18.0.11",
     "@types/uuid": "^9.0.1",
     "autoprefixer": "^10.4.14",
+    "encoding": "^0.1.13",
     "eslint-config-hyezo": "workspace:*",
     "postcss": "^8.4.21",
     "prisma": "^4.12.0",

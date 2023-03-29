@@ -16,12 +16,12 @@
     "release": "turbo run build --filter=docs^... && changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.0",
-    "eslint": "^8.35.0",
+    "@changesets/cli": "^2.26.1",
+    "eslint": "^8.37.0",
     "eslint-config-hyezo": "workspace:*",
-    "prettier": "^2.8.4",
-    "prettier-plugin-tailwindcss": "^0.2.4",
-    "turbo": "^1.8.3"
+    "prettier": "^2.8.7",
+    "prettier-plugin-tailwindcss": "^0.2.5",
+    "turbo": "^1.8.6"
   },
   "packageManager": "pnpm@7.26.3"
 }

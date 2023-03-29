@@ -4,7 +4,6 @@ import NavBar from "~/components/NavBar";
 import Providers from "~/lib/contexts";
 import { getServerAuth } from "~/lib/session";
 import "~/styles/tailwind.css";
-import { use } from "react";
 
 const font = Nunito({
   subsets: ["latin"],

@@ -15,3 +15,20 @@ export const magnet = (e: PointerEvent, ref: RefObject<HTMLPreElement>) => {
   ref.current?.style.setProperty("--rotateX", offsetY + "deg");
   ref.current?.style.setProperty("--rotateY", offsetX + "deg");
 };
+
+export const fetcher = async <T>(endpoint: string) => {
+  const res = (await await fetch(endpoint).then(res => res.json())) as T;
+
+  return res;
+};
+
+export const fetchPost = async (
+  endpoint: string,
+  body: { body: BodyInit | undefined | null },
+) => ({
+  method: "POST",
+  headers: {
+    ContentType: "application/json",
+  },
+  ...body,
+});

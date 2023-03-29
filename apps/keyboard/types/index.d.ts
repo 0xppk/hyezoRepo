@@ -1,7 +1,9 @@
 import "@total-typescript/ts-reset";
-import { ReactNode } from "react";
+import { ReactNode as ReactNodeType } from "react";
 
 declare global {
+  type ReactNode = ReactNodeType;
+
   type LayoutProps = {
     children: ReactNode;
     params?: any;

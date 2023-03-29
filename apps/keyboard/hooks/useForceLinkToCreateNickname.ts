@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useUserSession } from "~/lib/contexts";
+import { useUserSession } from "~/hooks";
 import { useRouter } from "next/navigation";
 
 /**

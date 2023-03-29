@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useUserSession } from "~/lib/contexts";
+import { useUserSession } from "~/hooks";
 
 export default function usePermitEntering() {
   const { user } = useUserSession();

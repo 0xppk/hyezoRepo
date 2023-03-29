@@ -17,8 +17,16 @@ const server = z.object({
   // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
   GITHUB_ID: z.string(),
   GITHUB_SECRET: z.string(),
+  DISCORD_ID: z.string(),
+  DISCORD_SECRET: z.string(),
+  KAKAO_ID: z.string(),
+  KAKAO_SECRET: z.string(),
+  REDIS_URL: z.string(),
+  UPSTASH_REDIS_REST_URL: z.string(),
+  UPSTASH_REDIS_REST_TOKEN: z.string(),
   EMAIL_FROM: z.string(),
   EMAIL_SERVER: z.string(),
+  VERCEL_URL: z.string(),
 });
 
 /**
@@ -26,7 +34,9 @@ const server = z.object({
  * built with invalid env vars. To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 const client = z.object({
-  // NEXT_PUBLIC_API_KEY: z.string().min(1),
+  NEXT_PUBLIC_PUSHER_ID: z.string(),
+  NEXT_PUBLIC_PUSHER_APP_ID: z.string(),
+  NEXT_PUBLIC_PUSHER_SECRET: z.string(),
 });
 
 /**

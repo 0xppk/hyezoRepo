@@ -3,6 +3,8 @@ import { type GetServerSidePropsContext } from "next";
 import { getServerSession, type NextAuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import GithubProvider from "next-auth/providers/github";
+import DiscordProvider from "next-auth/providers/discord";
+import KakaoProvider from "next-auth/providers/kakao";
 import nodemailer from "nodemailer";
 import { env } from "~/env.mjs";
 import { ActivationMail, SignInMail, TextMail } from "~/lib/smtp";
@@ -14,12 +16,23 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
+  pages: {
+    signIn: "/login",
+    newUser: "/login/new-user",
+  },
   providers: [
     GithubProvider({
       clientId: env.GITHUB_ID,
       clientSecret: env.GITHUB_SECRET,
     }),
-
+    DiscordProvider({
+      clientId: env.DISCORD_ID,
+      clientSecret: env.DISCORD_SECRET,
+    }),
+    KakaoProvider({
+      clientId: env.KAKAO_ID,
+      clientSecret: env.KAKAO_SECRET,
+    }),
     EmailProvider({
       from: env.EMAIL_FROM,
       server: env.EMAIL_SERVER,
@@ -80,7 +93,8 @@ export const authOptions: NextAuthOptions = {
 
       if (!dbUser) {
         if (user) {
-          token.id = user?.id;
+          token = { ...user, picture: user.image };
+          delete token.image;
         }
         return token;
       }
@@ -90,6 +104,7 @@ export const authOptions: NextAuthOptions = {
         name: dbUser.name,
         email: dbUser.email,
         picture: dbUser.image,
+        nickname: dbUser.nickname,
       };
     },
   },

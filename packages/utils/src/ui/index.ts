@@ -20,4 +20,5 @@ export { default as Spacer } from "./Spacer";
 export { type TextProps } from "./Text";
 export { type ButtonOrLinkProps } from "./ButtonOrLink";
 export { type ButtonProps } from "./Button";
+export { type zodSubmitHandler } from "./Form";
 export { Menu, MenuItem } from "./Menu";

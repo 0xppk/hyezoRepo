@@ -1,5 +1,5 @@
 import { cva, VariantProps } from "cva";
-import { ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
 import { cn } from "../utils";
 
 const textStyles = cva("", {
@@ -28,38 +28,27 @@ const textStyles = cva("", {
 
 type TextStyleProps = VariantProps<typeof textStyles>;
 
-export interface TextProps extends Omit<TextStyleProps, "size" | "weight"> {
+export interface TextProps
+  extends Omit<TextStyleProps, "size" | "weight">,
+    ComponentProps<"div"> {
   variant: `${NonNullable<TextStyleProps["size"]>}/${NonNullable<
     TextStyleProps["weight"]
   >}`;
-  children?: ReactNode;
-  color?: string;
-  className?: string;
 }
 
 /**
  * The text component that can be used in a variety of situations.
  * @params {TextStyleProps} variant - Text `size/weight`. It's a combinations of "sm", "md", "lg", or "xl".
  * @params {ReactNode} children - Text content.
- * @params {string} color - Text color.
  */
-export default function Text({
-  variant,
-  children,
-  color,
-  className,
-  ...props
-}: TextProps) {
+export default function Text({ variant, children, className, ...props }: TextProps) {
   const [size, weight] = variant.split("/") as [
     TextStyleProps["size"],
     TextStyleProps["weight"],
   ];
 
   return (
-    <div
-      className={cn(textStyles({ size, weight, className, ...props }))}
-      style={{ color }}
-    >
+    <div className={cn(textStyles({ size, weight, className }))} {...props}>
       {children}
     </div>
   );

@@ -17,13 +17,19 @@ const InputSchema = z
       .or(z.array(z.union([z.string(), z.number()])))
       .or(z.record(z.any())),
     combo: z.string(),
+    nickname: z
+      .string()
+      .min(2, "너무 짧아요 😢")
+      .max(10, "닉네임은 2~10자 사이의 길이로 지어주세요.")
+      .transform(v => v.replace(/\s/g, "")),
   })
   .partial();
 
 export type InputProps = z.infer<typeof InputSchema>;
+export type zodSubmitHandler = SubmitHandler<InputProps>;
 
 interface FormProps extends Omit<ComponentProps<"fieldset">, "onSubmit"> {
-  onSubmit: SubmitHandler<InputProps>;
+  onSubmit: zodSubmitHandler;
 }
 
 /**

@@ -2,7 +2,7 @@ export { default as InputSimple } from './InputSimple.js';
 export { default as Button, ButtonProps } from './Button.js';
 export { default as Container } from './Container.js';
 export { default as Empty } from './Empty.js';
-export { FieldError, default as Form } from './Form.js';
+export { FieldError, default as Form, zodSubmitHandler } from './Form.js';
 export { default as Input } from './Input.js';
 export { default as Text, TextProps } from './Text.js';
 export { default as Link } from './Link.js';

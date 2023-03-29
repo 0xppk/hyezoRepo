@@ -1,3 +1,5 @@
+"use client";
+
 import { Text } from "@hyezo/ui";
 import { OpeningWindow } from "~/components/";
 import { getCurrentUser } from "~/lib/session";

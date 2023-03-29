@@ -1,5 +1,11 @@
 # eslint-config-hyezo
 
+## 1.1.1
+
+### Patch Changes
+
+- i[
+
 ## 1.1.0
 
 ### Minor Changes

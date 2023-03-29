@@ -7,6 +7,5 @@ export async function getServerAuth() {
 
 export async function getCurrentUser() {
   const session = await getServerAuth();
-
   return session?.user;
 }

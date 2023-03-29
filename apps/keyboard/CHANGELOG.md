@@ -1,5 +1,13 @@
 # cinema
 
+## 0.1.2
+
+### Patch Changes
+
+- i[
+- Updated dependencies
+  - hyezo@1.5.4
+
 ## 0.1.1
 
 ### Patch Changes

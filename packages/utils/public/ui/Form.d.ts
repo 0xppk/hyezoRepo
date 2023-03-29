@@ -10,6 +10,7 @@ declare const InputSchema: z.ZodObject<{
     text: z.ZodOptional<z.ZodString>;
     select: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodNumber]>, "many">]>, z.ZodRecord<z.ZodString, z.ZodAny>]>>;
     combo: z.ZodOptional<z.ZodString>;
+    nickname: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
 }, "strip", z.ZodTypeAny, {
     select?: string | number | Record<string, any> | (string | number)[] | undefined;
     textarea?: string | undefined;
@@ -18,6 +19,7 @@ declare const InputSchema: z.ZodObject<{
     email?: string | undefined;
     combo?: string | undefined;
     password?: string | undefined;
+    nickname?: string | undefined;
 }, {
     select?: string | number | Record<string, any> | (string | number)[] | undefined;
     textarea?: string | undefined;
@@ -26,10 +28,12 @@ declare const InputSchema: z.ZodObject<{
     email?: string | undefined;
     combo?: string | undefined;
     password?: string | undefined;
+    nickname?: string | undefined;
 }>;
 type InputProps = z.infer<typeof InputSchema>;
+type zodSubmitHandler = SubmitHandler<InputProps>;
 interface FormProps extends Omit<ComponentProps<"fieldset">, "onSubmit"> {
-    onSubmit: SubmitHandler<InputProps>;
+    onSubmit: zodSubmitHandler;
 }
 /**
  * The form component is used to render a `form`. Given a `children` like input, select, textarea, etc, it will render a `form` element.
@@ -42,4 +46,4 @@ interface FieldErrorProps {
 }
 declare function FieldError({ name }: FieldErrorProps): JSX.Element | null;
 
-export { FieldError, InputProps, Form as default };
+export { FieldError, InputProps, Form as default, zodSubmitHandler };

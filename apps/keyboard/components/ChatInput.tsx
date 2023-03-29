@@ -5,6 +5,7 @@ import { v4 } from "uuid";
 import { z } from "zod";
 import { useLoadMessages } from "~/hooks";
 import { useUserSession } from "~/hooks";
+import { fetchPost } from "~/lib/utils";
 
 const Message = z.object({
   id: z.string().uuid(),
@@ -33,17 +34,13 @@ export default function ChatInput() {
       message: messageToSend,
       created_at: Date.now(),
       username: nickname ?? `${userId} 님`,
-      profilePic: image ?? "/frogmini.png",
+      profilePic: image ?? "/defaultImage.png",
     };
 
     const uploadMesageToUpstash = async () => {
-      const res = await await fetch("/api/sendMessage", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const res = await fetchPost("/api/sendMessage", {
         body: JSON.stringify({ message }),
-      }).then(res => res.json());
+      });
 
       const newMessage = sendMessageSchema.parse(res);
       const mergedMessages = [newMessage, ...messages];

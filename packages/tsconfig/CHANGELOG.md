@@ -1,5 +1,11 @@
 # @hyezo/tsconfig
 
+## 1.2.2
+
+### Patch Changes
+
+- i[
+
 ## 1.2.1
 
 ### Patch Changes

@@ -1,9 +1,9 @@
 "use client";
 
-import { OAuthProviders, SignInForm, SignInFormSpacer } from "~/components";
+import { CreateNicknameForm } from "~/components";
 import usePermitEntering from "~/hooks/usePermitEntering";
 
-export default function LoginPage() {
+export default function NewUser() {
   const [isEnter] = usePermitEntering();
 
   return (
@@ -14,9 +14,7 @@ export default function LoginPage() {
     >
       <div className="modal rounded-xl">
         <div className="drop-shadow-blue  min-w-[400px] rounded-xl bg-gray-900 py-6 px-8">
-          <SignInForm />
-          <SignInFormSpacer />
-          <OAuthProviders />
+          <CreateNicknameForm />
         </div>
       </div>
     </div>

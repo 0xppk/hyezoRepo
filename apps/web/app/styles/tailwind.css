@@ -3,12 +3,213 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply bg-black;
+  }
   body {
-    @apply h-screen w-full overflow-x-hidden bg-black text-white;
+    @apply h-full w-full overflow-x-hidden text-white antialiased;
+  }
+  pre {
+    @apply text-md relative rounded-lg bg-slate-900 p-4;
+  }
+  pre > * {
+    @apply text-glow;
   }
 }
 
-.masonryImageWrapper:hover .masonryOverlay {
-  opacity: 1;
-  cursor: pointer;
+:root {
+  --pink: hsl(338, 70%, 55%);
+  --teal: hsl(183, 70%, 62%);
+  --white: hsl(334, 7%, 95%);
+}
+.selector {
+  color: var(--pink);
+}
+.property {
+  color: var(--teal);
+}
+.punctuation {
+  color: var(--white);
+}
+
+pre {
+  transform-style: preserve-3d;
+  transform: perspective(5000px) rotateX(var(--rotateX)) rotateY(var(--rotateY));
+}
+
+pre::before,
+pre::after {
+  content: "";
+  position: absolute;
+  padding: 1rem 2rem;
+  border-radius: inherit;
+}
+
+pre::after {
+  inset: -1rem;
+  background: linear-gradient(-45deg, red, blue);
+  transform: translateZ(-50px);
+}
+
+pre::before {
+  inset: 0.8rem;
+  background: black;
+  transform: translateZ(-49px);
+  filter: blur(15px);
+  opacity: 0.5;
+}
+
+pre:hover .title:not(.fancy) {
+  opacity: 0.2;
+}
+pre:hover .punctuation {
+  opacity: 0.2;
+}
+
+.title {
+  transition: opacity 350ms ease;
+  transition-delay: 480ms;
+}
+.title-word {
+  @apply relative inline-block duration-300;
+}
+
+pre:hover .title-word:is(.hide) {
+  opacity: 0;
+}
+pre:hover .title-word:is(.show):not(.punctuation) {
+  animation: twinkle 700ms;
+  animation-delay: 500ms;
+}
+@keyframes twinkle {
+  from {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 2048px) {
+  pre:hover .title-word:nth-child(7) {
+    transform: translateX(-0.75rem);
+  }
+  pre:hover .title-word:nth-child(11) {
+    transform: translateX(-2.8rem);
+  }
+  pre:hover .title-word:nth-child(12) {
+    transform: translateX(-2.8rem);
+  }
+  pre:hover .title-word:nth-child(13) {
+    transform: translateX(-2.8rem);
+  }
+  pre:hover .title-word:nth-child(14) {
+    transform: translateX(-2.8rem);
+  }
+  pre:hover .title-word:nth-child(15) {
+    transform: translateX(-2.8rem);
+  }
+  pre:hover .title-word:nth-child(17) {
+    transform: translateX(-2.8rem);
+  }
+}
+@media only screen and (max-width: 1024px) {
+  pre:hover .title-word:nth-child(7) {
+    transform: translateX(-0.7rem);
+  }
+  pre:hover .title-word:nth-child(11) {
+    transform: translateX(-2.5rem);
+  }
+  pre:hover .title-word:nth-child(12) {
+    transform: translateX(-2.5rem);
+  }
+  pre:hover .title-word:nth-child(13) {
+    transform: translateX(-2.5rem);
+  }
+  pre:hover .title-word:nth-child(14) {
+    transform: translateX(-2.5rem);
+  }
+  pre:hover .title-word:nth-child(15) {
+    transform: translateX(-2.5rem);
+  }
+  pre:hover .title-word:nth-child(17) {
+    transform: translateX(-2.5rem);
+  }
+}
+@media only screen and (max-width: 475px) {
+  pre:hover .title-word:nth-child(7) {
+    transform: translateX(-0.6rem);
+  }
+  pre:hover .title-word:nth-child(11) {
+    transform: translateX(-2.1rem);
+  }
+  pre:hover .title-word:nth-child(12) {
+    transform: translateX(-2.1rem);
+  }
+  pre:hover .title-word:nth-child(13) {
+    transform: translateX(-2.1rem);
+  }
+  pre:hover .title-word:nth-child(14) {
+    transform: translateX(-2.1rem);
+  }
+  pre:hover .title-word:nth-child(15) {
+    transform: translateX(-2.1rem);
+  }
+  pre:hover .title-word:nth-child(17) {
+    transform: translateX(-2.1rem);
+  }
+}
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.modal::before,
+.modal::after {
+  content: "";
+  position: absolute;
+  inset: -0.04rem;
+  z-index: -1;
+  background: conic-gradient(
+    from var(--gradient-angle),
+    var(--pink),
+    var(--teal),
+    var(--white),
+    var(--teal),
+    var(--pink)
+  );
+  border-radius: inherit;
+  animation: rotation 5s linear infinite;
+}
+
+.modal::after {
+  filter: blur(1rem);
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
+.login-provider {
+  @apply relative inline-block opacity-0 duration-500;
+}
+
+.providers:hover .login-provider {
+  @apply -translate-y-3 opacity-100;
 }

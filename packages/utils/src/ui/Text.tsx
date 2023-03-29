@@ -1,5 +1,5 @@
 import { cva, VariantProps } from "cva";
-import { ComponentProps, ReactNode } from "react";
+import { ComponentProps } from "react";
 import { cn } from "../utils";
 
 const textStyles = cva("", {
@@ -39,7 +39,6 @@ export interface TextProps
 /**
  * The text component that can be used in a variety of situations.
  * @params {TextStyleProps} variant - Text `size/weight`. It's a combinations of "sm", "md", "lg", or "xl".
- * @params {ReactNode} children - Text content.
  */
 export default function Text({ variant, children, className, ...props }: TextProps) {
   const [size, weight] = variant.split("/") as [

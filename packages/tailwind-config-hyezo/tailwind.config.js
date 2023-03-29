@@ -6,6 +6,7 @@ module.exports = {
     // app content
     `src/**/*.{js,ts,jsx,tsx}`,
     `app/**/*.{js,ts,jsx,tsx}`,
+    `components/**/*.{js,ts,jsx,tsx}`,
     // include packages if not transpiling
     `../../packages/utils/src/ui/**/*.{js,ts,jsx,tsx}`,
   ],

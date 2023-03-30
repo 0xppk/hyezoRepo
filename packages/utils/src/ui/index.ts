@@ -1,6 +1,6 @@
 export { default as InputSimple } from "./InputSimple";
 export { default as Button } from "./Button";
-export { default as Container } from "./Container";
+// export { default as Container } from "./Container";
 export { default as Empty } from "./Empty";
 export { default as Form } from "./Form";
 export { default as Input } from "./Input";

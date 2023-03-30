@@ -8,7 +8,7 @@ import { type InputProps } from "./Form";
 import { FieldError } from "./index";
 
 const inputStyles = cva(
-  "peer z-20 w-full appearance-none duration-300 rounded-md border bg-white p-4 pb-1 text-gray-800 focus:ring-2 focus:outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200",
+  "peer z-20 w-full appearance-none duration-300 rounded-md border bg-white text-gray-800 focus:ring-2 focus:outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200",
   {
     variants: {
       color: {
@@ -16,9 +16,14 @@ const inputStyles = cva(
         orange: "focus:border-orange-300 focus:ring-orange-200",
         pink: "focus:border-rose-300 focus:ring-rose-200",
       },
+      peer: {
+        true: "peer p-4 pb-1",
+        false: "px-3 py-2",
+      },
     },
     defaultVariants: {
-      color: "pink",
+      color: "twitter",
+      peer: true,
     },
   },
 );
@@ -43,12 +48,13 @@ export default function Input({
   ...props
 }: Props) {
   const { register } = useFormContext();
+  const peer = !!label;
 
   return (
     <div className={`relative ${fullWidth && "w-full"}`}>
       <input
         spellCheck={false}
-        className={cn(inputStyles({ color, className }))}
+        className={cn(inputStyles({ color, peer, className }))}
         type={type}
         placeholder=" "
         {...props}

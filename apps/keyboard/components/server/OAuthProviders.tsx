@@ -1,4 +1,4 @@
-import { SignInBtn } from "~/components";
+import { SignInBtn } from "~/components/server";
 
 const oAuthProviders = ["github", "discord", "kakao"] as const;
 

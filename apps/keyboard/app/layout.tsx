@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
-import NavBar from "~/components/NavBar";
+import NavBar from "~/components/server/NavBar";
 import Providers from "~/lib/contexts";
 import { getServerAuth } from "~/lib/session";
 import "~/styles/tailwind.css";
@@ -26,7 +26,7 @@ export default async function RootLayout({ children }: LayoutProps) {
             {session?.user.nickname && <NavBar session={session} />}
           </nav>
           <main className="flex w-full justify-center">
-            <Providers session={session}>{children}</Providers>
+            <Providers>{children}</Providers>
           </main>
         </section>
       </body>

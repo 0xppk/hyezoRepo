@@ -4,7 +4,7 @@ import { cn } from "@hyezo/utils";
 import { Anonymous_Pro as font } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
-import { SplitWord } from "~/components";
+import { SplitWord } from "~/components/server";
 import { useForceLinkToCreateNickname, useMagneticBanner } from "~/hooks";
 import { createTitle } from "~/lib/utils";
 

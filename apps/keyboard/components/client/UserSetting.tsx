@@ -3,7 +3,7 @@
 import { Session } from "next-auth";
 import { Modal, Text } from "@hyezo/ui";
 import { useState } from "react";
-import { Icons } from "~/components";
+import { Icons } from "~/components/server";
 
 type UserInfoProps = {
   user?: Session["user"];

@@ -1,6 +1,7 @@
 import { Session } from "next-auth";
 import Image from "next/image";
-import { Icons, SignOutBtn, UserSetting } from "~/components";
+import { SignOutBtn, UserSetting } from "~/components/client";
+import { Icons } from "~/components/server";
 
 type UserInfoProps = {
   user?: Session["user"];

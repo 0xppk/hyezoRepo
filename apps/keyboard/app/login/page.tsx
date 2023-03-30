@@ -1,6 +1,6 @@
 "use client";
 
-import { OAuthProviders, SignInForm, SignInFormSpacer } from "~/components";
+import { OAuthProviders, SignInForm, SignInFormSpacer } from "~/components/server";
 import usePermitEntering from "~/hooks/usePermitEntering";
 
 export default function LoginPage() {

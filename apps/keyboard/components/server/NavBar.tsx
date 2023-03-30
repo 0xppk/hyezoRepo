@@ -1,13 +1,12 @@
 import { Session } from "next-auth";
-import { UserInfo } from "~/components";
-import { getCurrentUser } from "~/lib/session";
+import { UserInfo } from "~/components/server";
 import NavLink from "./NavLink";
 
-type Props = {
+type NavBarProps = {
   session: Session | null;
 };
 
-export default function NavBar({ session }: Props) {
+export default function NavBar({ session }: NavBarProps) {
   return (
     <>
       <UserInfo user={session?.user} />

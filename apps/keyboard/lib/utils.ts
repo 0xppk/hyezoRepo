@@ -5,7 +5,7 @@ export const createTitle = (
   text: string,
 ) => text.split("").map(func);
 
-export const magnet = (e: PointerEvent, ref: RefObject<HTMLPreElement>) => {
+export const magnet = <T extends HTMLElement>(e: PointerEvent, ref: RefObject<T>) => {
   const { clientX: x, clientY: y } = e,
     middleX = globalThis.innerWidth / 2,
     middleY = globalThis.innerHeight / 2,
@@ -18,7 +18,6 @@ export const magnet = (e: PointerEvent, ref: RefObject<HTMLPreElement>) => {
 
 export const fetcher = async <T>(endpoint: string) => {
   const res = (await await fetch(endpoint).then(res => res.json())) as T;
-
   return res;
 };
 

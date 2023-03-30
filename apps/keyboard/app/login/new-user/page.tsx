@@ -1,6 +1,6 @@
 "use client";
 
-import { CreateNicknameForm } from "~/components";
+import { CreateNicknameForm } from "~/components/server";
 import usePermitEntering from "~/hooks/usePermitEntering";
 
 export default function NewUser() {

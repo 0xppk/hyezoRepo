@@ -1,5 +1,6 @@
-import { OpeningWindow } from "~/components/";
+import { OpeningWindow } from "~/components/client";
 import { getCurrentUser } from "~/lib/session";
+import { Text } from "@hyezo/ui";
 
 export default async function Page() {
   const user = await getCurrentUser();
@@ -10,7 +11,7 @@ export default async function Page() {
         <OpeningWindow />
       ) : (
         <div>
-          <p>홈입니다</p>
+          <Text variant="2xl/bold">홈입니다</Text>
         </div>
       )}
     </>

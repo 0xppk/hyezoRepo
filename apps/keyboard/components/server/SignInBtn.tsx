@@ -1,6 +1,6 @@
 import { Button } from "@hyezo/ui";
 import { signIn } from "next-auth/react";
-import { Icons, SplitWord } from "~/components";
+import { Icons, SplitWord } from "~/components/server";
 import { createTitle } from "~/lib/utils";
 
 type SignInBtnProps = {

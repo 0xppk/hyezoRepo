@@ -1,4 +1,4 @@
-import { ChatRoom, ChatInput } from "~/components";
+import { ChatRoom, ChatInput } from "~/components/client";
 import { env } from "~/env.mjs";
 import { fetcher } from "~/lib/utils";
 

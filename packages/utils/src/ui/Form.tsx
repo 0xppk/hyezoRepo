@@ -1,6 +1,6 @@
 "use client";
 import { useZodForm } from "../hooks";
-import { ComponentProps } from "react";
+import { ComponentProps, useEffect } from "react";
 import { FormProvider, SubmitHandler, useFormContext } from "react-hook-form";
 import { z } from "zod";
 import { cn } from "../utils";
@@ -39,11 +39,16 @@ interface FormProps extends Omit<ComponentProps<"fieldset">, "onSubmit"> {
  */
 export default function Form({ onSubmit, className, ...props }: FormProps) {
   const form = useZodForm({ schema: InputSchema });
-  const { formState, handleSubmit } = form;
+  const { formState, handleSubmit, reset } = form;
+
+  const onSubmitWithReset: zodSubmitHandler = data => {
+    onSubmit(data);
+    reset();
+  };
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmitWithReset)}>
         <fieldset
           className={cn(`flex flex-col gap-2 disabled:cursor-progress ${className}`)}
           disabled={formState.isSubmitting}

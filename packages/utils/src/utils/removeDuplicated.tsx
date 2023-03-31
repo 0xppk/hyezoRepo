@@ -3,9 +3,11 @@ interface RemovedObject extends Record<string, any> {
   title: string;
 }
 
-export function removeDuplicated(list: RemovedObject[]) {
-  const uniqueArray = list.filter(
-    (obj, index, self) => index === self.findIndex(t => t.name === obj.name),
+export function removeDuplicated<T>(arr: T[], uniqueKey: keyof T): T[] {
+  const uniqueArray = arr.filter(
+    (obj, index, self) =>
+      index ===
+      self.findIndex(t => t[uniqueKey as keyof typeof t] === obj[uniqueKey as keyof T]),
   );
   return uniqueArray;
 }

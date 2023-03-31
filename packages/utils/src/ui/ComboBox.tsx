@@ -6,6 +6,8 @@ import { cva, VariantProps } from "cva";
 import Fuse from "fuse.js";
 import { ComponentProps, Fragment, useMemo, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import { cn } from "../utils";
+import { removeDuplicated } from "../utils/removeDuplicated";
 
 const comboStyles = cva("", {
   variants: {
@@ -33,39 +35,30 @@ const comboStyles = cva("", {
 
 type ComboStyleProps = VariantProps<typeof comboStyles>;
 
-interface List extends Record<string, any> {
-  id: number;
-  title: string;
-}
-
-interface Props
+interface Props<T, K extends keyof T>
   extends Omit<ComboStyleProps, "iconColor">,
     Omit<ComponentProps<"li">, "color"> {
-  list: List[];
+  list: T[];
+  labelKey?: K;
+  imageKey?: K;
+  removeDuplicates?: boolean;
 }
 
-type FieldValue = {
-  combo: List["title"];
-};
-
-export function RemoveDuplicated(list: List[]) {
-  const uniqueArray = list.filter(
-    (obj, index, self) =>
-      index === self.findIndex(t => t.id === obj.id || t.title === obj.title),
-  );
-  return uniqueArray;
-}
-
-export default function ComboBox({
+export default function ComboBox<T, K extends keyof T>({
   list,
-  color = "pink",
+  color = "twitter",
   width = "regular",
+  labelKey = "name" as K,
+  imageKey = "image" as K,
+  removeDuplicates,
   ...props
-}: Props) {
-  const { control } = useFormContext<FieldValue>();
+}: Props<T, K>) {
+  const { control } = useFormContext();
   const [query, setQuery] = useState("");
-  const items = useMemo(() => RemoveDuplicated(list), [list]);
-  const fuse = new Fuse(items, { includeScore: true, keys: ["title"] });
+  const items = removeDuplicates
+    ? useMemo(() => removeDuplicated(list, labelKey), [list])
+    : list;
+  const fuse = new Fuse(items, { includeScore: true, keys: [String(labelKey)] });
   const filteredItems =
     query === "" ? items : fuse.search(query).map(res => ({ ...res.item }));
   const iconColor = color;
@@ -74,7 +67,7 @@ export default function ComboBox({
     <Controller
       name="combo"
       control={control}
-      // defaultValue={items[0]?.title}
+      // defaultValue={items[0]?.[labelKey]}
       render={({ field }) => (
         <Combobox
           defaultValue={field.value}
@@ -85,7 +78,7 @@ export default function ComboBox({
             <div className="relative mt-1 flex-1">
               <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
                 <Combobox.Input
-                  className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:outline-none focus:ring-0"
+                  className="w-full border-none py-4 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:outline-none focus:ring-0"
                   placeholder="Search..."
                   spellCheck="false"
                   displayValue={(item: string) => item}
@@ -106,31 +99,41 @@ export default function ComboBox({
                 leaveTo="opacity-0"
                 afterLeave={() => setQuery("")}
               >
-                <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                <Combobox.Options
+                  className={cn(
+                    `absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm ${props.className}`,
+                  )}
+                >
                   {filteredItems.length === 0 && query !== "" ? (
                     <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
                       Nothing found.
                     </div>
                   ) : (
-                    filteredItems.map(item => (
+                    filteredItems.map((item, i) => (
                       <Combobox.Option
-                        key={item.id}
+                        key={`${String(item[labelKey])}+ ${i}`}
                         className={({ active }) =>
                           `relative z-10 cursor-default select-none py-2 pl-10 pr-4 ${
                             active ? comboStyles({ color }) : "text-gray-900"
                           }`
                         }
-                        value={item.title}
+                        value={String(item[labelKey])}
                       >
                         {({ selected, active }) => (
                           <>
-                            <span
-                              className={`block truncate ${
-                                selected ? "font-extrabold" : "font-normal"
-                              }`}
-                            >
-                              {item.title}
-                            </span>
+                            <div className="flex items-center gap-3">
+                              <img
+                                className="h-10 w-10 rounded-full"
+                                src={String(item[imageKey])}
+                              ></img>
+                              <span
+                                className={`block truncate ${
+                                  selected ? "font-extrabold" : "font-normal"
+                                }`}
+                              >
+                                {String(item[labelKey])}
+                              </span>
+                            </div>
                             {selected ? (
                               <span
                                 className={`absolute inset-y-0 left-0 flex items-center pl-3 ${comboStyles(

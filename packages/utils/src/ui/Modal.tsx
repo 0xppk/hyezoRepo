@@ -74,16 +74,8 @@ export default function Modal({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="modal">
+            <div className="modal rounded-xl">
               <Dialog.Panel className={cn(modalStyles({ width, center, className }))}>
-                <Dialog.Title
-                  as="h3"
-                  className={`text-lg font-medium leading-6 text-gray-900 ${
-                    center && "place-self-center"
-                  }`}
-                >
-                  {title}
-                </Dialog.Title>
                 {children}
               </Dialog.Panel>
             </div>
@@ -94,10 +86,29 @@ export default function Modal({
   );
 }
 
-Modal.Content = ({ children }: { children: ReactNode }) => {
+type ModalContentProps = {
+  children: ReactNode;
+  className?: string;
+  center?: boolean;
+};
+Modal.Content = ({ children, className }: ModalContentProps) => {
   return (
-    <Dialog.Description as="div" className="mt-5 text-sm text-gray-500">
+    <Dialog.Description as="div" className={className}>
       {children}
     </Dialog.Description>
+  );
+};
+Modal.Title = ({ children, center, className }: ModalContentProps) => {
+  return (
+    <Dialog.Title
+      as="h3"
+      className={cn(
+        `text-lg font-medium leading-6 text-gray-900 ${
+          center && "place-self-center"
+        } ${className}`,
+      )}
+    >
+      {children}
+    </Dialog.Title>
   );
 };

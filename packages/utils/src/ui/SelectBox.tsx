@@ -7,7 +7,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { cva, VariantProps } from "cva";
 import { ChangeEventHandler, ComponentProps, Fragment, useRef } from "react";
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller, FieldValues, useFormContext } from "react-hook-form";
 import { useClickOutside, useInput } from "../hooks";
 import { removeDuplicated } from "../utils/removeDuplicated";
 
@@ -26,40 +26,36 @@ const selectStyles = cva("", {
       emerald: "text-emerald-600",
     },
     width: {
-      narrower: "w-44 max-w-xs",
-      narrow: "w-52 max-w-sm",
-      regular: "w-64 max-w-md",
-      wide: "w-72 max-w-lg",
-      wider: "w-80 max-w-xl",
+      narrower: "max-w-xs",
+      narrow: "max-w-lg",
+      regular: "max-w-xl",
+      wide: "max-w-2xl",
+      wider: "max-w-3xl",
     },
   },
 });
 
 type SelectStyleProps = VariantProps<typeof selectStyles>;
 
-type List = {
-  title: string;
-} & Record<string, any>;
-
-export interface Props
+export interface Props<T, K extends keyof T>
   extends Omit<SelectStyleProps, "iconColor">,
     Omit<ComponentProps<"div">, "color"> {
-  list: List[];
+  list: T[];
   searchBar?: boolean;
+  labelKey?: K;
+  uniqueKey?: keyof T;
 }
 
-type FieldValue = {
-  select: List["title"];
-};
-
-export default function SelectBox({
+export default function SelectBox<T, K extends keyof T>({
   list,
   searchBar,
   color = "twitter",
   width = "regular",
-}: Props) {
-  const { control } = useFormContext<FieldValue>();
-  const items = useRef(removeDuplicated(list));
+  labelKey = "name" as K,
+  uniqueKey = "name" as keyof T,
+}: Props<T, K>) {
+  const { control } = useFormContext();
+  const items = useRef(removeDuplicated(list, uniqueKey));
   const [inputValue, changeHandeler, , reset] = useInput(() => {}, 200);
   const ref = useRef<HTMLDivElement>(null);
   useClickOutside(ref, reset);
@@ -69,7 +65,7 @@ export default function SelectBox({
     <Controller
       name="select"
       control={control}
-      defaultValue={items.current[0]?.title}
+      defaultValue={items.current[0]?.[labelKey]}
       rules={{ required: true }}
       render={({ field }) => (
         <div className={`${selectStyles({ width })}`} ref={ref}>
@@ -94,20 +90,22 @@ export default function SelectBox({
                 <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                   {searchBar && <SearchBar changeHandeler={changeHandeler} />}
 
-                  {items.current.map(item => (
+                  {items.current.map((item, i) => (
                     <Listbox.Option
-                      key={item.id}
+                      key={`${String(item[labelKey])}+ ${i}`}
                       className={({ active }) =>
                         `relative cursor-default select-none py-2 pl-10 pr-4 ${
                           active ? selectStyles({ color }) : "text-gray-900"
                         } ${
-                          item.title.toLowerCase().startsWith(inputValue)
+                          String(item[labelKey]).toLowerCase().startsWith(inputValue)
                             ? "block"
                             : "hidden"
                         }`
                       }
-                      disabled={!item.title.toLowerCase().startsWith(inputValue)}
-                      value={item.title}
+                      disabled={
+                        !String(item[labelKey]).toLowerCase().startsWith(inputValue)
+                      }
+                      value={String(item[labelKey])}
                     >
                       {({ selected }) => (
                         <>
@@ -116,7 +114,7 @@ export default function SelectBox({
                               selected ? "font-medium" : "font-normal"
                             }`}
                           >
-                            {item.title}
+                            {String(item[labelKey])}
                           </span>
                           {selected ? (
                             <span

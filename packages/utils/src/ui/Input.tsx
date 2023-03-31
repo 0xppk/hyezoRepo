@@ -1,7 +1,7 @@
 "use client";
 
 import { cva, VariantProps } from "cva";
-import { ComponentProps } from "react";
+import { ComponentProps, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { cn } from "../utils";
 import { type InputProps } from "./Form";
@@ -47,8 +47,16 @@ export default function Input({
   className,
   ...props
 }: Props) {
-  const { register } = useFormContext();
+  const {
+    register,
+    setFocus,
+    formState: { isDirty },
+  } = useFormContext();
   const peer = !!label;
+
+  useEffect(() => {
+    if (!isDirty) setFocus(type);
+  }, [isDirty, setFocus]);
 
   return (
     <div className={`relative ${fullWidth && "w-full"}`}>

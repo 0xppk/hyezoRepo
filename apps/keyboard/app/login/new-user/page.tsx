@@ -1,7 +1,7 @@
 "use client";
 
-import { CreateNicknameForm } from "~/components/server";
-import usePermitEntering from "~/hooks/usePermitEntering";
+import { CreateNicknameForm } from "~/components/client";
+import { usePermitEntering } from "~/hooks";
 
 export default function NewUser() {
   const [isEnter] = usePermitEntering();
@@ -13,7 +13,7 @@ export default function NewUser() {
       }`}
     >
       <div className="modal rounded-xl">
-        <div className="drop-shadow-blue  min-w-[400px] rounded-xl bg-gray-900 py-6 px-8">
+        <div className="drop-shadow-blue min-w-[400px] rounded-xl bg-gray-900 py-6 px-8">
           <CreateNicknameForm />
         </div>
       </div>

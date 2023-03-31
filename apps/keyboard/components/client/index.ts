@@ -7,3 +7,4 @@ export { default as SignOutBtn } from "./SignOutBtn";
 export { default as UserSetting } from "./UserSetting";
 export { default as ChatSearchUsers } from "./ChatSearchUsers";
 export { default as ChatSearchModal } from "./ChatSearchModal";
+export { default as CreateNicknameForm } from "./CreateNicknameForm";

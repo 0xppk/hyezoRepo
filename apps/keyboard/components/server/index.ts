@@ -1,6 +1,5 @@
 export { default as SplitWord } from "./SplitWord";
 export { default as Icons } from "./Icons";
-export { default as CreateNicknameForm } from "./CreateNicknameForm";
 export { default as NavBar } from "./NavBar";
 export { default as NavLink } from "./NavLink";
 export { default as OAuthProviders } from "./OAuthProviders";

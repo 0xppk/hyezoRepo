@@ -1,13 +1,11 @@
-import { Session } from "next-auth";
 import Image from "next/image";
 import { SignOutBtn, UserSetting } from "~/components/client";
 import { Icons } from "~/components/server";
+import { useUserSession } from "~/hooks";
 
-type UserInfoProps = {
-  user?: Session["user"];
-};
+export default function UserInfo() {
+  const user = useUserSession();
 
-export default function UserInfo({ user }: UserInfoProps) {
   return (
     <div className="flex items-center gap-2">
       <Image
@@ -17,7 +15,8 @@ export default function UserInfo({ user }: UserInfoProps) {
         alt="프로필"
         className="rounded-full"
       />
-      <div>{user?.nickname?.replace(/"/g, "")}</div>
+      <div>{user?.nickname}</div>
+
       <UserSetting />
       <SignOutBtn>
         <Icons.logout className="h-4 w-4" />

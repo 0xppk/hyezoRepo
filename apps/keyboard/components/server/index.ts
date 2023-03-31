@@ -8,3 +8,4 @@ export { default as SignInForm } from "./SignInForm";
 export { default as SignInBtn } from "./SignInBtn";
 export { default as SignInFormSpacer } from "./SignInFormSpacer";
 export { default as UserInfo } from "./UserInfo";
+export { default as ChatRoomList } from "./ChatRoomList";

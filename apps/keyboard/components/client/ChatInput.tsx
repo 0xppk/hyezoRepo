@@ -3,9 +3,9 @@
 import { Form, Input, SubmitButton, zodSubmitHandler } from "@hyezo/ui";
 import { v4 } from "uuid";
 import { z } from "zod";
-import { useLoadMessages } from "~/hooks";
-import { useUserSession } from "~/hooks";
+import { useLoadMessages, useUserSession } from "~/hooks";
 import { fetchPost } from "~/lib/utils";
+import { type Message } from "~/types/db";
 
 const Message = z.object({
   id: z.string().uuid(),
@@ -18,9 +18,13 @@ const Message = z.object({
 
 const sendMessageSchema = Message;
 
-export default function ChatInput() {
-  const { user } = useUserSession();
-  const { messages, mutate } = useLoadMessages();
+type ChatInputProps = {
+  chatRoomId: string;
+};
+
+export default function ChatInput({ chatRoomId }: ChatInputProps) {
+  const user = useUserSession();
+  const { messages, reloadMessages } = useLoadMessages(chatRoomId);
   if (!messages) return null;
 
   const onSubmit: zodSubmitHandler = async ({ text: messageToSend }) => {
@@ -38,7 +42,7 @@ export default function ChatInput() {
     };
 
     const uploadMesageToUpstash = async () => {
-      const res = await fetchPost("/api/sendMessage", {
+      const res = await fetchPost(`/api/sendMessage/${chatRoomId}`, {
         body: JSON.stringify({ message }),
       });
 
@@ -47,7 +51,7 @@ export default function ChatInput() {
       return mergedMessages;
     };
 
-    await mutate(uploadMesageToUpstash, {
+    await reloadMessages(uploadMesageToUpstash, {
       optimisticData: [message, ...messages],
       rollbackOnError: true,
     });

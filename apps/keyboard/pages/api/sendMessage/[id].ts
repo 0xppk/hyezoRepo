@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { serverPusher } from "~/server/pusher";
 import redis from "~/server/redis";
+import { Message } from "~/types/db";
 
 type Data = Message;
 
@@ -18,15 +19,16 @@ export default async function handler(
   }
 
   const { message }: { message: Message } = req.body;
-  const newMessage = {
-    ...message,
-    created_at: Date.now(),
-  };
-  const data = {
-    [`${newMessage.id}`]: newMessage,
-  };
-  await redis.hset("messages", data);
-  serverPusher.trigger("messages", "new-message", newMessage);
 
-  res.status(202).json(newMessage);
+  /** 채팅룸 아이디 */
+  const { id } = req.query;
+
+  const data = {
+    [`${message.id}`]: message,
+  };
+
+  if (typeof id !== "string") return;
+  await redis.hset(id, data);
+  serverPusher.trigger(id, "new-message", message);
+  res.status(202).json(message);
 }

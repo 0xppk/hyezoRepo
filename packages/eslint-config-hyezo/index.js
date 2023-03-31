@@ -18,9 +18,9 @@ module.exports = {
     "plugin:prettier/recommended",
   ],
   plugins: [
-    "react",
-    "react-hooks",
     "prettier",
+    "react-hooks",
+    "react",
     "tailwindcss",
     "@typescript-eslint/eslint-plugin",
   ],

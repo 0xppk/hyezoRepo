@@ -1,11 +1,13 @@
+import { ChatParticipant } from "@prisma/client";
 import { type DefaultSession } from "next-auth";
 
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
       id: string;
-      emailVerified: boolean;
+      emailVerified?: Date | null;
       nickname?: string | null;
+      chatRoom?: ChatParticipant[];
     } & DefaultSession["user"];
   }
 }

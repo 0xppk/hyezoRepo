@@ -1,4 +1,5 @@
-import { RefObject } from "react";
+import { cache, RefObject } from "react";
+import { cl } from "~/../../packages/utils/src/utils";
 
 export const createTitle = (
   func: (text: string, index: number) => JSX.Element,
@@ -16,8 +17,10 @@ export const magnet = <T extends HTMLElement>(e: PointerEvent, ref: RefObject<T>
   ref.current?.style.setProperty("--rotateY", offsetX + "deg");
 };
 
-export const fetcher = async <T>(endpoint: string) => {
-  const res = (await await fetch(endpoint).then(res => res.json())) as T;
+export const fetcher = async <T>(endpoint: string, config?: RequestInit) => {
+  const res = (await await fetch(`${devOrProd}${endpoint}`, config).then(res =>
+    res.json(),
+  )) as T;
   return res;
 };
 
@@ -25,11 +28,26 @@ export const fetchPost = async (
   endpoint: string,
   body: { body: BodyInit | undefined | null },
 ) => {
-  return await fetch(endpoint, {
+  return await fetch(`${devOrProd}${endpoint}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     ...body,
   }).then(res => res.json());
+};
+
+export const devOrProd =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://hello-keyboard.vercel.app";
+
+export const cacheFetcher = cache(async <T>(endpoint: string) => {
+  const res = (await await fetch(`${devOrProd}${endpoint}`).then(res => res.json())) as T;
+  return res;
+});
+
+export const reloadSession = () => {
+  const event = new Event("visibilitychange");
+  document.dispatchEvent(event);
 };

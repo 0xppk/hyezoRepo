@@ -35,17 +35,18 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String            @id @default(cuid())
   name          String?
-  email         String?   @unique
-  nickname      String?   @unique
+  email         String?           @unique
+  nickname      String?           @unique
   emailVerified DateTime?
   image         String?
-  createdAt     DateTime  @default(now()) @map("created_at")
-  updatedAt     DateTime  @updatedAt @map("updated_at")
+  createdAt     DateTime          @default(now()) @map("created_at")
+  updatedAt     DateTime          @updatedAt @map("updated_at")
   accounts      Account[]
-  Post          Post[]
   sessions      Session[]
+  posts         Post[]
+  chatRooms     ChatParticipant[]
 
   @@map("users")
 }
@@ -65,8 +66,25 @@ model Post {
   published Boolean  @default(false)
   authorId  String?
   author    User?    @relation(fields: [authorId], references: [id])
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @default(now()) @map(name: "updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map(name: "posts")
+}
+
+model ChatRoom {
+  id              String            @id @default(cuid())
+  createdAt       DateTime          @default(now()) @map(name: "created_at")
+  updatedAt       DateTime          @updatedAt @map("updated_at")
+  ChatParticipant ChatParticipant[]
+}
+
+model ChatParticipant {
+  id         String   @id @default(cuid())
+  userName   String
+  user       User     @relation(fields: [userName], references: [nickname])
+  chatRoomId String
+  chatroom   ChatRoom @relation(fields: [chatRoomId], references: [id])
+  createdAt  DateTime @default(now()) @map(name: "created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
 }

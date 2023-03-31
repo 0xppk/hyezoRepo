@@ -7,7 +7,7 @@ const nextConfig = {
   transpilePackages: ["../../packages/utils/src/*"],
   reactStrictMode: true,
   images: {
-    domains: ["avatars.githubusercontent.com", "cdn.discordapp.com"],
+    domains: ["avatars.githubusercontent.com", "cdn.discordapp.com", "k.kakaocdn.net"],
   },
 };
 

@@ -6,7 +6,6 @@ module.exports = {
     node: true,
   },
   extends: [
-    "next",
     "turbo",
     "prettier",
     "next/core-web-vitals",
@@ -66,7 +65,7 @@ module.exports = {
     "arrow-parens": ["error", "as-needed"], // 화살표 함수 축약 가능시 축약
     curly: ["error", "multi"], // if문 중괄호 생략 가능시 생략
     "react-hooks/rules-of-hooks": ["error"],
-    "react-hooks/exhaustive-deps": ["error"], // 리액트 의존성 배열 correctness 체크 (근데외않됌?)
+    "react-hooks/exhaustive-deps": ["error"], // 리액트 의존성 배열 correctness 체크
     "@next/next/no-html-link-for-pages": "off",
     "react/jsx-key": "off",
   },

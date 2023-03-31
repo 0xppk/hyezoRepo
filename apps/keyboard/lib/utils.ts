@@ -1,5 +1,5 @@
 import { cache, RefObject } from "react";
-import { cl } from "~/../../packages/utils/src/utils";
+import { env } from "~/env.mjs";
 
 export const createTitle = (
   func: (text: string, index: number) => JSX.Element,
@@ -38,7 +38,7 @@ export const fetchPost = async (
 };
 
 export const devOrProd =
-  process.env.NODE_ENV === "development"
+  env.NODE_ENV === "development"
     ? "http://localhost:3000"
     : "https://hello-keyboard.vercel.app";
 

@@ -39,7 +39,7 @@ export default defineConfig((): Options[] => {
   return allFolders.map(folder => {
     return {
       ...defaultConfig,
-      entry: [`${__dirname}/src/${folder}/**/*.{ts,tsx}`],
+      entry: [`${__dirname}/src/${folder}/**/*.{ts,tsx,js,jsx}`],
       outDir: `public/${folder}`,
     };
   });

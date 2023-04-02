@@ -20,8 +20,8 @@
     "eslint": "^8.37.0",
     "eslint-config-hyezo": "workspace:*",
     "prettier": "^2.8.7",
-    "prettier-plugin-tailwindcss": "^0.2.5",
-    "turbo": "^1.8.6"
+    "prettier-plugin-tailwindcss": "^0.2.6",
+    "turbo": "^1.8.8"
   },
   "packageManager": "pnpm@7.26.3"
 }

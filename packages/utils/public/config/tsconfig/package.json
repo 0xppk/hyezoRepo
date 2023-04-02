@@ -1,0 +1,8 @@
+{
+  "name": "@hyezo/tsconfig",
+  "version": "1.2.2",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

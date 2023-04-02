@@ -6,10 +6,6 @@
   *::-webkit-scrollbar {
     @apply hidden;
   }
-  html,
-  body {
-    @apply cursor-fancy;
-  }
 
   /* 인풋 오토필 배경색 */
   input:-webkit-autofill,
@@ -18,4 +14,10 @@
   input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
   }
+}
+
+.test {
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem black;
 }

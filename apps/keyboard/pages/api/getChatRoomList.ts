@@ -48,27 +48,3 @@ export default async function handler(
     return res.status(500).json({ error: (error as Error).message });
   }
 }
-
-/* 
-select: {
-        id: true,
-        createdAt: true,
-        updatedAt: true,
-        ChatParticipant: {
-          where: {
-            userName: {
-              not: nickname,
-            },
-          },
-          select: {
-            user: {
-              select: {
-                id: true,
-                nickname: true,
-                image: true,
-              },
-            },
-          },
-        },
-      },
-*/

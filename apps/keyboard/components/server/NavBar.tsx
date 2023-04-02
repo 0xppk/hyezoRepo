@@ -1,23 +1,37 @@
 "use client";
 
-import { UserInfo } from "~/components/server";
+import { cn } from "@hyezo/utils";
+import { ComponentProps } from "react";
+import { UserInfo } from "~/components/client";
+import { Icons, Logo } from "~/components/server";
 import { useUserSession } from "~/hooks";
+import LogoImage from "~/public/images/logo.png";
 import NavLink from "./NavLink";
 
-export default function NavBar() {
+type NavBarProps = ComponentProps<"nav">;
+
+export default function NavBar({ className, ...props }: NavBarProps) {
   const user = useUserSession();
 
   return (
     <nav
-      className={`flex min-w-max flex-col gap-2 duration-1000 ${
-        user?.nickname ? "opacity-100" : "opacity-0"
-      }`}
+      className={cn(`${className} ${user?.nickname ? "opacity-100" : "opacity-0"}`)}
+      {...props}
     >
+      <Logo src={LogoImage} alt="로고" href="/" className="h-10 w-10 sm:h-12 sm:w-12" />
+      <NavLink href="/">
+        <Icons.home />
+      </NavLink>
+      <NavLink href="/deal/buy">
+        <Icons.buy />
+      </NavLink>
+      <NavLink href="/deal/sell">
+        <Icons.sell />
+      </NavLink>
+      <NavLink href="/chat">
+        <Icons.chat />
+      </NavLink>
       <UserInfo />
-      <NavLink href="/">Home</NavLink>
-      <NavLink href="/deal/buy">삽니다</NavLink>
-      <NavLink href="/deal/sell">팝니다</NavLink>
-      <NavLink href="/chat">메시지</NavLink>
     </nav>
   );
 }

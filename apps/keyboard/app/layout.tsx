@@ -1,13 +1,7 @@
-import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
-import NavBar from "~/components/server/NavBar";
+import { type Metadata } from "next";
+import { NavBar } from "~/components/server";
 import Providers from "~/lib/contexts";
 import "~/styles/tailwind.css";
-
-const font = Nunito({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 export const metadata: Metadata = {
   title: "Hello, keyboard",
@@ -17,11 +11,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
-      <body className={`bg-mix ${font.className}`} draggable={false}>
-        <section className="container mx-auto flex min-h-screen max-w-7xl gap-5 p-10">
+      <body className="bg-mix">
+        <section className="flex">
           <Providers>
-            <NavBar />
-            <main className="flex w-full justify-center">{children}</main>
+            <NavBar className="flex min-w-max flex-col items-center gap-8 border-r-2 border-gray-900 p-1 py-3 duration-700 md:p-3 " />
+            <main className="flex w-full justify-center py-3">{children}</main>
           </Providers>
         </section>
       </body>

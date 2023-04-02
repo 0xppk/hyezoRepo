@@ -10,7 +10,7 @@ type SignOutProps = {
 export default function SignOutBtn({ children }: SignOutProps) {
   return (
     <button onClick={() => signOut()}>
-      <Text variant="2xl/bold">{children}</Text>
+      <Text variant="xl/bold">{children}</Text>
     </button>
   );
 }

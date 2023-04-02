@@ -15,13 +15,13 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
   useSubscribeNewMessage(messages, reloadMessages);
 
   return (
-    <div className="mb-5 grid">
+    <div className="flex flex-col gap-3 overflow-auto">
       {messages?.map(m => {
         const messageByMe = user?.id === m.userId;
         return (
           <div
             key={m.id}
-            className={`my-1 mx-3 flex w-max max-w-lg items-center rounded-2xl p-2 ${
+            className={`flex items-center rounded-2xl ${
               messageByMe
                 ? "bg-twitter-500 ml-auto flex-row-reverse"
                 : "flex-row bg-white text-black"

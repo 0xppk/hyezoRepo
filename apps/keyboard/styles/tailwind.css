@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  *::-webkit-scrollbar {
+    @apply hidden;
+  }
   body {
     @apply h-full w-full overflow-x-hidden text-white antialiased;
   }
@@ -209,4 +212,35 @@ pre:hover .title-word:is(.show):not(.punctuation) {
 
 .providers:hover .login-provider {
   @apply -translate-y-3 opacity-100;
+}
+
+@font-face {
+  font-family: "NunitoSans";
+  src: url("/fonts/NunitoSans-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "LeferiPointSpecial";
+  src: url("/fonts/LeferiPointSpecial.woff2") format("woff2");
+  font-weight: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "LINESeedKR-Rg";
+  src: url("/fonts/LINESeedKR-Rg.woff2") format("woff2");
+  font-weight: normal;
+  font-display: block;
+}
+
+.spinner {
+  animation: spinner 1.3s linear infinite;
+}
+@keyframes spinner {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
 }

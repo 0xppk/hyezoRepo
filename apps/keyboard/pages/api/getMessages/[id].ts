@@ -25,7 +25,7 @@ export default async function handler(
 
   try {
     const getMessages: Message[] = await redis.hvals(id);
-    const messages = getMessages.sort(({ created_at: a }, { created_at: z }) => z - a);
+    const messages = getMessages.sort(({ created_at: a }, { created_at: z }) => a - z);
     return res.status(202).json(messages);
   } catch (error) {
     return res.status(405).json({ error: "Messages Cannot Found" });

@@ -4,7 +4,7 @@ export default function ChatRoom({ params }: PageProps) {
   const selectedRoomId = params.id as string;
 
   return (
-    <div className="col-span-3 rounded-2xl bg-white p-5">
+    <div className="flex h-full flex-col flex-nowrap">
       <ChatList chatRoomId={selectedRoomId} />
       <ChatInput chatRoomId={selectedRoomId} />
     </div>

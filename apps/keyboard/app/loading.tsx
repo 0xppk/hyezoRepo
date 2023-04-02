@@ -1,16 +1,15 @@
 import Image from "next/image";
-import flicker from "~/public/download.svg";
+import spinner from "~/public/svgs/spinner.svg";
 
 export default function Loading() {
   return (
     <div className="grid h-screen place-items-center">
       <Image
-        src={flicker}
+        src={spinner}
         alt="loading"
         width={50}
         height={50}
-        className="flicker"
-        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNctWXLSQAG/wLdU4e2YwAAAABJRU5ErkJggg=="
+        className="animate-spinner"
         priority
       />
     </div>

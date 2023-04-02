@@ -14,7 +14,7 @@ export default function SignInBtn({ provider }: SignInBtnProps) {
     <Button
       outline
       color="black"
-      className="providers relative aspect-square basis-1/3 flex-col items-center"
+      className="providers aspect-1 relative basis-1/3 flex-col items-center"
       onClick={() => {
         signIn(provider, {
           redirect: true,

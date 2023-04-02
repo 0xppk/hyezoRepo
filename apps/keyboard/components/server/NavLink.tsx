@@ -8,7 +8,7 @@ type NavLinkProps = {
 export default function NavLink({ children, ...props }: NavLinkProps) {
   return (
     <Link {...props}>
-      <Text variant="2xl/bold">{children}</Text>
+      <Text variant="xl/bold">{children}</Text>
     </Link>
   );
 }

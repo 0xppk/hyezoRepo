@@ -1,5 +1,6 @@
 import { ComboBox, Form, Modal, SubmitButton, zodSubmitHandler } from "@hyezo/ui";
 import { Session } from "next-auth";
+import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { useLoadAllUsers, useLoadChatRooms } from "~/hooks";
 import { fetchPost } from "~/lib/utils";
@@ -12,12 +13,14 @@ type ChatSearchModalProps = {
 export default function ChatSearchModal({ isOpen, setIsOpen }: ChatSearchModalProps) {
   const { allUsers } = useLoadAllUsers();
   const { reloadChatRooms } = useLoadChatRooms();
+  const router = useRouter();
 
   const onSubmit: zodSubmitHandler = async ({ combo: nickname }) => {
-    await fetchPost("/api/createChatRoom", {
+    const newChatRoomId = (await fetchPost("/api/createChatRoom", {
       body: JSON.stringify(nickname),
-    });
+    })) as string;
     reloadChatRooms();
+    router.push(`/chat/${newChatRoomId}`);
     setIsOpen(false);
   };
 

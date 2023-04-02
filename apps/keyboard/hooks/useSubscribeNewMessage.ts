@@ -13,11 +13,6 @@ export default function useSubscribeNewMessage(
     channel.bind("new-message", async (newMessage: Message) => {
       if (!messages) return;
       if (messages.find(message => message.id === newMessage.id)) return;
-
-      reloadMessages(fetcher("/api/getMessages"), {
-        optimisticData: [newMessage, ...messages],
-        rollbackOnError: true,
-      });
     });
 
     return () => {

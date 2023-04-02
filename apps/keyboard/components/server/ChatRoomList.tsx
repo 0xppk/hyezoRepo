@@ -48,8 +48,12 @@ export default function ChatRoomList() {
   const chatRoomList = ChatRoomSchema(user.nickname).parse(chatRooms);
 
   return (
-    <div>
-      <Text variant="2xl/bold"></Text>
+    <>
+      <section className="container">
+        <h2 className="section-title text-acccent"></h2>
+        <p className="prose"></p>
+      </section>
+
       {chatRoomList.map(({ chatRoomId, user: { image, nickname } }) => {
         return (
           <div key={chatRoomId} className="my-5 flex items-center gap-3">
@@ -64,6 +68,6 @@ export default function ChatRoomList() {
           </div>
         );
       })}
-    </div>
+    </>
   );
 }

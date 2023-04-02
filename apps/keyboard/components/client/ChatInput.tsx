@@ -38,7 +38,7 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
       message: messageToSend,
       created_at: Date.now(),
       username: nickname ?? `${userId} 님`,
-      profilePic: image ?? "/defaultImage.png",
+      profilePic: image ?? "/images/pingu.webp",
     };
 
     const uploadMesageToUpstash = async () => {
@@ -47,20 +47,22 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
       });
 
       const newMessage = sendMessageSchema.parse(res);
-      const mergedMessages = [newMessage, ...messages];
+      const mergedMessages = [...messages, newMessage];
       return mergedMessages;
     };
 
     await reloadMessages(uploadMesageToUpstash, {
-      optimisticData: [message, ...messages],
+      optimisticData: [...messages, message],
       rollbackOnError: true,
     });
   };
 
   return (
-    <Form onSubmit={onSubmit}>
-      <Input type="text" placeholder="메시지를 입력하세요" />
-      <SubmitButton>전송</SubmitButton>
-    </Form>
+    <div className="">
+      <Form onSubmit={onSubmit}>
+        <Input type="text" placeholder="메시지를 입력하세요" />
+        <SubmitButton>전송</SubmitButton>
+      </Form>
+    </div>
   );
 }

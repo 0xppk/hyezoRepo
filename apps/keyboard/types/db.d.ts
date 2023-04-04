@@ -1,8 +1,5 @@
-import { Prisma } from "@prisma/client";
-import { chatRoomPopulated } from "~/pages/api/createChatRoom";
-
 /**
- * Redis Type
+ * Redis Message Type
  */
 type Message = {
   id: string;
@@ -14,10 +11,25 @@ type Message = {
 };
 
 /**
- * Prisma Type
+ * 상품등록
  */
-type ChatRooms = ChatRoomPopulated[];
+type InputDataForRegisterItem = {
+  id: string;
+  title: string;
+  price: number;
+  layout?: string;
+  color?: string;
+  message?: string;
+  category: "BUY" | "SELL";
+  status: "ING" | "END" | "PENDING";
+};
 
-type ChatRoomPopulated = Prisma.ChatRoomGetPayload<{
-  include: typeof chatRoomPopulated;
-}>;
+/**
+ * 키보드회사 DB 업데이트
+ */
+type InputDataForRegisterManufacture = {
+  title: string;
+  select: "KEYCAP" | "HOUSING" | "VENDOR";
+  select2: string;
+  select3: "ING" | "END" | "PENDING";
+};

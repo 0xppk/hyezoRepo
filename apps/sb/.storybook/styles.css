@@ -16,8 +16,114 @@
   }
 }
 
-.test {
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 1rem black;
+.flipcard {
+  width: 400px;
+}
+.flipcard:hover .flipcard_content {
+  transform: rotateY(0.5turn);
+}
+
+.flipcard_content {
+  text-align: center;
+  position: relative;
+  padding: 5rem;
+  transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+  background: pink;
+  transform-style: preserve-3d;
+}
+
+.flipcard_front,
+.flipcard_back {
+  position: absolute;
+  inset: 0;
+  padding: 2em;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.flipcard_front {
+  background: lightgreen;
+  display: grid;
+}
+
+.flipcard_back {
+  transform: rotateY(0.5turn);
+  background: lightblue;
+  transform-style: preserve-3d;
+}
+
+.flipcard_title {
+  font-size: 3rem;
+  font-weight: bold;
+  transform: translateZ(9rem);
+  order: 2;
+  text-transform: uppercase;
+}
+
+.flipcard_subtitle {
+  transform: translateZ(6rem);
+  text-transform: uppercase;
+}
+.flipcard_body {
+  transform: translateZ(3rem);
+}
+
+.gridcards {
+  display: grid;
+  gap: clamp(1rem, 3vw - 1rem, 2rem);
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+
+.gridcard {
+  background: rgb(6, 19, 101);
+  height: 260px;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.gridcard:hover::before,
+.gridcard:hover::after {
+  opacity: 1;
+}
+
+.gridcard::before,
+.gridcard::after {
+  position: absolute;
+  border-radius: inherit;
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.gridcard::before {
+  background: radial-gradient(
+    500px circle at var(--mouse-x) var(--mouse-y),
+    rgba(240, 241, 245, 0.076),
+    transparent 40%
+  );
+  z-index: 3;
+}
+
+.gridcard::after {
+  background: radial-gradient(
+    500px circle at var(--mouse-x) var(--mouse-y),
+    rgb(255, 49, 49),
+    transparent 40%
+  );
+  z-index: 1;
+}
+
+.gridcard > .gridcard_content {
+  background: #0e0e0f;
+  border-radius: inherit;
+  margin: 1px;
+  height: calc(100% - 2px);
+  width: calc(100% - 2px);
+  z-index: 2;
+  position: relative;
 }

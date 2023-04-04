@@ -11,8 +11,7 @@ export default function Slider({ children }: SliderProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   useEventListener("mousemove", e => {
-    if (sliderRef.current === null || sliderRef.current.dataset.mouseDownAt === "0")
-      return;
+    if (!sliderRef.current || sliderRef.current.dataset.mouseDownAt === "0") return;
 
     if (
       sliderRef.current.dataset.mouseDownAt &&

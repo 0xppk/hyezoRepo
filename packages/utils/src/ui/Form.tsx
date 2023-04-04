@@ -1,8 +1,9 @@
 "use client";
-import { useZodForm } from "../hooks";
-import { ComponentProps, useEffect } from "react";
+
+import { ComponentProps } from "react";
 import { FormProvider, SubmitHandler, useFormContext } from "react-hook-form";
 import { z } from "zod";
+import { useZodForm } from "../hooks";
 import { cn } from "../utils";
 
 const InputSchema = z
@@ -22,20 +23,31 @@ const InputSchema = z
       .min(2, "너무 짧아요 😢")
       .max(10, "닉네임은 2~10자 사이의 길이로 지어주세요.")
       .transform(v => v.replace(/\s/g, "")),
+    title: z.string(),
+    price: z.coerce.number().max(100, "100만원 이하의 상품만 등록해주세요"),
+    layout: z.string().nullish(),
+    color: z.string().nullish(),
+    message: z.string().nullish(),
+    select2: z
+      .union([z.string(), z.number()])
+      .or(z.array(z.union([z.string(), z.number()])))
+      .or(z.record(z.any())),
+    select3: z
+      .union([z.string(), z.number()])
+      .or(z.array(z.union([z.string(), z.number()])))
+      .or(z.record(z.any())),
   })
   .partial();
 
-export type InputProps = z.infer<typeof InputSchema>;
-export type zodSubmitHandler = SubmitHandler<InputProps>;
+export type InputNameProps = z.infer<typeof InputSchema>;
+export type zodSubmitHandler = SubmitHandler<InputNameProps>;
 
 interface FormProps extends Omit<ComponentProps<"fieldset">, "onSubmit"> {
   onSubmit: zodSubmitHandler;
 }
 
 /**
- * The form component is used to render a `form`. Given a `children` like input, select, textarea, etc, it will render a `form` element.
- * And also it requires `onSubmit` event handler that will be called when the form is submitted.
- * Validating a form is done by using `zod` schema & custom hook `useZodForm`.
+ * `zod`를 결합한 `react-hook-form`.
  */
 export default function Form({ onSubmit, className, ...props }: FormProps) {
   const form = useZodForm({ schema: InputSchema });

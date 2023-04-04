@@ -16,6 +16,7 @@ export { default as Slider } from "./Slider";
 export { default as BlobMouseEffect } from "./BlobMouseEffect";
 export { default as MasonryGrid } from "./MasonryGrid";
 export { default as Spacer } from "./Spacer";
+export { default as FlipCard } from "./FlipCard";
 
 export { type TextProps } from "./Text";
 export { type ButtonOrLinkProps } from "./ButtonOrLink";

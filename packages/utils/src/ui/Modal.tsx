@@ -2,7 +2,14 @@
 
 import { Dialog, Transition } from "@headlessui/react";
 import { cva, VariantProps } from "cva";
-import { ComponentProps, Dispatch, Fragment, ReactNode, SetStateAction } from "react";
+import {
+  ComponentProps,
+  Dispatch,
+  Fragment,
+  ReactNode,
+  RefObject,
+  SetStateAction,
+} from "react";
 import { cn } from "../utils";
 
 const modalStyles = cva(
@@ -19,13 +26,9 @@ const modalStyles = cva(
       center: {
         true: "flex flex-col",
       },
-      "bg-color": {
-        white: "bg-white",
-      },
     },
     defaultVariants: {
       width: "regular",
-      "bg-color": "white",
     },
   },
 );
@@ -36,6 +39,7 @@ export interface ModalProps extends ModalStyleProps, ComponentProps<"div"> {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   center?: boolean;
+  focusRef?: RefObject<HTMLInputElement>;
 }
 
 export default function Modal({
@@ -46,13 +50,19 @@ export default function Modal({
   width,
   children,
   className,
+  focusRef,
   ...props
 }: ModalProps) {
   const closeModal = () => setIsOpen(false);
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={closeModal}>
+      <Dialog
+        as="div"
+        className="relative z-10"
+        onClose={closeModal}
+        initialFocus={focusRef}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

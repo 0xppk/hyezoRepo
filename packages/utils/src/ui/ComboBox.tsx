@@ -8,6 +8,7 @@ import { ComponentProps, Fragment, useMemo, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { cn } from "../utils";
 import { removeDuplicated } from "../utils/removeDuplicated";
+import { InputNameProps } from "./Form";
 
 const comboStyles = cva("", {
   variants: {
@@ -39,6 +40,7 @@ interface Props<T, K extends keyof T>
   extends Omit<ComboStyleProps, "iconColor">,
     Omit<ComponentProps<"li">, "color"> {
   list: T[];
+  name: keyof InputNameProps;
   labelKey?: K;
   imageKey?: K;
   removeDuplicates?: boolean;
@@ -46,6 +48,7 @@ interface Props<T, K extends keyof T>
 
 export default function ComboBox<T, K extends keyof T>({
   list,
+  name,
   color = "twitter",
   width = "regular",
   labelKey = "name" as K,
@@ -65,7 +68,7 @@ export default function ComboBox<T, K extends keyof T>({
 
   return (
     <Controller
-      name="combo"
+      name={name}
       control={control}
       // defaultValue={items[0]?.[labelKey]}
       render={({ field }) => (
@@ -105,7 +108,7 @@ export default function ComboBox<T, K extends keyof T>({
                   )}
                 >
                   {filteredItems.length === 0 && query !== "" ? (
-                    <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
+                    <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
                       Nothing found.
                     </div>
                   ) : (

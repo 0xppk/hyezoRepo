@@ -9,3 +9,5 @@ export { default as usePermitEntering } from "./usePermitEntering";
 export { default as useUserSession } from "./useUserSession";
 export { default as useSubscribeNewMessage } from "./useSubscribeNewMessage";
 export { default as useQueryString } from "./useQueryString";
+export { default as useFocusToLatestMessage } from "./useFocusToLatestMessage";
+export { default as useLoadAllPosts } from "./useLoadAllPosts";

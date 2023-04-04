@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { KeyedMutator } from "swr";
-import { fetcher } from "~/lib/utils";
 import { clientPusher } from "~/server/pusher";
-import { Message } from "~/types/db";
 
 export default function useSubscribeNewMessage(
   messages: Message[] | undefined,

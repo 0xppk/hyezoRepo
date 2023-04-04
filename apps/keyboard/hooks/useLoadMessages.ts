@@ -1,6 +1,5 @@
 import useSWR from "swr";
 import { fetcher } from "~/lib/utils";
-import { Message } from "~/types/db";
 
 export default function useLoadMessages(chatRoomId: string) {
   const {

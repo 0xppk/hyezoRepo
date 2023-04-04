@@ -1,6 +1,7 @@
 import { AiFillHeart } from "react-icons/ai";
 import { MdOutlineKeyboardAlt } from "react-icons/md";
 import { FaDiscord } from "react-icons/fa";
+import { GoArchive } from "react-icons/go";
 import {
   FiFeather,
   FiGithub,
@@ -32,6 +33,7 @@ const Icons = {
   sell: MdOutlineKeyboardAlt,
   buy: GiPrayer,
   chat: IoChatbubblesOutline,
+  note: GoArchive,
 };
 
 export default Icons;

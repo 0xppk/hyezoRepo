@@ -10,16 +10,11 @@ export default function ChatSearchUsers() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <ChatSearchModal isOpen={isOpen} setIsOpen={setIsOpen} />
-      <Button
-        onClick={() => {
-          setIsOpen(true);
-        }}
-        fullWidth
-      >
+      <Button onClick={() => setIsOpen(true)} fullWidth>
         Find User
       </Button>
       <ChatRoomList />
+      <ChatSearchModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 }

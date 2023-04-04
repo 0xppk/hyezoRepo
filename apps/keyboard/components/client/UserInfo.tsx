@@ -1,8 +1,8 @@
 import { Modal } from "@hyezo/ui";
 import Image from "next/image";
 import { useState } from "react";
+import { Text } from "@hyezo/ui";
 import { SignOutBtn } from "~/components/client";
-import { Icons } from "~/components/server";
 import { useUserSession } from "~/hooks";
 
 export default function UserInfo() {
@@ -14,7 +14,7 @@ export default function UserInfo() {
     <>
       {/* <UserSetting /> */}
       <SignOutBtn>
-        <Icons.logout title="로그아웃" />
+        <Text variant="xs/normal">Logout</Text>
       </SignOutBtn>
       <div className="relative h-8 w-8 sm:h-9 sm:w-9">
         <Image

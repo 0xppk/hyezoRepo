@@ -20,7 +20,7 @@ export default async function handler(
 
   const session = await getServerAuthSession({ req, res });
   if (!session?.user?.nickname) {
-    res.status(401).json({ error: "Unauthorized 🦠" });
+    res.status(401).json({ error: "Unauthorized to create chatroom 🦠" });
     return;
   }
 
@@ -41,7 +41,7 @@ export default async function handler(
           ],
         },
       },
-     
+
       include: chatRoomPopulated,
     });
 

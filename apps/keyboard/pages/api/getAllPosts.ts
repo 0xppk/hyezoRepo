@@ -1,13 +1,18 @@
+import { Post } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
-import { ChatRooms } from "~/types/prisma";
-import { chatRoomPopulated } from "./createChatRoom";
+import { z } from "zod";
 
-type Data = ChatRooms;
+type Data = Post[];
+
 type Err = {
   error: string;
 };
+
+const categorySchema = z.object({
+  category: z.enum(["BUY", "SELL"]),
+});
 
 export default async function handler(
   req: NextApiRequest,
@@ -20,30 +25,29 @@ export default async function handler(
 
   const session = await getServerAuthSession({ req, res });
   if (!session?.user?.nickname) {
-    res.status(401).json({ error: "You are not logined 🦠" });
+    res.status(401).json({ error: "Unauthorized to load items 🦠" });
     return;
   }
 
-  const {
-    user: { nickname },
-  } = session;
+  const { category } = categorySchema.parse(req.query);
 
   try {
-    const chatRoomList = await prisma.chatRoom.findMany({
+    const allPosts = await prisma.post.findMany({
       where: {
-        ChatParticipant: {
-          some: {
-            userName: {
-              equals: nickname,
-            },
+        category,
+      },
+      include: {
+        author: {
+          select: {
+            id: true,
+            image: true,
+            nickname: true,
+            posts: true,
           },
         },
       },
-
-      include: chatRoomPopulated,
     });
-
-    return res.status(202).json(chatRoomList);
+    return res.status(202).json(allPosts);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });
   }

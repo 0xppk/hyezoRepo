@@ -1,10 +1,11 @@
 "use client";
 
 import { OAuthProviders, SignInForm, SignInFormSpacer } from "~/components/server";
-import usePermitEntering from "~/hooks/usePermitEntering";
+import { useForceLinkToCreateNickname, usePermitEntering } from "~/hooks";
 
 export default function LoginPage() {
   const [isEnter] = usePermitEntering();
+  useForceLinkToCreateNickname();
 
   return (
     <div
@@ -13,7 +14,7 @@ export default function LoginPage() {
       }`}
     >
       <div className="modal rounded-xl">
-        <div className="drop-shadow-blue  min-w-[400px] rounded-xl bg-gray-900 py-6 px-8">
+        <div className="drop-shadow-blue min-w-[400px] rounded-xl bg-gray-900 px-8 py-6">
           <SignInForm />
           <SignInFormSpacer />
           <OAuthProviders />

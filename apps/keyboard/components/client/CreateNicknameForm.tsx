@@ -19,7 +19,7 @@ export default function CreateNicknameForm() {
       <Text variant="xs/normal" className="mb-5 mt-2">
         사용하실 닉네임을 지어주세요
       </Text>
-      <Input type="nickname" label="nickname" autoFocus fullWidth />
+      <Input name="nickname" label="nickname" autoFocus fullWidth />
       <SubmitButton color="twitter" outline fullWidth>
         Save
       </SubmitButton>

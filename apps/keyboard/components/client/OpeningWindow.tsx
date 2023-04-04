@@ -10,7 +10,7 @@ import { createTitle } from "~/lib/utils";
 
 const codeFont = font({
   subsets: ["latin"],
-  weight: "400",
+  weight: "700",
 });
 
 export default function OpeningWindow() {
@@ -24,7 +24,7 @@ export default function OpeningWindow() {
   return (
     <div
       className={cn(
-        `fixed inset-0 flex items-center justify-center overflow-hidden duration-500 ${
+        `fixed inset-0 flex items-center justify-center duration-500 ${
           isOpen ? "z-10 opacity-100" : "-z-10 opacity-0"
         }`,
       )}
@@ -38,7 +38,7 @@ export default function OpeningWindow() {
           router.push("/login");
         }}
       >
-        <code spellCheck={false} className={`font-semibold ${codeFont.className}`}>
+        <code spellCheck={false} className={`${codeFont.className}`}>
           <span className="selector title fancy">
             {createTitle(SplitWord.Opening, ".hello-keyboard {")}
           </span>

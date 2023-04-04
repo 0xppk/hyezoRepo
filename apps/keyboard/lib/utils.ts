@@ -17,10 +17,10 @@ export const magnet = <T extends HTMLElement>(e: PointerEvent, ref: RefObject<T>
 };
 
 export const fetcher = async <T>(endpoint: string, config?: RequestInit) => {
-  const res = (await await fetch(`${devOrProd}${endpoint}`, config).then(res =>
+  const data = (await await fetch(`${devOrProd}${endpoint}`, config).then(res =>
     res.json(),
   )) as T;
-  return res;
+  return data;
 };
 
 export const fetchPost = async (

@@ -36,6 +36,7 @@ export default function ChatSearchModal({ isOpen, setIsOpen }: ChatSearchModalPr
       <Modal.Content className="min-w-[20rem] text-sm text-black">
         <Form onSubmit={onSubmit}>
           <ComboBox<Session["user"], "nickname">
+            name="select"
             list={allUsers || []}
             labelKey="nickname"
             className="min-h-[160px]"

@@ -15,7 +15,6 @@ SplitWord.Opening = (text: string, index: number) => {
 
 SplitWord.Provider = (text: string, index: number) => {
   const delay = index * 20;
-
   return (
     <span
       key={text + `${index}`}
@@ -27,4 +26,40 @@ SplitWord.Provider = (text: string, index: number) => {
   );
 };
 
+SplitWord.Aurhor = (text: string, index: number) => {
+  const delay = index * 20;
+  return (
+    <span
+      key={text + `${index}`}
+      className="splitword_author"
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {text}
+    </span>
+  );
+};
+SplitWord.Title = (text: string, index: number) => {
+  const delay = index * 50;
+  return (
+    <span
+      key={text + `${index}`}
+      className="splitword_title"
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {text}
+    </span>
+  );
+};
+SplitWord.Price = (text: string, index: number) => {
+  // const delay = (index + 1) * 100;
+  return (
+    <span
+      key={text + `${index}`}
+      className="splitword_price"
+      // style={{ transitionDelay: `${delay}ms` }}
+    >
+      {text}
+    </span>
+  );
+};
 export default function SplitWord() {}

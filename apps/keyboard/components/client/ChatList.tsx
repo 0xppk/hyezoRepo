@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useLoadMessages, useUserSession } from "~/hooks";
+import { useFocusToLatestMessage, useLoadMessages, useUserSession } from "~/hooks";
 import useSubscribeNewMessage from "~/hooks/useSubscribeNewMessage";
-
+import { useRef } from "react";
 type ChatRoomProps = {
   chatRoomId: string;
 };
@@ -11,32 +11,44 @@ type ChatRoomProps = {
 export default function ChatList({ chatRoomId }: ChatRoomProps) {
   const user = useUserSession();
   const { messages, reloadMessages } = useLoadMessages(chatRoomId);
+  const messageBoxRef = useRef<HTMLDivElement>(null);
 
   useSubscribeNewMessage(messages, reloadMessages);
+  useFocusToLatestMessage(messageBoxRef, [messages]);
 
   return (
-    <div className="flex flex-col gap-3 overflow-auto">
+    <div className="flex h-full flex-col gap-3 overflow-auto" ref={messageBoxRef}>
       {messages?.map(m => {
         const messageByMe = user?.id === m.userId;
         return (
           <div
-            key={m.id}
-            className={`flex items-center rounded-2xl ${
-              messageByMe
-                ? "bg-twitter-500 ml-auto flex-row-reverse"
-                : "flex-row bg-white text-black"
+            className={`flex w-2/3 items-center gap-3 ${
+              messageByMe ? "ml-auto flex-row-reverse" : "flex-row"
             }`}
           >
-            <Image
-              className="mx-2 rounded-full"
-              width={40}
-              height={40}
-              src={m.profilePic}
-              alt={m.username}
-            />
-            {!messageByMe && <p>{m.username}</p>}
-            <p className="px-2">{m.message}</p>
-            <p>{new Date(m.created_at).toLocaleString()}</p>
+            <div
+              key={m.id}
+              className={`flex items-center rounded-2xl p-2 py-1 ${
+                messageByMe
+                  ? "bg-twitter-500 flex-row-reverse"
+                  : "flex-row bg-white text-black"
+              }`}
+            >
+              {!messageByMe && (
+                <Image
+                  className="mx-2 rounded-full"
+                  width={40}
+                  height={40}
+                  src={m.profilePic}
+                  alt={m.username}
+                />
+              )}
+              {!messageByMe && <p className="min-w-[2rem]">{m.username}</p>}
+              <p className="p-2">{m.message}</p>
+            </div>
+            <p className="text-[12px] text-gray-400">
+              {new Date(m.created_at).toLocaleString()}
+            </p>
           </div>
         );
       })}

@@ -19,7 +19,7 @@ export default function SignInForm() {
       <Text variant="xs/normal" className="mb-5 mt-2">
         Please login to use platform
       </Text>
-      <Input type="email" label="email" fullWidth />
+      <Input name="email" label="email" fullWidth />
       <SubmitButton color="twitter" outline fullWidth>
         Sign In
       </SubmitButton>

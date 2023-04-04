@@ -5,7 +5,7 @@ import { v4 } from "uuid";
 import { z } from "zod";
 import { useLoadMessages, useUserSession } from "~/hooks";
 import { fetchPost } from "~/lib/utils";
-import { type Message } from "~/types/db";
+
 
 const Message = z.object({
   id: z.string().uuid(),
@@ -58,9 +58,9 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
   };
 
   return (
-    <div className="">
+    <div className="h-full">
       <Form onSubmit={onSubmit}>
-        <Input type="text" placeholder="메시지를 입력하세요" />
+        <Input name="text" placeholder="메시지를 입력하세요" />
         <SubmitButton>전송</SubmitButton>
       </Form>
     </div>

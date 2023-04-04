@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import redis from "~/server/redis";
-import { Message } from "~/types/db";
 
 type Data = Message[];
 

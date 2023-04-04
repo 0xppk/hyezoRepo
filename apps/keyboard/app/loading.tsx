@@ -3,7 +3,7 @@ import spinner from "~/public/svgs/spinner.svg";
 
 export default function Loading() {
   return (
-    <div className="grid h-screen place-items-center">
+    <div className="fixed inset-0 grid place-items-center">
       <Image
         src={spinner}
         alt="loading"

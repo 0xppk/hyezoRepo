@@ -213,3 +213,4 @@ pre:hover .title-word:is(.show):not(.punctuation) {
 .providers:hover .login-provider {
   @apply -translate-y-3 opacity-100;
 }
+

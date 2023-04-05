@@ -10,3 +10,4 @@ export { default as ChatSearchModal } from "./ChatSearchModal";
 export { default as CreateNicknameForm } from "./CreateNicknameForm";
 export { default as UserInfo } from "./UserInfo";
 export { default as ItemsGridCard } from "./ItemsGridCard";
+export { default as MainPageGrid } from "./MainPageGrid";

@@ -1,7 +1,7 @@
 import { ChatInput, ChatList } from "~/components/client";
 
-export default function ChatRoom({ params }: PageProps) {
-  const selectedRoomId = params.id as string;
+export default function ChatRoom({ params }: PageProps<{ id: string }>) {
+  const { id: selectedRoomId } = params;
 
   return (
     <div className="grid-rows-chat-layout grid h-full items-end gap-5 p-10">
@@ -10,4 +10,3 @@ export default function ChatRoom({ params }: PageProps) {
     </div>
   );
 }
- 

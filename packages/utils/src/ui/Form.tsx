@@ -23,8 +23,8 @@ const InputSchema = z
       .min(2, "너무 짧아요 😢")
       .max(10, "닉네임은 2~10자 사이의 길이로 지어주세요.")
       .transform(v => v.replace(/\s/g, "")),
-    title: z.string(),
-    price: z.coerce.number().max(100, "100만원 이하의 상품만 등록해주세요"),
+    title: z.string().min(1, "필수입력 사항입니다"),
+    price: z.coerce.number().min(1, "만원 이상 필수!").max(100, "100만원 이하의 상품만 등록해주세요"),
     layout: z.string().nullish(),
     color: z.string().nullish(),
     message: z.string().nullish(),

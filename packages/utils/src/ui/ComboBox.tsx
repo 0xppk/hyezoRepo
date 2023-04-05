@@ -17,12 +17,14 @@ const comboStyles = cva("", {
       orange: "bg-amber-100 text-amber-900",
       pink: "bg-rose-100 text-rose-900",
       emerald: "bg-emerald-100 text-emerald-900",
+      darkNavy: "bg-stripes-indigo text-white",
     },
     iconColor: {
       twitter: "text-twitter-600",
       orange: "text-amber-600",
       pink: "text-rose-600",
       emerald: "text-emerald-600",
+      darkNavy: "text-white",
     },
     width: {
       narrower: "w-44 max-w-xs",
@@ -52,7 +54,7 @@ export default function ComboBox<T, K extends keyof T>({
   color = "twitter",
   width = "regular",
   labelKey = "name" as K,
-  imageKey = "image" as K,
+  imageKey,
   removeDuplicates,
   ...props
 }: Props<T, K>) {
@@ -79,9 +81,19 @@ export default function ComboBox<T, K extends keyof T>({
         >
           <>
             <div className="relative mt-1 flex-1">
-              <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+              <div
+                className={cn(
+                  `relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm ${
+                    color === "darkNavy" && "border border-gray-700/70 bg-gray-900"
+                  }`,
+                )}
+              >
                 <Combobox.Input
-                  className="w-full border-none py-4 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:outline-none focus:ring-0"
+                  className={cn(
+                    `w-full rounded-lg border-none py-4 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:outline-0 focus:ring-0 ${
+                      color === "darkNavy" && "bg-gray-900 text-white/80"
+                    }`,
+                  )}
                   placeholder="Search..."
                   spellCheck="false"
                   displayValue={(item: string) => item}
@@ -104,7 +116,9 @@ export default function ComboBox<T, K extends keyof T>({
               >
                 <Combobox.Options
                   className={cn(
-                    `absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm ${props.className}`,
+                    `absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white text-base shadow-xl ring-1 ring-black ring-opacity-5 drop-shadow-xl backdrop-blur-sm focus:outline-none sm:text-sm ${
+                      props.className
+                    } ${color === "darkNavy" && "bg-gray-900/90 text-white/80"}`,
                   )}
                 >
                   {filteredItems.length === 0 && query !== "" ? (
@@ -117,7 +131,11 @@ export default function ComboBox<T, K extends keyof T>({
                         key={`${String(item[labelKey])}+ ${i}`}
                         className={({ active }) =>
                           `relative z-10 cursor-default select-none py-2 pl-10 pr-4 ${
-                            active ? comboStyles({ color }) : "text-gray-900"
+                            active
+                              ? comboStyles({ color })
+                              : color === "darkNavy"
+                              ? "bg-gray-900 text-white/80"
+                              : "text-gray-900"
                           }`
                         }
                         value={String(item[labelKey])}
@@ -125,10 +143,12 @@ export default function ComboBox<T, K extends keyof T>({
                         {({ selected, active }) => (
                           <>
                             <div className="flex items-center gap-3">
-                              <img
-                                className="h-10 w-10 rounded-full"
-                                src={String(item[imageKey])}
-                              ></img>
+                              {imageKey && (
+                                <img
+                                  className="h-10 w-10 rounded-full"
+                                  src={String(item[imageKey])}
+                                ></img>
+                              )}
                               <span
                                 className={`block truncate ${
                                   selected ? "font-extrabold" : "font-normal"
@@ -137,6 +157,7 @@ export default function ComboBox<T, K extends keyof T>({
                                 {String(item[labelKey])}
                               </span>
                             </div>
+
                             {selected ? (
                               <span
                                 className={`absolute inset-y-0 left-0 flex items-center pl-3 ${comboStyles(

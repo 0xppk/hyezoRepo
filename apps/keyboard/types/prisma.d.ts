@@ -1,4 +1,4 @@
-import { Prisma, Post } from "@prisma/client";
+import { Prisma, Post, Brand } from "@prisma/client";
 import { chatRoomPopulated } from "~/pages/api/createChatRoom";
 
 type ChatRooms = ChatRoomPopulated[];
@@ -15,3 +15,5 @@ type AllSellingData = (Post & {
     posts: Post[] | null;
   };
 })[];
+
+type AllBrandData = Pick<Brand, "id" | "name">[];

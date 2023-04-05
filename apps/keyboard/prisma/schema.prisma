@@ -94,6 +94,8 @@ model Post {
   updatedAt DateTime @updatedAt @map("updated_at")
   category  Category
   status    Status   @default(ING)
+  brandName String
+  brand     Brand    @relation(fields: [brandName], references: [name])
 
   @@map(name: "posts")
 }
@@ -102,10 +104,11 @@ model Brand {
   id        String            @id @default(cuid())
   name      String            @unique
   nation    String?
-  type      KeyboardBrandType
-  status    Status            @default(ING)
   createdAt DateTime          @default(now()) @map("created_at")
   updatedAt DateTime          @updatedAt @map("updated_at")
+  type      KeyboardBrandType
+  status    Status            @default(ING)
+  post      Post[]
 
   @@map(name: "brands")
 }

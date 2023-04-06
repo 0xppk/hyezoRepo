@@ -1,3 +1,5 @@
+"use client";
+
 export { default as InputSimple } from "./InputSimple";
 export { default as Button } from "./Button";
 // export { default as Container } from "./Container";
@@ -13,7 +15,8 @@ export { default as SelectBox } from "./SelectBox";
 export { default as ComboBox } from "./ComboBox";
 export { FieldError } from "./Form";
 export { default as Slider } from "./Slider";
-export { default as BlobMouseEffect } from "./BlobMouseEffect";
+export { default as MouseBlobEffect } from "./MouseBlobEffect";
+export { default as MouseTrailEffect } from "./MouseTrailEffect";
 export { default as MasonryGrid } from "./MasonryGrid";
 export { default as Spacer } from "./Spacer";
 export { default as FlipCard } from "./FlipCard";

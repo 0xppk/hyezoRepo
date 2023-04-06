@@ -121,7 +121,7 @@ module.exports = {
         "center-center": "center center",
       },
       gridTemplateColumns: {
-        "root-layout": "repeat(autofill, minmax(0, 1fr))",
+        "root-layout": "repeat(auto-fit, minmax(0, 1fr))",
       },
       gridTemplateRows: {
         "chat-layout": "8fr minmax(0, 1fr)",

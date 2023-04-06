@@ -298,8 +298,8 @@ pre:hover .title-word:is(.show):not(.punctuation) {
 
 .gridcards {
   display: grid;
-  gap: clamp(1rem, 2vw - 1rem, 1.5rem);
-  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: clamp(1.5rem, 5vw - 2rem, 3rem);
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   /* grid-template-rows: ; */
 }
 
@@ -390,4 +390,37 @@ pre:hover .title-word:is(.show):not(.punctuation) {
 }
 .gridcard:hover .splitword_price {
   @apply animate-wiggle text-3xl;
+}
+
+.trailer {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  z-index: 10;
+  position: fixed;
+  display: grid;
+  place-items: center;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  mix-blend-mode: difference;
+  opacity: 0;
+  background: white;
+}
+
+.trailer-cursor {
+  opacity: 0;
+  width: 1.46rem;
+  height: 1.46rem;
+  border-radius: 50%;
+  transition: opacity 0.4s ease;
+}
+
+.trailer:not([data-type=""]) > .trailer-cursor {
+  opacity: 1;
+}
+
+body:hover .trailer {
+  opacity: 1;
 }

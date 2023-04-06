@@ -1118,6 +1118,16 @@ input:-webkit-autofill,
   border-color: rgb(17 24 39 / var(--tw-border-opacity));
 }
 
+.border-blue-800 {
+  --tw-border-opacity: 1;
+  border-color: rgb(30 64 175 / var(--tw-border-opacity));
+}
+
+.border-indigo-700 {
+  --tw-border-opacity: 1;
+  border-color: rgb(67 56 202 / var(--tw-border-opacity));
+}
+
 .bg-blue-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
@@ -1269,6 +1279,10 @@ input:-webkit-autofill,
 
 .bg-gray-100\/80 {
   background-color: rgb(243 244 246 / 0.8);
+}
+
+.bg-indigo-600\/80 {
+  background-color: rgb(79 70 229 / 0.8);
 }
 
 .bg-opacity-70 {

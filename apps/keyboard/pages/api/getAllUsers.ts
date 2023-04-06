@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { Session } from "next-auth";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
+import { AllUsers } from "~/types/prisma";
 
-type Data = Session["user"][];
+type Data = AllUsers;
 
 type Err = {
   error: string;
@@ -37,6 +37,8 @@ export default async function handler(
         image: true,
       },
     });
+
+    if (!allUsers) return;
     return res.status(202).json(allUsers);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });

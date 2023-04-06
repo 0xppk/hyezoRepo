@@ -16,6 +16,7 @@ type AllSellingData = (Post & {
   };
 })[];
 
+type AllUsers = Pick<User, "id" | "nickname" | "image">[];
 type AllBrandData = Pick<Brand, "id" | "name" | "type">[];
 type AuthorsPost = User & {
   posts: Post[];

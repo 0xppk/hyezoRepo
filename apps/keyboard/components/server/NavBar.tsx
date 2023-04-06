@@ -19,7 +19,13 @@ export default function NavBar({ className, ...props }: NavBarProps) {
       {...props}
     >
       <div className="sm:flex sm:basis-1/3 sm:pl-7">
-        <Logo src={LogoImage} alt="로고" href="/" className="h-10 w-10 sm:h-12 sm:w-12" />
+        <Logo
+          src={LogoImage}
+          alt="로고"
+          href="/"
+          className="interactable h-10 w-10 sm:h-12 sm:w-12"
+          data-type="link"
+        />
       </div>
       <div className="contents sm:hidden">
         <NavLink href="/">

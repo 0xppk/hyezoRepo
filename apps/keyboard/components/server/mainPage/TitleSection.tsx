@@ -20,13 +20,16 @@ export default function ThirdSection({ brands, page }: ThirdSectionProps) {
   return (
     <div className="col-span-2 h-[30vh]">
       <div className="grid h-full grid-cols-3 place-items-center">
-        <div className="stack col-span-2">
+        <div className="stack col-span-2" data-type="title">
           <ThirdSection.TitleSlider page={page} />
         </div>
-        <div className="grid h-full w-full grid-rows-2 place-items-center border border-gray-900">
-          <div className="grid h-full w-full place-items-center border-b border-gray-900">
+        <div
+          className="interactable grid h-full w-full grid-rows-2 place-items-center border border-gray-900"
+          data-type="link"
+        >
+          <div className="cursor-eyes grid h-full w-full place-items-center border-b border-gray-900">
             <Icons.search
-              className="cursor-pointer sm:h-10 sm:w-10"
+              className="sm:h-10 sm:w-10"
               onClick={() => openModal("search")}
             />
           </div>

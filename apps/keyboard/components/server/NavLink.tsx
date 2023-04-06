@@ -13,7 +13,9 @@ export default function NavLink({
 }: NavLinkProps) {
   return (
     <Link {...props}>
-      <Text variant={variant}>{children}</Text>
+      <Text variant={variant} className="interactable" data-type="link">
+        {children}
+      </Text>
     </Link>
   );
 }

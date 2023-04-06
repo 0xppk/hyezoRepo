@@ -3,7 +3,14 @@ import { cache, RefObject } from "react";
 export const createTitle = (
   func: (text: string, index: number) => JSX.Element,
   text: string,
-) => text.split("").map(func);
+) => {
+  const splitWords = text.split("");
+  const reviveSpace = splitWords.reduce((acc: string[], each) => {
+    if (each === " ") return [...acc, "\u00A0"];
+    return [...acc, each];
+  }, []);
+  return reviveSpace.map(func);
+};
 
 export const magnet = <T extends HTMLElement>(e: PointerEvent, ref: RefObject<T>) => {
   const { clientX: x, clientY: y } = e,
@@ -20,6 +27,7 @@ export const fetcher = async <T>(endpoint: string, config?: RequestInit) => {
   const data = (await await fetch(`${devOrProd}${endpoint}`, config).then(res =>
     res.json(),
   )) as T;
+
   return data;
 };
 

@@ -39,25 +39,15 @@ SplitWord.Aurhor = (text: string, index: number) => {
   );
 };
 SplitWord.Title = (text: string, index: number) => {
-  const delay = index * 50;
   return (
-    <span
-      key={text + `${index}`}
-      className="splitword_title"
-      style={{ transitionDelay: `${delay}ms` }}
-    >
+    <span key={text + `${index}`} className="splitword_title">
       {text}
     </span>
   );
 };
 SplitWord.Price = (text: string, index: number) => {
-  // const delay = (index + 1) * 100;
   return (
-    <span
-      key={text + `${index}`}
-      className="splitword_price"
-      // style={{ transitionDelay: `${delay}ms` }}
-    >
+    <span key={text + `${index}`} className="splitword_price">
       {text}
     </span>
   );

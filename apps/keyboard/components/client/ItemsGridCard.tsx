@@ -42,7 +42,14 @@ export default function GridCard({ data }: GridCardProps) {
               {createTitle(SplitWord.Aurhor, card.author.nickname)}
             </p>
             <div className="flex flex-col pb-2 pl-3">
-              <div className="flex gap-4 pb-1">
+              <div className="flex items-center gap-3 pb-2">
+                <p
+                  className={`px-2 py-px uppercase text-black ${
+                    card.brandName === "gmk" ? "bg-orange-400" : "bg-white"
+                  }`}
+                >
+                  {card.brandName}
+                </p>
                 <p>{card.layout}</p>
                 <p>{card.color}</p>
               </div>

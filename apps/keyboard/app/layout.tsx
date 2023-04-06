@@ -1,4 +1,5 @@
 import { type Metadata } from "next";
+import { MouseTrailer } from "~/components/client";
 import { NavBar } from "~/components/server";
 import Providers from "~/lib/contexts";
 import "~/styles/tailwind.css";

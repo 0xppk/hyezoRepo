@@ -8,7 +8,7 @@ type FourthSectionProps = {
 
 export default function FourthSection({ setPage }: FourthSectionProps) {
   return (
-    <div className="h-[30vh] bg-orange-800">
+    <div className="h-[30vh] bg-orange-800 interactable" data-type="link">
       <div className="grid h-full grid-cols-2 place-items-center">
         <div
           onClick={() =>

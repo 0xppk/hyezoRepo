@@ -23,11 +23,11 @@ export default async function handler(
     return;
   }
 
-  const session = await getServerAuthSession({ req, res });
-  if (!session?.user?.nickname) {
-    res.status(401).json({ error: "Unauthorized to load items 🦠" });
-    return;
-  }
+  // const session = await getServerAuthSession({ req, res });
+  // if (!session?.user?.nickname) {
+  //   res.status(401).json({ error: "Unauthorized to load items 🦠" });
+  //   return;
+  // }
 
   const { category } = categorySchema.parse(req.query);
 

@@ -22,6 +22,7 @@ export default async function handler(
       select: {
         id: true,
         name: true,
+        type: true,
       },
     });
     return res.status(202).json(allBrands);

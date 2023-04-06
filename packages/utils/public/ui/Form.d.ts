@@ -11,34 +11,53 @@ declare const InputSchema: z.ZodObject<{
     select: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodNumber]>, "many">]>, z.ZodRecord<z.ZodString, z.ZodAny>]>>;
     combo: z.ZodOptional<z.ZodString>;
     nickname: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    title: z.ZodOptional<z.ZodString>;
+    price: z.ZodOptional<z.ZodNumber>;
+    layout: z.ZodOptional<z.ZodOptional<z.ZodNullable<z.ZodString>>>;
+    color: z.ZodOptional<z.ZodOptional<z.ZodNullable<z.ZodString>>>;
+    message: z.ZodOptional<z.ZodOptional<z.ZodNullable<z.ZodString>>>;
+    select2: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodNumber]>, "many">]>, z.ZodRecord<z.ZodString, z.ZodAny>]>>;
+    select3: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodNumber]>, "many">]>, z.ZodRecord<z.ZodString, z.ZodAny>]>>;
 }, "strip", z.ZodTypeAny, {
-    select?: string | number | Record<string, any> | (string | number)[] | undefined;
+    email?: string | undefined;
+    password?: string | undefined;
+    url?: string | undefined;
     textarea?: string | undefined;
     text?: string | undefined;
-    url?: string | undefined;
-    email?: string | undefined;
+    select?: string | number | (string | number)[] | Record<string, any> | undefined;
     combo?: string | undefined;
-    password?: string | undefined;
     nickname?: string | undefined;
+    title?: string | undefined;
+    price?: number | undefined;
+    layout?: string | null | undefined;
+    color?: string | null | undefined;
+    message?: string | null | undefined;
+    select2?: string | number | (string | number)[] | Record<string, any> | undefined;
+    select3?: string | number | (string | number)[] | Record<string, any> | undefined;
 }, {
-    select?: string | number | Record<string, any> | (string | number)[] | undefined;
+    email?: string | undefined;
+    password?: string | undefined;
+    url?: string | undefined;
     textarea?: string | undefined;
     text?: string | undefined;
-    url?: string | undefined;
-    email?: string | undefined;
+    select?: string | number | (string | number)[] | Record<string, any> | undefined;
     combo?: string | undefined;
-    password?: string | undefined;
     nickname?: string | undefined;
+    title?: string | undefined;
+    price?: number | undefined;
+    layout?: string | null | undefined;
+    color?: string | null | undefined;
+    message?: string | null | undefined;
+    select2?: string | number | (string | number)[] | Record<string, any> | undefined;
+    select3?: string | number | (string | number)[] | Record<string, any> | undefined;
 }>;
-type InputProps = z.infer<typeof InputSchema>;
-type zodSubmitHandler = SubmitHandler<InputProps>;
+type InputNameProps = z.infer<typeof InputSchema>;
+type zodSubmitHandler = SubmitHandler<InputNameProps>;
 interface FormProps extends Omit<ComponentProps<"fieldset">, "onSubmit"> {
     onSubmit: zodSubmitHandler;
 }
 /**
- * The form component is used to render a `form`. Given a `children` like input, select, textarea, etc, it will render a `form` element.
- * And also it requires `onSubmit` event handler that will be called when the form is submitted.
- * Validating a form is done by using `zod` schema & custom hook `useZodForm`.
+ * `zod`를 결합한 `react-hook-form`.
  */
 declare function Form({ onSubmit, className, ...props }: FormProps): JSX.Element;
 interface FieldErrorProps {
@@ -46,4 +65,4 @@ interface FieldErrorProps {
 }
 declare function FieldError({ name }: FieldErrorProps): JSX.Element | null;
 
-export { FieldError, InputProps, Form as default, zodSubmitHandler };
+export { FieldError, InputNameProps, Form as default, zodSubmitHandler };

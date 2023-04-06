@@ -19,11 +19,11 @@ export default async function handler(
   }
 
   const session = await getServerAuthSession({ req, res });
-  if (session?.user?.role === "USER" || !session?.user?.nickname) {
+  if (!session?.user || session?.user?.role === "USER") {
     res.status(401).json({ error: "Unauthorized to access to admin page 🦠" });
     return;
   }
-
+  
   const data: InputDataForRegisterManufacture = req.body;
   const { title, select, select2, select3 } = data;
 

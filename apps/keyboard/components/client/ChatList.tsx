@@ -1,9 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useFocusToLatestMessage, useLoadMessages, useUserSession } from "~/hooks";
-import useSubscribeNewMessage from "~/hooks/useSubscribeNewMessage";
+import {
+  useFocusToLatestMessage,
+  useSubscribeNewMessage,
+  useLoadMessages,
+  useUserSession,
+} from "~/hooks";
 import { useRef } from "react";
+
 type ChatRoomProps = {
   chatRoomId: string;
 };
@@ -17,7 +22,10 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
   useFocusToLatestMessage(messageBoxRef, [messages]);
 
   return (
-    <div className="flex h-full flex-col gap-3 overflow-auto" ref={messageBoxRef}>
+    <div
+      className="flex h-full flex-col justify-end gap-3 overflow-auto"
+      ref={messageBoxRef}
+    >
       {messages?.map(m => {
         const messageByMe = user?.id === m.userId;
         return (
@@ -25,6 +33,7 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
             className={`flex w-2/3 items-center gap-3 ${
               messageByMe ? "ml-auto flex-row-reverse" : "flex-row"
             }`}
+            key={m.id}
           >
             <div
               key={m.id}

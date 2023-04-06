@@ -10,6 +10,6 @@ export default async function SellingItem() {
       revalidate: 0,
     },
   });
-  console.log(allSellingItems);
+  
   return <ItemsGridCard data={allSellingItems || []} />;
 }

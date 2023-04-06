@@ -46,7 +46,12 @@ export default async function handler(
           },
         },
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
+
+    if (!allPosts) return;
     return res.status(202).json(allPosts);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });

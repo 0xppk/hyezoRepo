@@ -5,13 +5,13 @@ declare const InputPropsSchema: z.ZodObject<{
     debounceTime: z.ZodOptional<z.ZodNumber>;
     placeholder: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    placeholder?: string | undefined;
     submitAction?: ((args_0: string, ...args_1: unknown[]) => void) | undefined;
     debounceTime?: number | undefined;
+    placeholder?: string | undefined;
 }, {
-    placeholder?: string | undefined;
     submitAction?: ((args_0: string, ...args_1: unknown[]) => void) | undefined;
     debounceTime?: number | undefined;
+    placeholder?: string | undefined;
 }>;
 type Props = z.infer<typeof InputPropsSchema>;
 /**

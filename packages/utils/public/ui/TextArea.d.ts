@@ -1,9 +1,9 @@
 import { ComponentProps } from 'react';
 
 interface Props extends ComponentProps<"textarea"> {
-    label: string;
-    type?: "textarea";
+    name: string;
+    label?: string;
 }
-declare function TextArea({ label, type, ...props }: Props): JSX.Element;
+declare function TextArea({ label, name, className, ...props }: Props): JSX.Element;
 
 export { TextArea as default };

@@ -1,5 +1,12 @@
 # web
 
+## 0.0.17
+
+### Patch Changes
+
+- Updated dependencies
+  - hyezo@1.6.0
+
 ## 0.0.16
 
 ### Patch Changes

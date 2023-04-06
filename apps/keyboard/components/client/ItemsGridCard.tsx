@@ -1,5 +1,8 @@
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { createTitle } from "~/lib/utils";
+import { useLoadChatRooms, useQueryString, useUserSession } from "~/hooks";
+import { createTitle, fetchPost } from "~/lib/utils";
 import { AllSellingData } from "~/types/prisma";
 import { SplitWord } from "../server";
 
@@ -9,6 +12,10 @@ type GridCardProps = {
 
 export default function GridCard({ data }: GridCardProps) {
   const gridRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const { reloadChatRooms } = useLoadChatRooms();
+  const { createQueryString } = useQueryString();
+  const user = useUserSession();
 
   useEffect(() => {
     if (!gridRef.current?.children) return;
@@ -37,14 +44,36 @@ export default function GridCard({ data }: GridCardProps) {
     <div className="gridcards text-white" ref={gridRef}>
       {data?.map(card => (
         <div className="gridcard" key={card.id}>
-          <div className="gridcard_content relative -z-10 flex items-end justify-between">
-            <p className="absolute right-0 top-0 m-3 mr-5">
-              {createTitle(SplitWord.Aurhor, card.author.nickname)}
-            </p>
+          <div
+            onClick={async () => {
+              if (card.author.id === user?.id) return;
+              const newChatRoomId = (await fetchPost("/api/createChatRoom", {
+                body: JSON.stringify(card.author.nickname),
+              })) as string;
+              reloadChatRooms();
+              router.push(
+                `/chat/${newChatRoomId}?${createQueryString(
+                  "authorName",
+                  card.author.nickname,
+                )}`,
+              );
+            }}
+            className="absolute right-0 top-0 z-30 m-3 flex flex-col items-center"
+          >
+            <Image
+              width={33}
+              height={33}
+              src={card.author.image || "/images/defaultImage.png"}
+              alt="프사"
+              className="splitword_author rounded-full pb-1"
+            />
+            <p>{createTitle(SplitWord.Aurhor, card.author.nickname)}</p>
+          </div>
+          <div className="gridcard_content flex items-end justify-between">
             <div className="flex flex-col pb-2 pl-3">
               <div className="flex items-center gap-3 pb-2">
                 <p
-                  className={`px-2 py-px uppercase text-black ${
+                  className={`px-2  py-px uppercase text-black ${
                     card.brandName === "gmk" ? "bg-orange-400" : "bg-white"
                   }`}
                 >
@@ -53,7 +82,7 @@ export default function GridCard({ data }: GridCardProps) {
                 <p>{card.layout}</p>
                 <p>{card.color}</p>
               </div>
-              <p className="font-point text-2xl font-bold">
+              <p className="font-point line-clamp-1 text-2xl font-bold">
                 {createTitle(SplitWord.Title, card.title)}
               </p>
             </div>

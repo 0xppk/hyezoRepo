@@ -2,7 +2,7 @@ import { ComboBox, Form, Modal, SubmitButton, zodSubmitHandler } from "@hyezo/ui
 import { Session } from "next-auth";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
-import { useLoadAllUsers, useLoadChatRooms } from "~/hooks";
+import { useLoadAllUsers, useLoadChatRooms, useQueryString } from "~/hooks";
 import { fetchPost } from "~/lib/utils";
 
 type ChatSearchModalProps = {
@@ -13,14 +13,17 @@ type ChatSearchModalProps = {
 export default function ChatSearchModal({ isOpen, setIsOpen }: ChatSearchModalProps) {
   const { allUsers } = useLoadAllUsers();
   const { reloadChatRooms } = useLoadChatRooms();
+  const { createQueryString } = useQueryString();
   const router = useRouter();
 
   const onSubmit: zodSubmitHandler = async ({ combo: nickname }) => {
     const newChatRoomId = (await fetchPost("/api/createChatRoom", {
       body: JSON.stringify(nickname),
     })) as string;
+    router.push(
+      `/chat/${newChatRoomId}?${createQueryString("authorName", nickname || "")}`,
+    );
     reloadChatRooms();
-    router.push(`/chat/${newChatRoomId}`);
     setIsOpen(false);
   };
 
@@ -29,14 +32,14 @@ export default function ChatSearchModal({ isOpen, setIsOpen }: ChatSearchModalPr
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       width="regular"
-      className="backdrop-blue flex h-96 min-w-max flex-col items-center rounded-xl p-5"
+      className="backdrop-blue flex h-40 flex-col items-center rounded-xl bg-gray-900 p-5"
       title="Search Users"
     >
-      <Modal.Title className="text-3xl font-bold">Search Users</Modal.Title>
+      <Modal.Title className="font-point text-2xl text-white">Search Users</Modal.Title>
       <Modal.Content className="min-w-[20rem] text-sm text-black">
         <Form onSubmit={onSubmit}>
           <ComboBox<Session["user"], "nickname">
-            name="select"
+            name="combo"
             list={allUsers || []}
             labelKey="nickname"
             className="min-h-[160px]"

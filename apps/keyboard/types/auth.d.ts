@@ -10,6 +10,8 @@ declare module "next-auth" {
       chatRoom?: ChatParticipant[];
       posts?: Post[];
       role?: Role;
+      createdAt: Date;
+      updatedAt: Date;
     } & DefaultSession["user"];
   }
 }
@@ -18,5 +20,6 @@ declare module "next-auth/jwt" {
   interface JWT {
     id: string;
     nickname?: string | null;
+    role?: Role;
   }
 }

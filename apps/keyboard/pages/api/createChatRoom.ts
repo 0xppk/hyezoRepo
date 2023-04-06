@@ -28,9 +28,25 @@ export default async function handler(
   const theOthersNickname: string = req.body;
 
   try {
+    const checkExistingChatRoom = await prisma.chatRoom.findFirst({
+      where: {
+        chatParticipant: {
+          every: {
+            userName: {
+              in: [myNickname, theOthersNickname],
+            },
+          },
+        },
+      },
+    });
+
+    if (checkExistingChatRoom) {
+      return res.status(200).json(checkExistingChatRoom.id);
+    }
+
     const newChatRoom = await prisma.chatRoom.create({
       data: {
-        ChatParticipant: {
+        chatParticipant: {
           create: [
             {
               userName: myNickname,
@@ -45,14 +61,14 @@ export default async function handler(
       include: chatRoomPopulated,
     });
 
-    return res.status(202).json(newChatRoom.id);
+    return res.status(200).json(newChatRoom.id);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });
   }
 }
 
 /**
- * 프리즈마에서 자주쓰고 늘어지고 Include를 스플릿하는 법
+ * 프리즈마에서 늘어지는 Include를 스플릿하는 법
  */
 export const participantPopulated = Prisma.validator<Prisma.ChatParticipantInclude>()({
   user: {
@@ -65,7 +81,7 @@ export const participantPopulated = Prisma.validator<Prisma.ChatParticipantInclu
 });
 
 export const chatRoomPopulated = Prisma.validator<Prisma.ChatRoomInclude>()({
-  ChatParticipant: {
+  chatParticipant: {
     include: participantPopulated,
   },
 });

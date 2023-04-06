@@ -1,5 +1,11 @@
 # tailwind-config-hyezo
 
+## 1.3.0
+
+### Minor Changes
+
+- package update
+
 ## 1.2.3
 
 ### Patch Changes

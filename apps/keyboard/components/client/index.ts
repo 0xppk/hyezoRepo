@@ -12,3 +12,4 @@ export { default as UserInfo } from "./UserInfo";
 export { default as ItemsGridCard } from "./ItemsGridCard";
 export { default as MainPageGrid } from "./MainPageGrid";
 export { default as MouseTrailer } from "./MouseTrailer";
+export { default as ChatRecentInfo } from "./ChatRecentInfo";

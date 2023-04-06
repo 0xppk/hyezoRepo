@@ -13,7 +13,7 @@ export default function UserInfo() {
   return (
     <>
       {/* <UserSetting /> */}
-      <SignOutBtn>
+      <SignOutBtn className="hidden sm:block">
         <Text variant="xs/normal">Logout</Text>
       </SignOutBtn>
       <div className="relative h-8 w-8 sm:h-9 sm:w-9">
@@ -22,6 +22,7 @@ export default function UserInfo() {
           onClick={modalOpen}
           className="w-auto cursor-pointer rounded-full"
           alt="프로필"
+          sizes="100%"
           fill
         />
       </div>

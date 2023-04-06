@@ -31,7 +31,7 @@ export default async function handler(
   try {
     const chatRoomList = await prisma.chatRoom.findMany({
       where: {
-        ChatParticipant: {
+        chatParticipant: {
           some: {
             userName: {
               equals: nickname,

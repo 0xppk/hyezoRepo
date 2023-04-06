@@ -64,7 +64,7 @@ model ChatRoom {
   id              String            @id @default(cuid())
   createdAt       DateTime          @default(now()) @map(name: "created_at")
   updatedAt       DateTime          @updatedAt @map("updated_at")
-  ChatParticipant ChatParticipant[]
+  chatParticipant ChatParticipant[]
 
   @@map(name: "chatRooms")
 }

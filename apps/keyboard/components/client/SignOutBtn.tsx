@@ -5,11 +5,12 @@ import { Text } from "@hyezo/ui";
 
 type SignOutProps = {
   children: ReactNode;
+  className?: string;
 };
 
-export default function SignOutBtn({ children }: SignOutProps) {
+export default function SignOutBtn({ className ,children }: SignOutProps) {
   return (
-    <button onClick={() => signOut()}>
+    <button onClick={() => signOut()} className={className}>
       <Text variant="xl/bold">{children}</Text>
     </button>
   );

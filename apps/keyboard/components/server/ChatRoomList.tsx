@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { z } from "zod";
-import { Text } from "@hyezo/ui";
-import { useLoadChatRooms, useUserSession } from "~/hooks";
+import { useLoadChatRooms, useQueryString, useUserSession } from "~/hooks";
 
 const ChatRoomSchema = (myNickname: string) =>
   z
@@ -11,12 +10,12 @@ const ChatRoomSchema = (myNickname: string) =>
       z.object({
         id: z.string().cuid(),
         createdAt: z.string(),
-        ChatParticipant: z
+        chatParticipant: z
           .array(
             z.object({
               user: z.object({
                 id: z.string().cuid(),
-                nickname: z.string().nullable(),
+                nickname: z.string(),
                 image: z.string().nullable(),
               }),
             }),
@@ -30,11 +29,11 @@ const ChatRoomSchema = (myNickname: string) =>
     .transform(data =>
       data
         .map(item => {
-          const { ChatParticipant, id: chatRoomId, ...rest } = item;
+          const { chatParticipant, id: chatRoomId, ...rest } = item;
           return {
             ...rest,
             chatRoomId,
-            user: { ...item.ChatParticipant.user },
+            user: { ...item.chatParticipant.user },
           };
         })
         .sort(({ createdAt: a }, { createdAt: z }) => +new Date(z) - +new Date(a)),
@@ -43,6 +42,8 @@ const ChatRoomSchema = (myNickname: string) =>
 export default function ChatRoomList() {
   const user = useUserSession();
   const { chatRooms } = useLoadChatRooms();
+  const { createQueryString } = useQueryString();
+
   if (!chatRooms || !user?.nickname) return null;
 
   const chatRoomList = ChatRoomSchema(user.nickname).parse(chatRooms);
@@ -64,7 +65,11 @@ export default function ChatRoomList() {
               src={image || ""}
               alt="프로필 사진"
             />
-            <Link href={`/chat/${chatRoomId}`}>{nickname}</Link>
+            <Link
+              href={`/chat/${chatRoomId}?${createQueryString("authorName", nickname)}`}
+            >
+              {nickname}
+            </Link>
           </div>
         );
       })}

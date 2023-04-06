@@ -7,7 +7,7 @@ type LogoProps = {
 export default function Logo({ href, ...props }: LogoProps) {
   return (
     <Link href={href}>
-      <Image {...props} />
+      <Image {...props} priority />
     </Link>
   );
 }

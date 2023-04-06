@@ -16,4 +16,4 @@ type AllSellingData = (Post & {
   };
 })[];
 
-type AllBrandData = Pick<Brand, "id" | "name">[];
+type AllBrandData = Pick<Brand, "id" | "name" | "type">[];

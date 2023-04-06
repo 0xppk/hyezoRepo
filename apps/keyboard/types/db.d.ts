@@ -22,6 +22,7 @@ type InputDataForRegisterItem = {
   message?: string;
   category: "BUY" | "SELL";
   status: "ING" | "END" | "PENDING";
+  select: string;
 };
 
 /**

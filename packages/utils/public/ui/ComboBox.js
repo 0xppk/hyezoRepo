@@ -1,9 +1,9 @@
 'use strict';
 
-var chunk4OEH752X_js = require('./chunk-4OEH752X.js');
+var chunkWSTPCW4K_js = require('./chunk-WSTPCW4K.js');
 require('./chunk-RDCO23OZ.js');
 require('./chunk-ULM2NYRI.js');
 
 
 
-module.exports = chunk4OEH752X_js.a;
+module.exports = chunkWSTPCW4K_js.a;

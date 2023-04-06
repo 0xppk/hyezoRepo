@@ -17,14 +17,17 @@ const InputSchema = z
       .union([z.string(), z.number()])
       .or(z.array(z.union([z.string(), z.number()])))
       .or(z.record(z.any())),
-    combo: z.string(),
+    combo: z.string().min(1),
     nickname: z
       .string()
       .min(2, "너무 짧아요 😢")
       .max(10, "닉네임은 2~10자 사이의 길이로 지어주세요.")
       .transform(v => v.replace(/\s/g, "")),
     title: z.string().min(1, "필수입력 사항입니다"),
-    price: z.coerce.number().min(1, "만원 이상 필수!").max(100, "100만원 이하의 상품만 등록해주세요"),
+    price: z.coerce
+      .number()
+      .min(1, "만원 이상 필수!")
+      .max(100, "100만원 이하의 상품만 등록해주세요"),
     layout: z.string().nullish(),
     color: z.string().nullish(),
     message: z.string().nullish(),

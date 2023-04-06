@@ -120,8 +120,11 @@ module.exports = {
       objectPosition: {
         "center-center": "center center",
       },
+      gridTemplateColumns: {
+        "root-layout": "repeat(auto-fit, minmax(0, 1fr))",
+      },
       gridTemplateRows: {
-        masonry: "masonry",
+        "chat-layout": "80% minmax(0, 1fr)",
       },
       dropShadow: {
         blue: "0 0 0.75rem #072375",
@@ -314,6 +317,8 @@ module.exports = {
 
         ".stack": {
           display: "grid",
+          "place-items": "center",
+          isolation: "isolate",
         },
 
         ".stack > *": {

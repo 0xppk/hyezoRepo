@@ -94,7 +94,7 @@ export default function ComboBox<T, K extends keyof T>({
                   )}
                   placeholder="Search..."
                   spellCheck="false"
-                  displayValue={(item: string) => item}
+                  displayValue={(value: T) => String(value[labelKey])}
                   onChange={event => setQuery(event.target.value)}
                 />
 
@@ -136,7 +136,7 @@ export default function ComboBox<T, K extends keyof T>({
                               : "text-gray-900"
                           }`
                         }
-                        value={String(item[labelKey])}
+                        value={item}
                       >
                         {({ selected, active }) => (
                           <>

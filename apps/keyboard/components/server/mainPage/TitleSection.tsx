@@ -60,7 +60,11 @@ ThirdSection.TitleSlider = ({ page }: { page: number }) => {
           key={title}
           variant="3xl/semibold"
           className={`font-point text-center uppercase duration-500 ${
-            page === i ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+            i > page
+              ? "translate-y-full opacity-0"
+              : i < page
+              ? "-translate-y-full opacity-0"
+              : "translate-y-0 opacity-100"
           }`}
         >
           {title}

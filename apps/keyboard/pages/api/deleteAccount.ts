@@ -1,8 +1,10 @@
+import { User } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
+import { signOut } from "next-auth/react";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
 
-type Data = string;
+type Data = User;
 
 type Err = {
   error: string;
@@ -18,25 +20,21 @@ export default async function handler(
   }
 
   const session = await getServerAuthSession({ req, res });
-  if (!session?.user) {
-    res.status(401).json({ error: "You are not logined 🦠" });
+  if (!session?.user?.nickname) {
+    res.status(401).json({ error: "Unauthorized to create post 🦠" });
     return;
   }
-  
-  const nickname: string = req.body;
 
   try {
-    await prisma.user.update({
+    const deleteAccount = await prisma.user.delete({
       where: {
-        id: session?.user.id,
-      },
-      data: {
-        nickname,
+        id: session.user.id,
       },
     });
 
-    return res.status(202).json(nickname);
+    signOut();
+    return res.status(202).json(deleteAccount);
   } catch (error) {
-    return { error: (error as Error).message };
+    return res.status(500).json({ error: (error as Error).message });
   }
 }

@@ -1,11 +1,9 @@
-import { Post, User } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
+import { ExitChatRoom } from "~/types/prisma";
 
-type Data = Post & {
-  author: User;
-};
+type Data = ExitChatRoom;
 
 type Err = {
   error: string;
@@ -26,28 +24,38 @@ export default async function handler(
     return;
   }
 
-  const data: InputDataForRegisterItem = req.body;
-  const { title, price, layout, color, message, category, status, objDataCombo } = data;
+  const myChatParticipantId: string = req.body;
 
   try {
-    const newPost = await prisma.post.create({
-      data: {
-        authorId: session.user.id,
-        title,
-        price,
-        color,
-        layout,
-        content: message,
-        category,
-        status,
-        brandName: objDataCombo.name,
+    const exitExistChatRoom = await prisma.chatParticipant.delete({
+      where: {
+        id: myChatParticipantId,
       },
+
       include: {
-        author: true,
+        chatroom: {
+          include: {
+            chatParticipant: {
+              where: {
+                userId: session.user.id,
+              },
+            },
+          },
+        },
+
+        user: {
+          include: {
+            chatRooms: {
+              where: {
+                userId: session.user.id,
+              },
+            },
+          },
+        },
       },
     });
 
-    return res.status(202).json(newPost);
+    return res.status(202).json(exitExistChatRoom);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });
   }

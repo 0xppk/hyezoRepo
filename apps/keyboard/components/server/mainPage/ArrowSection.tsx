@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import arrow from "~/public/svgs/arrow.svg";
+import { images } from "./ImageSection";
 
 type FourthSectionProps = {
   setPage: Dispatch<SetStateAction<number>>;
@@ -13,7 +14,7 @@ export default function FourthSection({ setPage }: FourthSectionProps) {
         <div
           onClick={() =>
             setPage(prev => {
-              if (prev === 0) return 3;
+              if (prev === 0) return prev;
               return prev - 1;
             })
           }
@@ -31,7 +32,7 @@ export default function FourthSection({ setPage }: FourthSectionProps) {
         <div
           onClick={() =>
             setPage(prev => {
-              if (prev === 3) return 0;
+              if (prev === images.length - 1) return prev;
               return prev + 1;
             })
           }

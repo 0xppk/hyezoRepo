@@ -39,6 +39,8 @@ const InputSchema = z
       .union([z.string(), z.number()])
       .or(z.array(z.union([z.string(), z.number()])))
       .or(z.record(z.any())),
+    allUsersCombo: z.record(z.string(), z.any()),
+    objDataCombo: z.record(z.string(), z.any()),
   })
   .partial();
 
@@ -86,10 +88,15 @@ export function FieldError({ name }: FieldErrorProps) {
   } = useFormContext();
 
   if (!name) return null;
-
   const error = errors[name];
 
-  if (!error) return null;
-
-  return <span>{error.message as string}</span>;
+  return (
+    <>
+      {error && (
+        <p className="pl-2 pt-2 text-xs font-semibold text-rose-500">
+          {error.message as string}
+        </p>
+      )}
+    </>
+  );
 }

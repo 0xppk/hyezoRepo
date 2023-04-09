@@ -2,7 +2,7 @@
 
 export { default as ChatInput } from "./ChatInput";
 export { default as ChatList } from "./ChatList";
-export { default as OpeningWindow } from "./OpeningWindow";
+export { default as ChatLandingBanner } from "./ChatLandingBanner";
 export { default as SignOutBtn } from "./SignOutBtn";
 export { default as UserSetting } from "./UserSetting";
 export { default as ChatSearchUsers } from "./ChatSearchUsers";
@@ -13,3 +13,4 @@ export { default as ItemsGridCard } from "./ItemsGridCard";
 export { default as MainPageGrid } from "./MainPageGrid";
 export { default as MouseTrailer } from "./MouseTrailer";
 export { default as ChatRecentInfo } from "./ChatRecentInfo";
+export { default as SearchItems } from "./SearchItems";

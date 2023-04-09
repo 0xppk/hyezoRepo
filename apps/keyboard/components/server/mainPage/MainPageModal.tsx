@@ -1,14 +1,14 @@
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import {
-  zodSubmitHandler,
-  Modal,
-  Text,
-  Form,
   ComboBox,
+  Form,
   Input,
-  TextArea,
+  Modal,
   SubmitButton,
+  Text,
+  TextArea,
+  zodSubmitHandler,
 } from "@hyezo/ui";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { fetchPost } from "~/lib/utils";
 import { AllBrandData } from "~/types/prisma";
 
@@ -20,8 +20,8 @@ type ModalProps = {
 };
 
 export default function MainPageModal({ isOpen, setIsOpen, as, brands }: ModalProps) {
-  const [category, setCategory] = useState<"BUY" | "SELL" | "">("");
-  const [itemType, setItemType] = useState<"HOUSING" | "KEYCAP" | "">("");
+  const [category, setCategory] = useState<"BUY" | "SELL" | undefined>();
+  const [itemType, setItemType] = useState<"HOUSING" | "KEYCAP" | undefined>();
 
   const filteredBrands = brands.filter(
     brand => brand.type === itemType || brand.type === "VENDOR",
@@ -29,8 +29,8 @@ export default function MainPageModal({ isOpen, setIsOpen, as, brands }: ModalPr
 
   useEffect(() => {
     return () => {
-      setCategory("");
-      setItemType("");
+      setCategory(undefined);
+      setItemType(undefined);
     };
   }, [isOpen]);
 
@@ -66,7 +66,7 @@ export default function MainPageModal({ isOpen, setIsOpen, as, brands }: ModalPr
 }
 
 type ModalFirstPhaseProps = {
-  setCategory: Dispatch<SetStateAction<"BUY" | "SELL" | "">>;
+  setCategory: Dispatch<SetStateAction<"BUY" | "SELL" | undefined>>;
 };
 
 MainPageModal.FirstPhase = ({ setCategory }: ModalFirstPhaseProps) => {
@@ -86,7 +86,7 @@ MainPageModal.FirstPhase = ({ setCategory }: ModalFirstPhaseProps) => {
 };
 
 type ModalSecondPhaseProps = {
-  setItemType: Dispatch<SetStateAction<"HOUSING" | "KEYCAP" | "">>;
+  setItemType: Dispatch<SetStateAction<"HOUSING" | "KEYCAP" | undefined>>;
 };
 
 MainPageModal.SecondPhase = ({ setItemType }: ModalSecondPhaseProps) => {
@@ -122,7 +122,7 @@ MainPageModal.PostMode = ({ onSubmit, brands, itemType }: ModalPostModeProps) =>
           <div className="blue-dot" />
           <span>브랜드</span>
         </div>
-        <ComboBox name="select" list={brands} color="darkNavy" />
+        <ComboBox name="objDataCombo" list={brands} color="darkNavy" />
         <div className="mt-2 flex gap-5">
           <div className="flex flex-col gap-1">
             <div className="flex items-center text-white">

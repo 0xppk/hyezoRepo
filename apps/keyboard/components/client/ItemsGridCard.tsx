@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useLoadChatRooms, useQueryString, useUserSession } from "~/hooks";
 import { createTitle, fetchPost } from "~/lib/utils";
 import { AllSellingData } from "~/types/prisma";
-import { SplitWord } from "../server";
+import { SplitWord, StatusPopup } from "~/components/server";
+import { useRenderCounter } from "~/../../packages/utils/src/hooks";
 
 type GridCardProps = {
   data?: AllSellingData;
@@ -16,6 +17,7 @@ export default function GridCard({ data }: GridCardProps) {
   const { reloadChatRooms } = useLoadChatRooms();
   const { createQueryString } = useQueryString();
   const user = useUserSession();
+  const [statusPopup, setStatusPopup] = useState<boolean[]>([false]);
 
   useEffect(() => {
     if (!gridRef.current?.children) return;
@@ -39,26 +41,48 @@ export default function GridCard({ data }: GridCardProps) {
       }
     }
   }, [gridRef, data]);
+  useEffect(() => {
+    if (!data) return;
+    setStatusPopup(Array.from({ length: data.length }, () => false));
+  }, [data]);
+
+  const counter = useRenderCounter();
+  console.log(counter);
+
+  const openChatRoom = useCallback(
+    async (authorId: string, idx: number) => {
+      if (authorId === user?.id) {
+        setStatusPopup(prev => {
+          const copy = [...prev]
+          copy[idx] = true;
+          return copy;
+        });
+        return;
+      }
+      const newChatRoomId = (await fetchPost("/api/createChatRoom", {
+        body: JSON.stringify(authorId),
+      })) as string;
+      reloadChatRooms();
+      router.push(`/chat/${newChatRoomId}?${createQueryString("authorId", authorId)}`);
+    },
+    [reloadChatRooms, user],
+  );
 
   return (
     <div className="gridcards text-white" ref={gridRef}>
-      {data?.map(card => (
+      {data?.map((card, i) => (
         <div className="gridcard" key={card.id}>
+          {statusPopup[i] && (
+            <StatusPopup
+              presentStatus={card.status}
+              postId={card.id}
+              setStatusPopup={setStatusPopup}
+              idx={i}
+            />
+          )}
           <div
-            onClick={async () => {
-              if (card.author.id === user?.id) return;
-              const newChatRoomId = (await fetchPost("/api/createChatRoom", {
-                body: JSON.stringify(card.author.nickname),
-              })) as string;
-              reloadChatRooms();
-              router.push(
-                `/chat/${newChatRoomId}?${createQueryString(
-                  "authorName",
-                  card.author.nickname,
-                )}`,
-              );
-            }}
-            className="absolute right-0 top-0 z-30 m-3 flex flex-col items-center"
+            onClick={() => openChatRoom(card.author.id, i)}
+            className="absolute right-0 top-0 z-10 m-3 flex cursor-pointer flex-col items-center"
           >
             <Image
               width={33}

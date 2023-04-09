@@ -24,16 +24,17 @@ export default async function handler(
     return;
   }
 
-  const myNickname = session.user.nickname;
-  const theOthersNickname: string = req.body;
+  const myUserId = session.user.id;
+  const theOthersUserId: string = req.body;
 
   try {
     const checkExistingChatRoom = await prisma.chatRoom.findFirst({
       where: {
         chatParticipant: {
           every: {
-            userName: {
-              in: [myNickname, theOthersNickname],
+            userId: {
+              in: [myUserId, theOthersUserId],
+              not: null,
             },
           },
         },
@@ -49,10 +50,10 @@ export default async function handler(
         chatParticipant: {
           create: [
             {
-              userName: myNickname,
+              userId: myUserId,
             },
             {
-              userName: theOthersNickname,
+              userId: theOthersUserId,
             },
           ],
         },

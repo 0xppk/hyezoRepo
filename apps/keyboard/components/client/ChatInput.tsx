@@ -57,9 +57,16 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
   };
 
   return (
-    <Form onSubmit={onSubmit} className="h-full justify-end">
-      <Input name="text" placeholder="메시지를 입력하세요" />
-      <SubmitButton>전송</SubmitButton>
+    <Form onSubmit={onSubmit} className="relative h-full flex-row justify-end">
+      <Input
+        name="text"
+        placeholder="메시지를 입력하세요"
+        className="rounded-full text-sm"
+        fullWidth
+      />
+      <SubmitButton className="absolute right-0 top-0 h-full items-center rounded-full px-6">
+        전송
+      </SubmitButton>
     </Form>
   );
 }

@@ -27,8 +27,8 @@ export default async function handler(
   try {
     const allUsers = await prisma.user.findMany({
       where: {
-        nickname: {
-          not: session?.user.nickname,
+        id: {
+          not: session?.user.id,
         },
       },
       select: {

@@ -31,17 +31,17 @@ export const fetcher = async <T>(endpoint: string, config?: RequestInit) => {
   return data;
 };
 
-export const fetchPost = async (
+export const fetchPost = async <T>(
   endpoint: string,
-  body: { body: BodyInit | undefined | null },
-) => {
+  body?: { body: BodyInit | undefined | null },
+): Promise<T> => {
   return await fetch(`${devOrProd}${endpoint}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     ...body,
-  }).then(res => res.json());
+  }).then(res => res.json()) as T;
 };
 
 export const devOrProd =

@@ -1,8 +1,10 @@
+import { ChatRoom } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
+import redis from "~/server/redis";
 
-type Data = string;
+type Data = ChatRoom;
 
 type Err = {
   error: string;
@@ -18,25 +20,24 @@ export default async function handler(
   }
 
   const session = await getServerAuthSession({ req, res });
-  if (!session?.user) {
-    res.status(401).json({ error: "You are not logined 🦠" });
+  if (!session?.user?.nickname) {
+    res.status(401).json({ error: "Unauthorized to create post 🦠" });
     return;
   }
-  
-  const nickname: string = req.body;
+
+  const chatRoomId: string = req.body;
 
   try {
-    await prisma.user.update({
+    const exitEmptyChatRoom = await prisma.chatRoom.delete({
       where: {
-        id: session?.user.id,
-      },
-      data: {
-        nickname,
+        id: chatRoomId,
       },
     });
 
-    return res.status(202).json(nickname);
+    await redis.del(chatRoomId);
+
+    return res.status(202).json(exitEmptyChatRoom);
   } catch (error) {
-    return { error: (error as Error).message };
+    return res.status(500).json({ error: (error as Error).message });
   }
 }

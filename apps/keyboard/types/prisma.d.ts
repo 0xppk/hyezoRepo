@@ -1,4 +1,4 @@
-import { Prisma, Post, Brand, User } from "@prisma/client";
+import { Prisma, Post, Brand, User, ChatParticipant, ChatRoom } from "@prisma/client";
 import { chatRoomPopulated } from "~/pages/api/createChatRoom";
 
 type ChatRooms = ChatRoomPopulated[];
@@ -20,4 +20,15 @@ type AllUsers = Pick<User, "id" | "nickname" | "image">[];
 type AllBrandData = Pick<Brand, "id" | "name" | "type">[];
 type AuthorsPost = User & {
   posts: Post[];
+};
+
+type ExitChatRoom = ChatParticipant & {
+  user:
+    | (User & {
+        chatRooms: ChatParticipant[];
+      })
+    | null;
+  chatroom: ChatRoom & {
+    chatParticipant: ChatParticipant[];
+  };
 };

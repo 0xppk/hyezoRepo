@@ -23,19 +23,19 @@ export default async function handler(
     return;
   }
   
-  const nickname: string = req.body;
+  const {status, postId} = req.body;
 
   try {
-    await prisma.user.update({
+    await prisma.post.update({
       where: {
-        id: session?.user.id,
+        id: postId,
       },
       data: {
-        nickname,
+        status,
       },
     });
 
-    return res.status(202).json(nickname);
+    return res.status(202).json(status);
   } catch (error) {
     return { error: (error as Error).message };
   }

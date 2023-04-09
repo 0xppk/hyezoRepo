@@ -10,8 +10,8 @@ declare module "next-auth" {
       chatRoom?: ChatParticipant[];
       posts?: Post[];
       role?: Role;
-      createdAt: Date;
-      updatedAt: Date;
+      created_at: Date;
+      updated_at: Date;
     } & DefaultSession["user"];
   }
 }

@@ -1,15 +1,18 @@
-import { ItemsGridCard } from "~/components/client";
+"use client";
+
+import { useState } from "react";
+import { ItemsGridCard, SearchItems } from "~/components/client";
 import { useLoadAllPosts } from "~/hooks";
-import { fetcher } from "~/lib/utils";
 import { AllSellingData } from "~/types/prisma";
 
-export default async function SellingItem() {
-  // const { allPostsData: allSellingItems } = useLoadAllPosts({ category: "SELL" });
-  const allSellingItems = await fetcher<AllSellingData>("/api/getAllPost?category=SELL", {
-    next: {
-      revalidate: 0,
-    },
-  });
-  
-  return <ItemsGridCard data={allSellingItems || []} />;
+export default function SellingItem() {
+  const { allPostsData: allSellingItems } = useLoadAllPosts({ category: "SELL" });
+  const [searchedItems, setSearchedItems] = useState<AllSellingData>();
+
+  return (
+    <>
+      <SearchItems setSearchedItems={setSearchedItems} />
+      <ItemsGridCard data={searchedItems || allSellingItems || []} />
+    </>
+  );
 }

@@ -27,16 +27,7 @@ export default async function handler(
   }
 
   const data: InputDataForRegisterItem = req.body;
-  const {
-    title,
-    price,
-    layout,
-    color,
-    message,
-    category,
-    status,
-    select: brandName,
-  } = data;
+  const { title, price, layout, color, message, category, status, objDataCombo } = data;
 
   try {
     const newPost = await prisma.post.create({
@@ -49,7 +40,7 @@ export default async function handler(
         content: message,
         category,
         status,
-        brandName,
+        brandName: objDataCombo.name,
       },
       include: {
         author: true,

@@ -41,6 +41,6 @@ dist
 packages/utils/public/package.json
 
 # 임시저장소
-.storage
+.tmp
 
 

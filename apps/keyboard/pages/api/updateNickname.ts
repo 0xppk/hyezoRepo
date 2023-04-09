@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getServerAuth } from "~/lib/session";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
 
@@ -19,6 +18,11 @@ export default async function handler(
   }
 
   const session = await getServerAuthSession({ req, res });
+  if (!session?.user) {
+    res.status(401).json({ error: "You are not logined 🦠" });
+    return;
+  }
+  
   const nickname: string = req.body;
 
   try {
@@ -34,7 +38,5 @@ export default async function handler(
     return res.status(202).json(nickname);
   } catch (error) {
     return { error: (error as Error).message };
-  } finally {
-    res.end();
   }
 }

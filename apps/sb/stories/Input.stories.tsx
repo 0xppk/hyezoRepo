@@ -8,10 +8,10 @@ export default {
   argTypes: {},
 } as Meta<typeof Input>;
 
-const Template: StoryFn<typeof Input> = ({ type, ...args }) => {
+const Template: StoryFn<typeof Input> = ({ name, ...args }) => {
   return (
     <Form onSubmit={data => alert(JSON.stringify(data))}>
-      <Input label={type} type={type} placeholder="입력란" />
+      <Input label={name} name={name} placeholder="입력란" />
       <SubmitButton>Submit</SubmitButton>
     </Form>
   );
@@ -19,5 +19,5 @@ const Template: StoryFn<typeof Input> = ({ type, ...args }) => {
 
 export const Sample = Template.bind({});
 Sample.args = {
-  type: "text"
+  type: "text",
 };

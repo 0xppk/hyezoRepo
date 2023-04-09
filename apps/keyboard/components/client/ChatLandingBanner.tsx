@@ -13,7 +13,7 @@ const codeFont = font({
   weight: "700",
 });
 
-export default function OpeningWindow() {
+export default function ChatLandingBanner() {
   const [isOpen, setIsOpen] = useState(true);
   const preRef = useRef<HTMLPreElement>(null);
   const router = useRouter();
@@ -24,7 +24,7 @@ export default function OpeningWindow() {
   return (
     <div
       className={cn(
-        `fixed inset-0 flex items-center justify-center duration-500 ${
+        `grid h-full place-items-center duration-500 ${
           isOpen ? "z-10 opacity-100" : "-z-10 opacity-0"
         }`,
       )}

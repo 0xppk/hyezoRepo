@@ -8,10 +8,10 @@ type SignOutProps = {
   className?: string;
 };
 
-export default function SignOutBtn({ className ,children }: SignOutProps) {
+export default function SignOutBtn({ className, children }: SignOutProps) {
   return (
     <button onClick={() => signOut()} className={className}>
-      <Text variant="xl/bold">{children}</Text>
+      {children}
     </button>
   );
 }

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
-      <body className="bg-mix overflow-hidden">
+      <body className="bg-mix">
         <section className="flex sm:flex-col">
           <Providers>
             <NavBar className="flex h-screen min-w-max flex-col items-center gap-8 border-r-2 border-gray-900 p-1 py-3 sm:h-[10vh] sm:min-w-full sm:flex-row sm:justify-start sm:gap-0 sm:border-b sm:border-r-0 sm:p-0" />

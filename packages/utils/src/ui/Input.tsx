@@ -8,7 +8,7 @@ import { type InputNameProps } from "./Form";
 import { FieldError } from "./index";
 
 const inputStyles = cva(
-  "peer w-full duration-300 rounded-md border bg-white text-gray-800 focus:outline-0 disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200",
+  "peer w-full duration-300 rounded-lg border bg-white text-gray-800 focus:outline-0 disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200",
   {
     variants: {
       color: {
@@ -62,7 +62,7 @@ export default function Input({
   }, [isDirty, setFocus]);
 
   return (
-    <div className={`relative ${fullWidth && "w-full"}`}>
+    <div className={`relative ${fullWidth ? "w-full" : ""}`}>
       <input
         spellCheck={false}
         className={cn(inputStyles({ color, peer, className }))}
@@ -79,9 +79,7 @@ export default function Input({
           {label}
         </label>
       )}
-      <div className="pl-2 pt-2 text-xs font-semibold text-rose-500">
-        <FieldError name={name} />
-      </div>
+      <FieldError name={name} />
     </div>
   );
 }

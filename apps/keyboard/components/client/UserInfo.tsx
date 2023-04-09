@@ -2,8 +2,9 @@ import { Modal } from "@hyezo/ui";
 import Image from "next/image";
 import { useState } from "react";
 import { Text } from "@hyezo/ui";
-import { SignOutBtn } from "~/components/client";
+import { CreateNicknameForm, SignOutBtn } from "~/components/client";
 import { useUserSession } from "~/hooks";
+import DeleteAccount from "./DeleteAccount";
 
 export default function UserInfo() {
   const user = useUserSession();
@@ -12,7 +13,6 @@ export default function UserInfo() {
 
   return (
     <>
-      {/* <UserSetting /> */}
       <SignOutBtn className="hidden sm:block">
         <Text variant="xs/normal">Logout</Text>
       </SignOutBtn>
@@ -27,8 +27,17 @@ export default function UserInfo() {
         />
       </div>
 
-      <Modal title="모달 타이틀" width="wide" isOpen={isOpen} setIsOpen={setIsOpen}>
-        모달입니다
+      <Modal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        width="narrow"
+        className="drop-shadow-blue flex min-w-max flex-col items-center rounded-xl bg-gray-900"
+        title="Search Users"
+      >
+        <Modal.Content className="relative grid h-96 min-w-[15rem] grid-cols-2 place-items-center text-sm">
+          <CreateNicknameForm />
+          <DeleteAccount />
+        </Modal.Content>
       </Modal>
     </>
   );

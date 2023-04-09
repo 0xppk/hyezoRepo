@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const images = [
+export const images = [
   "/images/sample0.webp",
   "/images/sample2.webp",
   "/images/sample5.webp",

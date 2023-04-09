@@ -12,7 +12,7 @@ export default function useLoadAllPosts({ category }: useLoadAllPostsProps) {
     isLoading,
     error,
     mutate: reloadAllPosts,
-  } = useSWR(`/api/getAllPosts?category=${category}`, fetcher<AllSellingData>);
+  } = useSWR(`/api/getAllPost?category=${category}`, fetcher<AllSellingData>);
 
   return { allPostsData, isLoading, error, reloadAllPosts };
 }

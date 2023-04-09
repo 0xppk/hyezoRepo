@@ -8,3 +8,4 @@ export { default as SignInBtn } from "./SignInBtn";
 export { default as SignInFormSpacer } from "./SignInFormSpacer";
 export { default as ChatRoomList } from "./ChatRoomList";
 export { default as Logo } from "./Logo";
+export { default as StatusPopup } from "./StatusPopup";

@@ -16,12 +16,12 @@ export default function ChatSearchModal({ isOpen, setIsOpen }: ChatSearchModalPr
   const { createQueryString } = useQueryString();
   const router = useRouter();
 
-  const onSubmit: zodSubmitHandler = async ({ combo: nickname }) => {
+  const onSubmit: zodSubmitHandler = async ({ allUsersCombo: targetUser }) => {
     const newChatRoomId = (await fetchPost("/api/createChatRoom", {
-      body: JSON.stringify(nickname),
+      body: JSON.stringify(targetUser?.id),
     })) as string;
     router.push(
-      `/chat/${newChatRoomId}?${createQueryString("authorName", nickname || "")}`,
+      `/chat/${newChatRoomId}?${createQueryString("authorId", targetUser?.id)}`,
     );
     reloadChatRooms();
     setIsOpen(false);
@@ -39,7 +39,7 @@ export default function ChatSearchModal({ isOpen, setIsOpen }: ChatSearchModalPr
       <Modal.Content className="min-w-[20rem] text-sm text-black">
         <Form onSubmit={onSubmit}>
           <ComboBox<Session["user"], "nickname">
-            name="combo"
+            name="allUsersCombo"
             list={allUsers || []}
             labelKey="nickname"
             className="min-h-[160px]"

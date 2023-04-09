@@ -6,10 +6,10 @@ import { AuthorsPost } from "~/types/prisma";
 
 export default function ChatRecentInfo() {
   const searchParams = useSearchParams();
-  const authorName = searchParams?.get("authorName");
+  const authorId = searchParams?.get("authorId");
 
   const { data: authorPost } = useSWR(
-    `/api/getAuthorsPosts?authorName=${authorName}`,
+    `/api/getAuthorsPosts?authorId=${authorId}`,
     fetcher<AuthorsPost>,
   );
 

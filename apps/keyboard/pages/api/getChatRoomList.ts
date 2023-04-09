@@ -25,7 +25,7 @@ export default async function handler(
   }
 
   const {
-    user: { nickname },
+    user: { id: myUserId },
   } = session;
 
   try {
@@ -33,8 +33,8 @@ export default async function handler(
       where: {
         chatParticipant: {
           some: {
-            userName: {
-              equals: nickname,
+            userId: {
+              equals: myUserId,
             },
           },
         },

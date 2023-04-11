@@ -18,11 +18,14 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
   const { messages, reloadMessages } = useLoadMessages(chatRoomId);
   const messageBoxRef = useRef<HTMLDivElement>(null);
 
-  useSubscribeNewMessage(messages, reloadMessages);
+  // useSubscribeNewMessage(messages, reloadMessages, chatRoomId);
   useFocusToLatestMessage(messageBoxRef, [messages]);
 
   return (
-    <div className="flex h-full flex-col gap-3 overflow-y-scroll" ref={messageBoxRef}>
+    <div
+      className="flex h-full flex-col gap-3 overflow-y-scroll"
+      ref={messageBoxRef}
+    >
       {messages?.map((m, i) => {
         const messageByMe = user?.id === m.userId;
         const currentDate = new Date(m.created_at),
@@ -30,7 +33,7 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
           showDate = !prevDate || currentDate.getDate() !== prevDate.getDate();
 
         return (
-          <>
+          <div key={m.id}>
             {showDate && (
               <div className="grid w-full place-items-center pb-3 pt-7">
                 <p className="text-center">{dateIndicator.format(currentDate)}</p>
@@ -40,7 +43,6 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
               className={`flex items-center gap-3 ${
                 messageByMe ? "flex-row-reverse" : "flex-row"
               }`}
-              key={m.id}
             >
               <div
                 key={m.id}
@@ -66,7 +68,7 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
                 {timeIndicator.format(new Date(m.created_at))}
               </p>
             </div>
-          </>
+          </div>
         );
       })}
     </div>

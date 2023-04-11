@@ -2,12 +2,7 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import {
-  useFocusToLatestMessage,
-  useLoadMessages,
-  useSubscribeNewMessage,
-  useUserSession,
-} from "~/hooks";
+import { useFocusToLatestMessage, useLoadMessages, useUserSession } from "~/hooks";
 
 type ChatRoomProps = {
   chatRoomId: string;
@@ -15,10 +10,9 @@ type ChatRoomProps = {
 
 export default function ChatList({ chatRoomId }: ChatRoomProps) {
   const user = useUserSession();
-  const { messages, reloadMessages } = useLoadMessages(chatRoomId);
+  const { messages } = useLoadMessages(chatRoomId);
   const messageBoxRef = useRef<HTMLDivElement>(null);
 
-  // useSubscribeNewMessage(messages, reloadMessages, chatRoomId);
   useFocusToLatestMessage(messageBoxRef, [messages]);
 
   return (

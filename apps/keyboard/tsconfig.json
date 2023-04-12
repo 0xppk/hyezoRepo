@@ -15,7 +15,7 @@
     "paths": {
       "@/*": ["./app/*"],
       "~/*": ["./*"],
-      "@hyezo/*": ["../../packages/utils/public/*"]
+      "@hyezo/*": ["../../packages/utils/src/*"]
     },
     "strictNullChecks": true
   }

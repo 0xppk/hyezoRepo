@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
+import { Subscriptions } from "@prisma/client";
 
 type Data = Subscriptions;
 

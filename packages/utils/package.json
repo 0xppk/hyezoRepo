@@ -13,7 +13,11 @@
     "lint": "TIMING=1 eslint \"./* */*.ts*\"",
     "rel": "node setup.js && pnpm build && cd public && pnpm publish --no-git-checks"
   },
-  "dependencies": {
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.17",
     "@hookform/resolvers": "^2.9.11",
@@ -26,12 +30,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
-    "zod": "^3.21.4"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0"
-  },
-  "devDependencies": {
+    "zod": "^3.21.4",
+    
     "@hyezo/tsconfig": "workspace:*",
     "@next/font": "13.1.5",
     "@types/js-cookie": "^3.0.3",

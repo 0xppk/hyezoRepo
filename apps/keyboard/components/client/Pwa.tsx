@@ -1,9 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getMessaging } from "firebase-admin/messaging";
 import { env } from "~/env.mjs";
 import { useUserSession } from "~/hooks";
 import useServiceWorker from "~/hooks/useServiceWorker";
-import { fetchPost, fetcher } from "~/lib/utils";
+import { fetchPost } from "~/lib/utils";
 
 const firebaseConfig = {
   apiKey: env.NEXT_PUBLIC_FIREBASE_KEY,
@@ -36,26 +35,10 @@ export default function Pwa() {
       </button>
       <button
         onClick={async () => {
-          try {
-            const subTokens = await fetcher<SubType>(
-              `/api/getSubscriptions?authorId=${user.id}`,
-            );
-            const message = {
-              data: {
-                icon: "/images/logo.png",
-              },
-              notification: {
-                title: "테스트",
-                body: "테스트입니다",
-              },
-              tokens: subTokens,
-            };
-            const res = await getMessaging().sendMulticast(message);
-
-            console.log(res.successCount + " messages were sent successfully");
-          } catch (error) {
-            console.log("failed");
-          }
+          const res = await fetchPost<string>("/api/sendMessageToFirebase", {
+            body: JSON.stringify(user.id),
+          });
+          console.log(res);
         }}
       >
         메시지 푸시

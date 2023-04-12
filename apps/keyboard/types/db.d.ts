@@ -35,5 +35,4 @@ type InputDataForRegisterManufacture = {
   select3: "ING" | "END" | "PENDING";
 };
 
-/** 구독정보 */
-type SubType = Subscriptions[];
+

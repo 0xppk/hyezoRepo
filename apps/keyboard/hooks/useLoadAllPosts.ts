@@ -1,4 +1,3 @@
-import { AllSellingData } from "~/types/prisma";
 import useSWR from "swr";
 import { fetcher } from "~/lib/utils";
 

@@ -1,7 +1,6 @@
 import { InputSimple } from "@hyezo/ui";
 import { Dispatch, SetStateAction } from "react";
 import { useLoadAllPosts } from "~/hooks";
-import { AllSellingData } from "~/types/prisma";
 
 type SearchItemsProps = {
   setSearchedItems: Dispatch<SetStateAction<AllSellingData | undefined>>;

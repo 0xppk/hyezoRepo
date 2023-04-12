@@ -1,9 +1,6 @@
-"use client";
-
 import { Button } from "@hyezo/ui";
 import { useState } from "react";
-import { ChatSearchModal } from "~/components/client";
-import { ChatRoomList } from "~/components/server";
+import { ChatSearchModal, ChatRoomList } from "~/components/client";
 
 export default function ChatSearchUsers() {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,7 +1,4 @@
-"use client";
-
 import { signOut } from "next-auth/react";
-import { Text } from "@hyezo/ui";
 
 type SignOutProps = {
   children: ReactNode;

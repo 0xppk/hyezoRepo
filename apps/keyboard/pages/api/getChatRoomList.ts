@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
-import { ChatRooms } from "~/types/prisma";
-import { chatRoomPopulated } from "./createChatRoom";
 
 type Data = ChatRooms;
 type Err = {
@@ -40,7 +38,19 @@ export default async function handler(
         },
       },
 
-      include: chatRoomPopulated,
+      include: {
+        chatParticipant: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                nickname: true,
+                image: true,
+              },
+            },
+          },
+        },
+      },
     });
 
     return res.status(202).json(chatRoomList);

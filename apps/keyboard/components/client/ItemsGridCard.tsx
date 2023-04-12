@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLoadChatRooms, useQueryString, useUserSession } from "~/hooks";
 import { createTitle, fetchPost } from "~/lib/utils";
-import { AllSellingData } from "~/types/prisma";
 import { SplitWord, StatusPopup } from "~/components/server";
 import { useRenderCounter } from "~/../../packages/utils/src/hooks";
 

@@ -1,6 +1,5 @@
 import { Text } from "@hyezo/ui";
 import { useState } from "react";
-import { AllBrandData } from "~/types/prisma";
 import { Icons } from "~/components/server";
 import MainPageModal from "./MainPageModal";
 

@@ -10,7 +10,6 @@ import {
 } from "@hyezo/ui";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { fetchPost } from "~/lib/utils";
-import { AllBrandData } from "~/types/prisma";
 
 type ModalProps = {
   isOpen: boolean;

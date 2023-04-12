@@ -19,6 +19,7 @@ module.exports = {
   plugins: [
     "prettier",
     "react-hooks",
+    "react",
     "tailwindcss",
     "@typescript-eslint/eslint-plugin",
   ],
@@ -74,8 +75,8 @@ module.exports = {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
       },
     },
-  },
-  react: {
-    version: "detect",
+    react: {
+      version: "detect",
+    },
   },
 };

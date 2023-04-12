@@ -45,6 +45,7 @@
     "postcss": "^8.4.21",
     "prisma": "^4.12.0",
     "tailwind-config-hyezo": "workspace:*",
+    "eslint-config-hyezo": "workspace:*",
     "tailwindcss": "3.3.1",
     "typescript": "^5.0.4"
   },

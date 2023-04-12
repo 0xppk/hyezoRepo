@@ -11,7 +11,6 @@ export async function getCurrentUser() {
   return session?.user;
 }
 
-
 export async function requireSignIn() {
   const user = await getCurrentUser();
 

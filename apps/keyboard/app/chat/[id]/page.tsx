@@ -1,5 +1,4 @@
-import { ChatInput, ChatList, ChatRecentInfo } from "~/components/client";
-import { ChatSearchUsers } from "~/components/client";
+import { ChatInput, ChatList } from "~/components/client";
 
 export default function ChatRoom({ params }: PageProps<{ id: string }>) {
   const { id: selectedRoomId } = params;

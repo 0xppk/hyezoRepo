@@ -1,18 +1,19 @@
 /// <reference lib="webworker" />
 import { initializeApp } from "firebase/app";
 import { getMessaging, onBackgroundMessage } from "firebase/messaging/sw";
+import { env } from "~/env.mjs";
 
 export default null;
 declare let self: ServiceWorkerGlobalScope;
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBFGGLL1ayJzdlFmhA6yevCIlV4PQ8_pe4",
-  authDomain: "hello-keyboard.firebaseapp.com",
-  projectId: "hello-keyboard",
-  storageBucket: "hello-keyboard.appspot.com",
-  messagingSenderId: "122267586933",
-  appId: "1:122267586933:web:2be0ed3ea3ef44bda8433c",
-  measurementId: "G-8NLF6DGE9L",
+  apiKey: env.NEXT_PUBLIC_FIREBASE_KEY,
+  authDomain: env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase

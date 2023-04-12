@@ -22,6 +22,7 @@ const server = z.object({
   REDIS_URL: z.string(),
   UPSTASH_REDIS_REST_URL: z.string(),
   UPSTASH_REDIS_REST_TOKEN: z.string(),
+  VAPID_PRIVATE_KEY: z.string(),
 });
 
 const client = z.object({
@@ -69,6 +70,7 @@ const processEnv = {
   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID:
     process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
   NEXT_PUBLIC_VAPID_KEY: process.env.NEXT_PUBLIC_VAPID_KEY,
+  VAPID_PRIVATE_KEY: process.env.VAPID_PRIVATE_KEY,
 };
 
 // Don't touch the part below

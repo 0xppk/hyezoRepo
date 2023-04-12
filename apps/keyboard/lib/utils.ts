@@ -1,4 +1,4 @@
-import { cache, RefObject } from "react";
+import { RefObject } from "react";
 
 export const createTitle = (
   func: (text: string, index: number) => JSX.Element,
@@ -51,13 +51,6 @@ export const devOrProd =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000"
     : "https://hello-keyboard.vercel.app";
-
-export const cacheFetcher = cache(async <T>(endpoint: string) => {
-  const res = (await await fetch(`${devOrProd}${endpoint}`).then(res =>
-    res.json(),
-  )) as T;
-  return res;
-});
 
 export const reloadSession = () => {
   const event = new Event("visibilitychange");

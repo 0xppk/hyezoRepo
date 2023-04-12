@@ -40,9 +40,7 @@ export default async function handler(
       },
     });
 
-    if (checkExistingChatRoom) {
-      return res.status(200).json(checkExistingChatRoom.id);
-    }
+    if (checkExistingChatRoom) res.status(200).json(checkExistingChatRoom.id);
 
     const newChatRoom = await prisma.chatRoom.create({
       data: {

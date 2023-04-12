@@ -32,7 +32,11 @@ export default function StatusPopup({
       <div className="flex gap-5">
         {filteredStatus.map(status => (
           <button key={status} onClick={e => updateStatus(e, status)}>
-            {status === "PENDING" ? "거래중" : status === "END" ? "거래완료" : "판매중"}
+            {status === "PENDING"
+              ? "거래중"
+              : status === "END"
+              ? "거래완료"
+              : "판매중"}
           </button>
         ))}
       </div>

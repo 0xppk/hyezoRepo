@@ -19,7 +19,7 @@ export default function Pwa() {
   const user = useUserSession();
   const { data } = useServiceWorker();
   if (!data || !user) return <></>;
-  const { sw, token } = data;
+  const { token } = data;
 
   return (
     <div>

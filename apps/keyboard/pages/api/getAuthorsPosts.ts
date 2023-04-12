@@ -23,9 +23,7 @@ export default async function handler(
   }
 
   const { authorId } = req.query;
-  if (typeof authorId !== "string") {
-    throw new Error("Invalid Query String");
-  }
+  if (typeof authorId !== "string") throw new Error("Invalid Query String");
 
   try {
     const authorsPost = await prisma.user.findUnique({

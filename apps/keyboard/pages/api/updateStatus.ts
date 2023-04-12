@@ -22,8 +22,8 @@ export default async function handler(
     res.status(401).json({ error: "You are not logined 🦠" });
     return;
   }
-  
-  const {status, postId} = req.body;
+
+  const { status, postId } = req.body;
 
   try {
     await prisma.post.update({

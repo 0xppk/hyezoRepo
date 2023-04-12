@@ -13,7 +13,7 @@ export default function NewUser() {
       }`}
     >
       <div className="modal rounded-xl">
-        <div className="drop-shadow-blue min-w-[400px] rounded-xl bg-gray-900 py-6 px-8">
+        <div className="drop-shadow-blue min-w-[400px] rounded-xl bg-gray-900 px-8 py-6">
           <CreateNicknameForm />
         </div>
       </div>

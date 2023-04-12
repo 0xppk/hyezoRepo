@@ -22,7 +22,7 @@ export default async function handler(
     res.status(401).json({ error: "You are not logined 🦠" });
     return;
   }
-  
+
   const nickname: string = req.body;
 
   try {

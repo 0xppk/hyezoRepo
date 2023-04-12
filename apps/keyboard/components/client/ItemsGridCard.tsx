@@ -1,10 +1,9 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { SplitWord, StatusPopup } from "~/components/server";
 import { useLoadChatRooms, useQueryString, useUserSession } from "~/hooks";
 import { createTitle, fetchPost } from "~/lib/utils";
-import { SplitWord, StatusPopup } from "~/components/server";
-import { useRenderCounter } from "~/../../packages/utils/src/hooks";
 
 type GridCardProps = {
   data?: AllSellingData;
@@ -32,27 +31,23 @@ export default function GridCard({ data }: GridCardProps) {
       }
     };
 
-    for (const card of gridRef.current.children) {
-      if (card instanceof HTMLDivElement) {
+    for (const card of gridRef.current.children)
+      if (card instanceof HTMLDivElement)
         card.onpointermove = e => {
           handleOnMouseMove(e);
         };
-      }
-    }
   }, [gridRef, data]);
+
   useEffect(() => {
     if (!data) return;
     setStatusPopup(Array.from({ length: data.length }, () => false));
   }, [data]);
 
-  const counter = useRenderCounter();
-  console.log(counter);
-
   const openChatRoom = useCallback(
     async (authorId: string, idx: number) => {
       if (authorId === user?.id) {
         setStatusPopup(prev => {
-          const copy = [...prev]
+          const copy = [...prev];
           copy[idx] = true;
           return copy;
         });
@@ -62,9 +57,11 @@ export default function GridCard({ data }: GridCardProps) {
         body: JSON.stringify(authorId),
       })) as string;
       reloadChatRooms();
-      router.push(`/chat/${newChatRoomId}?${createQueryString("authorId", authorId)}`);
+      router.push(
+        `/chat/${newChatRoomId}?${createQueryString("authorId", authorId)}`,
+      );
     },
-    [reloadChatRooms, user],
+    [reloadChatRooms, user, createQueryString, router],
   );
 
   return (

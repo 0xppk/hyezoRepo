@@ -4,7 +4,7 @@ import { fetchPost, reloadSession } from "~/lib/utils";
 
 export default function CreateNicknameForm() {
   const router = useRouter();
-  
+
   const onSubmit: zodSubmitHandler = async ({ nickname }) => {
     await fetchPost("/api/updateNickname", { body: JSON.stringify(nickname) });
     reloadSession();

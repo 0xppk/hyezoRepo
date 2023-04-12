@@ -13,5 +13,5 @@ export async function generateMetadata({
 }
 
 export default function DetailedItemPage({ params }: PageProps<{ id: string }>) {
-  return <>/* Code here */</>;
+  return <div>임시</div>;
 }

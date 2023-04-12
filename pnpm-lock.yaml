@@ -317,7 +317,7 @@ importers:
   packages/tsconfig: {}
 
   packages/utils:
-    devDependencies:
+    dependencies:
       '@headlessui/react':
         specifier: ^1.7.13
         version: 1.7.13(react-dom@18.2.0)(react@18.2.0)
@@ -327,42 +327,12 @@ importers:
       '@hookform/resolvers':
         specifier: ^2.9.11
         version: 2.9.11(react-hook-form@7.43.9)
-      '@hyezo/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@next/font':
-        specifier: 13.1.5
-        version: 13.1.5
-      '@types/js-cookie':
-        specifier: ^3.0.3
-        version: 3.0.3
-      '@types/lodash':
-        specifier: ^4.14.192
-        version: 4.14.192
-      '@types/node':
-        specifier: ^18.15.11
-        version: 18.15.11
-      '@types/react':
-        specifier: ^18.0.31
-        version: 18.0.31
-      '@types/react-dom':
-        specifier: ^18.0.11
-        version: 18.0.11
       clsx:
         specifier: ^1.2.1
         version: 1.2.1
-      concurrently:
-        specifier: ^7.6.0
-        version: 7.6.0
       cva:
         specifier: npm:class-variance-authority@^0.4.0
         version: /class-variance-authority@0.4.0(typescript@4.9.5)
-      eslint:
-        specifier: ^8.37.0
-        version: 8.37.0
-      eslint-config-hyezo:
-        specifier: workspace:*
-        version: link:../eslint-config-hyezo
       fuse.js:
         specifier: ^6.6.2
         version: 6.6.2
@@ -384,6 +354,40 @@ importers:
       react-hook-form:
         specifier: ^7.43.9
         version: 7.43.9(react@18.2.0)
+      zod:
+        specifier: ^3.21.4
+        version: 3.21.4
+    devDependencies:
+      '@hyezo/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@next/font':
+        specifier: 13.1.5
+        version: 13.1.5
+      '@types/js-cookie':
+        specifier: ^3.0.3
+        version: 3.0.3
+      '@types/lodash':
+        specifier: ^4.14.192
+        version: 4.14.192
+      '@types/node':
+        specifier: ^18.15.11
+        version: 18.15.11
+      '@types/react':
+        specifier: ^18.0.31
+        version: 18.0.31
+      '@types/react-dom':
+        specifier: ^18.0.11
+        version: 18.0.11
+      concurrently:
+        specifier: ^7.6.0
+        version: 7.6.0
+      eslint:
+        specifier: ^8.37.0
+        version: 8.37.0
+      eslint-config-hyezo:
+        specifier: workspace:*
+        version: link:../eslint-config-hyezo
       tailwind-config-hyezo:
         specifier: workspace:*
         version: link:../tailwind-config-hyezo
@@ -399,9 +403,6 @@ importers:
       typescript:
         specifier: ^4.9.5
         version: 4.9.5
-      zod:
-        specifier: ^3.21.4
-        version: 3.21.4
 
 packages:
 
@@ -4049,7 +4050,7 @@ packages:
       client-only: 0.0.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-    dev: true
+    dev: false
 
   /@heroicons/react@2.0.17(react@18.2.0):
     resolution: {integrity: sha512-90GMZktkA53YbNzHp6asVEDevUQCMtxWH+2UK2S8OpnLEu7qckTJPhNxNQG52xIR1WFTwFqtH6bt7a60ZNcLLA==}
@@ -4057,7 +4058,7 @@ packages:
       react: '>= 16'
     dependencies:
       react: 18.2.0
-    dev: true
+    dev: false
 
   /@hookform/resolvers@2.9.11(react-hook-form@7.43.9):
     resolution: {integrity: sha512-bA3aZ79UgcHj7tFV7RlgThzwSSHZgvfbt2wprldRkYBcMopdMvHyO17Wwp/twcJasNFischFfS7oz8Katz8DdQ==}
@@ -4065,7 +4066,7 @@ packages:
       react-hook-form: ^7.0.0
     dependencies:
       react-hook-form: 7.43.9(react@18.2.0)
-    dev: true
+    dev: false
 
   /@humanwhocodes/config-array@0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
@@ -7889,7 +7890,7 @@ packages:
         optional: true
     dependencies:
       typescript: 4.9.5
-    dev: true
+    dev: false
 
   /class-variance-authority@0.4.0(typescript@5.0.4):
     resolution: {integrity: sha512-74enNN8O9ZNieycac/y8FxqgyzZhZbxmCitAtAeUrLPlxjSd5zA7LfpprmxEcOmQBnaGs5hYhiSGnJ0mqrtBLQ==}
@@ -7992,7 +7993,7 @@ packages:
   /clsx@1.2.1:
     resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
     engines: {node: '>=6'}
-    dev: true
+    dev: false
 
   /color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
@@ -9904,7 +9905,7 @@ packages:
   /fuse.js@6.6.2:
     resolution: {integrity: sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA==}
     engines: {node: '>=10'}
-    dev: true
+    dev: false
 
   /gauge@3.0.2:
     resolution: {integrity: sha512-+5J6MS/5XksCuXq++uFRsnUd7Ovu1XenbeuIuNRJxYWjgQbPuFhT14lAvsWfqfAmnwluf1OwMjz39HjfLPci0Q==}
@@ -10987,7 +10988,7 @@ packages:
   /js-cookie@3.0.1:
     resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
     engines: {node: '>=12'}
-    dev: true
+    dev: false
 
   /js-sdsl@4.4.0:
     resolution: {integrity: sha512-FfVSdx6pJ41Oa+CF7RDaFmTnCaFhua+SNYQX74riGOpl96x+2jQCqEfQ2bnXu/5DPCqlRuiqyvTJM0Qjz26IVg==}
@@ -13573,7 +13574,7 @@ packages:
       react: ^16.8.0 || ^17 || ^18
     dependencies:
       react: 18.2.0
-    dev: true
+    dev: false
 
   /react-icons@4.8.0(react@18.2.0):
     resolution: {integrity: sha512-N6+kOLcihDiAnj5Czu637waJqSnwlMNROzVZMhfX68V/9bu9qHaMIJC4UdozWoOk57gahFCNHwVvWzm0MTzRjg==}
@@ -15304,7 +15305,6 @@ packages:
     resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   /typescript@5.0.4:
     resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}

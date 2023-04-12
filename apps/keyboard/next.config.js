@@ -6,7 +6,7 @@ const withPWA = require("@ducanh2912/next-pwa").default({
   disable: !isProduction,
 });
 
-const config = {
+const nextConfig = {
   experimental: {
     appDir: true,
   },
@@ -21,8 +21,8 @@ const config = {
   },
 };
 
-const nextConfig = withPWA({
-  ...config,
-});
+// const nextConfig = withPWA({
+//   ...config,
+// });
 
 module.exports = nextConfig;

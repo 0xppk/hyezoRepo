@@ -68,6 +68,12 @@ module.exports = {
     "react-hooks/exhaustive-deps": ["error"], // 리액트 의존성 배열 correctness 체크
     "@next/next/no-html-link-for-pages": "off",
     "react/jsx-key": "off",
+    "react/display-name": "warn",
+    "@typescript-eslint/no-empty-function": "warn",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/classnames-order": "off",
+    "turbo/no-undeclared-env-vars": "off",
   },
   settings: {
     "import/resolver": {

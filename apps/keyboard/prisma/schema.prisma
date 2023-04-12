@@ -116,7 +116,7 @@ model Brand {
 
 model Subscriptions {
   id        String   @id @default(cuid())
-  endpoint  String   @unique
+  endpoint  String
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   createdAt DateTime @default(now()) @map("created_at")

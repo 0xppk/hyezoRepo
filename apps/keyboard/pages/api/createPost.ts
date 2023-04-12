@@ -1,4 +1,3 @@
-import { Post, User } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
@@ -46,7 +45,7 @@ export default async function handler(
         author: true,
       },
     });
-
+    // @ts-ignore
     return res.status(202).json(newPost);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });

@@ -1,4 +1,3 @@
-import { ChatParticipant, Post, Role } from "@prisma/client";
 import { type DefaultSession } from "next-auth";
 
 declare module "next-auth" {

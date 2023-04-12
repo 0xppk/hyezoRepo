@@ -26,7 +26,7 @@ export default async function handler(
   const token: string = req.body;
 
   try {
-    const newSubscription = await prisma.subscriptions.create({
+    const newSubscription = await prisma.subscription.create({
       data: {
         endpoint: token,
         userId: session.user.id,

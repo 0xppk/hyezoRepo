@@ -27,18 +27,18 @@ export default async function handler(
   const authorId: string = req.body;
 
   try {
-    const subTokens = await prisma.user.findUnique({
+    const subTokens = await prisma.subscription.findMany({
       where: {
-        id: authorId,
+        userId: authorId,
       },
       select: {
-        subscriptions: true,
+        endpoint: true,
       },
     });
 
     if (!subTokens) return;
-    const { subscriptions } = subTokens;
-    const endpoints = subscriptions.map(obj => obj.endpoint);
+
+    const endpoints = subTokens.map(obj => obj.endpoint);
 
     const message = {
       data: {

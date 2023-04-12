@@ -124,10 +124,13 @@ module.exports = {
         "root-layout": "repeat(auto-fit, minmax(0, 1fr))",
       },
       gridTemplateRows: {
-        "chat-layout": "80% minmax(0, 1fr)",
+        "chat-layout": "90% minmax(0, 1fr)",
       },
       dropShadow: {
         blue: "0 0 0.75rem #072375",
+      },
+      borderRadius: {
+        inherit: "inherit",
       },
     },
     // overrides

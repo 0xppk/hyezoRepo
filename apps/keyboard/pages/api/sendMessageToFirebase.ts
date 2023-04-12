@@ -1,8 +1,7 @@
+import { BatchResponse, getMessaging } from "firebase-admin/messaging";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
-import { BatchResponse, getMessaging } from "firebase-admin/messaging";
-import { fetcher } from "~/lib/utils";
 
 type Data = BatchResponse;
 

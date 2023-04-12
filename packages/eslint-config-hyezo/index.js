@@ -19,7 +19,6 @@ module.exports = {
   plugins: [
     "prettier",
     "react-hooks",
-    "react",
     "tailwindcss",
     "@typescript-eslint/eslint-plugin",
   ],

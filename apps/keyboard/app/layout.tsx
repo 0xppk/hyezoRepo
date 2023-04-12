@@ -1,6 +1,5 @@
 import { type Metadata } from "next";
-import { NavBar } from "~/components/server";
-import { Pwa } from "~/components/client";
+import { Pwa, NavBar } from "~/components/client";
 import Providers from "~/lib/contexts";
 import "~/styles/tailwind.css";
 

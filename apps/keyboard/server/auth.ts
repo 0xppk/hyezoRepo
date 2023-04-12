@@ -9,6 +9,7 @@ import nodemailer from "nodemailer";
 import { env } from "~/env.mjs";
 import { ActivationMail, SignInMail, TextMail } from "~/lib/smtp";
 import { prisma } from "./db";
+import { JWT } from "next-auth/jwt";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -108,7 +109,7 @@ export const authOptions: NextAuthOptions = {
         picture: dbUser.image,
         nickname: dbUser.nickname,
         role: dbUser.role,
-      };
+      } as JWT;
     },
   },
 };

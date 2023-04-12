@@ -18,13 +18,15 @@ declare const InputSchema: z.ZodObject<{
     message: z.ZodOptional<z.ZodOptional<z.ZodNullable<z.ZodString>>>;
     select2: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodNumber]>, "many">]>, z.ZodRecord<z.ZodString, z.ZodAny>]>>;
     select3: z.ZodOptional<z.ZodUnion<[z.ZodUnion<[z.ZodUnion<[z.ZodString, z.ZodNumber]>, z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodNumber]>, "many">]>, z.ZodRecord<z.ZodString, z.ZodAny>]>>;
+    allUsersCombo: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+    objDataCombo: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
 }, "strip", z.ZodTypeAny, {
     email?: string | undefined;
     password?: string | undefined;
     url?: string | undefined;
     textarea?: string | undefined;
     text?: string | undefined;
-    select?: string | number | (string | number)[] | Record<string, any> | undefined;
+    select?: string | number | Record<string, any> | (string | number)[] | undefined;
     combo?: string | undefined;
     nickname?: string | undefined;
     title?: string | undefined;
@@ -32,15 +34,17 @@ declare const InputSchema: z.ZodObject<{
     layout?: string | null | undefined;
     color?: string | null | undefined;
     message?: string | null | undefined;
-    select2?: string | number | (string | number)[] | Record<string, any> | undefined;
-    select3?: string | number | (string | number)[] | Record<string, any> | undefined;
+    select2?: string | number | Record<string, any> | (string | number)[] | undefined;
+    select3?: string | number | Record<string, any> | (string | number)[] | undefined;
+    allUsersCombo?: Record<string, any> | undefined;
+    objDataCombo?: Record<string, any> | undefined;
 }, {
     email?: string | undefined;
     password?: string | undefined;
     url?: string | undefined;
     textarea?: string | undefined;
     text?: string | undefined;
-    select?: string | number | (string | number)[] | Record<string, any> | undefined;
+    select?: string | number | Record<string, any> | (string | number)[] | undefined;
     combo?: string | undefined;
     nickname?: string | undefined;
     title?: string | undefined;
@@ -48,8 +52,10 @@ declare const InputSchema: z.ZodObject<{
     layout?: string | null | undefined;
     color?: string | null | undefined;
     message?: string | null | undefined;
-    select2?: string | number | (string | number)[] | Record<string, any> | undefined;
-    select3?: string | number | (string | number)[] | Record<string, any> | undefined;
+    select2?: string | number | Record<string, any> | (string | number)[] | undefined;
+    select3?: string | number | Record<string, any> | (string | number)[] | undefined;
+    allUsersCombo?: Record<string, any> | undefined;
+    objDataCombo?: Record<string, any> | undefined;
 }>;
 type InputNameProps = z.infer<typeof InputSchema>;
 type zodSubmitHandler = SubmitHandler<InputNameProps>;

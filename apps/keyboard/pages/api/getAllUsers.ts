@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
-import { AllUsers } from "~/types/prisma";
 
 type Data = AllUsers;
 

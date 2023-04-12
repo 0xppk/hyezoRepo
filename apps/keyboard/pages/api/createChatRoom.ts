@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
@@ -41,9 +40,7 @@ export default async function handler(
       },
     });
 
-    if (checkExistingChatRoom) {
-      return res.status(200).json(checkExistingChatRoom.id);
-    }
+    if (checkExistingChatRoom) res.status(200).json(checkExistingChatRoom.id);
 
     const newChatRoom = await prisma.chatRoom.create({
       data: {
@@ -59,7 +56,19 @@ export default async function handler(
         },
       },
 
-      include: chatRoomPopulated,
+      include: {
+        chatParticipant: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                nickname: true,
+                image: true,
+              },
+            },
+          },
+        },
+      },
     });
 
     return res.status(200).json(newChatRoom.id);
@@ -67,22 +76,3 @@ export default async function handler(
     return res.status(500).json({ error: (error as Error).message });
   }
 }
-
-/**
- * 프리즈마에서 늘어지는 Include를 스플릿하는 법
- */
-export const participantPopulated = Prisma.validator<Prisma.ChatParticipantInclude>()({
-  user: {
-    select: {
-      id: true,
-      nickname: true,
-      image: true,
-    },
-  },
-});
-
-export const chatRoomPopulated = Prisma.validator<Prisma.ChatRoomInclude>()({
-  chatParticipant: {
-    include: participantPopulated,
-  },
-});

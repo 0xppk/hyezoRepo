@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
-import { AuthorsPost } from "~/types/prisma";
 
 type Data = AuthorsPost;
 type Err = {
@@ -24,9 +23,7 @@ export default async function handler(
   }
 
   const { authorId } = req.query;
-  if (typeof authorId !== "string") {
-    throw new Error("Invalid Query String");
-  }
+  if (typeof authorId !== "string") throw new Error("Invalid Query String");
 
   try {
     const authorsPost = await prisma.user.findUnique({
@@ -43,6 +40,7 @@ export default async function handler(
     });
 
     if (!authorsPost) return;
+    // @ts-ignore
     return res.status(202).json(authorsPost);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });

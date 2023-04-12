@@ -18,13 +18,13 @@ export default async function handler(
 
   /** 채팅룸 아이디 */
   const { id } = req.query;
-  if (typeof id !== "string") {
-    throw new Error("Invalid Query String");
-  }
+  if (typeof id !== "string") throw new Error("Invalid Query String");
 
   try {
     const getMessages: Message[] = await redis.hvals(id);
-    const messages = getMessages.sort(({ created_at: a }, { created_at: z }) => a - z);
+    const messages = getMessages.sort(
+      ({ created_at: a }, { created_at: z }) => a - z,
+    );
     return res.status(202).json(messages);
   } catch (error) {
     return res.status(405).json({ error: "Messages Cannot Found" });

@@ -1,4 +1,3 @@
-import { Brand } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
@@ -23,7 +22,7 @@ export default async function handler(
     res.status(401).json({ error: "Unauthorized to access to admin page 🦠" });
     return;
   }
-  
+
   const data: InputDataForRegisterManufacture = req.body;
   const { title, select, select2, select3 } = data;
 
@@ -37,6 +36,7 @@ export default async function handler(
       },
     });
 
+    // @ts-ignore
     return res.status(202).json(newBrand);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });

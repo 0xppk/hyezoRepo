@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@hyezo/utils";
 import { Anonymous_Pro as font } from "next/font/google";
 import { useRouter } from "next/navigation";

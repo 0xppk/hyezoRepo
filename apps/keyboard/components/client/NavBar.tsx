@@ -1,12 +1,10 @@
-"use client";
-
 import { cn } from "@hyezo/utils";
 import { ComponentProps } from "react";
 import { UserInfo, SignOutBtn } from "~/components/client";
 import { Icons, Logo } from "~/components/server";
 import { useUserSession } from "~/hooks";
 import LogoImage from "~/public/images/logo.png";
-import NavLink from "./NavLink";
+import NavLink from "../server/NavLink";
 
 type NavBarProps = ComponentProps<"nav">;
 

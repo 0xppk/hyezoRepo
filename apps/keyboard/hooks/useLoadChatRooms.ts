@@ -1,6 +1,5 @@
 import useSWR from "swr";
 import { fetcher } from "~/lib/utils";
-import { ChatRooms } from "~/types/prisma";
 
 export default function useLoadChatRooms() {
   const {

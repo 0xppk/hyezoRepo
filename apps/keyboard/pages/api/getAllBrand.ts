@@ -1,8 +1,7 @@
-import { Brand } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "~/server/db";
 
-type Data = Pick<Brand, "id" | "name">[];
+type Data = AllBrandData;
 
 type Err = {
   error: string;
@@ -25,6 +24,7 @@ export default async function handler(
         type: true,
       },
     });
+    // @ts-ignore
     return res.status(202).json(allBrands);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });

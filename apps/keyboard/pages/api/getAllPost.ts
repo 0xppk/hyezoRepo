@@ -1,8 +1,6 @@
-import { Post } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getServerAuthSession } from "~/server/auth";
-import { prisma } from "~/server/db";
 import { z } from "zod";
+import { prisma } from "~/server/db";
 
 type Data = Post[];
 
@@ -52,6 +50,7 @@ export default async function handler(
     });
 
     if (!allPosts) return;
+    // @ts-ignore
     return res.status(202).json(allPosts);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });

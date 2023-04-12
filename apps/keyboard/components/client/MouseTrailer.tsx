@@ -12,7 +12,9 @@ export default function MouseTrailer() {
       offsetY = y - trailerRef.current.offsetHeight / 2;
 
     const keyframes = {
-      transform: `translate(${offsetX}px, ${offsetY}px) scale(${interacting ? 3 : 1})`,
+      transform: `translate(${offsetX}px, ${offsetY}px) scale(${
+        interacting ? 3 : 1
+      })`,
     };
 
     trailerRef.current.animate(keyframes, {
@@ -46,7 +48,7 @@ export default function MouseTrailer() {
   );
 }
 
-const isHTMLElement = (element: any): element is HTMLElement => {
+const isHTMLElement = (element: unknown): element is HTMLElement => {
   return element instanceof HTMLElement;
 };
 

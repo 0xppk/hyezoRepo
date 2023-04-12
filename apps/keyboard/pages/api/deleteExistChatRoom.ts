@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
-import { ExitChatRoom } from "~/types/prisma";
 
 type Data = ExitChatRoom;
 
@@ -55,6 +54,7 @@ export default async function handler(
       },
     });
 
+    // @ts-ignore
     return res.status(202).json(exitExistChatRoom);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });

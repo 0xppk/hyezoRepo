@@ -1,11 +1,9 @@
 export { default as SplitWord } from "./SplitWord";
 export { default as Icons } from "./Icons";
-export { default as NavBar } from "./NavBar";
 export { default as NavLink } from "./NavLink";
 export { default as OAuthProviders } from "./OAuthProviders";
 export { default as SignInForm } from "./SignInForm";
 export { default as SignInBtn } from "./SignInBtn";
 export { default as SignInFormSpacer } from "./SignInFormSpacer";
-export { default as ChatRoomList } from "./ChatRoomList";
 export { default as Logo } from "./Logo";
 export { default as StatusPopup } from "./StatusPopup";

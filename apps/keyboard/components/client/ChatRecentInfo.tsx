@@ -1,8 +1,6 @@
-"use client";
 import { useSearchParams } from "next/navigation";
 import useSWR from "swr";
 import { fetcher } from "~/lib/utils";
-import { AuthorsPost } from "~/types/prisma";
 
 export default function ChatRecentInfo() {
   const searchParams = useSearchParams();

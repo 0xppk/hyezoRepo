@@ -1,4 +1,3 @@
-import { User } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { signOut } from "next-auth/react";
 import { getServerAuthSession } from "~/server/auth";
@@ -33,6 +32,7 @@ export default async function handler(
     });
 
     signOut();
+    // @ts-ignore
     return res.status(202).json(deleteAccount);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });

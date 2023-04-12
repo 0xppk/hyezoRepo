@@ -34,3 +34,5 @@ type InputDataForRegisterManufacture = {
   select2: string;
   select3: "ING" | "END" | "PENDING";
 };
+
+

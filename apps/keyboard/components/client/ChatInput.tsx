@@ -1,5 +1,3 @@
-"use client";
-
 import { Form, Input, SubmitButton, zodSubmitHandler } from "@hyezo/ui";
 import { v4 } from "uuid";
 import { z } from "zod";

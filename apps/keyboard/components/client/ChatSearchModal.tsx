@@ -10,7 +10,10 @@ type ChatSearchModalProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-export default function ChatSearchModal({ isOpen, setIsOpen }: ChatSearchModalProps) {
+export default function ChatSearchModal({
+  isOpen,
+  setIsOpen,
+}: ChatSearchModalProps) {
   const { allUsers } = useLoadAllUsers();
   const { reloadChatRooms } = useLoadChatRooms();
   const { createQueryString } = useQueryString();
@@ -35,7 +38,9 @@ export default function ChatSearchModal({ isOpen, setIsOpen }: ChatSearchModalPr
       className="backdrop-blue flex h-40 flex-col items-center rounded-xl bg-gray-900 p-5"
       title="Search Users"
     >
-      <Modal.Title className="font-point text-2xl text-white">Search Users</Modal.Title>
+      <Modal.Title className="font-point text-2xl text-white">
+        Search Users
+      </Modal.Title>
       <Modal.Content className="min-w-[20rem] text-sm text-black">
         <Form onSubmit={onSubmit}>
           <ComboBox<Session["user"], "nickname">

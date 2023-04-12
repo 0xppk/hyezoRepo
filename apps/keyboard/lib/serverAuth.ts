@@ -4,9 +4,7 @@ import { prisma } from "~/server/db";
 
 const serverAuth = async (req: NextApiRequest) => {
   const session = await getServerSession(req);
-  if (!session?.user?.email) {
-    throw new Error("Not signed in");
-  }
+  if (!session?.user?.email) throw new Error("Not signed in");
 
   const currentUser = await prisma.user.findUnique({
     where: {
@@ -14,9 +12,7 @@ const serverAuth = async (req: NextApiRequest) => {
     },
   });
 
-  if (!currentUser) {
-    throw new Error("Not signed in");
-  }
+  if (!currentUser) throw new Error("Not signed in");
 
   return { currentUser };
 };

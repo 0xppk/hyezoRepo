@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import {
   ImageSection,
@@ -7,7 +5,6 @@ import {
   TitleSection,
   ArrowSection,
 } from "~/components/server/mainPage";
-import { AllBrandData } from "~/types/prisma";
 
 type MainPageGridProps = {
   brands: AllBrandData;

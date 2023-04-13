@@ -36,10 +36,14 @@ export default function Pwa() {
       </button>
       <button
         onClick={async () => {
-          const res = await fetchPost<string>("/api/sendMessageToFirebase", {
-            body: JSON.stringify(user.id),
-          });
-          console.log(res);
+          try {
+            const res = await fetchPost<string>("/api/sendMessageToFirebase", {
+              body: JSON.stringify(user.id),
+            });
+            console.log(res);
+          } catch (error) {
+            console.error(error);
+          }
         }}
       >
         메시지 푸시

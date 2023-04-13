@@ -9,7 +9,7 @@ const withPWA = require("@ducanh2912/next-pwa").default({
 const config = {
   experimental: {
     appDir: true,
-    outputFileTracingIgnores: [
+    outputFileTracingExcludes: [
       "node_modules/@swc/core-linux-x64-gnu",
       "node_modules/@swc/core-linux-x64-musl",
     ],

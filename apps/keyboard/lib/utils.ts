@@ -50,7 +50,7 @@ export const fetchPost = async <T>(
 export const devOrProd =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000"
-    : "http://localhost:3000";
+    : "https://hello-keyboard.vercel.app/";
 
 export const reloadSession = () => {
   const event = new Event("visibilitychange");

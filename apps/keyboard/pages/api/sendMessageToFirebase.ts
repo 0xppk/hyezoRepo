@@ -5,11 +5,7 @@ import {
   type App,
   type AppOptions,
 } from "firebase-admin/app";
-import {
-  BatchResponse,
-  MulticastMessage,
-  getMessaging,
-} from "firebase-admin/messaging";
+import { MulticastMessage, getMessaging } from "firebase-admin/messaging";
 import { FirebaseError } from "firebase/app";
 import { NextApiRequest, NextApiResponse } from "next";
 import { env } from "~/env.mjs";
@@ -18,7 +14,7 @@ import { prisma } from "~/server/db";
 
 const global = globalThis as unknown as { firebase: App };
 
-type Data = BatchResponse;
+type Data = number;
 
 type Err = {
   error: string;
@@ -83,7 +79,7 @@ export default async function handler(
     const sendMessage = await getMessaging(global.firebase).sendMulticast(message);
     console.log(sendMessage.successCount + " messages were sent successfully");
 
-    return res.status(202).json(sendMessage);
+    return res.status(202).json(sendMessage.successCount);
   } catch (error) {
     console.error("Error sending push notification:", error);
     return { error: (error as Error).message };

@@ -13,8 +13,7 @@ export default function useServiceWorker() {
     (async () => {
       const permission = await Notification.requestPermission();
       if (permission === "granted") {
-        const res = await getFirebaseToken();
-        setSw(res);
+        await getFirebaseToken();
       } else {
         console.log("알림 수신 거부");
       }

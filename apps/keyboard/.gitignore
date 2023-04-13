@@ -38,3 +38,4 @@ next-env.d.ts
 .tmp
 public/sw.js
 public/workbox-*.js
+firebase-account.json

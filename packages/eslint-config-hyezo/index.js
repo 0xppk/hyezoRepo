@@ -71,6 +71,7 @@ module.exports = {
     "react/display-name": "warn",
     "@typescript-eslint/no-empty-function": "warn",
     "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-var-requires": "off",
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/classnames-order": "off",
     "turbo/no-undeclared-env-vars": "off",

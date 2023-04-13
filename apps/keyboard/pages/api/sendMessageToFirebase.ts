@@ -1,9 +1,12 @@
-import { BatchResponse, getMessaging } from "firebase-admin/messaging";
+import { cert, getApp, initializeApp, type AppOptions } from "firebase-admin/app";
+import { MulticastMessage, getMessaging } from "firebase-admin/messaging";
+import { FirebaseError } from "firebase/app";
 import { NextApiRequest, NextApiResponse } from "next";
+import { env } from "~/env.mjs";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
 
-type Data = BatchResponse;
+type Data = number;
 
 type Err = {
   error: string;
@@ -26,6 +29,19 @@ export default async function handler(
 
   const authorId: string = req.body;
 
+  const serviceAccount = require("firebase-account.json");
+  const firebaseConfig: AppOptions = {
+    credential: cert(serviceAccount),
+    databaseURL: env.FIREBASE_ADMIN_DATABASE_URL,
+  };
+
+  try {
+    getApp();
+  } catch (error) {
+    if ((error as FirebaseError).code === "app/no-app")
+      initializeApp(firebaseConfig);
+  }
+  0;
   try {
     const subTokens = await prisma.subscription.findMany({
       where: {
@@ -39,22 +55,21 @@ export default async function handler(
     if (!subTokens) return;
 
     const endpoints = subTokens.map(obj => obj.endpoint);
-
-    const message = {
-      data: {
-        icon: "/images/logo.png",
-      },
+    console.log(endpoints);
+    const message: MulticastMessage = {
+      data: {},
       notification: {
         title: "테스트",
         body: "테스트입니다",
+        imageUrl: "/images/logo.png",
       },
       tokens: endpoints,
     };
 
     const sendMessage = await getMessaging().sendMulticast(message);
-
     console.log(sendMessage.successCount + " messages were sent successfully");
-    return res.status(202).json(sendMessage);
+
+    return res.status(202).json(sendMessage.successCount);
   } catch (error) {
     return { error: (error as Error).message };
   }

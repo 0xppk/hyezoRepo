@@ -57,11 +57,13 @@ export default async function handler(
     const endpoints = subTokens.map(obj => obj.endpoint);
     console.log(endpoints);
     const message: MulticastMessage = {
-      data: {},
+      data: {
+        icon: "/images/logo.png",
+        link: "https://hello-keyboard.vercel.app",
+      },
       notification: {
         title: "테스트",
         body: "테스트입니다",
-        imageUrl: "/images/logo.png",
       },
       tokens: endpoints,
     };
@@ -71,6 +73,7 @@ export default async function handler(
 
     return res.status(202).json(sendMessage.successCount);
   } catch (error) {
+    console.error("Error sending push notification:", error);
     return { error: (error as Error).message };
   }
 }

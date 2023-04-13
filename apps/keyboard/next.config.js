@@ -6,17 +6,13 @@ const withPWA = require("@ducanh2912/next-pwa").default({
   disable: !isProduction,
 });
 
-const config = {};
-
 const nextConfig = withPWA({
   experimental: {
     appDir: true,
-    outputFileTracingExcludes: {
-      "/": [
-        "node_modules/.pnpm/@swc+core-linux-x64-gnu",
-        "node_modules/.pnpm/@swc+core-linux-x64-musl",
-      ],
-    },
+    outputFileTracingIgnores: [
+      "node_modules/.pnpm/@swc+core-linux-x64-gnu",
+      "node_modules/.pnpm/@swc+core-linux-x64-musl",
+    ],
   },
   transpilePackages: ["../../packages/utils/src/*"],
   reactStrictMode: true,

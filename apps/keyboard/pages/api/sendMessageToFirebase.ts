@@ -1,10 +1,4 @@
-import {
-  cert,
-  getApp,
-  initializeApp,
-  type App,
-  type AppOptions,
-} from "firebase-admin/app";
+import { cert, getApp, initializeApp, type AppOptions } from "firebase-admin/app";
 import {
   BatchResponse,
   MulticastMessage,
@@ -15,8 +9,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { env } from "~/env.mjs";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
-
-const global = globalThis as unknown as { firebase: App };
 
 type Data = BatchResponse;
 
@@ -51,7 +43,7 @@ export default async function handler(
     getApp();
   } catch (error) {
     if ((error as FirebaseError).code === "app/no-app")
-      global.firebase = initializeApp(firebaseConfig);
+      initializeApp(firebaseConfig);
   }
 
   try {
@@ -80,7 +72,7 @@ export default async function handler(
       tokens: endpoints,
     };
 
-    const sendMessage = await getMessaging(global.firebase).sendMulticast(message);
+    const sendMessage = await getMessaging().sendMulticast(message);
     console.log(sendMessage.successCount + " messages were sent successfully");
 
     return res.status(202).json(sendMessage);

@@ -1,23 +1,23 @@
 import {
-  applicationDefault,
+  cert,
   getApp,
   initializeApp,
   type App,
   type AppOptions,
 } from "firebase-admin/app";
-import { MulticastMessage, getMessaging } from "firebase-admin/messaging";
+import {
+  BatchResponse,
+  MulticastMessage,
+  getMessaging,
+} from "firebase-admin/messaging";
 import { FirebaseError } from "firebase/app";
 import { NextApiRequest, NextApiResponse } from "next";
 import { env } from "~/env.mjs";
 import { prisma } from "~/server/db";
 
-export const config = {
-  runtime: "edge",
-};
-
 const global = globalThis as unknown as { firebase: App };
 
-type Data = number;
+type Data = BatchResponse;
 
 type Err = {
   error: string;
@@ -34,8 +34,9 @@ export default async function handler(
 
   const authorId: string = req.body;
 
+  const serviceAccount = require("firebase-account.json");
   const firebaseConfig: AppOptions = {
-    credential: applicationDefault(),
+    credential: cert(serviceAccount),
     databaseURL: env.FIREBASE_ADMIN_DATABASE_URL,
   };
 
@@ -75,7 +76,7 @@ export default async function handler(
     const sendMessage = await getMessaging(global.firebase).sendMulticast(message);
     console.log(sendMessage.successCount + " messages were sent successfully");
 
-    return res.status(202).json(sendMessage.successCount);
+    return res.status(202).json(sendMessage);
   } catch (error) {
     console.error("Error sending push notification:", error);
     return { error: (error as Error).message };

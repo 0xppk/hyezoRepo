@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import messaging from "firebase/messaging";
 import { env } from "~/env.mjs";
 import { useUserSession } from "~/hooks";
 import useServiceWorker from "~/hooks/useServiceWorker";
@@ -36,10 +35,29 @@ export default function Pwa() {
       </button>
       <button
         onClick={async () => {
+          const message = {
+            data: {
+              icon: "/images/logo.png",
+              link: "https://hello-keyboard.vercel.app",
+            },
+            notification: {
+              title: "테스트",
+              body: "테스트입니다",
+            },
+          };
+
           try {
-            const res = await fetchPost<string>("/api/sendMessageToFirebase", {
-              body: JSON.stringify(user.id),
-            });
+            const res = await fetchPost(
+              `https://fcm.googleapis.com/v1/{parent=projects/${env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}}/messages:send`,
+              {
+                body: JSON.stringify({ validate_only: true, message }),
+                externalFetch: true,
+              },
+            );
+
+            // const res = await fetchPost<string>("/api/sendMessageToFirebase", {
+            //   body: JSON.stringify(user.id),
+            // });
             console.log(res);
           } catch (error) {
             console.error(error);

@@ -36,9 +36,13 @@ export const fetcher = async <T>(endpoint: string, config?: RequestInit) => {
 
 export const fetchPost = async <T>(
   endpoint: string,
-  body?: { body: BodyInit | undefined | null; headers?: HeadersInit | undefined },
+  body?: {
+    body: BodyInit | undefined | null;
+    headers?: HeadersInit | undefined;
+    externalFetch?: boolean;
+  },
 ): Promise<T> => {
-  return (await fetch(`${devOrProd}${endpoint}`, {
+  return (await fetch(`${!body?.externalFetch ? devOrProd : ""}${endpoint}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -50,7 +54,7 @@ export const fetchPost = async <T>(
 export const devOrProd =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000"
-    : "https://hello-keyboard.vercel.app/";
+    : "http://localhost:3000";
 
 export const reloadSession = () => {
   const event = new Event("visibilitychange");

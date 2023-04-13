@@ -18,5 +18,7 @@ export async function getFirebaseToken() {
     });
 
     return { token, sw };
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 }

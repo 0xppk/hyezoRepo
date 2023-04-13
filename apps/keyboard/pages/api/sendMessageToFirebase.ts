@@ -2,6 +2,7 @@ import {
   applicationDefault,
   getApp,
   initializeApp,
+  type App,
   type AppOptions,
 } from "firebase-admin/app";
 import { MulticastMessage, getMessaging } from "firebase-admin/messaging";
@@ -14,6 +15,8 @@ import { prisma } from "~/server/db";
 export const config = {
   runtime: "edge",
 };
+
+const global = globalThis as unknown as { firebase: App };
 
 type Data = number;
 
@@ -47,7 +50,7 @@ export default async function handler(
     getApp();
   } catch (error) {
     if ((error as FirebaseError).code === "app/no-app")
-      initializeApp(firebaseConfig);
+      global.firebase = initializeApp(firebaseConfig);
   }
 
   try {
@@ -76,7 +79,7 @@ export default async function handler(
       tokens: endpoints,
     };
 
-    const sendMessage = await getMessaging().sendMulticast(message);
+    const sendMessage = await getMessaging(global.firebase).sendMulticast(message);
     console.log(sendMessage.successCount + " messages were sent successfully");
 
     return res.status(202).json(sendMessage.successCount);

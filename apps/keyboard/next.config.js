@@ -10,8 +10,8 @@ const config = {
   experimental: {
     appDir: true,
     outputFileTracingExcludes: [
-      "node_modules/@swc/core-linux-x64-gnu",
-      "node_modules/@swc/core-linux-x64-musl",
+      "node_modules/.pnpm/@swc+core-linux-x64-gnu",
+      "node_modules/.pnpm/@swc+core-linux-x64-musl",
     ],
   },
   transpilePackages: ["../../packages/utils/src/*"],

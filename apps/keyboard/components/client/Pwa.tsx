@@ -47,17 +47,17 @@ export default function Pwa() {
           };
 
           try {
-            const res = await fetchPost(
-              `https://fcm.googleapis.com/v1/{parent=projects/${env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}}/messages:send`,
-              {
-                body: JSON.stringify({ validate_only: true, message }),
-                externalFetch: true,
-              },
-            );
+            // const res = await fetchPost(
+            //   `https://fcm.googleapis.com/v1/{parent=projects/${env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}}/messages:send`,
+            //   {
+            //     body: JSON.stringify({ validate_only: true, message }),
+            //     externalFetch: true,
+            //   },
+            // );
 
-            // const res = await fetchPost<string>("/api/sendMessageToFirebase", {
-            //   body: JSON.stringify(user.id),
-            // });
+            const res = await fetchPost<string>("/api/sendMessageToFirebase", {
+              body: JSON.stringify(user.id),
+            });
             console.log(res);
           } catch (error) {
             console.error(error);

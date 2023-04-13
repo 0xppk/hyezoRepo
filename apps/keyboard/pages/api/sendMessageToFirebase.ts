@@ -1,10 +1,20 @@
-import { cert, getApp, initializeApp, type AppOptions } from "firebase-admin/app";
+import {
+  cert,
+  getApp,
+  initializeApp,
+  type AppOptions,
+  applicationDefault,
+} from "firebase-admin/app";
 import { MulticastMessage, getMessaging } from "firebase-admin/messaging";
 import { FirebaseError } from "firebase/app";
 import { NextApiRequest, NextApiResponse } from "next";
 import { env } from "~/env.mjs";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
+
+export const config = {
+  runtime: "edge",
+};
 
 type Data = number;
 
@@ -31,7 +41,8 @@ export default async function handler(
 
   const serviceAccount = require("firebase-account.json");
   const firebaseConfig: AppOptions = {
-    credential: cert(serviceAccount),
+    // credential: cert(serviceAccount),
+    credential: applicationDefault(),
     databaseURL: env.FIREBASE_ADMIN_DATABASE_URL,
   };
 

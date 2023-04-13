@@ -1,9 +1,8 @@
 import {
-  cert,
+  applicationDefault,
   getApp,
   initializeApp,
   type AppOptions,
-  applicationDefault,
 } from "firebase-admin/app";
 import { MulticastMessage, getMessaging } from "firebase-admin/messaging";
 import { FirebaseError } from "firebase/app";
@@ -39,9 +38,7 @@ export default async function handler(
 
   const authorId: string = req.body;
 
-  const serviceAccount = require("firebase-account.json");
   const firebaseConfig: AppOptions = {
-    // credential: cert(serviceAccount),
     credential: applicationDefault(),
     databaseURL: env.FIREBASE_ADMIN_DATABASE_URL,
   };

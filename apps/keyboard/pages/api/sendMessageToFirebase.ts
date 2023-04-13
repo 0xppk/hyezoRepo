@@ -9,7 +9,6 @@ import { MulticastMessage, getMessaging } from "firebase-admin/messaging";
 import { FirebaseError } from "firebase/app";
 import { NextApiRequest, NextApiResponse } from "next";
 import { env } from "~/env.mjs";
-import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
 
 export const config = {
@@ -30,12 +29,6 @@ export default async function handler(
 ) {
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method Not Allowed" });
-    return;
-  }
-
-  const session = await getServerAuthSession({ req, res });
-  if (!session?.user) {
-    res.status(401).json({ error: "You are not logined 🦠" });
     return;
   }
 

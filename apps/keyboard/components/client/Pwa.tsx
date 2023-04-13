@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import messaging from "firebase/messaging";
 import { env } from "~/env.mjs";
 import { useUserSession } from "~/hooks";
 import useServiceWorker from "~/hooks/useServiceWorker";

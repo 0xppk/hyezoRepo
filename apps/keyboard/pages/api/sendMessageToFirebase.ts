@@ -29,16 +29,17 @@ export default async function handler(
 
   const authorId: string = req.body;
 
-  // const serviceAccount = require("firebase-account.json");
-  // const firebaseConfig: AppOptions = {
-  //   credential: cert(serviceAccount),
-  //   databaseURL: env.FIREBASE_ADMIN_DATABASE_URL,
-  // };
+  const serviceAccount = require("firebase-account.json");
+  const firebaseConfig: AppOptions = {
+    credential: cert(serviceAccount),
+    databaseURL: env.FIREBASE_ADMIN_DATABASE_URL,
+  };
 
   try {
     getApp();
   } catch (error) {
-    if ((error as FirebaseError).code === "app/no-app") initializeApp();
+    if ((error as FirebaseError).code === "app/no-app")
+      initializeApp(firebaseConfig);
   }
 
   try {

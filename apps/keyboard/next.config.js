@@ -23,12 +23,6 @@ const nextConfig = withPWA({
       "k.kakaocdn.net",
     ],
   },
-  env: {
-    NEXT_PUBLIC_VERCEL_URL:
-      process.env.VERCEL_ENV === "development"
-        ? process.env.NEXT_PUBLIC_VERCEL_URL
-        : process.env.VERCEL_URL,
-  },
 });
 
 module.exports = nextConfig;

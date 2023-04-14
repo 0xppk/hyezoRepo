@@ -71,21 +71,15 @@ export default async function handler(
     const endpoints = subTokens.map(obj => obj.endpoint);
 
     const message: MulticastMessage = {
-      // data: {
-      //   title: "테스트 아님니당",
-      //   body: "테스트입니다",
-      //   icon: "/manifest/favicon-96x96.png",
-      // },
+      data: {
+        title: "테스트 아님니당",
+        body: "테스트입니다",
+        icon: "/manifest/favicon-96x96.png",
+      },
       tokens: endpoints,
       webpush: {
-        notification: {
-          title: "Test",
-          body: "Test!",
-          icon: "/manifest/favicon-96x96.png",
-          timestamp: Date.now(),
-        },
         fcmOptions: {
-          link: `${env.NEXT_PUBLIC_VERCEL_URL}`,
+          link: "/chat",
         },
       },
     };

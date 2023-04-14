@@ -21,6 +21,8 @@ const defaultConfig = {
 const handleClick = e => {
   e.notification.close();
 };
+// fixme 에러는 없는데 작동을 안함..
+self.addEventListener("notificationclick", handleClick);
 
 const app = firebase.initializeApp(self.firebaseConfig || defaultConfig);
 const messaging = firebase.messaging();
@@ -38,9 +40,6 @@ messaging.onBackgroundMessage(payload => {
 
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
-
-// fixme 에러는 없는데 작동을 안함..
-// self.addEventListener("notificationclick", handleClick);
 
 /** fcm 안쓸경우 */
 // self.addEventListener("push", event => {

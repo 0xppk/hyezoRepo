@@ -72,7 +72,7 @@ export default async function handler(
         title: "테스트 아님니당",
         body: "테스트입니다",
         icon: "/manifest/favicon-96x96.png",
-        link: "https://hello-keyboard.vercel.app",
+        link: "/chat",
       },
       tokens: endpoints,
     };

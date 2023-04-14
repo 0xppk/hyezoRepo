@@ -13,6 +13,11 @@ const firebaseConfig = {
   measurementId: "G-8NLF6DGE9L",
 };
 
+const handleClick = e => {
+  e.notification.close();
+  console.log(e.notification.close);
+  clients.openWindow(e.notification.data.link);
+};
 const app = firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
@@ -25,24 +30,13 @@ messaging.onBackgroundMessage(async payload => {
   const notificationOptions = {
     body: data.body,
     icon: data.icon,
-    link: data.link,
+    data: data.link,
   };
 
-  try {
-    const sendNotification = await self.registration.showNotification(
-      notificationTitle,
-      notificationOptions,
-    );
-
-    sendNotification.addEventListener("notificationclick", e => {
-      e.waitUntil(self.clients.openWindow(e.notification.link));
-      e.notification.close();
-    });
-  } catch (error) {
-    console.error(error);
-  }
+  self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
+self.addEventListener("notificationclick", handleClick);
 /** fcm 안쓸경우 */
 // self.addEventListener("push", event => {
 //   const message = event.data?.json();

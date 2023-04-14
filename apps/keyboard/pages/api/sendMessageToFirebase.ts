@@ -14,7 +14,10 @@ import { prisma } from "~/server/db";
 
 const global = globalThis as unknown as { firebase: App };
 
-type Data = number;
+type Data = {
+  successCount: number;
+  failureCount: number;
+};
 
 type Err = {
   error: string;
@@ -63,21 +66,23 @@ export default async function handler(
     if (!subTokens) return;
 
     const endpoints = subTokens.map(obj => obj.endpoint);
-    console.log(endpoints);
+
     const message: MulticastMessage = {
       data: {
         title: "테스트 아님니당",
         body: "테스트입니다",
-        icon: "/images/logo.png",
+        icon: "/manifest/favicon-96x96.png",
         link: "https://hello-keyboard.vercel.app",
       },
       tokens: endpoints,
     };
 
     const sendMessage = await getMessaging(global.firebase).sendMulticast(message);
-    console.log(sendMessage.successCount + " messages were sent successfully");
 
-    return res.status(202).json(sendMessage.successCount);
+    return res.status(202).json({
+      successCount: sendMessage.successCount,
+      failureCount: sendMessage.failureCount,
+    });
   } catch (error) {
     console.error("Error sending push notification:", error);
     return { error: (error as Error).message };

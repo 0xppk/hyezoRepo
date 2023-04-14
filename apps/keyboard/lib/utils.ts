@@ -54,6 +54,7 @@ export const devOrProd =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000"
     : "https://hello-keyboard.vercel.app";
+// : "http://localhost:3000";
 
 export const reloadSession = () => {
   const event = new Event("visibilitychange");

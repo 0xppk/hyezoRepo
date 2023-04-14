@@ -3,25 +3,29 @@ importScripts(
   "https://www.gstatic.com/firebasejs/9.14.0/firebase-messaging-compat.js",
 );
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBFGGLL1ayJzdlFmhA6yevCIlV4PQ8_pe4",
-  authDomain: "hello-keyboard.firebaseapp.com",
-  projectId: "hello-keyboard",
-  storageBucket: "hello-keyboard.appspot.com",
-  messagingSenderId: "122267586933",
-  appId: "1:122267586933:web:2be0ed3ea3ef44bda8433c",
-  measurementId: "G-8NLF6DGE9L",
+self.addEventListener("fetch", () => {
+  const urlParams = new URLSearchParams(location.search);
+  self.firebaseConfig = Object.fromEntries(urlParams);
+});
+
+const defaultConfig = {
+  apiKey: true,
+  authDomain: true,
+  projectId: true,
+  storageBucket: true,
+  messagingSenderId: true,
+  appId: true,
+  measurementId: true,
 };
 
 const handleClick = e => {
   e.notification.close();
-  console.log(e.notification.close);
-  clients.openWindow(e.notification.data.link);
 };
-const app = firebase.initializeApp(firebaseConfig);
+
+const app = firebase.initializeApp(self.firebaseConfig || defaultConfig);
 const messaging = firebase.messaging();
 
-messaging.onBackgroundMessage(async payload => {
+messaging.onBackgroundMessage(payload => {
   console.log("부재중 메시지", payload);
 
   const { data } = payload;
@@ -30,13 +34,14 @@ messaging.onBackgroundMessage(async payload => {
   const notificationOptions = {
     body: data.body,
     icon: data.icon,
-    data: data.link,
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
-self.addEventListener("notificationclick", handleClick);
+// fixme 에러는 없는데 작동을 안함..
+// self.addEventListener("notificationclick", handleClick);
+
 /** fcm 안쓸경우 */
 // self.addEventListener("push", event => {
 //   const message = event.data?.json();

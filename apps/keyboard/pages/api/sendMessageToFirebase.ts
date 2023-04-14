@@ -4,6 +4,7 @@ import {
   initializeApp,
   type App,
   type AppOptions,
+  type ServiceAccount,
 } from "firebase-admin/app";
 import { MulticastMessage, getMessaging } from "firebase-admin/messaging";
 import { FirebaseError } from "firebase/app";
@@ -40,7 +41,9 @@ export default async function handler(
 
   const authorId: string = req.body;
 
-  const serviceAccount = require("firebase-account.json");
+  const config = require("/worker/firebase-account.ts").config;
+  const serviceAccount = JSON.parse(JSON.stringify(config)) as ServiceAccount;
+
   const firebaseConfig: AppOptions = {
     credential: cert(serviceAccount),
     databaseURL: env.FIREBASE_ADMIN_DATABASE_URL,
@@ -68,13 +71,23 @@ export default async function handler(
     const endpoints = subTokens.map(obj => obj.endpoint);
 
     const message: MulticastMessage = {
-      data: {
-        title: "테스트 아님니당",
-        body: "테스트입니다",
-        icon: "/manifest/favicon-96x96.png",
-        link: "/chat",
-      },
+      // data: {
+      //   title: "테스트 아님니당",
+      //   body: "테스트입니다",
+      //   icon: "/manifest/favicon-96x96.png",
+      // },
       tokens: endpoints,
+      webpush: {
+        notification: {
+          title: "Test",
+          body: "Test!",
+          icon: "/manifest/favicon-96x96.png",
+          timestamp: Date.now(),
+        },
+        fcmOptions: {
+          link: `${env.NEXT_PUBLIC_VERCEL_URL}`,
+        },
+      },
     };
 
     const sendMessage = await getMessaging(global.firebase).sendMulticast(message);

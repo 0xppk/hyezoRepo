@@ -75,13 +75,9 @@ export default async function handler(
         title: "테스트 아님니당",
         body: "테스트입니다",
         icon: "/manifest/favicon-96x96.png",
+        link: "/chat",
       },
       tokens: endpoints,
-      webpush: {
-        fcmOptions: {
-          link: "/chat",
-        },
-      },
     };
 
     const sendMessage = await getMessaging(global.firebase).sendMulticast(message);

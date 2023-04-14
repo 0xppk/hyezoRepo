@@ -18,8 +18,10 @@ const defaultConfig = {
   measurementId: true,
 };
 
-const handleClick = e => {
-  e.notification.close();
+const handleClick = event => {
+  event.notification.close();
+  console.log(event.notification.data.link);
+  clients.openWindow(event.notification.data.link);
 };
 // fixme 에러는 없는데 작동을 안함..
 self.addEventListener("notificationclick", handleClick);
@@ -36,6 +38,8 @@ messaging.onBackgroundMessage(payload => {
   const notificationOptions = {
     body: data.body,
     icon: data.icon,
+    data: { link: data.link },
+    vibrate: [400, 100, 500],
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);

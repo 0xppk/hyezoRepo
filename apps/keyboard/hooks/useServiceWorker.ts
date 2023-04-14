@@ -17,7 +17,7 @@ export default function useServiceWorker() {
         setSw(token);
       } else {
         console.log("알림 수신 거부");
-      }
+      } 
     })();
   }, []);
 

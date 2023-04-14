@@ -39,10 +39,9 @@ export const fetchPost = async <T>(
   body?: {
     body: BodyInit | undefined | null;
     headers?: HeadersInit | undefined;
-    externalFetch?: boolean;
   },
 ): Promise<T> => {
-  return (await fetch(`${!body?.externalFetch ? devOrProd : ""}${endpoint}`, {
+  return (await fetch(`${devOrProd}${endpoint}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

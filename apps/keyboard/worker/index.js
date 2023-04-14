@@ -18,27 +18,26 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+if (!firebase.app.length) firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
-
-/** 
- * 클라이언트에 접속해 있는 사람은 
+/**
+ * 클라이언트에 접속해 있는 사람은
  * import { getMessaging, onMessage } from "firebase/messaging";
  * onMessage를 이용해 pwa 컴퍼넌트에서 처리.
  * sw 파일에서는 백그라운드 처리만.
  */
 
 messaging.onBackgroundMessage(payload => {
-  console.log("[sw.js] Received background message ", payload);
+  console.log("부재중 메시지", payload);
 
-  const { notification, data } = payload;
+  const { data } = payload;
 
-  const notificationTitle = notification.title;
+  const notificationTitle = data.title;
   const notificationOptions = {
-    body: notification.body,
+    body: data.body,
     icon: data.icon,
-    link: data.link,
+    timestamp: Date.now(),
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);

@@ -66,12 +66,10 @@ export default async function handler(
     console.log(endpoints);
     const message: MulticastMessage = {
       data: {
+        title: "테스트 아님니당",
+        body: "테스트입니다",
         icon: "/images/logo.png",
         link: "https://hello-keyboard.vercel.app",
-      },
-      notification: {
-        title: "테스트",
-        body: "테스트입니다",
       },
       tokens: endpoints,
     };

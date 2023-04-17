@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply h-full w-full overflow-x-hidden text-white antialiased;
+    @apply h-full w-full overflow-x-hidden text-white antialiased selection:bg-red-300 selection:text-gray-900;
   }
   pre {
     @apply text-md relative rounded-lg bg-slate-900 p-4;
@@ -401,7 +401,7 @@ pre:hover .title-word:is(.show):not(.punctuation) {
   left: 0;
   top: 0;
   pointer-events: none;
-  transition: opacity 0.5s ease;
+  transition: opacity 1s ease;
   mix-blend-mode: difference;
   opacity: 0;
   background: white;
@@ -409,16 +409,50 @@ pre:hover .title-word:is(.show):not(.punctuation) {
 
 .trailer-cursor {
   opacity: 0;
-  width: 1.46rem;
-  height: 1.46rem;
+  width: 2.6rem;
+  height: 2.6rem;
   border-radius: 50%;
   transition: opacity 0.4s ease;
+  position: absolute;
+}
+
+.trailer-circle {
+  opacity: 0;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  transition: opacity 1s ease;
+  position: absolute;
+  animation: MouseCircle 10s linear infinite;
 }
 
 .trailer:not([data-type=""]) > .trailer-cursor {
   opacity: 1;
 }
 
+.trailer[data-type="circle"] .trailer-circle {
+  opacity: 1;
+}
+
+.trailer[data-type="circle"] {
+  width: 2.2rem;
+  height: 2.2rem;
+  background: rgba(38, 12, 155, 0.904);
+}
+
 body:hover .trailer {
   opacity: 1;
+}
+
+.trailer-circle > span {
+  font-size: 3px;
+}
+
+@keyframes MouseCircle {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
 }

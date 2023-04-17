@@ -1,25 +1,31 @@
-import { useEffect, useState } from "react";
-import { getFirebaseToken } from "~/server/firebase";
+import { useEffect } from "react";
+import { useUserSession } from "~/hooks";
+import { fetchPost } from "~/lib/utils";
+import { getFirebaseToken } from "~/worker/firebase";
 
-type ServiceWorkerType = {
-  token: string;
-  sw: ServiceWorkerRegistration;
-};
-
-export default function useServiceWorker() {
-  const [data, setSw] = useState<ServiceWorkerType>();
+export default function useServiceWorker(pushAgree: boolean) {
+  const user = useUserSession();
 
   useEffect(() => {
     (async () => {
-      const permission = await Notification.requestPermission();
-      if (permission === "granted") {
-        const token = await getFirebaseToken();
-        setSw(token);
-      } else {
-        console.log("알림 수신 거부");
-      } 
-    })();
-  }, []);
+      const token = await getFirebaseToken();
 
-  return { data };
+      if (pushAgree) {
+        const permission = await Notification.requestPermission();
+        if (permission === "granted")
+          try {
+            await fetchPost("/api/createSubscription", {
+              body: JSON.stringify(token),
+            });
+          } catch (error) {
+            console.error(error);
+          }
+      } else {
+        await fetchPost("/api/deleteSubscription", {
+          body: JSON.stringify(token),
+        });
+        console.log("알림 수신 거부");
+      }
+    })();
+  }, [pushAgree, user]);
 }

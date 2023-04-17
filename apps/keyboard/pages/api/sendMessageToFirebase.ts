@@ -16,12 +16,19 @@ import { prisma } from "~/server/db";
 const global = globalThis as unknown as { firebase: App };
 
 type Data = {
-  successCount: number;
-  failureCount: number;
+  successCount?: number;
+  failureCount?: number;
 };
 
 type Err = {
   error: string;
+};
+
+type SenderInfo = {
+  receiverId: string;
+  senderName: string;
+  senderImage: string;
+  content: string;
 };
 
 export default async function handler(
@@ -39,7 +46,7 @@ export default async function handler(
     return;
   }
 
-  const authorId: string = req.body;
+  const { senderName, senderImage, content, receiverId }: SenderInfo = req.body;
 
   const config = require("/worker/firebase-account.ts").config;
   const serviceAccount = JSON.parse(JSON.stringify(config)) as ServiceAccount;
@@ -59,35 +66,39 @@ export default async function handler(
   try {
     const subTokens = await prisma.subscription.findMany({
       where: {
-        userId: authorId,
+        userId: receiverId,
       },
       select: {
         endpoint: true,
       },
     });
 
-    if (!subTokens) return;
+    if (!subTokens[0])
+      return res.status(202).json({
+        successCount: 0,
+      });
+    else {
+      const endpoints = subTokens.map(obj => obj.endpoint);
 
-    const endpoints = subTokens.map(obj => obj.endpoint);
+      const message: MulticastMessage = {
+        data: {
+          title: `${senderName}님이 메시지를 보냈습니다`,
+          body: content,
+          icon: "/manifest/favicon-96x96.png",
+          link: "/chat",
+        },
+        tokens: endpoints,
+      };
 
-    const message: MulticastMessage = {
-      data: {
-        title: "테스트 아님니당",
-        body: "테스트입니다",
-        icon: "/manifest/favicon-96x96.png",
-        link: "/chat",
-      },
-      tokens: endpoints,
-    };
+      const sendMessage = await getMessaging(global.firebase).sendMulticast(message);
 
-    const sendMessage = await getMessaging(global.firebase).sendMulticast(message);
-
-    return res.status(202).json({
-      successCount: sendMessage.successCount,
-      failureCount: sendMessage.failureCount,
-    });
+      return res.status(202).json({
+        successCount: sendMessage.successCount,
+        failureCount: sendMessage.failureCount,
+      });
+    }
   } catch (error) {
     console.error("Error sending push notification:", error);
-    return { error: (error as Error).message };
+    return res.status(500).json({ error: (error as Error).message });
   }
 }

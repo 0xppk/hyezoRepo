@@ -2,7 +2,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
 
-type Data = AuthorsPost;
+type Data = ChatParticipant;
+
 type Err = {
   error: string;
 };
@@ -11,38 +12,47 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data | Err>,
 ) {
-  if (req.method !== "GET") {
+  if (req.method !== "POST") {
     res.status(405).json({ error: "Method Not Allowed" });
     return;
   }
 
   const session = await getServerAuthSession({ req, res });
-  if (!session?.user?.nickname) {
+  if (!session?.user) {
     res.status(401).json({ error: "You are not logined 🦠" });
     return;
   }
 
-  const { authorId } = req.query;
-  if (typeof authorId !== "string") throw new Error("Invalid Query String");
+  const { nowSeeing, chatRoomId } = req.body;
 
   try {
-    const authorsPost = await prisma.user.findUnique({
+    const findParticipant = await prisma.chatParticipant.findFirstOrThrow({
       where: {
-        id: authorId,
+        chatRoomId,
+        userId: session.user.id,
       },
-      include: {
-        posts: {
-          orderBy: {
-            createdAt: "desc",
-          },
-        },
+      select: {
+        id: true,
       },
     });
 
-    // fixme 탈퇴하거나 찾을 수 없을 경우??
-    if (!authorsPost) return;
-    // @ts-ignore
-    else return res.status(202).json(authorsPost);
+    const { id: myParticipantId } = findParticipant;
+
+    const updateNowSeeing = await prisma.chatParticipant.update({
+      where: {
+        id: myParticipantId,
+      },
+
+      data: {
+        nowSeeing,
+      },
+
+      include: {
+        user: true,
+      },
+    });
+
+    return res.status(202).json(updateNowSeeing);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });
   }

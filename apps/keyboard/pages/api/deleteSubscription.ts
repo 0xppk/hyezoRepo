@@ -2,7 +2,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
 
-type Data = AuthorsPost;
+type Data = { message: "success" | "skipped" };
+
 type Err = {
   error: string;
 };
@@ -11,38 +12,37 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data | Err>,
 ) {
-  if (req.method !== "GET") {
+  if (req.method !== "POST") {
     res.status(405).json({ error: "Method Not Allowed" });
     return;
   }
 
   const session = await getServerAuthSession({ req, res });
   if (!session?.user?.nickname) {
-    res.status(401).json({ error: "You are not logined 🦠" });
+    res.status(401).json({ error: "Unauthorized to create post 🦠" });
     return;
   }
 
-  const { authorId } = req.query;
-  if (typeof authorId !== "string") throw new Error("Invalid Query String");
+  const token: string = req.body;
 
   try {
-    const authorsPost = await prisma.user.findUnique({
+    const checkExistSubscription = await prisma.subscription.findFirst({
       where: {
-        id: authorId,
-      },
-      include: {
-        posts: {
-          orderBy: {
-            createdAt: "desc",
-          },
-        },
+        endpoint: token,
       },
     });
 
-    // fixme 탈퇴하거나 찾을 수 없을 경우??
-    if (!authorsPost) return;
-    // @ts-ignore
-    else return res.status(202).json(authorsPost);
+    if (!checkExistSubscription) res.status(202).json({ message: "skipped" });
+    else {
+      await prisma.subscription.delete({
+        where: {
+          endpoint: token,
+        },
+      });
+
+      // @ts-ignore
+      return res.status(202).json({ message: "success" });
+    }
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });
   }

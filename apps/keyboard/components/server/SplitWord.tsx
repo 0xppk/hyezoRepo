@@ -52,4 +52,18 @@ SplitWord.Price = (text: string, index: number) => {
     </span>
   );
 };
+
+SplitWord.MouseCircle = (text: string, index: number) => {
+  const delay = index * 12;
+
+  return (
+    <span
+      key={text + `${index}`}
+      className="relative inline-block "
+      style={{ transform: `rotate(${delay}deg) translateY(-1.35rem)` }}
+    >
+      {text}
+    </span>
+  );
+};
 export default function SplitWord() {}

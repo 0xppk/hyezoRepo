@@ -1,6 +1,11 @@
 import Image from "next/image";
 import { useRef } from "react";
-import { useFocusToLatestMessage, useLoadMessages, useUserSession } from "~/hooks";
+import {
+  useFocusToLatestMessage,
+  useLoadMessages,
+  useUpdateNowSeeing,
+  useUserSession,
+} from "~/hooks";
 
 type ChatRoomProps = {
   chatRoomId: string;
@@ -12,6 +17,7 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
   const messageBoxRef = useRef<HTMLDivElement>(null);
 
   useFocusToLatestMessage(messageBoxRef, [messages]);
+  useUpdateNowSeeing(chatRoomId);
 
   return (
     <div
@@ -41,10 +47,10 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
                 className={`flex max-w-lg items-center rounded-2xl p-2 py-1 ${
                   messageByMe
                     ? "bg-twitter-500 flex-row-reverse"
-                    : "flex-row bg-white text-black"
+                    : "bg-smoke-500 flex-row text-black"
                 }`}
               >
-                {!messageByMe && (
+                {/* {!messageByMe && (
                   <Image
                     className="mx-2 rounded-full"
                     width={40}
@@ -53,7 +59,7 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
                     alt={m.username}
                   />
                 )}
-                {!messageByMe && <p className="min-w-[2rem]">{m.username}</p>}
+                {!messageByMe && <p className="min-w-[2rem]">{m.username}</p>} */}
                 <p className="p-2">{m.message}</p>
               </div>
               <p className="text-[12px] text-gray-400">

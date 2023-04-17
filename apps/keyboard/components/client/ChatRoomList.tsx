@@ -46,7 +46,7 @@ export default function ChatRoomList() {
   const { chatRooms, reloadChatRooms } = useLoadChatRooms();
   const { createQueryString } = useQueryString();
 
-  if (!chatRooms || !user?.nickname) return null;
+  if (!chatRooms || !user?.nickname) return <></>;
 
   const chatRoomList = ChatRoomSchema(user.id).parse(chatRooms);
 

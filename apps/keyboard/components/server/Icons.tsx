@@ -1,4 +1,6 @@
-import { AiFillHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { BsStar } from "react-icons/bs";
+import { RiNotificationLine, RiNotificationOffLine } from "react-icons/ri";
 import { MdOutlineKeyboardAlt } from "react-icons/md";
 import { FaDiscord } from "react-icons/fa";
 import { GoArchive } from "react-icons/go";
@@ -23,7 +25,10 @@ const Icons = {
   github: FiGithub,
   discord: FaDiscord,
   kakao: RiKakaoTalkFill,
-  like: AiFillHeart,
+  like: AiOutlineHeart,
+  watch: BsStar,
+  notificationOn: RiNotificationLine,
+  notificationOff: RiNotificationOffLine,
   user: FiUsers,
   setting: RiUserSettingsLine,
   send: FiSend,

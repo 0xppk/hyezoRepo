@@ -20,9 +20,9 @@ export default function ChatSearchModal({
   const router = useRouter();
 
   const onSubmit: zodSubmitHandler = async ({ allUsersCombo: targetUser }) => {
-    const newChatRoomId = (await fetchPost("/api/createChatRoom", {
+    const newChatRoomId = await fetchPost<string>("/api/createChatRoom", {
       body: JSON.stringify(targetUser?.id),
-    })) as string;
+    });
     router.push(
       `/chat/${newChatRoomId}?${createQueryString("authorId", targetUser?.id)}`,
     );

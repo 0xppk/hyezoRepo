@@ -1,5 +1,5 @@
 import { type Metadata } from "next";
-import { Pwa, NavBar } from "~/components/client";
+import { NavBar } from "~/components/client";
 import Providers from "~/lib/contexts";
 import "~/styles/tailwind.css";
 
@@ -15,12 +15,15 @@ export default function RootLayout({ children }: LayoutProps) {
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#041044" />
       </head>
-      <body className="bg-mix">
-        <section className="flex sm:flex-col">
+      <body
+        className={`bg-mix ${
+          process.env.NODE_ENV === "development" ? "debug-screens" : ""
+        }`}
+      >
+        <section className="flex flex-col">
           <Providers>
-            <Pwa />
-            <NavBar className="flex h-screen min-w-max flex-col items-center gap-8 border-r-2 border-gray-900 p-1 py-3 sm:h-[10vh] sm:min-w-full sm:flex-row sm:justify-start sm:gap-0 sm:border-b sm:border-r-0 sm:p-0" />
-            <main className="grid w-full sm:grid-cols-3">{children}</main>
+            <NavBar className="flex h-[10vh] min-w-full flex-row items-center border-b border-gray-900" />
+            <main className="grid w-full lg:grid-cols-3">{children}</main>
           </Providers>
         </section>
       </body>

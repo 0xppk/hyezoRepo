@@ -1,22 +1,18 @@
-import { cn } from "@hyezo/utils";
+import { initializeApp } from "firebase/app";
 import { ComponentProps } from "react";
-import { UserInfo, SignOutBtn } from "~/components/client";
-import { Icons, Logo } from "~/components/server";
-import { useUserSession } from "~/hooks";
+import { UserInfo } from "~/components/client";
+import { Logo, NavLink } from "~/components/server";
 import LogoImage from "~/public/images/logo.png";
-import NavLink from "../server/NavLink";
+import { firebaseConfig } from "~/worker/firebase-config";
 
 type NavBarProps = ComponentProps<"nav">;
 
 export default function NavBar({ className, ...props }: NavBarProps) {
-  const user = useUserSession();
+  initializeApp(firebaseConfig);
 
   return (
-    <nav
-      className={cn(`${className} ${user?.nickname ? "opacity-100" : "opacity-0"}`)}
-      {...props}
-    >
-      <div className="sm:flex sm:basis-1/3 sm:pl-7">
+    <nav className={className} {...props}>
+      <div className="flex basis-1/3 pl-3 sm:pl-7">
         <Logo
           src={LogoImage}
           alt="로고"
@@ -25,35 +21,33 @@ export default function NavBar({ className, ...props }: NavBarProps) {
           data-type="link"
         />
       </div>
-      <div className="contents sm:hidden">
-        <NavLink href="/">
-          <Icons.home />
-        </NavLink>
-        <NavLink href="/deal/buy">
-          <Icons.buy />
-        </NavLink>
-        <NavLink href="/deal/sell">
-          <Icons.sell />
-        </NavLink>
-        <NavLink href="/chat">
-          <Icons.chat />
-        </NavLink>
-        <SignOutBtn>
-          <Icons.logout />
-        </SignOutBtn>
-      </div>
-      <div className="hidden sm:flex sm:h-full sm:basis-1/3 sm:items-center sm:justify-around sm:border-x sm:border-x-gray-900 sm:px-5 md:px-16">
-        <NavLink variant="xs/normal" href="/deal/buy">
+      <div className="flex h-full basis-1/3 items-center justify-around border-x border-x-gray-900 px-3 sm:px-5 md:px-10">
+        <NavLink
+          variant="xs/normal"
+          className="interactable"
+          data-type="link"
+          href="/deal/buy"
+        >
           Buy
         </NavLink>
-        <NavLink variant="xs/normal" href="/deal/sell">
+        <NavLink
+          variant="xs/normal"
+          className="interactable"
+          data-type="link"
+          href="/deal/sell"
+        >
           Sell
         </NavLink>
-        <NavLink variant="xs/normal" href="/chat">
+        <NavLink
+          variant="xs/normal"
+          className="interactable"
+          data-type="link"
+          href="/chat"
+        >
           Chat
         </NavLink>
       </div>
-      <div className="contents sm:flex sm:grow sm:justify-around">
+      <div className="flex grow justify-around">
         <UserInfo />
       </div>
     </nav>

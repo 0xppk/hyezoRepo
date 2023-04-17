@@ -53,9 +53,9 @@ export default function GridCard({ data }: GridCardProps) {
         });
         return;
       }
-      const newChatRoomId = (await fetchPost("/api/createChatRoom", {
+      const newChatRoomId = await fetchPost<string>("/api/createChatRoom", {
         body: JSON.stringify(authorId),
-      })) as string;
+      });
       reloadChatRooms();
       router.push(
         `/chat/${newChatRoomId}?${createQueryString("authorId", authorId)}`,

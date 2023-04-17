@@ -1,7 +1,7 @@
 import { Form, Input, SubmitButton, zodSubmitHandler } from "@hyezo/ui";
 import { v4 } from "uuid";
 import { z } from "zod";
-import { useLoadMessages, useUserSession } from "~/hooks";
+import { useCheckNowSeeing, useLoadMessages, useUserSession } from "~/hooks";
 import { fetchPost } from "~/lib/utils";
 
 const Message = z.object({
@@ -22,7 +22,11 @@ type ChatInputProps = {
 export default function ChatInput({ chatRoomId }: ChatInputProps) {
   const user = useUserSession();
   const { messages, reloadMessages } = useLoadMessages(chatRoomId);
-  if (!messages) return null;
+  const {
+    nowSeeing: areYouSeeing,
+    reloadNowSeeing,
+    authorId,
+  } = useCheckNowSeeing(chatRoomId);
 
   const onSubmit: zodSubmitHandler = async ({ text: messageToSend }) => {
     if (!messageToSend || !user) return;
@@ -52,6 +56,23 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
       optimisticData: [...messages, message],
       rollbackOnError: true,
     });
+
+    await reloadNowSeeing();
+
+    if (!areYouSeeing)
+      try {
+        const sendNotification = await fetchPost("/api/sendMessageToFirebase", {
+          body: JSON.stringify({
+            receiverId: authorId,
+            senderName: nickname,
+            senderImage: image,
+            content: messageToSend,
+          }),
+        });
+        console.log(sendNotification);
+      } catch (error) {
+        console.error(error);
+      }
   };
 
   return (
@@ -62,7 +83,7 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
         className="rounded-full text-sm"
         fullWidth
       />
-      <SubmitButton className="absolute right-0 top-0 h-full items-center rounded-full px-6">
+      <SubmitButton className="absolute right-0 top-0 h-full items-center rounded-full rounded-l-none px-6">
         전송
       </SubmitButton>
     </Form>

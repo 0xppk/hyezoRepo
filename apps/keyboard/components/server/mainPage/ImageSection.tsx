@@ -13,7 +13,7 @@ type FirstSectionProps = {
 
 export default function FirstSection({ page }: FirstSectionProps) {
   return (
-    <div className="relative col-span-2 h-[60vh]">
+    <div className="relative col-span-2 h-60 border-r border-transparent sm:h-96 lg:h-[60vh]">
       {images.map((e, i) => (
         <Image
           src={e}

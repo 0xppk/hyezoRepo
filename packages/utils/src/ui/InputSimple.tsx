@@ -1,41 +1,42 @@
 "use client";
 
 import { useRef } from "react";
-import { z } from "zod";
 import { useInput } from "../hooks";
 import { Button } from "./index";
+import { cn } from "../utils";
 
-const InputPropsSchema = z.object({
-  submitAction: z.function().args(z.string()).returns(z.void()).optional(),
-  debounceTime: z.number().optional(),
-  placeholder: z.string({ coerce: true }).optional(),
-});
+type Props = {
+  submitAction: (value: string) => any;
+  debounceTime?: number;
+  placeholder?: string;
+  className?: string;
+};
 
-type Props = z.infer<typeof InputPropsSchema>;
-
-/**
- * A input component that is used to input text. It operates without any `form` tag.
- */
 export default function InputSimple({
   submitAction,
   debounceTime = 300,
   placeholder = "",
+  className,
 }: Props) {
   const [value, onChange, onSubmit] = useInput(submitAction, debounceTime);
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className="flex">
+    <div className="relative flex max-w-max">
       <input
         type="text"
         spellCheck="false"
         ref={inputRef}
-        className="mr-2 h-10 resize-none rounded-lg border-[1px] border-black/10 px-3 py-2 leading-5 caret-rose-500"
+        className={cn(
+          `h-10 resize-none rounded-full border border-black py-2 pl-3 pr-12 leading-5 text-black caret-blue-800 focus:outline-none ${className}`,
+        )}
         placeholder={placeholder}
         onChange={onChange}
       />
 
       <Button
+        color="black"
+        className="absolute right-0 top-0 h-full items-center rounded-full rounded-l-none px-4"
         onClick={() => {
           if (inputRef.current?.value) {
             onSubmit();
@@ -44,7 +45,7 @@ export default function InputSimple({
         }}
         disabled={value === ""}
       >
-        Btn
+        ?
       </Button>
     </div>
   );

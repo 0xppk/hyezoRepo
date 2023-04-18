@@ -126,7 +126,12 @@ MainPageModal.PostMode = ({ onSubmit, brands, itemType }: ModalPostModeProps) =>
           <div className="blue-dot" />
           <span>브랜드</span>
         </div>
-        <ComboBox name="objDataCombo" list={brands} color="darkNavy" />
+        <ComboBox
+          name="objDataCombo"
+          labelKey="name"
+          list={brands}
+          color="darkNavy"
+        />
         <div className="mt-2 flex gap-5">
           <div className="flex flex-col gap-1">
             <div className="flex items-center text-white">

@@ -12,7 +12,7 @@ export { default as MouseTrailer } from "./MouseTrailer";
 export { default as ChatRecentInfo } from "./ChatRecentInfo";
 export { default as SearchItems } from "./SearchItems";
 export { default as ChatRoomList } from "./ChatRoomList";
-export { default as NavBar } from "./NavBar";
+export { default as NavBar } from "../server/NavBar";
 export { default as NotificationToggle } from "./NotificationToggle";
 export { default as UserInfo } from "./UserInfo";
 export { default as ChatSearchUsersInput } from "./ChatSearchUsersInput";

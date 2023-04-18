@@ -22,28 +22,13 @@ export default function NavBar({ className, ...props }: NavBarProps) {
         />
       </div>
       <div className="flex h-full basis-1/3 items-center justify-around border-x border-x-gray-900 px-3 sm:px-5 md:px-10">
-        <NavLink
-          variant="xs/normal"
-          className="interactable"
-          data-type="link"
-          href="/deal/buy"
-        >
+        <NavLink variant="xs/normal" className="interactable" href="/deal/buy">
           Buy
         </NavLink>
-        <NavLink
-          variant="xs/normal"
-          className="interactable"
-          data-type="link"
-          href="/deal/sell"
-        >
+        <NavLink variant="xs/normal" className="interactable" href="/deal/sell">
           Sell
         </NavLink>
-        <NavLink
-          variant="xs/normal"
-          className="interactable"
-          data-type="link"
-          href="/chat"
-        >
+        <NavLink variant="xs/normal" className="interactable" href="/chat">
           Chat
         </NavLink>
       </div>

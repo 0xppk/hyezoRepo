@@ -2,14 +2,12 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
 
-type Data = AuthorsPost;
-type Err = {
-  error: string;
-};
+type TData = AuthorsPost;
+type TError = { error: string };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data | Err>,
+  res: NextApiResponse<TData | TError>,
 ) {
   if (req.method !== "GET") {
     res.status(405).json({ error: "Method Not Allowed" });
@@ -23,10 +21,10 @@ export default async function handler(
   }
 
   const { authorId } = req.query;
-  if (typeof authorId !== "string") throw new Error("Invalid Query String");
+  if (typeof authorId !== "string") throw new Error("Invalid query string");
 
   try {
-    const authorsPost = await prisma.user.findUnique({
+    const authorsPost = await prisma.user.findUniqueOrThrow({
       where: {
         id: authorId,
       },
@@ -39,10 +37,8 @@ export default async function handler(
       },
     });
 
-    // fixme 탈퇴하거나 찾을 수 없을 경우??
-    if (!authorsPost) return;
     // @ts-ignore
-    else return res.status(202).json(authorsPost);
+    return res.status(202).json(authorsPost);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });
   }

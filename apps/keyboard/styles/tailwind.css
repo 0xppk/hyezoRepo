@@ -419,29 +419,22 @@ pre:hover .title-word:is(.show):not(.punctuation) {
   top: 0;
   pointer-events: none;
   transition: all 0.4s ease;
-  mix-blend-mode: difference;
+  mix-blend-mode: color-dodge;
   opacity: 0;
-  background: rgba(38, 12, 155, 0.904);
+  background: rgba(87, 63, 196, 0.904);
 }
 
 .trailer-circle {
   opacity: 0;
-  width: 2.6rem;
-  height: 2.6rem;
-  border-radius: 50%;
+  z-index: 10;
   transition: all 1s ease;
-  position: absolute;
   animation: MouseCircle 10s linear infinite;
 }
 
 body:hover .trailer,
 body:hover .trailer-hover:not([data-type=""]),
-.trailer-hover[data-type="circle"] > .trailer-circle {
+.trailer-hover[data-type="circle"] .trailer-circle {
   opacity: 1;
-}
-
-.trailer-hover[data-type="undefined"] {
-  background: rgb(255, 255, 255);
 }
 
 .trailer-circle > span {

@@ -17,8 +17,8 @@ export default function FourthSection({ setPage }: FourthSectionProps) {
         <Image
           src={arrow}
           alt="arrowing"
-          width={50}
-          height={50}
+          width={35}
+          height={35}
           className="-rotate-90 cursor-pointer duration-500 hover:scale-125 active:-translate-x-10 active:scale-150"
           onClick={() =>
             setPage(prev => {
@@ -31,8 +31,8 @@ export default function FourthSection({ setPage }: FourthSectionProps) {
         <Image
           src={arrow}
           alt="arrowing"
-          width={50}
-          height={50}
+          width={35}
+          height={35}
           className="rotate-90 cursor-pointer duration-500 hover:scale-125 active:translate-x-10 active:scale-150"
           priority
           onClick={() =>

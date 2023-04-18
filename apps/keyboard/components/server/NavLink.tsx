@@ -15,7 +15,11 @@ export default function NavLink({
 }: NavLinkProps) {
   return (
     <Link {...props}>
-      <Text variant={variant} className={`flex items-center gap-3 ${className}`}>
+      <Text
+        variant={variant}
+        data-type="link"
+        className={`flex items-center gap-3 ${className}`}
+      >
         {children}
       </Text>
     </Link>

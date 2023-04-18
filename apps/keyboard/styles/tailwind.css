@@ -391,8 +391,8 @@ pre:hover .title-word:is(.show):not(.punctuation) {
 }
 
 .trailer {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1rem;
+  width: 1rem;
   border-radius: 50%;
   z-index: 10;
   position: fixed;
@@ -401,19 +401,27 @@ pre:hover .title-word:is(.show):not(.punctuation) {
   left: 0;
   top: 0;
   pointer-events: none;
-  transition: opacity 1s ease;
+  transition: opacity 0.4s ease;
   mix-blend-mode: difference;
   opacity: 0;
   background: white;
 }
 
-.trailer-cursor {
-  opacity: 0;
-  width: 2.6rem;
-  height: 2.6rem;
+.trailer-hover {
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
-  transition: opacity 0.4s ease;
-  position: absolute;
+  z-index: 10;
+  position: fixed;
+  display: grid;
+  place-items: center;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  mix-blend-mode: difference;
+  opacity: 0;
+  background: rgba(38, 12, 155, 0.904);
 }
 
 .trailer-circle {
@@ -421,31 +429,23 @@ pre:hover .title-word:is(.show):not(.punctuation) {
   width: 2.6rem;
   height: 2.6rem;
   border-radius: 50%;
-  transition: opacity 1s ease;
+  transition: all 1s ease;
   position: absolute;
   animation: MouseCircle 10s linear infinite;
 }
 
-.trailer:not([data-type=""]) > .trailer-cursor {
+body:hover .trailer,
+body:hover .trailer-hover:not([data-type=""]),
+.trailer-hover[data-type="circle"] > .trailer-circle {
   opacity: 1;
 }
 
-.trailer[data-type="circle"] .trailer-circle {
-  opacity: 1;
-}
-
-.trailer[data-type="circle"] {
-  width: 2.2rem;
-  height: 2.2rem;
-  background: rgba(38, 12, 155, 0.904);
-}
-
-body:hover .trailer {
-  opacity: 1;
+.trailer-hover[data-type="undefined"] {
+  background: rgb(255, 255, 255);
 }
 
 .trailer-circle > span {
-  font-size: 3px;
+  font-size: 10px;
 }
 
 @keyframes MouseCircle {

@@ -60,7 +60,7 @@ SplitWord.MouseCircle = (text: string, index: number) => {
     <span
       key={text + `${index}`}
       className="relative inline-block "
-      style={{ transform: `rotate(${delay}deg) translateY(-1.35rem)` }}
+      style={{ transform: `rotate(${delay}deg) translateY(3rem)` }}
     >
       {text}
     </span>

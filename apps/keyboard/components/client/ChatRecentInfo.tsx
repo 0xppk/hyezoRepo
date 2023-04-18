@@ -7,7 +7,7 @@ export default function ChatRecentInfo() {
   const { authorPost } = useLoadAuthorPostsInfo(authorId);
 
   return (
-    <div className="flex h-full gap-20 px-24 py-10">
+    <div className="flex h-full flex-col items-center gap-10 p-10 lg:flex-row lg:items-stretch lg:gap-20 lg:px-24 lg:py-10">
       <div className="grid place-items-end gap-5">
         <Image
           src={authorPost?.image || "/images/pingu.webp"}
@@ -16,7 +16,7 @@ export default function ChatRecentInfo() {
           height={200}
           className="rounded-full"
         />
-        <Text variant="lg/semibold" className="place-self-center self-start">
+        <Text variant="md/normal" className="place-self-center self-start">
           {authorPost?.nickname}
         </Text>
       </div>

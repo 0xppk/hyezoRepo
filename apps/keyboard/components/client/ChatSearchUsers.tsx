@@ -1,16 +1,15 @@
-import { Button } from "@hyezo/ui";
-import { useState } from "react";
-import { ChatSearchModal, ChatRoomList } from "~/components/client";
+import { Dispatch, SetStateAction } from "react";
+import { ChatRoomList, ChatSearchUsersInput } from "~/components/client";
 
-export default function ChatSearchUsers() {
-  const [isOpen, setIsOpen] = useState(false);
+type TChatSearchUsersProps = {
+  setTab: Dispatch<SetStateAction<string>>;
+};
+
+export default function ChatSearchUsers({ setTab }: TChatSearchUsersProps) {
   return (
     <>
-      <Button onClick={() => setIsOpen(true)} fullWidth>
-        Find User
-      </Button>
-      <ChatRoomList />
-      <ChatSearchModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <ChatSearchUsersInput />
+      <ChatRoomList setTab={setTab} />
     </>
   );
 }

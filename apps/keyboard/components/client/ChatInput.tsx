@@ -3,6 +3,7 @@ import { v4 } from "uuid";
 import { z } from "zod";
 import { useCheckNowSeeing, useLoadMessages, useUserSession } from "~/hooks";
 import { fetchPost } from "~/lib/utils";
+import { Icons } from "../server";
 
 const Message = z.object({
   id: z.string().uuid(),
@@ -83,8 +84,8 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
         className="rounded-full text-sm"
         fullWidth
       />
-      <SubmitButton className="absolute right-0 top-0 h-full items-center rounded-full rounded-l-none px-6">
-        전송
+      <SubmitButton className="absolute right-0 top-0 grid h-full place-items-center rounded-full rounded-l-none px-4">
+        <Icons.send className="h-5 w-5" />
       </SubmitButton>
     </Form>
   );

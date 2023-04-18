@@ -299,7 +299,7 @@ pre:hover .title-word:is(.show):not(.punctuation) {
 .gridcards {
   display: grid;
   gap: clamp(1.5rem, 5vw - 2rem, 3rem);
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 }
 
 .gridcard {

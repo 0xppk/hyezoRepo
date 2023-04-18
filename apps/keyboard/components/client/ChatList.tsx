@@ -33,9 +33,9 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
         return (
           <div key={m.id}>
             {showDate && (
-              <div className="grid w-full place-items-center pb-3 pt-7">
-                <p className="text-center">{dateIndicator.format(currentDate)}</p>
-              </div>
+              <time className="grid w-full place-items-center pb-3 pt-7">
+                {dateIndicator.format(currentDate)}
+              </time>
             )}
             <div
               className={`flex items-center gap-3 ${
@@ -62,9 +62,9 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
                 {!messageByMe && <p className="min-w-[2rem]">{m.username}</p>} */}
                 <p className="p-2">{m.message}</p>
               </div>
-              <p className="text-[12px] text-gray-400">
+              <time className="text-[12px] text-gray-400">
                 {timeIndicator.format(new Date(m.created_at))}
-              </p>
+              </time>
             </div>
           </div>
         );

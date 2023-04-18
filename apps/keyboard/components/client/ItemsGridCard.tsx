@@ -106,7 +106,7 @@ export default function GridCard({ data }: GridCardProps) {
                 {createTitle(SplitWord.Title, card.title)}
               </p>
             </div>
-            <div className="flex flex-col items-center pb-2 pr-3">
+            <div className="flex flex-col items-center pb-2 pr-1 lg:pr-3">
               <p className="text-2xl font-bold">
                 {createTitle(SplitWord.Price, String(card.price))}
               </p>

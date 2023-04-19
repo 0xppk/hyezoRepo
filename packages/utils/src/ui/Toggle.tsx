@@ -16,34 +16,15 @@ export default function Toggle({
   passive,
   children,
 }: ToggleProps) {
-  const toggleRef = useRef<HTMLButtonElement>(null);
-  useEventListener(
-    "pointerdown",
-    e => {
-      if (!toggleRef.current) return;
-      toggleRef.current.dataset.hyezo = "clicked";
-    },
-    toggleRef,
-  );
-  useEventListener(
-    "pointerup",
-    e => {
-      if (!toggleRef.current) return;
-      toggleRef.current.dataset.hyezo = "";
-    },
-    toggleRef,
-  );
-
   return (
     <Switch.Group>
       <Switch.Label passive={passive}>{children}</Switch.Label>
       <Switch
-        ref={toggleRef}
         checked={enabled}
         onChange={setEnabled}
-        className="ui-checked:bg-blue-600 relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200"
+        className="ui-checked:bg-twitter-500 relative inline-flex h-8 w-14 items-center rounded-full bg-gray-300"
       >
-        <span className="ui-checked:translate-x-6 ui-not-checked:translate-x-1 inline-block h-4 w-4 transform rounded-full bg-white transition" />
+        <span className="ui-checked:translate-x-7 ui-not-checked:translate-x-1 inline-block h-6 w-6 rounded-full bg-white duration-300" />
       </Switch>
     </Switch.Group>
   );

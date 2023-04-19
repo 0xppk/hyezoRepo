@@ -16,6 +16,12 @@
   pre > * {
     @apply text-glow;
   }
+  pre,
+  button,
+  a,
+  a img {
+    @apply cursor-pointer;
+  }
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -448,4 +454,11 @@ body:hover .trailer-hover:not([data-type=""]),
   to {
     rotate: 360deg;
   }
+}
+
+.cursor-default {
+  cursor: url("/images/cursor-default.png"), default;
+}
+.cursor-pointer {
+  cursor: url("/images/cursor-pointer.png"), default;
 }

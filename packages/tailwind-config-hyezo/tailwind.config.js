@@ -111,10 +111,6 @@ module.exports = {
           900: "#2f2f2f",
         },
       },
-      cursor: {
-        fancy: "url('/apps/docs/src/assets/cursor.png'), default",
-        fancyHover: "url('/apps/docs/src/assets/cursor_hover.png'), pointer",
-      },
       scrollPadding: {
         vmax: "14vmax",
       },

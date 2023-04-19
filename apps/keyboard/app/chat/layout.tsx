@@ -1,19 +1,25 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import { ChatRecentInfo, ChatSearchUsers } from "~/components/client";
-import { Icons } from "~/components/server";
+import { ChatTabBar } from "~/components/client";
+import { useForceLinkToCreateNickname } from "~/hooks";
+
+const ChatSearchUsers = dynamic(
+  () => import("~/components/client/ChatSearchUsers"),
+  { ssr: false },
+);
+const ChatRecentInfo = dynamic(() => import("~/components/client/ChatRecentInfo"), {
+  ssr: false,
+});
 
 export default function ChatLayout({ children }: LayoutProps) {
   const [tab, setTab] = useState("userList");
+  useForceLinkToCreateNickname();
 
   return (
     <>
-      <div className="flex h-[5vh] w-screen items-center justify-center gap-10 lg:hidden">
-        <Icons.chatroom className="h-5 w-5" onClick={() => setTab("chat")} />
-        <Icons.userList className="h-5 w-5" onClick={() => setTab("userList")} />
-        <Icons.userInfo className="h-5 w-5" onClick={() => setTab("userInfo")} />
-      </div>
+      <ChatTabBar setTab={setTab} />
       <div
         className={`flex h-[85vh] w-screen duration-200 lg:contents lg:h-full ${
           tab === "chat"

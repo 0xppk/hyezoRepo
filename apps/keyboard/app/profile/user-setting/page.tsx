@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@hyezo/ui";
+import { signOut } from "next-auth/react";
 import { fetchPost } from "~/lib/utils";
 
 export default function UserSetting() {
@@ -12,6 +13,7 @@ export default function UserSetting() {
         onClick={async e => {
           e.preventDefault();
           await fetchPost("/api/deleteAccount");
+          await signOut();
         }}
       >
         탈퇴

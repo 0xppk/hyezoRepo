@@ -90,14 +90,14 @@ type ChatRooms = (ChatRoom & {
   })[];
 })[];
 
-type AllSellingData = (Post & {
+type TAllItems = Post & {
   author: {
     image: string | null;
     nickname: string;
     id: string;
     posts: Post[] | null;
   };
-})[];
+};
 
 type AllUsers = Pick<User, "id" | "nickname" | "image">[];
 type AllBrandData = Pick<Brand, "id" | "name" | "type">[];

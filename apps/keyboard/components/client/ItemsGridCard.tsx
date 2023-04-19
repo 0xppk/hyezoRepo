@@ -1,12 +1,24 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { SplitWord, StatusPopup } from "~/components/server";
+import { SplitWord } from "~/components/server";
+import { StatusPopup } from "~/components/client";
 import { useLoadChatRooms, useQueryString, useUserSession } from "~/hooks";
 import { createTitle, fetchPost } from "~/lib/utils";
 
 type GridCardProps = {
-  data?: AllSellingData;
+  data?: TAllItems[];
+};
+
+const handleOnMouseMove = (e: PointerEvent) => {
+  const { currentTarget: target } = e;
+  if (target instanceof HTMLDivElement) {
+    const rect = target.getBoundingClientRect(),
+      y = e.clientY - rect.top,
+      x = e.clientX - rect.left;
+    target.style.setProperty("--mouse-x", `${x}px`);
+    target.style.setProperty("--mouse-y", `${y}px`);
+  }
 };
 
 export default function GridCard({ data }: GridCardProps) {
@@ -19,17 +31,6 @@ export default function GridCard({ data }: GridCardProps) {
 
   useEffect(() => {
     if (!gridRef.current?.children) return;
-
-    const handleOnMouseMove = (e: PointerEvent) => {
-      const { currentTarget: target } = e;
-      if (target instanceof HTMLDivElement) {
-        const rect = target.getBoundingClientRect(),
-          y = e.clientY - rect.top,
-          x = e.clientX - rect.left;
-        target.style.setProperty("--mouse-x", `${x}px`);
-        target.style.setProperty("--mouse-y", `${y}px`);
-      }
-    };
 
     for (const card of gridRef.current.children)
       if (card instanceof HTMLDivElement)

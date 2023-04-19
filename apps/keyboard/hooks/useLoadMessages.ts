@@ -3,7 +3,7 @@ import { fetcher } from "~/lib/utils";
 
 export default function useLoadMessages(chatRoomId: string) {
   const {
-    data: messages,
+    data: messages = [],
     isLoading,
     error,
     mutate: reloadMessages,

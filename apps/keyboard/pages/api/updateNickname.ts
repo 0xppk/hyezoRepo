@@ -37,6 +37,6 @@ export default async function handler(
 
     return res.status(202).json(nickname);
   } catch (error) {
-    return { error: (error as Error).message };
+    return res.status(500).json({ error: (error as Error).message });
   }
 }

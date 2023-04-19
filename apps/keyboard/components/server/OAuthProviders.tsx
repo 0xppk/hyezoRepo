@@ -11,10 +11,3 @@ export default function OAuthProviders() {
     </div>
   );
 }
-
-/**
- * 하드코딩을 피할 경우 getProviders
- */
-// type OAuthProvidersProps = {
-//   providers: Awaited<ReturnType<typeof getProviders>>;
-// };

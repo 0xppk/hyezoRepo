@@ -8,13 +8,19 @@
   }
 
   body {
-    @apply h-full w-full overflow-x-hidden text-white antialiased;
+    @apply h-full w-full overflow-x-hidden text-white antialiased selection:bg-red-300 selection:text-gray-900;
   }
   pre {
     @apply text-md relative rounded-lg bg-slate-900 p-4;
   }
   pre > * {
     @apply text-glow;
+  }
+  pre,
+  button,
+  a,
+  a img {
+    @apply cursor-pointer;
   }
 }
 
@@ -299,7 +305,7 @@ pre:hover .title-word:is(.show):not(.punctuation) {
 .gridcards {
   display: grid;
   gap: clamp(1.5rem, 5vw - 2rem, 3rem);
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 }
 
 .gridcard {
@@ -391,8 +397,8 @@ pre:hover .title-word:is(.show):not(.punctuation) {
 }
 
 .trailer {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1rem;
+  width: 1rem;
   border-radius: 50%;
   z-index: 10;
   position: fixed;
@@ -401,24 +407,58 @@ pre:hover .title-word:is(.show):not(.punctuation) {
   left: 0;
   top: 0;
   pointer-events: none;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.4s ease;
   mix-blend-mode: difference;
   opacity: 0;
   background: white;
 }
 
-.trailer-cursor {
-  opacity: 0;
-  width: 1.46rem;
-  height: 1.46rem;
+.trailer-hover {
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
-  transition: opacity 0.4s ease;
+  z-index: 10;
+  position: fixed;
+  display: grid;
+  place-items: center;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  background: rgba(87, 63, 196, 0.904);
 }
 
-.trailer:not([data-type=""]) > .trailer-cursor {
+.trailer-circle {
+  opacity: 0;
+  z-index: 10;
+  transition: all 1s ease;
+  animation: MouseCircle 10s linear infinite;
+}
+
+body:hover .trailer,
+body:hover .trailer-hover:not([data-type=""]),
+.trailer-hover[data-type="circle"] .trailer-circle {
   opacity: 1;
 }
 
-body:hover .trailer {
-  opacity: 1;
+.trailer-circle > span {
+  font-size: 10px;
+}
+
+@keyframes MouseCircle {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+
+.cursor-default {
+  cursor: url("/images/cursor-default.png"), default;
+}
+.cursor-pointer {
+  cursor: url("/images/cursor-pointer.png"), default;
 }

@@ -6,12 +6,12 @@ const withPWA = require("@ducanh2912/next-pwa").default({
   disable: !isProduction,
 });
 
-const config = {
+const nextConfig = withPWA({
   experimental: {
     appDir: true,
     outputFileTracingIgnores: [
-      "node_modules/@swc/core-linux-x64-gnu",
-      "node_modules/@swc/core-linux-x64-musl",
+      "node_modules/.pnpm/@swc+core-linux-x64-gnu",
+      "node_modules/.pnpm/@swc+core-linux-x64-musl",
     ],
   },
   transpilePackages: ["../../packages/utils/src/*"],
@@ -23,10 +23,6 @@ const config = {
       "k.kakaocdn.net",
     ],
   },
-};
-
-const nextConfig = withPWA({
-  ...config,
 });
 
 module.exports = nextConfig;

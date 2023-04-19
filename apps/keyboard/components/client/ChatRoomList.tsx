@@ -1,10 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { z } from "zod";
-import { useLoadChatRooms, useQueryString, useUserSession } from "~/hooks";
+import {
+  useLoadAuthorId,
+  useLoadChatRooms,
+  useQueryString,
+  useUserSession,
+} from "~/hooks";
 import { fetchPost } from "~/lib/utils";
-import { FormEvent } from "react";
+import { Dispatch, FormEvent, SetStateAction } from "react";
 import { useRouter } from "next/navigation";
+import { Icons } from "../server";
 
 const ChatRoomSchema = (myUserId: string) =>
   z
@@ -40,13 +46,18 @@ const ChatRoomSchema = (myUserId: string) =>
       ),
     );
 
-export default function ChatRoomList() {
+type TChatRoomListProps = {
+  setTab: Dispatch<SetStateAction<string>>;
+};
+
+export default function ChatRoomList({ setTab }: TChatRoomListProps) {
   const user = useUserSession();
   const router = useRouter();
   const { chatRooms, reloadChatRooms } = useLoadChatRooms();
   const { createQueryString } = useQueryString();
+  const { authorId } = useLoadAuthorId();
 
-  if (!chatRooms || !user?.nickname) return null;
+  if (!chatRooms || !user?.nickname) return <></>;
 
   const chatRoomList = ChatRoomSchema(user.id).parse(chatRooms);
 
@@ -64,24 +75,28 @@ export default function ChatRoomList() {
   };
 
   return (
-    <>
-      <section className="container">
-        <h2 className="section-title text-acccent"></h2>
-        <p className="prose"></p>
-      </section>
-
+    <div className="mt-10 flex flex-col gap-7">
       {chatRoomList.map(
         ({
           id: chatRoomId,
           chatParticipant: { id: myParticipantId, user: targetUser },
         }) => {
           return (
-            <div key={chatRoomId} className="my-5 flex items-center justify-between">
-              <div className="flex items-center gap-3">
+            <div
+              key={chatRoomId}
+              className={`flex items-center justify-between px-3 ${
+                targetUser?.id === authorId &&
+                "text-glow decoration-salary-600 underline decoration-wavy underline-offset-4"
+              }`}
+            >
+              <div
+                className="flex items-center gap-3"
+                onClick={() => setTab("chat")}
+              >
                 <Image
                   className="aspect-1 rounded-full"
-                  width={40}
-                  height={40}
+                  width={44}
+                  height={44}
                   src={targetUser?.image || "/images/pingu.webp"}
                   alt="프로필 사진"
                 />
@@ -91,7 +106,7 @@ export default function ChatRoomList() {
                     targetUser?.id || "deletedAccount",
                   )}`}
                 >
-                  {targetUser?.nickname || "empty room"}
+                  <span>{targetUser?.nickname || "empty room"}</span>
                 </Link>
               </div>
               <form
@@ -101,12 +116,14 @@ export default function ChatRoomList() {
                     : exitRoom(e, chatRoomId, "deleteEmptyChatRoom");
                 }}
               >
-                <button>x</button>
+                <button className="grid place-items-center p-2">
+                  <Icons.exit className="hover:animate-wiggle h-5 w-5 duration-300" />
+                </button>
               </form>
             </div>
           );
         },
       )}
-    </>
+    </div>
   );
 }

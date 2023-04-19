@@ -1,1 +1,1 @@
-export { a as useLocalStorage, b as useSessionStorage } from './chunk-UQLJRSC2.mjs';
+export { a as useLocalStorage, b as useSessionStorage, c as useStorage } from './chunk-FF5LMVQH.mjs';

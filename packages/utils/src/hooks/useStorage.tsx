@@ -1,43 +1,37 @@
 "use client";
 
-import { useEffect, useCallback, useState, SetStateAction } from "react";
+import { useEffect, useState } from "react";
 
-/**
- * @param {string} key - The name.
- * @param defaultValue - The value.
- * @returns {Array} [value, setValue, remove]
- */
 export function useLocalStorage<T>(key: string, defaultValue: T) {
   return useStorage<T>(key, defaultValue, globalThis.localStorage);
 }
 
-/**
- * @param {string} key - The name
- * @param defaultValue - The value
- * @returns {Array} [value, setValue, remove]
- */
 export function useSessionStorage<T>(key: string, defaultValue: T) {
   return useStorage<T>(key, defaultValue, globalThis.sessionStorage);
 }
 
-function useStorage<T>(key: string, defaultValue: T, storageObject: Storage) {
-  const [value, setValue] = useState<T | (() => T) | undefined>(() => {
-    // 스토리지에 이미 있으면
-    const jsonValue = storageObject.getItem(key);
-    if (jsonValue != null) JSON.parse(jsonValue);
-    // 스토리지에 없으면
-    if (typeof defaultValue === "function") defaultValue();
-    else return defaultValue;
+export function useStorage<T>(key: string, initialValue: T, storageObject: Storage) {
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    if (typeof window === "undefined") {
+      return initialValue;
+    }
+    try {
+      const item = storageObject.getItem(key);
+      return item
+        ? JSON.parse(item)
+        : initialValue instanceof Function
+        ? initialValue()
+        : initialValue;
+    } catch (error) {
+      console.error(error);
+      return initialValue;
+    }
   });
 
   useEffect(() => {
-    if (value === undefined) storageObject.removeItem(key);
-    storageObject.setItem(key, JSON.stringify(value));
-  }, [key, value, storageObject]);
+    if (typeof window !== "undefined")
+      storageObject.setItem(key, JSON.stringify(storedValue));
+  }, [key, storedValue, storageObject]);
 
-  const remove = useCallback(() => {
-    setValue(undefined);
-  }, []);
-
-  return [value, setValue, remove] as const;
+  return [storedValue, setStoredValue] as const;
 }

@@ -26,18 +26,27 @@ export default async function handler(
   const token: string = req.body;
 
   try {
-    const newSubscription = await prisma.subscription.create({
-      data: {
+    const checkExistSubscription = await prisma.subscription.findFirst({
+      where: {
         endpoint: token,
-        userId: session.user.id,
-      },
-      include: {
-        user: true,
       },
     });
 
-    return res.status(202).json(newSubscription);
+    if (checkExistSubscription) res.status(202).json(checkExistSubscription);
+    else {
+      const newSubscription = await prisma.subscription.create({
+        data: {
+          endpoint: token,
+          userId: session.user.id,
+        },
+        include: {
+          user: true,
+        },
+      });
+
+      return res.status(202).json(newSubscription);
+    }
   } catch (error) {
-    return { error: (error as Error).message };
+    return res.status(500).json({ error: (error as Error).message });
   }
 }

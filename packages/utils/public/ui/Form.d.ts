@@ -26,7 +26,7 @@ declare const InputSchema: z.ZodObject<{
     url?: string | undefined;
     textarea?: string | undefined;
     text?: string | undefined;
-    select?: string | number | Record<string, any> | (string | number)[] | undefined;
+    select?: string | number | (string | number)[] | Record<string, any> | undefined;
     combo?: string | undefined;
     nickname?: string | undefined;
     title?: string | undefined;
@@ -34,8 +34,8 @@ declare const InputSchema: z.ZodObject<{
     layout?: string | null | undefined;
     color?: string | null | undefined;
     message?: string | null | undefined;
-    select2?: string | number | Record<string, any> | (string | number)[] | undefined;
-    select3?: string | number | Record<string, any> | (string | number)[] | undefined;
+    select2?: string | number | (string | number)[] | Record<string, any> | undefined;
+    select3?: string | number | (string | number)[] | Record<string, any> | undefined;
     allUsersCombo?: Record<string, any> | undefined;
     objDataCombo?: Record<string, any> | undefined;
 }, {
@@ -44,7 +44,7 @@ declare const InputSchema: z.ZodObject<{
     url?: string | undefined;
     textarea?: string | undefined;
     text?: string | undefined;
-    select?: string | number | Record<string, any> | (string | number)[] | undefined;
+    select?: string | number | (string | number)[] | Record<string, any> | undefined;
     combo?: string | undefined;
     nickname?: string | undefined;
     title?: string | undefined;
@@ -52,8 +52,8 @@ declare const InputSchema: z.ZodObject<{
     layout?: string | null | undefined;
     color?: string | null | undefined;
     message?: string | null | undefined;
-    select2?: string | number | Record<string, any> | (string | number)[] | undefined;
-    select3?: string | number | Record<string, any> | (string | number)[] | undefined;
+    select2?: string | number | (string | number)[] | Record<string, any> | undefined;
+    select3?: string | number | (string | number)[] | Record<string, any> | undefined;
     allUsersCombo?: Record<string, any> | undefined;
     objDataCombo?: Record<string, any> | undefined;
 }>;

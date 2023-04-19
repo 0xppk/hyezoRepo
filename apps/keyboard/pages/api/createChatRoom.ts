@@ -33,7 +33,6 @@ export default async function handler(
           every: {
             userId: {
               in: [myUserId, theOthersUserId],
-              not: null,
             },
           },
         },
@@ -41,37 +40,38 @@ export default async function handler(
     });
 
     if (checkExistingChatRoom) res.status(200).json(checkExistingChatRoom.id);
-
-    const newChatRoom = await prisma.chatRoom.create({
-      data: {
-        chatParticipant: {
-          create: [
-            {
-              userId: myUserId,
-            },
-            {
-              userId: theOthersUserId,
-            },
-          ],
+    else {
+      const newChatRoom = await prisma.chatRoom.create({
+        data: {
+          chatParticipant: {
+            create: [
+              {
+                userId: myUserId,
+              },
+              {
+                userId: theOthersUserId,
+              },
+            ],
+          },
         },
-      },
 
-      include: {
-        chatParticipant: {
-          include: {
-            user: {
-              select: {
-                id: true,
-                nickname: true,
-                image: true,
+        include: {
+          chatParticipant: {
+            include: {
+              user: {
+                select: {
+                  id: true,
+                  nickname: true,
+                  image: true,
+                },
               },
             },
           },
         },
-      },
-    });
+      });
 
-    return res.status(200).json(newChatRoom.id);
+      return res.status(200).json(newChatRoom.id);
+    }
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });
   }

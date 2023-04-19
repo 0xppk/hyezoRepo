@@ -3,7 +3,7 @@ import { cn } from "../utils";
 import { default as ButtonOrLink, ButtonOrLinkProps } from "./ButtonOrLink";
 
 const buttonStyles = cva(
-  "flex itmes-center justify-center px-4 border outline-none py-2 rounded-lg font-medium focus:bg-transparent focus:ring-2 hover:bg-transparent dark:hover:bg-transparent disabled:cursor-not-allowed disabled:hover:animate-wiggle duration-300 focus:font-bold",
+  "flex itmes-center justify-center px-4 border outline-none py-2 rounded-lg font-medium focus:bg-transparent focus:ring-1 hover:bg-transparent dark:hover:bg-transparent disabled:cursor-not-allowed duration-300 focus:font-bold",
   {
     variants: {
       color: {
@@ -16,7 +16,7 @@ const buttonStyles = cva(
         twitter:
           "bg-twitter-500 focus:text-twitter-500 focus:ring-twitter-500 hover:border-twitter-500 hover:text-twitter-500",
         black:
-          "bg-black/90 hover:bg-white hover:text-black hover:border-black focus:text-black focus:ring-black/90",
+          "bg-black hover:bg-white hover:text-black hover:border-black focus:text-black focus:ring-black",
       },
       size: {
         xs: "text-xs",

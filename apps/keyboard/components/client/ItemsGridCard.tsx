@@ -1,12 +1,24 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { SplitWord, StatusPopup } from "~/components/server";
+import { SplitWord } from "~/components/server";
+import { StatusPopup } from "~/components/client";
 import { useLoadChatRooms, useQueryString, useUserSession } from "~/hooks";
 import { createTitle, fetchPost } from "~/lib/utils";
 
 type GridCardProps = {
-  data?: AllSellingData;
+  data?: TAllItems[];
+};
+
+const handleOnMouseMove = (e: PointerEvent) => {
+  const { currentTarget: target } = e;
+  if (target instanceof HTMLDivElement) {
+    const rect = target.getBoundingClientRect(),
+      y = e.clientY - rect.top,
+      x = e.clientX - rect.left;
+    target.style.setProperty("--mouse-x", `${x}px`);
+    target.style.setProperty("--mouse-y", `${y}px`);
+  }
 };
 
 export default function GridCard({ data }: GridCardProps) {
@@ -19,17 +31,6 @@ export default function GridCard({ data }: GridCardProps) {
 
   useEffect(() => {
     if (!gridRef.current?.children) return;
-
-    const handleOnMouseMove = (e: PointerEvent) => {
-      const { currentTarget: target } = e;
-      if (target instanceof HTMLDivElement) {
-        const rect = target.getBoundingClientRect(),
-          y = e.clientY - rect.top,
-          x = e.clientX - rect.left;
-        target.style.setProperty("--mouse-x", `${x}px`);
-        target.style.setProperty("--mouse-y", `${y}px`);
-      }
-    };
 
     for (const card of gridRef.current.children)
       if (card instanceof HTMLDivElement)
@@ -53,9 +54,9 @@ export default function GridCard({ data }: GridCardProps) {
         });
         return;
       }
-      const newChatRoomId = (await fetchPost("/api/createChatRoom", {
+      const newChatRoomId = await fetchPost<string>("/api/createChatRoom", {
         body: JSON.stringify(authorId),
-      })) as string;
+      });
       reloadChatRooms();
       router.push(
         `/chat/${newChatRoomId}?${createQueryString("authorId", authorId)}`,
@@ -106,7 +107,7 @@ export default function GridCard({ data }: GridCardProps) {
                 {createTitle(SplitWord.Title, card.title)}
               </p>
             </div>
-            <div className="flex flex-col items-center pb-2 pr-3">
+            <div className="flex flex-col items-center pb-2 pr-1 lg:pr-3">
               <p className="text-2xl font-bold">
                 {createTitle(SplitWord.Price, String(card.price))}
               </p>

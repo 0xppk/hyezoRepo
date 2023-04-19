@@ -64,13 +64,14 @@ module.exports = {
     "react/react-in-jsx-scope": "off", // import react from "react" 생략 가능
     "arrow-parens": ["error", "as-needed"], // 화살표 함수 축약 가능시 축약
     curly: ["error", "multi"], // if문 중괄호 생략 가능시 생략
-    "react-hooks/rules-of-hooks": ["error"],
+    "react-hooks/rules-of-hooks": ["error"], // 훅 순서, 반복문, 조건문 등 체크
     "react-hooks/exhaustive-deps": ["error"], // 리액트 의존성 배열 correctness 체크
     "@next/next/no-html-link-for-pages": "off",
     "react/jsx-key": "off",
     "react/display-name": "warn",
     "@typescript-eslint/no-empty-function": "warn",
     "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-var-requires": "off",
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/classnames-order": "off",
     "turbo/no-undeclared-env-vars": "off",

@@ -36,26 +36,26 @@ const comboStyles = cva("", {
 
 type ComboStyleProps = VariantProps<typeof comboStyles>;
 
-interface Props<T, K extends keyof T>
+interface Props<T>
   extends Omit<ComboStyleProps, "iconColor">,
     Omit<ComponentProps<"li">, "color"> {
   list: T[];
   name: keyof InputNameProps;
-  labelKey?: K;
-  imageKey?: K;
+  labelKey: keyof T;
+  imageKey?: keyof T;
   removeDuplicates?: boolean;
 }
 
-export default function ComboBox<T, K extends keyof T>({
+export default function ComboBox<T>({
   list,
   name,
   color = "twitter",
   width = "regular",
-  labelKey = "name" as K,
+  labelKey,
   imageKey,
   removeDuplicates,
   ...props
-}: Props<T, K>) {
+}: Props<T>) {
   const { control } = useFormContext();
   const [query, setQuery] = useState("");
   const items = removeDuplicates
@@ -77,103 +77,101 @@ export default function ComboBox<T, K extends keyof T>({
           onChange={field.onChange}
           refName={field.name}
         >
-          <>
-            <div className="relative mt-1 flex-1">
-              <div
+          <div className="relative flex-1">
+            <div
+              className={cn(
+                `relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm ${
+                  color === "darkNavy" && "border border-gray-700/70 bg-gray-900"
+                }`,
+              )}
+            >
+              <Combobox.Input
                 className={cn(
-                  `relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm ${
-                    color === "darkNavy" && "border border-gray-700/70 bg-gray-900"
+                  `w-full rounded-lg border-none py-3 pl-3 pr-10 text-sm text-gray-900 focus:outline-none focus:ring-0 lg:py-2 ${
+                    color === "darkNavy" && "bg-gray-900 text-white/80"
                   }`,
                 )}
-              >
-                <Combobox.Input
-                  className={cn(
-                    `w-full rounded-lg border-none py-4 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:outline-0 focus:ring-0 ${
-                      color === "darkNavy" && "bg-gray-900 text-white/80"
-                    }`,
-                  )}
-                  placeholder="Search..."
-                  spellCheck="false"
-                  displayValue={(value: T) => String(value[labelKey])}
-                  onChange={event => setQuery(event.target.value)}
+                placeholder="Search..."
+                spellCheck="false"
+                displayValue={(value: T) => String(value[labelKey])}
+                onChange={event => setQuery(event.target.value)}
+              />
+
+              <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
+                <ChevronUpDownIcon
+                  className="h-5 w-5 text-gray-400"
+                  aria-hidden="true"
                 />
-
-                <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-                  <ChevronUpDownIcon
-                    className="h-5 w-5 text-gray-400"
-                    aria-hidden="true"
-                  />
-                </Combobox.Button>
-              </div>
-              <Transition
-                as={Fragment}
-                leave="transition ease-in duration-100"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-                afterLeave={() => setQuery("")}
-              >
-                <Combobox.Options
-                  className={cn(
-                    `absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white text-base shadow-xl ring-1 ring-black ring-opacity-5 drop-shadow-xl backdrop-blur-sm focus:outline-none sm:text-sm ${
-                      props.className
-                    } ${color === "darkNavy" && "bg-gray-900/90 text-white/80"}`,
-                  )}
-                >
-                  {filteredItems.length === 0 && query !== "" ? (
-                    <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
-                      Nothing found.
-                    </div>
-                  ) : (
-                    filteredItems.map((item, i) => (
-                      <Combobox.Option
-                        key={`${String(item[labelKey])}+ ${i}`}
-                        className={({ active }) =>
-                          `relative z-10 cursor-default select-none py-2 pl-10 pr-4 ${
-                            active
-                              ? comboStyles({ color })
-                              : color === "darkNavy"
-                              ? "bg-gray-900 text-white/80"
-                              : "text-gray-900"
-                          }`
-                        }
-                        value={item}
-                      >
-                        {({ selected, active }) => (
-                          <>
-                            <div className="flex items-center gap-3">
-                              {imageKey && (
-                                <img
-                                  className="h-10 w-10 rounded-full"
-                                  src={String(item[imageKey])}
-                                ></img>
-                              )}
-                              <span
-                                className={`block truncate ${
-                                  selected ? "font-extrabold" : "font-normal"
-                                }`}
-                              >
-                                {String(item[labelKey])}
-                              </span>
-                            </div>
-
-                            {selected ? (
-                              <span
-                                className={`absolute inset-y-0 left-0 flex items-center pl-3 ${comboStyles(
-                                  { iconColor },
-                                )}`}
-                              >
-                                <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                              </span>
-                            ) : null}
-                          </>
-                        )}
-                      </Combobox.Option>
-                    ))
-                  )}
-                </Combobox.Options>
-              </Transition>
+              </Combobox.Button>
             </div>
-          </>
+            <Transition
+              as={Fragment}
+              leave="transition ease-in duration-100"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+              afterLeave={() => setQuery("")}
+            >
+              <Combobox.Options
+                className={cn(
+                  `absolute mt-1 max-h-80 w-full overflow-auto rounded-md bg-white shadow-xl ring-1 ring-black ring-opacity-5 drop-shadow-xl backdrop-blur-sm focus:outline-none sm:text-sm ${
+                    props.className
+                  } ${color === "darkNavy" && "bg-gray-900/90 text-white/80"}`,
+                )}
+              >
+                {filteredItems.length === 0 && query !== "" ? (
+                  <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
+                    Nothing found.
+                  </div>
+                ) : (
+                  filteredItems.map((item, i) => (
+                    <Combobox.Option
+                      key={`${String(item[labelKey])}+ ${i}`}
+                      className={({ active }) =>
+                        `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                          active
+                            ? comboStyles({ color })
+                            : color === "darkNavy"
+                            ? "bg-gray-900 text-white/80"
+                            : "text-gray-900"
+                        }`
+                      }
+                      value={item}
+                    >
+                      {({ selected, active }) => (
+                        <>
+                          <div className="flex items-center gap-3">
+                            {imageKey && (
+                              <img
+                                className="h-10 w-10 rounded-full"
+                                src={String(item[imageKey])}
+                              ></img>
+                            )}
+                            <span
+                              className={`block truncate ${
+                                selected ? "font-extrabold" : "font-normal"
+                              }`}
+                            >
+                              {String(item[labelKey])}
+                            </span>
+                          </div>
+
+                          {selected ? (
+                            <span
+                              className={`absolute inset-y-0 left-0 flex items-center pl-3 ${comboStyles(
+                                { iconColor },
+                              )}`}
+                            >
+                              <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                            </span>
+                          ) : null}
+                        </>
+                      )}
+                    </Combobox.Option>
+                  ))
+                )}
+              </Combobox.Options>
+            </Transition>
+          </div>
         </Combobox>
       )}
     />

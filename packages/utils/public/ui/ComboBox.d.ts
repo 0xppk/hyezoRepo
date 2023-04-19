@@ -11,13 +11,13 @@ declare const comboStyles: (props?: ({
     width?: "narrower" | "narrow" | "regular" | "wide" | "wider" | null | undefined;
 } & cva_dist_types.ClassProp) | undefined) => string;
 type ComboStyleProps = VariantProps<typeof comboStyles>;
-interface Props<T, K extends keyof T> extends Omit<ComboStyleProps, "iconColor">, Omit<ComponentProps<"li">, "color"> {
+interface Props<T> extends Omit<ComboStyleProps, "iconColor">, Omit<ComponentProps<"li">, "color"> {
     list: T[];
     name: keyof InputNameProps;
-    labelKey?: K;
-    imageKey?: K;
+    labelKey: keyof T;
+    imageKey?: keyof T;
     removeDuplicates?: boolean;
 }
-declare function ComboBox<T, K extends keyof T>({ list, name, color, width, labelKey, imageKey, removeDuplicates, ...props }: Props<T, K>): JSX.Element;
+declare function ComboBox<T>({ list, name, color, width, labelKey, imageKey, removeDuplicates, ...props }: Props<T>): JSX.Element;
 
 export { ComboBox as default };

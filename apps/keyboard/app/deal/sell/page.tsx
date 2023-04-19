@@ -1,16 +1,20 @@
 "use client";
 
-import { useState } from "react";
-import { ItemsGridCard, SearchItems } from "~/components/client";
-import { useLoadAllPosts } from "~/hooks";
+import { useContext, useState } from "react";
+import { ItemsGridCard, SearchItemInput } from "~/components/client";
+import { ItemContext } from "~/lib/contexts";
 
 export default function SellingItem() {
-  const { allPostsData: allSellingItems } = useLoadAllPosts({ category: "SELL" });
-  const [searchedItems, setSearchedItems] = useState<AllSellingData>();
+  const allItems = useContext(ItemContext);
+  const allSellingItems = allItems.filter(item => item.category === "SELL");
+  const [searchedItems, setSearchedItems] = useState<TAllItems[]>();
 
   return (
     <>
-      <SearchItems setSearchedItems={setSearchedItems} />
+      <SearchItemInput
+        allPostsData={allSellingItems}
+        setSearchedItems={setSearchedItems}
+      />
       <ItemsGridCard data={searchedItems || allSellingItems || []} />
     </>
   );

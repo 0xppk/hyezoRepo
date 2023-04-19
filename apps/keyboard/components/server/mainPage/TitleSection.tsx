@@ -17,24 +17,24 @@ export default function ThirdSection({ brands, page }: ThirdSectionProps) {
   };
 
   return (
-    <div className="col-span-2 h-[30vh]">
+    <div className="col-span-2 h-52 border-b border-gray-900 sm:h-72 lg:h-[30vh]">
       <div className="grid h-full grid-cols-3 place-items-center">
-        <div className="stack col-span-2" data-type="title">
+        <div className="stack col-span-2">
           <ThirdSection.TitleSlider page={page} />
         </div>
         <div
-          className="interactable grid h-full w-full grid-rows-2 place-items-center border border-gray-900"
-          data-type="link"
+          className="interactable grid h-full w-full grid-rows-2 place-items-center border-x border-gray-900"
+          data-type="circle"
         >
-          <div className="cursor-eyes grid h-full w-full place-items-center border-b border-gray-900">
+          <div className="grid h-full w-full place-items-center border-b border-gray-900">
             <Icons.search
-              className="sm:h-10 sm:w-10"
+              className="h-10 w-10 cursor-pointer"
               onClick={() => openModal("search")}
             />
           </div>
           <div>
             <Icons.note
-              className="cursor-pointer sm:h-10 sm:w-10"
+              className="h-10 w-10 cursor-pointer"
               onClick={() => openModal("post")}
             />
           </div>
@@ -58,7 +58,7 @@ ThirdSection.TitleSlider = ({ page }: { page: number }) => {
         <Text
           key={title}
           variant="3xl/semibold"
-          className={`font-point text-center uppercase duration-500 ${
+          className={`font-point cursor-default uppercase duration-500 ${
             i > page
               ? "translate-y-full opacity-0"
               : i < page

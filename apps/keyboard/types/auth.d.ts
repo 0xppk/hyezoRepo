@@ -1,10 +1,12 @@
 import { type DefaultSession } from "next-auth";
 import { type JWT, type DefaultJWT } from "next-auth/jwt";
 
+type UserId = string;
+
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
-      id: string;
+      id: UserId;
       emailVerified?: Date | null;
       nickname?: string | null;
       chatRoom?: ChatParticipant[];
@@ -18,7 +20,7 @@ declare module "next-auth" {
 
 declare module "next-auth/jwt" {
   interface JWT extends DefaultJWT {
-    id: string;
+    id: UserId;
     nickname?: string | null;
     role?: Role;
   }

@@ -96,8 +96,7 @@ export const authOptions: NextAuthOptions = {
 
       if (!dbUser) {
         if (user) {
-          token = { ...user, picture: user.image };
-          delete token.image;
+          token.id = user?.id;
         }
         return token;
       }

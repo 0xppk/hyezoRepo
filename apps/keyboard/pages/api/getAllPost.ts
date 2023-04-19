@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { z } from "zod";
 import { prisma } from "~/server/db";
 
 type Data = Post[];
@@ -7,10 +6,6 @@ type Data = Post[];
 type Err = {
   error: string;
 };
-
-const categorySchema = z.object({
-  category: z.enum(["BUY", "SELL"]),
-});
 
 export default async function handler(
   req: NextApiRequest,
@@ -21,19 +16,8 @@ export default async function handler(
     return;
   }
 
-  // const session = await getServerAuthSession({ req, res });
-  // if (!session?.user?.nickname) {
-  //   res.status(401).json({ error: "Unauthorized to load items 🦠" });
-  //   return;
-  // }
-
-  const { category } = categorySchema.parse(req.query);
-
   try {
     const allPosts = await prisma.post.findMany({
-      where: {
-        category,
-      },
       include: {
         author: {
           select: {
@@ -51,7 +35,7 @@ export default async function handler(
 
     if (!allPosts) return;
     // @ts-ignore
-    return res.status(202).json(allPosts);
+    else return res.status(202).json(allPosts);
   } catch (error) {
     return res.status(500).json({ error: (error as Error).message });
   }

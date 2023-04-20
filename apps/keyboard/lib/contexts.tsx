@@ -2,16 +2,17 @@
 
 import { SessionProvider } from "next-auth/react";
 import { createContext } from "react";
+import { TItems } from "~/types/prisma";
 
 type RootProvidersProps = {
   children: ReactNode;
 };
 
 type ItemProvidersProps = {
-  value: TAllItems[];
+  value: TItems[];
 } & RootProvidersProps;
 
-export const ItemContext = createContext<TAllItems[]>([]);
+export const ItemContext = createContext<TItems[]>([]);
 
 /**
  * Provider

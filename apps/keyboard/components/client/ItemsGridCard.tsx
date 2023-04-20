@@ -1,13 +1,22 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { SplitWord } from "~/components/server";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { StatusPopup } from "~/components/client";
+import { SplitWord } from "~/components/server";
 import { useLoadChatRooms, useQueryString, useUserSession } from "~/hooks";
 import { createTitle, fetchPost } from "~/lib/utils";
+import { type TItems } from "~/types/prisma";
 
 type GridCardProps = {
-  data?: TAllItems[];
+  allItems?: TItems[];
+  setSearchedItems: Dispatch<SetStateAction<TItems[] | undefined>>;
 };
 
 const handleOnMouseMove = (e: PointerEvent) => {
@@ -21,7 +30,7 @@ const handleOnMouseMove = (e: PointerEvent) => {
   }
 };
 
-export default function GridCard({ data }: GridCardProps) {
+export default function GridCard({ allItems, setSearchedItems }: GridCardProps) {
   const gridRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const { reloadChatRooms } = useLoadChatRooms();
@@ -37,12 +46,12 @@ export default function GridCard({ data }: GridCardProps) {
         card.onpointermove = e => {
           handleOnMouseMove(e);
         };
-  }, [gridRef, data]);
+  }, [gridRef, allItems]);
 
   useEffect(() => {
-    if (!data) return;
-    setStatusPopup(Array.from({ length: data.length }, () => false));
-  }, [data]);
+    if (!allItems) return;
+    setStatusPopup(Array.from({ length: allItems.length }, () => false));
+  }, [allItems]);
 
   const openChatRoom = useCallback(
     async (authorId: string, idx: number) => {
@@ -54,20 +63,21 @@ export default function GridCard({ data }: GridCardProps) {
         });
         return;
       }
-      const newChatRoomId = await fetchPost<string>("/api/createChatRoom", {
-        body: JSON.stringify(authorId),
-      });
-      reloadChatRooms();
-      router.push(
-        `/chat/${newChatRoomId}?${createQueryString("authorId", authorId)}`,
+      const { chatRoomId } = await fetchPost<{ chatRoomId: string }>(
+        "/api/createChatRoom",
+        {
+          body: JSON.stringify(authorId),
+        },
       );
+      reloadChatRooms();
+      router.push(`/chat/${chatRoomId}?${createQueryString("authorId", authorId)}`);
     },
     [reloadChatRooms, user, createQueryString, router],
   );
 
   return (
     <div className="gridcards text-white" ref={gridRef}>
-      {data?.map((card, i) => (
+      {allItems?.map((card, i) => (
         <div className="gridcard" key={card.id}>
           {statusPopup[i] && (
             <StatusPopup
@@ -75,6 +85,7 @@ export default function GridCard({ data }: GridCardProps) {
               postId={card.id}
               setStatusPopup={setStatusPopup}
               idx={i}
+              setSearchedItems={setSearchedItems}
             />
           )}
           <div
@@ -88,7 +99,7 @@ export default function GridCard({ data }: GridCardProps) {
               alt="프사"
               className="splitword_author rounded-full pb-1"
             />
-            <p>{createTitle(SplitWord.Aurhor, card.author.nickname)}</p>
+            <p>{createTitle(SplitWord.Aurhor, card.author.nickname || "")}</p>
           </div>
           <div className="gridcard_content flex items-end justify-between">
             <div className="flex flex-col pb-2 pl-3">

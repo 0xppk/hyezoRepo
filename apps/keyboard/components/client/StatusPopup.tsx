@@ -1,15 +1,24 @@
-import { Dispatch, MouseEvent, SetStateAction, useCallback, useRef } from "react";
-import { Button } from "@hyezo/ui";
-import { fetchPost, fetcher } from "~/lib/utils";
 import { useClickOutside } from "@hyezo/hooks";
+import { Button } from "@hyezo/ui";
+import { useRouter } from "next/navigation";
+import {
+  Dispatch,
+  MouseEvent,
+  SetStateAction,
+  useCallback,
+  useRef,
+  useTransition,
+} from "react";
 import { env } from "~/env.mjs";
+import { fetchPost, fetcher } from "~/lib/utils";
+import { type TPostStatus, type TItems } from "~/types/prisma";
 
-type StatusType = "ING" | "PENDING" | "END";
 type StatusPopupProps = {
-  presentStatus: StatusType;
+  presentStatus: TPostStatus;
   postId: string;
   setStatusPopup: Dispatch<SetStateAction<boolean[]>>;
   idx: number;
+  setSearchedItems: Dispatch<SetStateAction<TItems[] | undefined>>;
 };
 
 const statusType = ["ING", "PENDING", "END"] as const;
@@ -19,8 +28,11 @@ export default function StatusPopup({
   postId,
   setStatusPopup,
   idx,
+  setSearchedItems,
 }: StatusPopupProps) {
   const cancelRef = useRef<HTMLDivElement>(null);
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
   const closePopup = useCallback(() => {
     setStatusPopup(prev => {
@@ -33,16 +45,26 @@ export default function StatusPopup({
   const updateStatus = useCallback(
     async (
       e: MouseEvent<HTMLButtonElement | HTMLAnchorElement>,
-      status: StatusType,
+      status: TPostStatus,
     ) => {
       e.preventDefault();
-      await fetchPost<StatusType>("/api/updateStatus", {
+      await fetchPost<TPostStatus>("/api/updateStatus", {
         body: JSON.stringify({ status, postId }),
       });
       await fetcher(`/api/revalidate?secret=${env.NEXT_PUBLIC_HYEZO_SECRET}`);
       closePopup();
+      startTransition(() => {
+        setSearchedItems(prev => {
+          if (prev) {
+            const copy = [...prev];
+            copy[idx].status = status;
+            return copy;
+          }
+        });
+        router.refresh();
+      });
     },
-    [postId, closePopup],
+    [postId, closePopup, router, setSearchedItems, idx],
   );
 
   useClickOutside(cancelRef, () => closePopup());

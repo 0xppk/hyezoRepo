@@ -18,3 +18,4 @@ export { default as UserInfo } from "./UserInfo";
 export { default as ChatSearchUsersInput } from "./ChatSearchUsersInput";
 export { default as ChatTabBar } from "./ChatTabBar";
 export { default as StatusPopup } from "./StatusPopup";
+export { default as ItemsPage } from "./ItemsPage";

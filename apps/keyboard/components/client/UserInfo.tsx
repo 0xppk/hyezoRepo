@@ -15,7 +15,7 @@ export default function UserInfo() {
             <Text variant="xs/normal">Logout</Text>
           </SignOutBtn>
           <div className="relative h-8 w-8 sm:h-9 sm:w-9">
-            <Link href="/profile">
+            <Link href="/user-info">
               <Image
                 src={user?.image || "/images/pingu.webp"}
                 className="interactable w-auto cursor-pointer rounded-full"
@@ -35,7 +35,7 @@ export default function UserInfo() {
               Info
             </Text>
           </Link>
-          <Link href="/login">
+          <Link href="/sign-in">
             <Text variant="xs/normal" className="interactable" data-type="circle">
               Join
             </Text>

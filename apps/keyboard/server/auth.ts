@@ -18,8 +18,8 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   pages: {
-    signIn: "/login",
-    newUser: "/login/new-user",
+    signIn: "/sign-in",
+    newUser: "/new-user",
   },
   providers: [
     GithubProvider({

@@ -61,10 +61,8 @@ export default function MouseTrailer() {
     <>
       <div className="trailer" ref={trailerRef} />
       <div className="trailer-hover" ref={circleRef}>
-        <div>
-          <div className="trailer-circle stack capitalize">
-            {createTitle(SplitWord.MouseCircle, "hello keyboard﹒hello keyboard﹒")}
-          </div>
+        <div className="trailer-circle stack capitalize">
+          {createTitle(SplitWord.MouseCircle, "hello keyboard﹒hello keyboard﹒")}
         </div>
       </div>
     </>

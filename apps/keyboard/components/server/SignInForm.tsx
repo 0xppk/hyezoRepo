@@ -8,7 +8,7 @@ export default function SignInForm() {
         signIn("email", {
           email,
           redirect: true,
-          callbackUrl: "/login/create-nickname",
+          callbackUrl: "/new-user",
         });
       }}
       className="items-center"

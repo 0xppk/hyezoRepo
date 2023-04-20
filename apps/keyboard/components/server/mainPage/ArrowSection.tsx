@@ -10,7 +10,7 @@ type FourthSectionProps = {
 export default function FourthSection({ setPage }: FourthSectionProps) {
   return (
     <div
-      className="interactable col-span-2 h-40 border-b border-t border-gray-900 sm:h-60 lg:col-span-1 lg:h-[30vh]"
+      className="interactable col-span-2 h-40 border-y border-gray-900 sm:h-60 lg:col-span-1 lg:h-[30vh]"
       data-type="circle"
     >
       <div className="grid h-full grid-cols-2 place-items-center">

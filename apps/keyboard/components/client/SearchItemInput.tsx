@@ -1,21 +1,22 @@
 import { InputSimple } from "@hyezo/ui";
 import { Dispatch, SetStateAction } from "react";
+import { type TItems } from "~/types/prisma";
 
 type SearchItemInputProps = {
-  allPostsData: TAllItems[];
-  setSearchedItems: Dispatch<SetStateAction<TAllItems[] | undefined>>;
+  allItems: TItems[];
+  setSearchedItems: Dispatch<SetStateAction<TItems[] | undefined>>;
 };
 
 export default function SearchItemInput({
-  allPostsData,
+  allItems,
   setSearchedItems,
 }: SearchItemInputProps) {
-  if (!allPostsData) return <></>;
+  if (!allItems) return <></>;
 
   return (
     <div className="flex items-center justify-center pb-5">
-      <InputSimple<TAllItems>
-        data={allPostsData}
+      <InputSimple<TItems>
+        data={allItems}
         setData={setSearchedItems}
         labelKeys={["title", "brandName"]}
         placeholder="Search..."

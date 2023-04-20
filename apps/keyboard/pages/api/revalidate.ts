@@ -12,9 +12,7 @@ export default async function handler(
     res.status(401).json({ message: "Invalid token" });
 
   try {
-    console.log("리벨리데이트 시작");
     await res.revalidate("/");
-    console.log("리벨리데이트 완료");
     return res.json({ revalidated: true });
   } catch (err) {
     return res.status(500).json({ message: "Error revalidating" });

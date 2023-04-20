@@ -15,14 +15,11 @@ import { prisma } from "~/server/db";
 
 const global = globalThis as unknown as { firebase: App };
 
-type Data = {
+type TData = {
   successCount?: number;
   failureCount?: number;
 };
-
-type Err = {
-  error: string;
-};
+type TError = { message: string };
 
 type SenderInfo = {
   receiverId: string;
@@ -33,16 +30,16 @@ type SenderInfo = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data | Err>,
+  res: NextApiResponse<TData | TError>,
 ) {
   if (req.method !== "POST") {
-    res.status(405).json({ error: "Method Not Allowed" });
+    res.status(405).json({ message: "Method Not Allowed" });
     return;
   }
 
   const session = await getServerAuthSession({ req, res });
   if (!session?.user) {
-    res.status(401).json({ error: "You are not logined 🦠" });
+    res.status(401).json({ message: "You are not logined 🦠" });
     return;
   }
 
@@ -99,6 +96,6 @@ export default async function handler(
     }
   } catch (error) {
     console.error("Error sending push notification:", error);
-    return res.status(500).json({ error: (error as Error).message });
+    return res.status(500).json({ message: (error as Error).message });
   }
 }

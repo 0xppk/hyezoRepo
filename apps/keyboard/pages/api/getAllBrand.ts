@@ -1,18 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "~/server/db";
+import { TBrand } from "~/types/prisma";
 
-type Data = AllBrandData;
-
-type Err = {
-  error: string;
-};
+type TData = TBrand[];
+type TError = { message: string };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data | Err>,
+  res: NextApiResponse<TData | TError>,
 ) {
   if (req.method !== "GET") {
-    res.status(405).json({ error: "Method Not Allowed" });
+    res.status(405).json({ message: "Method Not Allowed" });
     return;
   }
 
@@ -24,9 +22,9 @@ export default async function handler(
         type: true,
       },
     });
-    // @ts-ignore
+
     return res.status(202).json(allBrands);
   } catch (error) {
-    return res.status(500).json({ error: (error as Error).message });
+    return res.status(500).json({ message: (error as Error).message });
   }
 }

@@ -26,7 +26,7 @@ export default function InputSimple<T>({
     includeScore: true,
     keys: labelKeys,
   });
-  const submitAction = (value: string) => {
+  const submitAction = async (value: string) => {
     const filteredItems =
       value === "" ? data : fuse.search(value).map(res => ({ ...res.item }));
     setData(filteredItems);

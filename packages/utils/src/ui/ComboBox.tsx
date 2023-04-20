@@ -113,7 +113,7 @@ export default function ComboBox<T>({
             >
               <Combobox.Options
                 className={cn(
-                  `absolute mt-1 max-h-80 w-full overflow-auto rounded-md bg-white shadow-xl ring-1 ring-black ring-opacity-5 drop-shadow-xl backdrop-blur-sm focus:outline-none sm:text-sm ${
+                  `absolute z-10 mt-1 max-h-80 w-full overflow-auto rounded-md bg-white shadow-xl ring-1 ring-black ring-opacity-5 drop-shadow-xl backdrop-blur-sm focus:outline-none sm:text-sm ${
                     props.className
                   } ${color === "darkNavy" && "bg-gray-900/90 text-white/80"}`,
                 )}

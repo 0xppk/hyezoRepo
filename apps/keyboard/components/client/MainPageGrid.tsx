@@ -5,9 +5,10 @@ import {
   TitleSection,
   ArrowSection,
 } from "~/components/server/mainPage";
+import { TBrand } from "~/types/prisma";
 
 type MainPageGridProps = {
-  brands: AllBrandData;
+  brands: TBrand[];
 };
 
 export default function MainPageGrid({ brands }: MainPageGridProps) {

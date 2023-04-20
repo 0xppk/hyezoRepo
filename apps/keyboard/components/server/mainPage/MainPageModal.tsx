@@ -10,11 +10,12 @@ import {
 } from "@hyezo/ui";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { fetchPost } from "~/lib/utils";
+import { type TBrand } from "~/types/prisma";
 
 type ModalProps = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  brands: AllBrandData;
+  brands: TBrand[];
   as?: "search" | "post";
 };
 
@@ -111,7 +112,7 @@ MainPageModal.SecondPhase = ({ setItemType }: ModalSecondPhaseProps) => {
 
 type ModalPostModeProps = {
   onSubmit: zodSubmitHandler;
-  brands: AllBrandData;
+  brands: TBrand[];
   itemType: "HOUSING" | "KEYCAP" | "";
 };
 
@@ -126,7 +127,7 @@ MainPageModal.PostMode = ({ onSubmit, brands, itemType }: ModalPostModeProps) =>
           <div className="blue-dot" />
           <span>브랜드</span>
         </div>
-        <ComboBox
+        <ComboBox<TBrand>
           name="objDataCombo"
           labelKey="name"
           list={brands}

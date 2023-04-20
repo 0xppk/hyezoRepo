@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import { fetcher } from "~/lib/utils";
+import { type TChatRoom } from "~/types/prisma";
 
 export default function useLoadChatRooms() {
   const {
@@ -7,7 +8,7 @@ export default function useLoadChatRooms() {
     mutate: reloadChatRooms,
     error,
     isLoading,
-  } = useSWR("/api/getChatRoomList", fetcher<ChatRooms>);
+  } = useSWR("/api/getChatRoomList", fetcher<TChatRoom[]>);
 
   return { chatRooms, reloadChatRooms, error, isLoading };
 }

@@ -1,8 +1,8 @@
 import { ComboBox, Form, SubmitButton, zodSubmitHandler } from "@hyezo/ui";
-import { Session } from "next-auth";
 import { useRouter } from "next/navigation";
 import { useLoadAllUsers, useLoadChatRooms, useQueryString } from "~/hooks";
 import { fetchPost } from "~/lib/utils";
+import { type TUser } from "~/types/prisma";
 import { Icons } from "../server";
 
 export default function ChatSearchUsersInput() {
@@ -12,18 +12,21 @@ export default function ChatSearchUsersInput() {
   const router = useRouter();
 
   const onSubmit: zodSubmitHandler = async ({ allUsersCombo: targetUser }) => {
-    const newChatRoomId = await fetchPost<string>("/api/createChatRoom", {
-      body: JSON.stringify(targetUser?.id),
-    });
+    const { chatRoomId } = await fetchPost<{ chatRoomId: string }>(
+      "/api/createChatRoom",
+      {
+        body: JSON.stringify(targetUser?.id),
+      },
+    );
     router.push(
-      `/chat/${newChatRoomId}?${createQueryString("authorId", targetUser?.id)}`,
+      `/chat/${chatRoomId}?${createQueryString("authorId", targetUser?.id)}`,
     );
     reloadChatRooms();
   };
 
   return (
     <Form onSubmit={onSubmit} className="relative flex-row items-center">
-      <ComboBox<Session["user"]>
+      <ComboBox<TUser>
         name="allUsersCombo"
         list={allUsers || []}
         labelKey="nickname"

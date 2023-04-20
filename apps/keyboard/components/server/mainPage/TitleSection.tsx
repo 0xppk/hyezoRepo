@@ -2,9 +2,10 @@ import { Text } from "@hyezo/ui";
 import { useState } from "react";
 import { Icons } from "~/components/server";
 import MainPageModal from "./MainPageModal";
+import { type TBrand } from "~/types/prisma";
 
 type ThirdSectionProps = {
-  brands: AllBrandData;
+  brands: TBrand[];
   page: number;
 };
 

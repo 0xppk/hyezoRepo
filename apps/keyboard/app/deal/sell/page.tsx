@@ -1,21 +1,12 @@
-"use client";
+import { ItemsPage } from "~/components/client";
+import { fetcher } from "~/lib/utils";
+import { type TItems } from "~/types/prisma";
 
-import { useContext, useState } from "react";
-import { ItemsGridCard, SearchItemInput } from "~/components/client";
-import { ItemContext } from "~/lib/contexts";
-
-export default function SellingItem() {
-  const allItems = useContext(ItemContext);
+export default async function SellingItem() {
+  const allItems = await fetcher<TItems[]>("/api/getAllPost", {
+    cache: "no-cache",
+  });
   const allSellingItems = allItems.filter(item => item.category === "SELL");
-  const [searchedItems, setSearchedItems] = useState<TAllItems[]>();
 
-  return (
-    <>
-      <SearchItemInput
-        allPostsData={allSellingItems}
-        setSearchedItems={setSearchedItems}
-      />
-      <ItemsGridCard data={searchedItems || allSellingItems || []} />
-    </>
-  );
+  return <ItemsPage allItems={allSellingItems} />;
 }

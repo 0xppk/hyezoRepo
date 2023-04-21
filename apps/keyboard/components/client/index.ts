@@ -17,5 +17,7 @@ export { default as NotificationToggle } from "./NotificationToggle";
 export { default as UserInfo } from "./UserInfo";
 export { default as ChatSearchUsersInput } from "./ChatSearchUsersInput";
 export { default as ChatTabBar } from "./ChatTabBar";
-export { default as StatusPopup } from "./StatusPopup";
+export { default as PostStatusPopup } from "./PostStatusPopup";
 export { default as ItemsPage } from "./ItemsPage";
+export { default as ChatRoomPopup } from "./ChatRoomPopup";
+export { default as Subscriber } from "./Subscriber";

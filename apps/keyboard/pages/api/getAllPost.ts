@@ -5,8 +5,6 @@ import { type TItems } from "~/types/prisma";
 type TData = TItems[] | { alert: string };
 type TError = { message: string };
 
-export const runtime = "edge";
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<TData | TError>,

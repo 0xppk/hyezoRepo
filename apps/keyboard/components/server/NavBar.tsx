@@ -14,7 +14,7 @@ export default function NavBar({ ...props }: NavBarProps) {
           alt="로고"
           href="/"
           className="interactable z-20 h-10 w-10 sm:h-12 sm:w-12"
-          data-type="link"
+          data-type="circle"
         />
       </div>
       <div className="flex h-full basis-1/2 items-center justify-around border-x border-x-gray-900 px-3 sm:px-5 md:px-10 lg:basis-1/3">

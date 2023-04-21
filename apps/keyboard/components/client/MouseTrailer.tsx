@@ -29,7 +29,7 @@ export default function MouseTrailer() {
       };
 
       trailerRef.current.animate(keyframes, {
-        duration: 300,
+        duration: 250,
         fill: "forwards",
       });
 
@@ -44,7 +44,7 @@ export default function MouseTrailer() {
   useEventListener("mousemove", e => {
     if (!trailerRef.current || !circleRef.current) return;
 
-    if (isHTMLElement(e.target)) {
+    if (isTargetElement(e.target)) {
       const interactable = e.target.closest(".interactable") as HTMLElement;
       const interacting = interactable !== null;
 
@@ -67,6 +67,6 @@ export default function MouseTrailer() {
   );
 }
 
-const isHTMLElement = (element: unknown): element is HTMLElement | SVGElement => {
+const isTargetElement = (element: unknown): element is HTMLElement | SVGElement => {
   return element instanceof HTMLElement || element instanceof SVGElement;
 };

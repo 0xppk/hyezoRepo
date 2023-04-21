@@ -20,8 +20,7 @@ export default async function handler(
     return;
   }
 
-  const { updateTime, chatRoomId }: { updateTime: string; chatRoomId: string } =
-    req.body;
+  const { updateTime, chatRoomId }: { updateTime: string; chatRoomId: string } = req.body;
 
   try {
     const findParticipant = await prisma.chatParticipant.findFirstOrThrow({

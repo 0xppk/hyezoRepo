@@ -18,9 +18,7 @@ export default function ChatSearchUsersInput() {
         body: JSON.stringify(targetUser?.id),
       },
     );
-    router.push(
-      `/chat/${chatRoomId}?${createQueryString("authorId", targetUser?.id)}`,
-    );
+    router.push(`/chat/${chatRoomId}?${createQueryString("authorId", targetUser?.id)}`);
     reloadChatRooms();
   };
 

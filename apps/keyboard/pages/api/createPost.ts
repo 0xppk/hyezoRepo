@@ -21,8 +21,7 @@ export default async function handler(
   }
 
   const data: InputDataForRegisterItem = req.body;
-  const { title, price, layout, color, message, category, status, objDataCombo } =
-    data;
+  const { title, price, layout, color, message, category, status, objDataCombo } = data;
 
   try {
     await prisma.post.create({

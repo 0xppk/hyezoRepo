@@ -64,11 +64,7 @@ export default function PostStatusPopup({
               status === "PENDING" ? "orange" : status === "END" ? "red" : "twitter"
             }`}
           >
-            {status === "PENDING"
-              ? "거래중"
-              : status === "END"
-              ? "거래완료"
-              : "판매중"}
+            {status === "PENDING" ? "거래중" : status === "END" ? "거래완료" : "판매중"}
           </Button>
         ))}
       </div>

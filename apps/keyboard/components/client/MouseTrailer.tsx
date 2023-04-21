@@ -25,9 +25,7 @@ export default function MouseTrailer() {
       };
 
       const keyframes2 = {
-        transform: `translate(${offX}px, ${offY}px) scale(${
-          interacting ? 1 : 0.05
-        })`,
+        transform: `translate(${offX}px, ${offY}px) scale(${interacting ? 1 : 0.05})`,
       };
 
       trailerRef.current.animate(keyframes, {

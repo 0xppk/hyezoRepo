@@ -89,10 +89,7 @@ export default function ChatRoomList({ setTab }: TChatRoomListProps) {
                 "text-glow decoration-salary-600 underline decoration-wavy underline-offset-4"
               }`}
             >
-              <div
-                className="flex items-center gap-3"
-                onClick={() => setTab("chat")}
-              >
+              <div className="flex items-center gap-3" onClick={() => setTab("chat")}>
                 <Image
                   className="aspect-1 rounded-full"
                   width={44}

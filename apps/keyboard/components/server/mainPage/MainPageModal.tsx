@@ -19,12 +19,7 @@ type ModalProps = {
   as?: "search" | "post";
 };
 
-export default function MainPageModal({
-  isOpen,
-  setIsOpen,
-  as,
-  brands,
-}: ModalProps) {
+export default function MainPageModal({ isOpen, setIsOpen, as, brands }: ModalProps) {
   const [category, setCategory] = useState<"BUY" | "SELL" | undefined>();
   const [itemType, setItemType] = useState<"HOUSING" | "KEYCAP" | undefined>();
 
@@ -146,12 +141,7 @@ MainPageModal.PostMode = ({ onSubmit, brands, itemType }: ModalPostModeProps) =>
               <div className="blue-dot" />
               <span>가격</span>
             </div>
-            <Input
-              name="price"
-              type="number"
-              placeholder="만원 단위"
-              color="darkNavy"
-            />
+            <Input name="price" type="number" placeholder="만원 단위" color="darkNavy" />
           </div>
         </div>
         {itemType === "HOUSING" ? (

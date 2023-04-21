@@ -12,3 +12,14 @@ declare global {
     params: T;
   };
 }
+
+type TSiteConfig = {
+  title: string;
+  name: string;
+  description: string;
+  url: string;
+  links: {
+    twitter: string;
+    github: string;
+  };
+};

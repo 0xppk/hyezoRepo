@@ -5,6 +5,8 @@ import { prisma } from "~/server/db";
 type TData = { chatRoomId: string }; // chatRoomId 바로 전달
 type TError = { message: string };
 
+export const runtime = "edge";
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<TData | TError>,

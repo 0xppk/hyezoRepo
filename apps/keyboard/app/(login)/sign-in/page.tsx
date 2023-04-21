@@ -1,15 +1,17 @@
 "use client";
 
-import { OAuthProviders, SignInForm, SignInFormSpacer } from "~/components/server";
+import { Icons, OAuthProviders, SignInForm, SignInFormSpacer } from "~/components/server";
 import { useForceLinkToCreateNickname, usePermitEntering } from "~/hooks";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [isEnter] = usePermitEntering();
   useForceLinkToCreateNickname();
+  const router = useRouter();
 
   return (
     <div
-      className={`grid h-screen w-screen place-items-center duration-1000 ${
+      className={`mb-5 grid h-screen w-screen place-items-center duration-1000 ${
         isEnter ? "scale-100 opacity-100" : "scale-150 opacity-0"
       }`}
     >
@@ -18,6 +20,13 @@ export default function LoginPage() {
           <SignInForm />
           <SignInFormSpacer />
           <OAuthProviders />
+        </div>
+        <div
+          onClick={() => router.push("/")}
+          className="absolute inset-x-0 -bottom-16 flex cursor-pointer items-center justify-center gap-3 text-xs"
+        >
+          <span>Go home</span>
+          <Icons.back className="h-4 w-4" />
         </div>
       </div>
     </div>

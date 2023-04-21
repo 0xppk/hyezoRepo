@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import {
   Dispatch,
   SetStateAction,
@@ -8,10 +7,10 @@ import {
   useRef,
   useState,
 } from "react";
-import { StatusPopup } from "~/components/client";
+import { PostStatusPopup, ChatRoomPopup } from "~/components/client";
 import { SplitWord } from "~/components/server";
-import { useLoadChatRooms, useQueryString, useUserSession } from "~/hooks";
-import { createTitle, fetchPost } from "~/lib/utils";
+import { useCardMouseEffect, useUserSession } from "~/hooks";
+import { createTitle } from "~/lib/utils";
 import { type TItems } from "~/types/prisma";
 
 type GridCardProps = {
@@ -19,77 +18,51 @@ type GridCardProps = {
   setSearchedItems: Dispatch<SetStateAction<TItems[] | undefined>>;
 };
 
-const handleOnMouseMove = (e: PointerEvent) => {
-  const { currentTarget: target } = e;
-  if (target instanceof HTMLDivElement) {
-    const rect = target.getBoundingClientRect(),
-      y = e.clientY - rect.top,
-      x = e.clientX - rect.left;
-    target.style.setProperty("--mouse-x", `${x}px`);
-    target.style.setProperty("--mouse-y", `${y}px`);
-  }
-};
-
 export default function GridCard({ allItems, setSearchedItems }: GridCardProps) {
   const gridRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
-  const { reloadChatRooms } = useLoadChatRooms();
-  const { createQueryString } = useQueryString();
   const user = useUserSession();
   const [statusPopup, setStatusPopup] = useState<boolean[]>([false]);
 
-  useEffect(() => {
-    if (!gridRef.current?.children) return;
-
-    for (const card of gridRef.current.children)
-      if (card instanceof HTMLDivElement)
-        card.onpointermove = e => {
-          handleOnMouseMove(e);
-        };
-  }, [gridRef, allItems]);
+  useCardMouseEffect(gridRef);
 
   useEffect(() => {
     if (!allItems) return;
     setStatusPopup(Array.from({ length: allItems.length }, () => false));
   }, [allItems]);
 
-  const openChatRoom = useCallback(
-    async (authorId: string, idx: number) => {
-      if (authorId === user?.id) {
-        setStatusPopup(prev => {
-          const copy = [...prev];
-          copy[idx] = true;
-          return copy;
-        });
-        return;
-      }
-      const { chatRoomId } = await fetchPost<{ chatRoomId: string }>(
-        "/api/createChatRoom",
-        {
-          body: JSON.stringify(authorId),
-        },
-      );
-      reloadChatRooms();
-      router.push(`/chat/${chatRoomId}?${createQueryString("authorId", authorId)}`);
+  const toggleCardOverlay = useCallback(
+    (idx: number) => {
+      setStatusPopup(prev => {
+        const copy = [...prev];
+        copy[idx] = !copy[idx];
+        return copy;
+      });
     },
-    [reloadChatRooms, user, createQueryString, router],
+    [setStatusPopup],
   );
 
   return (
     <div className="gridcards text-white" ref={gridRef}>
       {allItems?.map((card, i) => (
         <div className="gridcard" key={card.id}>
-          {statusPopup[i] && (
-            <StatusPopup
-              presentStatus={card.status}
-              postId={card.id}
-              setStatusPopup={setStatusPopup}
-              idx={i}
-              setSearchedItems={setSearchedItems}
-            />
-          )}
+          {statusPopup[i] &&
+            (card.author.id === user?.id ? (
+              <PostStatusPopup
+                postId={card.id}
+                presentStatus={card.status}
+                closeCardOverlay={toggleCardOverlay}
+                setSearchedItems={setSearchedItems}
+                idx={i}
+              />
+            ) : (
+              <ChatRoomPopup
+                authorId={card.authorId}
+                closeCardOverlay={toggleCardOverlay}
+                idx={i}
+              />
+            ))}
           <div
-            onClick={() => openChatRoom(card.author.id, i)}
+            onClick={() => toggleCardOverlay(i)}
             className="absolute right-0 top-0 z-10 m-3 flex cursor-pointer flex-col items-center"
           >
             <Image

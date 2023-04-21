@@ -2,6 +2,7 @@ import { type Metadata } from "next";
 import { NavBar, Subscriber } from "~/components/client";
 import { RootProviders } from "~/lib/contexts";
 import "~/styles/tailwind.css";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Hello, keyboard",
@@ -20,13 +21,14 @@ export default function RootLayout({ children }: LayoutProps) {
           process.env.NODE_ENV === "development" ? "debug-screens" : ""
         }`}
       >
-        <section className="flex flex-col">
+        <div className="flex flex-col">
           <RootProviders>
             <Subscriber />
             <NavBar className="flex h-[10vh] min-w-full flex-row items-center border-b border-gray-900" />
             <main className="grid w-full lg:grid-cols-3">{children}</main>
+            <Analytics />
           </RootProviders>
-        </section>
+        </div>
       </body>
     </html>
   );

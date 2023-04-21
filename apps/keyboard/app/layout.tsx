@@ -1,5 +1,5 @@
 import { type Metadata } from "next";
-import { NavBar } from "~/components/client";
+import { NavBar, Subscriber } from "~/components/client";
 import { RootProviders } from "~/lib/contexts";
 import "~/styles/tailwind.css";
 
@@ -22,6 +22,7 @@ export default function RootLayout({ children }: LayoutProps) {
       >
         <section className="flex flex-col">
           <RootProviders>
+            <Subscriber />
             <NavBar className="flex h-[10vh] min-w-full flex-row items-center border-b border-gray-900" />
             <main className="grid w-full lg:grid-cols-3">{children}</main>
           </RootProviders>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SignOutBtn } from "~/components/client";
 import { useUserSession } from "~/hooks";
+import { Icons } from "../server";
 
 export default function UserInfo() {
   const user = useUserSession();
@@ -11,8 +12,11 @@ export default function UserInfo() {
     <>
       {user ? (
         <>
-          <SignOutBtn className="hidden sm:block">
-            <Text variant="xs/normal">Logout</Text>
+          <SignOutBtn>
+            <Icons.logout className="h-4 w-4 font-light lg:hidden" />
+            <Text variant="xs/normal" className="hidden lg:block">
+              Logout
+            </Text>
           </SignOutBtn>
           <div className="relative h-8 w-8 sm:h-9 sm:w-9">
             <Link href="/user-info">

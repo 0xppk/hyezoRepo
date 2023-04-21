@@ -3,7 +3,8 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "~/lib/session";
 
 export const metadata: Metadata = {
-  title: "Welcome come",
+  title: "Welcome",
+  description: "a page to sign in hello-keyboard",
 };
 
 export default async function LoginLayout({ children }: LayoutProps) {

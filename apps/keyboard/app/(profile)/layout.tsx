@@ -1,6 +1,12 @@
 import { Text } from "@hyezo/ui";
+import { Metadata } from "next";
 import { NavLink, Icons } from "~/components/server";
 import { requireSignIn } from "~/lib/session";
+
+export const metadata: Metadata = {
+  title: "프로필",
+  description: "a page for editing user configs",
+};
 
 export default async function ProfileLayout({ children }: LayoutProps) {
   await requireSignIn();

@@ -1,5 +1,6 @@
 "use client";
 
+import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { ChatTabBar } from "~/components/client";
@@ -11,6 +12,11 @@ const ChatSearchUsers = dynamic(() => import("~/components/client/ChatSearchUser
 const ChatRecentInfo = dynamic(() => import("~/components/client/ChatRecentInfo"), {
   ssr: false,
 });
+
+export const metadata: Metadata = {
+  title: "채팅",
+  description: "a page for chatting each users",
+};
 
 export default function ChatLayout({ children }: LayoutProps) {
   const [tab, setTab] = useState("userList");

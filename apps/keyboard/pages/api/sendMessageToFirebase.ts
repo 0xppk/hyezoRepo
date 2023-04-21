@@ -81,7 +81,7 @@ export default async function handler(
         data: {
           title: `${senderName}님이 메시지를 보냈습니다`,
           body: content,
-          icon: "/manifest/favicon-96x96.png",
+          icon: "/assets/favicon-96x96.png",
           link: "/",
         },
         tokens: endpoints,

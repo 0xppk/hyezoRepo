@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
-import arrow from "~/public/svgs/arrow.svg";
-import { images } from "./ImageSection";
+import arrow from "~/public/assets/arrow.svg";
+import { images } from "~/config/images";
 
 type FourthSectionProps = {
   setPage: Dispatch<SetStateAction<number>>;

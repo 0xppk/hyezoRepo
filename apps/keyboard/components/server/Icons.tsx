@@ -21,6 +21,7 @@ import {
 } from "react-icons/fi";
 import { GiPrayer } from "react-icons/gi";
 import { HiTrash } from "react-icons/hi";
+import { TfiBackLeft } from "react-icons/tfi";
 import { IoChatbubblesOutline, IoHomeOutline, IoExitOutline } from "react-icons/io5";
 import { RiKakaoTalkFill, RiUserSettingsLine } from "react-icons/ri";
 
@@ -50,6 +51,7 @@ const Icons = {
   bookmark: BsBookmark,
   exit: IoExitOutline,
   send: BsSend,
+  back: TfiBackLeft,
 };
 
 export default Icons;

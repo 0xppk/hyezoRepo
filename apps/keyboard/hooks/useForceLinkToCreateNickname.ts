@@ -9,5 +9,6 @@ export default function useForceLinkToCreateNickname() {
   useEffect(() => {
     if (!user) router.push("/sign-in");
     else if (!user?.nickname) router.push("/new-user");
+    else return;
   }, [user]);
 }

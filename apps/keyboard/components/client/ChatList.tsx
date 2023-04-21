@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useRef } from "react";
 import {
   useFocusToLatestMessage,
@@ -20,10 +19,7 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
   useUpdateNowSeeing(chatRoomId);
 
   return (
-    <div
-      className="flex h-full flex-col gap-3 overflow-y-scroll"
-      ref={messageBoxRef}
-    >
+    <div className="flex h-full flex-col gap-3 overflow-y-scroll" ref={messageBoxRef}>
       {messages?.map((m, i) => {
         const messageByMe = user?.id === m.userId;
         const currentDate = new Date(m.created_at),

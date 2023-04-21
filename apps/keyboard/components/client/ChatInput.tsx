@@ -70,7 +70,11 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
             content: messageToSend,
           }),
         });
-        console.log(sendNotification);
+
+        console.log("메시지를 보냈어요 🧤", sendNotification);
+        await fetchPost("/api/updateChatRoomLatestMessage", {
+          body: JSON.stringify({ updateTime: new Date(), chatRoomId }),
+        });
       } catch (error) {
         console.error(error);
       }

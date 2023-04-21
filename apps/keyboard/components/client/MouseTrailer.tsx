@@ -8,7 +8,7 @@ export default function MouseTrailer() {
   const circleRef = useRef<HTMLDivElement>(null);
 
   const animateTrailer = useCallback(
-    (e: PointerEvent, interacting: boolean) => {
+    (e: MouseEvent, interacting: boolean) => {
       if (!trailerRef.current || !circleRef.current) return;
 
       const { clientX: x, clientY: y } = e;
@@ -43,7 +43,7 @@ export default function MouseTrailer() {
     [trailerRef, circleRef],
   );
 
-  useEventListener("pointermove", e => {
+  useEventListener("mousemove", e => {
     if (!trailerRef.current || !circleRef.current) return;
 
     if (isHTMLElement(e.target)) {

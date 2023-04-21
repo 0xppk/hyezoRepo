@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { ChatTabBar } from "~/components/client";
+import { useForceLinkToCreateNickname } from "~/hooks";
 
 const ChatSearchUsers = dynamic(() => import("~/components/client/ChatSearchUsers"), {
   ssr: false,
@@ -13,6 +14,7 @@ const ChatRecentInfo = dynamic(() => import("~/components/client/ChatRecentInfo"
 
 export default function ChatLayout({ children }: LayoutProps) {
   const [tab, setTab] = useState("userList");
+  useForceLinkToCreateNickname();
 
   return (
     <>

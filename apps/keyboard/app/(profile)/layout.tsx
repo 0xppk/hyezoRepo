@@ -1,6 +1,6 @@
 import { Text } from "@hyezo/ui";
 import { Metadata } from "next";
-import { NavLink, Icons } from "~/components/server";
+import { ProfileNavBar } from "~/components/server";
 import { requireSignIn } from "~/lib/session";
 
 export const metadata: Metadata = {
@@ -17,36 +17,9 @@ export default async function ProfileLayout({ children }: LayoutProps) {
         <Text variant="xl/bold" className="mb-5">
           User Profile
         </Text>
-        <ProfileNav />
+        <ProfileNavBar />
       </div>
       <div className="col-span-2 p-20">{children}</div>
     </>
-  );
-}
-
-function ProfileNav() {
-  return (
-    <div className="flex min-w-max flex-col gap-5">
-      <NavLink href="/user-info">
-        <Icons.user />
-        User Info
-      </NavLink>
-      <NavLink href="/favorite">
-        <Icons.like />
-        Favorites
-      </NavLink>
-      <NavLink href="/watchlist">
-        <Icons.watch />
-        Watchlist
-      </NavLink>
-      <NavLink href="/user-setting">
-        <Icons.setting />
-        Setting
-      </NavLink>
-      <NavLink href="/notification">
-        <Icons.notificationOn />
-        Notification
-      </NavLink>
-    </div>
   );
 }

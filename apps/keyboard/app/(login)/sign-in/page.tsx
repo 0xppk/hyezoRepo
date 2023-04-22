@@ -1,8 +1,9 @@
 "use client";
 
-import { Icons, OAuthProviders, SignInForm, SignInFormSpacer } from "~/components/server";
-import { useForceLinkToCreateNickname, usePermitEntering } from "~/hooks";
 import { useRouter } from "next/navigation";
+import { SignInForm } from "~/components/client";
+import { Icons, OAuthProviders, SignInFormSpacer } from "~/components/server";
+import { useForceLinkToCreateNickname, usePermitEntering } from "~/hooks";
 
 export default function LoginPage() {
   const [isEnter] = usePermitEntering();

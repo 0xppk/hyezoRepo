@@ -11,7 +11,7 @@ export function generateMetadata({
   params: { category },
 }: PageProps<ItemPageParams>): Metadata {
   return {
-    title: `${category === "sell" ? "Selling" : "Buying"}`,
+    title: `${category === "sell" ? "Sell" : "Buy"}`,
     description: `${
       category === "sell"
         ? "a page for selling custom keyboard and keycaps"

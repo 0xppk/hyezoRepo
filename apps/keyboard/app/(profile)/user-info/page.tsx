@@ -9,7 +9,11 @@ export default function Info() {
   const user = useUserSession();
 
   const onSubmit: zodSubmitHandler = async ({ nickname }) => {
-    await fetchPost("/api/updateNickname", { body: JSON.stringify(nickname) });
+    const res = await fetchPost<{ success: boolean }>("/api/updateNickname", {
+      body: JSON.stringify(nickname),
+    });
+    if (res.success) alert("Successfully updated");
+    else alert("이미 사용중인 닉네임입니다");
     reloadSession();
   };
   return (
@@ -24,12 +28,10 @@ export default function Info() {
         height={120}
         className="rounded-full"
       />
-
       <div className="grid gap-2">
         <Text variant="xs/normal">닉네임</Text>
         <Input name="nickname" placeholder={user?.nickname || ""} />
       </div>
-
       <SubmitButton>Save Cahnges</SubmitButton>
     </Form>
   );

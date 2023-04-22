@@ -29,7 +29,7 @@ type TTAbreducer = (state: State, action: Action) => State;
 
 export const TabContext = createContext<TChatContext>({
   tab: "userInfo",
-  setTab: () => {},
+  setTab: () => null,
 });
 
 const reducer: TTAbreducer = (state, action) => {

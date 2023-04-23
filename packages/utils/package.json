@@ -42,6 +42,7 @@
     "concurrently": "^7.6.0",
     "eslint": "^8.37.0",
     "eslint-config-hyezo": "workspace:*",
+    "react-icons": "^4.8.0",
     "tailwind-config-hyezo": "workspace:*",
     "tailwind-merge": "^1.11.0",
     "tailwindcss": "3.2.4",

@@ -1,13 +1,15 @@
 "use client";
 
+import Fuse from "fuse.js";
 import { Dispatch, SetStateAction, useRef } from "react";
 import { useEventListener, useInput } from "../hooks";
 import { cn } from "../utils";
-import Fuse from "fuse.js";
+import { TiDelete } from "react-icons/ti";
+import { RiSearchLine } from "react-icons/ri";
 
 type Props<T> = {
   data: T[];
-  setData: Dispatch<SetStateAction<T[] | undefined>>;
+  setData: Dispatch<SetStateAction<T[]>>;
   labelKeys: string[];
   debounceTime?: number;
   placeholder?: string;
@@ -32,7 +34,7 @@ export default function InputSimple<T>({
     setData(filteredItems);
   };
 
-  const [value, onChange, onSubmit] = useInput(submitAction, debounceTime);
+  const [, onChange, onSubmit, clear] = useInput(submitAction, debounceTime);
   const inputRef = useRef<HTMLInputElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -47,29 +49,40 @@ export default function InputSimple<T>({
   );
 
   return (
-    <div className="relative flex max-w-max">
-      <input
-        type="text"
-        spellCheck="false"
-        ref={inputRef}
-        className={cn(
-          `h-10 resize-none rounded-full border border-black py-2 pl-3 pr-12 leading-5 text-black caret-blue-800 focus:outline-none ${className}`,
-        )}
-        placeholder={placeholder}
-        onChange={onChange}
-      />
-
+    <div className="relative flex max-w-max items-center">
       <button
         ref={buttonRef}
-        className="itmes-center absolute right-0 top-0 flex h-full items-center justify-center rounded-full rounded-l-none border bg-black px-4 py-2 font-medium outline-none duration-300 hover:border-black hover:bg-transparent hover:bg-white hover:text-black focus:bg-transparent focus:font-bold focus:text-black focus:ring-1 focus:ring-black disabled:cursor-not-allowed dark:hover:bg-transparent"
         onClick={() => {
           if (inputRef.current?.value) {
             onSubmit();
             inputRef.current.value = "";
           }
         }}
+        className="absolute flex h-10 items-center py-2 pl-3 text-black/70 hover:text-black/90"
       >
-        ?
+        <RiSearchLine className="h-5 w-5" />
+      </button>
+      <input
+        type="text"
+        spellCheck="false"
+        ref={inputRef}
+        className={cn(
+          `h-10 resize-none rounded-full border border-black py-2 pl-10 pr-10 leading-5 text-black caret-blue-800 focus:outline-none ${className}`,
+        )}
+        placeholder={placeholder}
+        onChange={onChange}
+      />
+      <button
+        ref={buttonRef}
+        className="absolute right-0 flex h-10 items-center justify-center rounded-full py-2 pr-3 font-medium text-black/30 outline-none duration-300 hover:text-black"
+        onClick={() => {
+          if (inputRef.current?.value) {
+            clear();
+            inputRef.current.value = "";
+          }
+        }}
+      >
+        <TiDelete className="h-4 w-4" />
       </button>
     </div>
   );

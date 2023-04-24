@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("SUPERBASE_URL")
+  provider  = "postgresql"
+  url       = env("PRISMA_PROXY")
+  directUrl = env("SUPERBASE_URL")
 }
 
 model Account {

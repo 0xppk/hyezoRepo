@@ -108,7 +108,7 @@ export const authOptions: NextAuthOptions = {
         picture: dbUser.image,
         nickname: dbUser.nickname,
         role: dbUser.role,
-      } as JWT;
+      };
     },
   },
 };

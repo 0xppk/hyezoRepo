@@ -21,10 +21,8 @@ export default async function handler(
   }
 
   const session = await getServerAuthSession({ req, res });
-  if (!session?.user?.nickname) {
-    res.status(401).json({ message: "Unauthorized to load users info 🦠" });
-    return;
-  }
+  if (!session?.user?.nickname)
+    return res.status(401).json({ message: "Unauthorized to load users info 🦠" });
 
   const { authorId, chatRoomId } = StringQuerySchema.parse(req.query);
 

@@ -53,7 +53,7 @@ export default function MainPageModal({ isOpen, setIsOpen, as }: ModalProps) {
       {as === "post" ? (
         <Modal.Content className="grid gap-4">
           <div className="flex w-full justify-between gap-5 duration-700">
-            <p className={`${category && "text-gray-700/70"}`}>
+            <p className={`duration-300 ${itemType && "text-gray-700/70"}`}>
               1. 카테고리를 설정해주세요.
             </p>
             <div className="flex justify-evenly gap-5">
@@ -87,7 +87,7 @@ export default function MainPageModal({ isOpen, setIsOpen, as }: ModalProps) {
                 : "pointer-events-none scale-0 select-none opacity-0"
             } ${itemType && "place-self-start"}`}
           >
-            <p className={`${category && "text-gray-700/70"}`}>
+            <p className={`duration-300 ${itemType && "text-gray-700/70"}`}>
               2. 무엇을 {category === "SELL" ? "판매" : "구매"}하실 건가요?
             </p>
             <div className="flex justify-evenly gap-5">

@@ -10,7 +10,7 @@ type StatusPopupProps = {
   postId: string;
   presentStatus: TPostStatus;
   closeCardOverlay: (idx: number) => void;
-  setSearchedItems: Dispatch<SetStateAction<TItems[] | undefined>>;
+  setSearchedItems: Dispatch<SetStateAction<TItems[]>>;
   idx: number;
 };
 
@@ -37,11 +37,9 @@ export default function PostStatusPopup({
 
       startTransition(() => {
         setSearchedItems(prev => {
-          if (prev) {
-            const copy = [...prev];
-            copy[idx].status = status;
-            return copy;
-          }
+          const copy = [...prev];
+          copy[idx].status = status;
+          return copy;
         });
         router.refresh();
       });

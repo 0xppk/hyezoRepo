@@ -10,16 +10,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<TData | TError>,
 ) {
-  if (req.method !== "GET") {
-    res.status(405).json({ message: "Method Not Allowed" });
-    return;
-  }
+  if (req.method !== "GET")
+    return res.status(405).json({ message: "Method Not Allowed" });
 
   const session = await getServerAuthSession({ req, res });
-  if (!session?.user?.nickname) {
-    res.status(401).json({ message: "You are not logined 🦠" });
-    return;
-  }
+  if (!session?.user?.nickname)
+    return res.status(401).json({ message: "Unauthorized to load users info 🦠" });
 
   const {
     user: { id: myUserId },

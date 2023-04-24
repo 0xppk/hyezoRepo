@@ -170,6 +170,15 @@ module.exports = {
             "min-width": "8px",
             "border-radius": "50%",
           },
+          ".gray-dot": {
+            width: "8px",
+            height: "8px",
+            margin: "8px",
+            border: "2px solid #A5A5A5",
+            "background-color": "#A5A5A5",
+            "min-width": "8px",
+            "border-radius": "50%",
+          },
           ".bg-stripes-gray": {
             "background-color": "#9ca3af1a",
             "background-image":

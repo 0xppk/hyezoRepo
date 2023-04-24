@@ -25,11 +25,11 @@ const comboStyles = cva("", {
       darkNavy: "text-white",
     },
     width: {
-      narrower: "w-44 max-w-xs",
-      narrow: "w-52 max-w-sm",
-      regular: "w-64 max-w-md",
-      wide: "w-72 max-w-lg",
-      wider: "w-80 max-w-xl",
+      narrower: "max-w-xs",
+      narrow: "max-w-sm",
+      regular: "max-w-md",
+      wide: "max-w-lg",
+      wider: "max-w-xl",
     },
   },
 });
@@ -85,16 +85,19 @@ export default function ComboBox<T>({
           <div className="relative flex-1">
             <div
               className={cn(
-                `relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm ${
-                  color === "darkNavy" && "border border-gray-700/70 bg-gray-900"
+                `relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left text-xs shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 ${comboStyles(
+                  { width },
+                )} ${
+                  color === "darkNavy" &&
+                  "rounded-none border-b border-gray-800 bg-gray-900 hover:border-gray-700/70"
                 }`,
               )}
             >
               <Combobox.Input
                 className={cn(
-                  `w-full rounded-lg border-none py-3 pl-3 pr-10 text-sm text-gray-900 focus:outline-none focus:ring-0 lg:py-2 ${
-                    color === "darkNavy" && "bg-gray-900 text-white/80"
-                  }`,
+                  `w-full rounded-lg border-none py-3 pl-3 pr-10 text-xs text-gray-900 focus:outline-none focus:ring-0 lg:py-2 ${comboStyles(
+                    { width },
+                  )} ${color === "darkNavy" && "bg-gray-900 text-white/80"}`,
                 )}
                 placeholder="Search..."
                 spellCheck="false"

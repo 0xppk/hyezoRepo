@@ -8,15 +8,15 @@ import { type InputNameProps } from "./Form";
 import { FieldError } from "./index";
 
 const inputStyles = cva(
-  "peer w-full duration-300 rounded-lg border bg-white text-gray-800 focus:outline-0 disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200",
+  "peer w-full duration-300 bg-white text-gray-800 focus:outline-0 disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200",
   {
     variants: {
       color: {
-        twitter: "focus:border-twitter-600",
-        orange: "focus:border-orange-300",
-        pink: "focus:border-rose-300",
+        twitter: "focus:border-twitter-600 border rounded-lg",
+        orange: "focus:border-orange-300 border rounded-lg",
+        pink: "focus:border-rose-300 border rounded-lg",
         darkNavy:
-          "border-gray-800 text-white/80 placeholder:text-gray-600 bg-gray-900 hover:border-gray-700/70 ",
+          "border-gray-800 placeholder:text-right border-b rounded-none text-white/80 placeholder:text-gray-600 bg-gray-900 hover:border-gray-700/70",
       },
       peer: {
         true: "peer p-4 pb-1",

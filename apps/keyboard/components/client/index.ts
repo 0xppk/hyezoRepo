@@ -7,7 +7,6 @@ export { default as ChatList } from "./chat/ChatList";
 export { default as ChatRecentInfo } from "./chat/ChatRecentInfo";
 export { default as ChatRoomList } from "./chat/ChatRoomList";
 export { default as ChatSearchUserInput } from "./chat/ChatSearchUserInput";
-export { default as ChatUserList } from "./chat/ChatUserList";
 export { default as ChatTabBarOnMobile } from "./chat/ChatTabBarOnMobile";
 
 export { default as CreateNicknameForm } from "./login/CreateNicknameForm";

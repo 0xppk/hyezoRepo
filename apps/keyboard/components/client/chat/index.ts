@@ -7,5 +7,4 @@ export { default as ChatList } from "./ChatList";
 export { default as ChatRecentInfo } from "./ChatRecentInfo";
 export { default as ChatRoomList } from "./ChatRoomList";
 export { default as ChatSearchUserInput } from "./ChatSearchUserInput";
-export { default as ChatUserList } from "./ChatUserList";
 export { default as ChatTabBarOnMobile } from "./ChatTabBarOnMobile";

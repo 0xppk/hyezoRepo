@@ -5,7 +5,6 @@ import { type TAuthor } from "~/types/prisma";
 
 export default function useLoadAuthorPostsInfo(authorId: string | null | undefined) {
   const user = useUserSession();
-  if (!user) return;
 
   const {
     data: authorPost,

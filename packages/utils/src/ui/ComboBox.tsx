@@ -64,7 +64,6 @@ export default function ComboBox<T>({
   const fuse = new Fuse(items, {
     includeScore: true,
     threshold: 0.3,
-    minMatchCharLength: 2,
     keys: [String(labelKey)],
   });
   const filteredItems =
@@ -95,7 +94,7 @@ export default function ComboBox<T>({
             >
               <Combobox.Input
                 className={cn(
-                  `w-full rounded-lg border-none py-3 pl-3 pr-10 text-xs text-gray-900 focus:outline-none focus:ring-0 lg:py-2 ${comboStyles(
+                  `w-full rounded-lg border-none py-2 pl-3 text-xs text-gray-900 focus:outline-none focus:ring-0 ${comboStyles(
                     { width },
                   )} ${color === "darkNavy" && "bg-gray-900 text-white/80"}`,
                 )}

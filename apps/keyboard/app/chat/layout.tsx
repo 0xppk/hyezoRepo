@@ -12,11 +12,7 @@ type ChatLayoutProps = {
   recentInfo: ReactNode;
 } & LayoutProps;
 
-export default async function ChatLayout({
-  children,
-  recentInfo,
-  userList,
-}: ChatLayoutProps) {
+export default function ChatLayout({ children, recentInfo, userList }: ChatLayoutProps) {
   return (
     <TabProvider>
       <ChatTabBarOnMobile />

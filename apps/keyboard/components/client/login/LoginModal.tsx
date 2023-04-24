@@ -16,7 +16,7 @@ export default function LoginPage({ className, children }: LoginModalProps) {
           {children}
         </div>
         <div
-          onClick={router.back}
+          onClick={() => router.push("/")}
           className="absolute inset-x-0 -bottom-16 flex cursor-pointer items-center justify-center gap-3 text-xs"
         >
           <span>Go back</span>

@@ -14,12 +14,10 @@ export default function TextArea({ label, name, className, ...props }: Props) {
 
   return (
     <label>
-      <div className="mb-1 font-medium text-gray-800 dark:text-gray-200">
-        {label}
-      </div>
+      <div className="mb-1 font-medium text-gray-800 dark:text-gray-200">{label}</div>
       <textarea
         className={cn(
-          `w-full resize-none rounded-md border bg-white px-4 py-2 text-gray-800 focus:outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200 ${className}`,
+          `w-full resize-none rounded-md border bg-white px-4 py-2 text-gray-800 hover:border-gray-700/70 focus:outline-none  disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200 ${className}`,
         )}
         spellCheck={false}
         placeholder="메시지를 입력하세요"

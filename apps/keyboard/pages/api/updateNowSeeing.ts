@@ -15,10 +15,7 @@ export default async function handler(
   }
 
   const session = await getServerAuthSession({ req, res });
-  if (!session?.user) {
-    res.status(401).json({ message: "You are not logined 🦠" });
-    return;
-  }
+  if (!session?.user) return res.status(401).json({ message: "You are not logined 🦠" });
 
   const { nowSeeing, chatRoomId } = req.body;
 

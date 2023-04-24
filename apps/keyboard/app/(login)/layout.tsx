@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "~/lib/session";
 
 export const metadata: Metadata = {
-  title: "Welcome",
+  title: "Sign in",
   description: "a page to sign in hello-keyboard",
 };
 

@@ -9,10 +9,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<TData | TError>,
 ) {
-  if (req.method !== "GET") {
-    res.status(405).json({ message: "Method Not Allowed" });
-    return;
-  }
+  if (req.method !== "GET")
+    return res.status(405).json({ message: "Method Not Allowed" });
 
   try {
     const allPosts = await prisma.post.findMany({

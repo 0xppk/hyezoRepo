@@ -1,6 +1,6 @@
-import { useLoadAuthorId, useLoadAuthorPostsInfo } from "~/hooks";
 import { Text } from "@hyezo/ui";
 import Image from "next/image";
+import { useLoadAuthorId, useLoadAuthorPostsInfo } from "~/hooks";
 
 export default function ChatRecentInfo() {
   const { authorId } = useLoadAuthorId();

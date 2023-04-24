@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { ChatLayoutWrapper, ChatTabBarOnMobile } from "~/components/client";
 import { TabProvider } from "~/lib/contexts";
-import { getCurrentUser, requireSignIn } from "~/lib/session";
+import { requireSignIn } from "~/lib/session";
 
 export const metadata: Metadata = {
   title: "Chat",

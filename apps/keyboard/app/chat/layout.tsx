@@ -17,7 +17,6 @@ export default async function ChatLayout({
   recentInfo,
   userList,
 }: ChatLayoutProps) {
-  
   return (
     <TabProvider>
       <ChatTabBarOnMobile />

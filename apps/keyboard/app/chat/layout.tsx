@@ -1,7 +1,6 @@
 import { Metadata } from "next";
-import { ChatTabBarOnMobile, ChatLayoutWrapper } from "~/components/client";
+import { ChatLayoutWrapper, ChatTabBarOnMobile } from "~/components/client";
 import { TabProvider } from "~/lib/contexts";
-import { requireSignIn } from "~/lib/session";
 
 export const metadata: Metadata = {
   title: "Chat",
@@ -14,8 +13,6 @@ type ChatLayoutProps = {
 } & LayoutProps;
 
 export default function ChatLayout({ children, recentInfo, userList }: ChatLayoutProps) {
-  // await requireSignIn();
-
   return (
     <TabProvider>
       <ChatTabBarOnMobile />

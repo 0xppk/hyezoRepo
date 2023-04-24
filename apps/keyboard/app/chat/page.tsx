@@ -1,5 +1,5 @@
 import { ChatLandingBanner } from "~/components/client";
 
-export default function ChatPage() {
+export default async function ChatPage() {
   return <ChatLandingBanner />;
 }

@@ -13,12 +13,8 @@ type ChatLayoutProps = {
   recentInfo: ReactNode;
 } & LayoutProps;
 
-export default async function ChatLayout({
-  children,
-  recentInfo,
-  userList,
-}: ChatLayoutProps) {
-  await requireSignIn();
+export default function ChatLayout({ children, recentInfo, userList }: ChatLayoutProps) {
+  // await requireSignIn();
 
   return (
     <TabProvider>

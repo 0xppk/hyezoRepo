@@ -13,10 +13,10 @@ export default async function handler(
   if (req.method !== "GET")
     return res.status(405).json({ message: "Method Not Allowed" });
 
-  const session = await getServerAuthSession({ req, res });
+  // const session = await getServerAuthSession({ req, res });
 
-  if (!session?.user?.nickname)
-    return res.status(401).json({ message: "Unauthorized to load users info 🦠" });
+  // if (!session?.user?.nickname)
+  //   return res.status(401).json({ message: "Unauthorized to load users info 🦠" });
 
   const { authorId } = req.query;
   if (typeof authorId !== "string") throw new Error("Invalid query string");

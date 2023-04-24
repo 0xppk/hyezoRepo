@@ -15,8 +15,8 @@ export default async function handler(
 
   const session = await getServerAuthSession({ req, res });
 
-  if (!session?.user?.nickname)
-    return res.status(401).json({ message: "Unauthorized to load users info 🦠" });
+  // if (!session?.user?.nickname)
+  //   return res.status(401).json({ message: "Unauthorized to load users info 🦠" });
 
   try {
     const allUsers = await prisma.user.findMany({

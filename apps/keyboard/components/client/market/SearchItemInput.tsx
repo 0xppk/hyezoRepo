@@ -4,23 +4,22 @@ import { type TItems } from "~/types/prisma";
 
 type SearchItemInputProps = {
   allItems: TItems[];
-  setSearchedItems: Dispatch<SetStateAction<TItems[] | undefined>>;
+  setSearchedItems: Dispatch<SetStateAction<TItems[]>>;
 };
 
 export default function SearchItemInput({
   allItems,
   setSearchedItems,
 }: SearchItemInputProps) {
-  if (!allItems) return <></>;
-
   return (
-    <div className="flex items-center justify-center pb-5">
+    <div className="flex items-center justify-center pb-14">
       <InputSimple<TItems>
         data={allItems}
         setData={setSearchedItems}
         labelKeys={["title", "brandName"]}
         placeholder="Search..."
         debounceTime={20}
+        history
       />
     </div>
   );

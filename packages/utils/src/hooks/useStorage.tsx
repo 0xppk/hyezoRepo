@@ -29,9 +29,14 @@ export function useStorage<T>(key: string, initialValue: T, storageObject: Stora
   });
 
   useEffect(() => {
-    if (typeof window !== "undefined")
+    if (typeof window !== "undefined" && storedValue !== undefined)
       storageObject.setItem(key, JSON.stringify(storedValue));
   }, [key, storedValue, storageObject]);
 
-  return [storedValue, setStoredValue] as const;
+  const clear = () => {
+    storageObject.removeItem(key);
+    setStoredValue(initialValue);
+  };
+
+  return [storedValue, setStoredValue, clear] as const;
 }

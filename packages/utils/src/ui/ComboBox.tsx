@@ -1,5 +1,5 @@
 import { Combobox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { HiChevronUpDown, HiCheck } from "react-icons/hi2";
 import { cva, VariantProps } from "cva";
 import Fuse from "fuse.js";
 import { ComponentProps, Fragment, useMemo, useState } from "react";
@@ -61,7 +61,12 @@ export default function ComboBox<T>({
   const items = removeDuplicates
     ? useMemo(() => removeDuplicated(list, labelKey), [list])
     : list;
-  const fuse = new Fuse(items, { includeScore: true, keys: [String(labelKey)] });
+  const fuse = new Fuse(items, {
+    includeScore: true,
+    threshold: 0.3,
+    minMatchCharLength: 2,
+    keys: [String(labelKey)],
+  });
   const filteredItems =
     query === "" ? items : fuse.search(query).map(res => ({ ...res.item }));
   const iconColor = color;
@@ -98,10 +103,7 @@ export default function ComboBox<T>({
               />
 
               <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-                <ChevronUpDownIcon
-                  className="h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
+                <HiChevronUpDown className="h-5 w-5 text-gray-400" aria-hidden="true" />
               </Combobox.Button>
             </div>
             <Transition
@@ -161,7 +163,7 @@ export default function ComboBox<T>({
                                 { iconColor },
                               )}`}
                             >
-                              <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                              <HiCheck className="h-5 w-5" aria-hidden="true" />
                             </span>
                           ) : null}
                         </>

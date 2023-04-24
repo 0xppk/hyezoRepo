@@ -1,7 +1,5 @@
 import { Switch } from "@headlessui/react";
-import { Dispatch, ReactNode, SetStateAction, useRef } from "react";
-import { useEventListener } from "../hooks";
-import { cn } from "../utils";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
 type ToggleProps = {
   enabled: boolean;
@@ -10,12 +8,7 @@ type ToggleProps = {
   passive?: boolean;
 };
 
-export default function Toggle({
-  enabled,
-  setEnabled,
-  passive,
-  children,
-}: ToggleProps) {
+export default function Toggle({ enabled, setEnabled, passive, children }: ToggleProps) {
   return (
     <Switch.Group>
       <Switch.Label passive={passive}>{children}</Switch.Label>

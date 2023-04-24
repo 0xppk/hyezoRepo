@@ -47,7 +47,7 @@ export default function MainPageModal({ isOpen, setIsOpen, as }: ModalProps) {
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       width="narrow"
-      className="drop-shadow-blue flex min-w-max flex-col items-stretch rounded-xl bg-gray-900 p-8"
+      className="drop-shadow-blue flex min-w-max flex-col items-stretch rounded-xl bg-gray-900 p-10"
       title="Search Users"
     >
       {as === "post" ? (

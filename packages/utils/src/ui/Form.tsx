@@ -91,12 +91,12 @@ export function FieldError({ name }: FieldErrorProps) {
   const error = errors[name];
 
   return (
-    <>
-      {error && (
-        <p className="pl-2 pt-2 text-xs font-semibold text-rose-500">
-          {error.message as string}
-        </p>
-      )}
-    </>
+    <p
+      className={`absolute bottom-0 left-0 ml-2 mt-2 text-xs font-semibold text-rose-400 ${
+        error ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      {error?.message as string}
+    </p>
   );
 }

@@ -1,11 +1,10 @@
 import { Metadata } from "next";
 import { ChatTabBarOnMobile, ChatLayoutWrapper } from "~/components/client";
 import { TabProvider } from "~/lib/contexts";
-import { requireSignIn } from "~/lib/session";
 
 export const metadata: Metadata = {
   title: "Chat",
-  description: "a page for chatting each users",
+  description: "a page for chatting to each users",
 };
 
 type ChatLayoutProps = {
@@ -13,13 +12,7 @@ type ChatLayoutProps = {
   recentInfo: ReactNode;
 } & LayoutProps;
 
-export default async function ChatLayout({
-  children,
-  recentInfo,
-  userList,
-}: ChatLayoutProps) {
-  await requireSignIn();
-
+export default function ChatLayout({ children, recentInfo, userList }: ChatLayoutProps) {
   return (
     <TabProvider>
       <ChatTabBarOnMobile />

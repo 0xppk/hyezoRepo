@@ -20,10 +20,6 @@ export function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  return [{ category: "buy" }, { category: "sell" }];
-}
-
 export default async function ItemPage({
   params: { category },
 }: PageProps<ItemPageParams>) {

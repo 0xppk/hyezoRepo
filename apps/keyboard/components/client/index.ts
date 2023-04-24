@@ -12,6 +12,7 @@ export { default as ChatTabBarOnMobile } from "./chat/ChatTabBarOnMobile";
 
 export { default as CreateNicknameForm } from "./login/CreateNicknameForm";
 export { default as SignInForm } from "./login/SignInForm";
+export { default as LoginModal } from "./login/LoginModal";
 
 export { default as ImageSection } from "./mainpage/ImageSection";
 export { default as DescriptionSection } from "./mainpage/DescriptionSection";
@@ -28,6 +29,7 @@ export { default as SearchItemInput } from "./market/SearchItemInput";
 
 export { default as NotificationToggle } from "./profile/NotificationToggle";
 export { default as UserInfo } from "./profile/UserInfo";
+export { default as ProfileTabBarOnMobile } from "./profile/ProfileTabBarOnMobile";
 
 export { default as Subscriber } from "./root/Subscriber";
 export { default as MessageAlarm } from "./root/MessageAlarm";

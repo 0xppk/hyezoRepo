@@ -7,12 +7,12 @@ type FirstSectionProps = {
 
 export default function FirstSection({ page }: FirstSectionProps) {
   return (
-    <div className="relative col-span-2 h-60 border-r border-transparent sm:h-96 lg:h-[60vh]">
-      {images.map((e, i) => (
+    <div className="relative col-span-2 h-[40vh] border-r border-transparent lg:h-[60vh]">
+      {images.map((image, i) => (
         <Image
-          src={e}
+          src={image}
           alt="image"
-          key={e}
+          key={image}
           priority
           fill
           className={`object-cover duration-1000 ${

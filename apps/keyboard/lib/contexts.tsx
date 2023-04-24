@@ -25,14 +25,14 @@ type TChatContext = {
   tab: string;
   setTab: (tab: string) => void;
 };
-type TTAbreducer = (state: State, action: Action) => State;
+type TTabReducer = (state: State, action: Action) => State;
 
 export const TabContext = createContext<TChatContext>({
-  tab: "userInfo",
+  tab: "userList",
   setTab: () => null,
 });
 
-const reducer: TTAbreducer = (state, action) => {
+const reducer: TTabReducer = (state, action) => {
   switch (action.type) {
     case "SET_TAB":
       return {
@@ -45,7 +45,7 @@ const reducer: TTAbreducer = (state, action) => {
 };
 
 export function TabProvider({ children }: ProviderProps) {
-  const [state, dispatch] = useReducer(reducer, { tab: "userInfo" });
+  const [state, dispatch] = useReducer(reducer, { tab: "userList" });
 
   const tab = state.tab;
   const setTab = (tab: string) => dispatch({ type: "SET_TAB", payload: tab });

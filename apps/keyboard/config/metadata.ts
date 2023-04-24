@@ -16,7 +16,7 @@ export const siteConfig: TSiteConfig = {
 export const rootMetadata: Metadata = {
   title: {
     default: siteConfig.title,
-    template: `%s | ${siteConfig.title}`,
+    template: `%s · ${siteConfig.title}`,
   },
   description: siteConfig.description,
   applicationName: siteConfig.title,

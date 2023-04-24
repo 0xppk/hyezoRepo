@@ -14,10 +14,10 @@ export default async function handler(
     return res.status(405).json({ message: "Method Not Allowed" });
 
   const session = await getServerAuthSession({ req, res });
-  // if (!session?.user?.nickname)
-  //   return res.status(401).json({ message: "Unauthorized to load users info 🦠" });
+  if (!session?.user?.nickname)
+    return res.status(401).json({ message: "Unauthorized to load users info 🦠" });
 
-  const myUserId = session?.user?.id;
+  const myUserId = session.user.id;
 
   try {
     const chatRoomList = await prisma.chatRoom.findMany({

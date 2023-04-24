@@ -1,5 +1,4 @@
 import { use } from "react";
-import { useForceLinkToCreateNickname } from "~/hooks";
 import { TabContext } from "~/lib/contexts";
 
 type TChatLayoutWrapper = {
@@ -7,7 +6,6 @@ type TChatLayoutWrapper = {
 };
 
 export default function ChatLayoutWrapper({ children }: TChatLayoutWrapper) {
-  useForceLinkToCreateNickname();
   const { tab } = use(TabContext);
 
   return (

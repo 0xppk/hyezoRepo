@@ -1,7 +1,8 @@
 import { Anonymous_Pro as font } from "next/font/google";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { SplitWord } from "~/components/server";
-import { useMagneticBanner } from "~/hooks";
+import { useMagneticBanner, useUserSession } from "~/hooks";
 import { createTitle } from "~/lib/utils";
 
 const codeFont = font({
@@ -12,6 +13,8 @@ const codeFont = font({
 export default function ChatLandingBanner() {
   const [isOpen, setIsOpen] = useState(true);
   const preRef = useRef<HTMLPreElement>(null);
+  const user = useUserSession();
+  const router = useRouter();
 
   useMagneticBanner(preRef);
 
@@ -25,7 +28,9 @@ export default function ChatLandingBanner() {
         ref={preRef}
         tabIndex={0}
         className="cursor-pointer"
-        onClick={() => setIsOpen(false)}
+        onClick={() => {
+          user ? setIsOpen(false) : router.push("/sign-in");
+        }}
       >
         <code spellCheck={false} className={`${codeFont.className}`}>
           <span className="selector title fancy">

@@ -13,10 +13,7 @@ export const createTitle = (
   return reviveSpace.map(func);
 };
 
-export const magnet = <T extends HTMLElement>(
-  e: PointerEvent,
-  ref: RefObject<T>,
-) => {
+export const magnet = <T extends HTMLElement>(e: PointerEvent, ref: RefObject<T>) => {
   const { clientX: x, clientY: y } = e,
     middleX = globalThis.innerWidth / 2,
     middleY = globalThis.innerHeight / 2,

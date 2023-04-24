@@ -66,19 +66,21 @@ model ChatRoom {
   createdAt       DateTime          @default(now()) @map(name: "created_at")
   updatedAt       DateTime          @updatedAt @map("updated_at")
   chatParticipant ChatParticipant[]
+  latestMessage   DateTime?
 
   @@map(name: "chatRooms")
 }
 
 model ChatParticipant {
-  id         String   @id @default(cuid())
-  userId     String?
-  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: Cascade)
-  chatRoomId String
-  chatroom   ChatRoom @relation(fields: [chatRoomId], references: [id], onDelete: Cascade)
-  createdAt  DateTime @default(now()) @map(name: "created_at")
-  updatedAt  DateTime @updatedAt @map("updated_at")
-  nowSeeing  Boolean  @default(false)
+  id                String    @id @default(cuid())
+  userId            String?
+  user              User?     @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  chatRoomId        String
+  chatroom          ChatRoom  @relation(fields: [chatRoomId], references: [id], onDelete: Cascade)
+  createdAt         DateTime  @default(now()) @map(name: "created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+  nowSeeing         Boolean   @default(false)
+  latestSeenMessage DateTime?
 
   @@map(name: "chatParticipant")
 }

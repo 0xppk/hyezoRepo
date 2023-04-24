@@ -8,7 +8,7 @@ export { a as SelectBox } from './chunk-QJ4MIBFP.mjs';
 export { a as Slider } from './chunk-2VAUSLKV.mjs';
 export { a as Spacer } from './chunk-2RGYJHAE.mjs';
 export { a as Text } from './chunk-N6ZPN2Q6.mjs';
-export { a as InputSimple } from './chunk-FOQHL4IT.mjs';
+export { a as InputSimple } from './chunk-T2W3AAVX.mjs';
 export { a as Link } from './chunk-EDT7Q3JN.mjs';
 export { a as MasonryGrid } from './chunk-RKA2NX4R.mjs';
 export { a as Menu, b as MenuItem } from './chunk-LSXU7HZY.mjs';

@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import { fetcher } from "~/lib/utils";
 import useUserSession from "./useUserSession";
+import { type TAuthor } from "~/types/prisma";
 
 export default function useLoadAuthorPostsInfo(authorId: string | null | undefined) {
   const user = useUserSession();
@@ -11,7 +12,7 @@ export default function useLoadAuthorPostsInfo(authorId: string | null | undefin
     isLoading,
   } = useSWR(
     `/api/getAuthorsPosts?authorId=${authorId || user?.id}`,
-    fetcher<AuthorsPost>,
+    fetcher<TAuthor>,
   );
 
   return { authorPost, reloadAuthorPost, error, isLoading };

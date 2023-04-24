@@ -7,7 +7,8 @@ export default function useForceLinkToCreateNickname() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!user) router.push("/login");
-    else if (!user?.nickname) router.push("/login/new-user");
+    if (!user) router.push("/sign-in");
+    else if (!user?.nickname) router.push("/new-user");
+    else return;
   }, [user]);
 }

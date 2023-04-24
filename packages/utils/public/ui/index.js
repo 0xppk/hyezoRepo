@@ -10,7 +10,7 @@ var chunkWSV62LR7_js = require('./chunk-WSV62LR7.js');
 var chunk3DXCQUJB_js = require('./chunk-3DXCQUJB.js');
 var chunkL5MR6GKZ_js = require('./chunk-L5MR6GKZ.js');
 var chunk3ST5PTQD_js = require('./chunk-3ST5PTQD.js');
-var chunkQEJX4EPA_js = require('./chunk-QEJX4EPA.js');
+var chunkJNZVHNHG_js = require('./chunk-JNZVHNHG.js');
 var chunkBIZINGTI_js = require('./chunk-BIZINGTI.js');
 var chunkEJA5TFXF_js = require('./chunk-EJA5TFXF.js');
 var chunk27OTASYZ_js = require('./chunk-27OTASYZ.js');
@@ -72,7 +72,7 @@ Object.defineProperty(exports, 'Text', {
 });
 Object.defineProperty(exports, 'InputSimple', {
 	enumerable: true,
-	get: function () { return chunkQEJX4EPA_js.a; }
+	get: function () { return chunkJNZVHNHG_js.a; }
 });
 Object.defineProperty(exports, 'Link', {
 	enumerable: true,

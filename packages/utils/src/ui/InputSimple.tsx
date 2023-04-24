@@ -1,17 +1,21 @@
 "use client";
 
-import { Dispatch, SetStateAction, useRef } from "react";
-import { useEventListener, useInput } from "../hooks";
-import { cn } from "../utils";
 import Fuse from "fuse.js";
+import { Dispatch, SetStateAction, useId, useRef } from "react";
+import { HiChevronRight } from "react-icons/hi";
+import { RiSearchLine } from "react-icons/ri";
+import { TiDelete } from "react-icons/ti";
+import { useEventListener, useInput, useLocalStorage } from "../hooks";
+import { cn } from "../utils";
 
 type Props<T> = {
   data: T[];
-  setData: Dispatch<SetStateAction<T[] | undefined>>;
+  setData: Dispatch<SetStateAction<T[]>>;
   labelKeys: string[];
   debounceTime?: number;
   placeholder?: string;
   className?: string;
+  history?: boolean;
 };
 
 export default function InputSimple<T>({
@@ -21,18 +25,25 @@ export default function InputSimple<T>({
   debounceTime = 300,
   placeholder = "",
   className,
+  history,
 }: Props<T>) {
+  const [storedValue, setStoredValue, reset] = useLocalStorage<string[]>("search", []);
+  const id = useId();
+
   const fuse = new Fuse(data, {
     includeScore: true,
+    minMatchCharLength: 2,
+    threshold: 0.3,
     keys: labelKeys,
   });
-  const submitAction = (value: string) => {
+  const submitAction = async (value: string) => {
     const filteredItems =
       value === "" ? data : fuse.search(value).map(res => ({ ...res.item }));
     setData(filteredItems);
+    setStoredValue(prev => [...new Set([value, ...prev])]);
   };
 
-  const [value, onChange, onSubmit] = useInput(submitAction, debounceTime);
+  const [, onChange, onSubmit, clear] = useInput(submitAction, debounceTime);
   const inputRef = useRef<HTMLInputElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -47,30 +58,59 @@ export default function InputSimple<T>({
   );
 
   return (
-    <div className="relative flex max-w-max">
+    <div className="relative flex max-w-max items-center">
+      <button
+        ref={buttonRef}
+        onClick={() => {
+          onSubmit();
+          if (inputRef.current?.value) {
+            inputRef.current.value = "";
+          }
+        }}
+        className="pointer-events-none absolute z-10 flex h-10 items-center py-2 pl-3 text-black/70 hover:text-black/90"
+      >
+        <RiSearchLine className="h-5 w-5" />
+      </button>
       <input
         type="text"
         spellCheck="false"
         ref={inputRef}
         className={cn(
-          `h-10 resize-none rounded-full border border-black py-2 pl-3 pr-12 leading-5 text-black caret-blue-800 focus:outline-none ${className}`,
+          `text-smoke-500 h-10 resize-none rounded-full bg-white/20 py-2 pl-10 pr-10 caret-orange-500 saturate-150 backdrop-blur-md placeholder:text-white/40 focus:outline-none ${className}`,
         )}
         placeholder={placeholder}
         onChange={onChange}
       />
-
       <button
-        ref={buttonRef}
-        className="itmes-center absolute right-0 top-0 flex h-full items-center justify-center rounded-full rounded-l-none border bg-black px-4 py-2 font-medium outline-none duration-300 hover:border-black hover:bg-transparent hover:bg-white hover:text-black focus:bg-transparent focus:font-bold focus:text-black focus:ring-1 focus:ring-black disabled:cursor-not-allowed dark:hover:bg-transparent"
+        className="absolute right-0 flex h-10 items-center justify-center rounded-full py-2 pr-3 font-medium text-black/30 outline-none duration-300 hover:scale-125 hover:text-black"
         onClick={() => {
-          if (inputRef.current?.value) {
-            onSubmit();
-            inputRef.current.value = "";
-          }
+          clear();
+          reset();
+          setData(data);
+          if (inputRef.current?.value) inputRef.current.value = "";
         }}
       >
-        ?
+        <TiDelete className="h-4 w-4" />
       </button>
+
+      {history && (
+        <div
+          className={`absolute inset-x-0 -bottom-9 line-clamp-1 flex w-full items-center gap-4 overflow-x-auto text-xs text-white/30 duration-200 ${
+            storedValue[0] ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <HiChevronRight className="h-4 w-4 shrink-0" />
+          {storedValue.map(historyItem => (
+            <span
+              key={id}
+              className="cursor-pointer"
+              onClick={() => submitAction(historyItem)}
+            >
+              {historyItem}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

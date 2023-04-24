@@ -1,5 +1,5 @@
-import { useCallback, useEffect } from "react";
 import { useEventListener } from "@hyezo/hooks";
+import { useCallback, useEffect } from "react";
 import { fetchPost } from "~/lib/utils";
 
 export default function useUpdateNowSeeing(chatRoomId: string) {
@@ -11,8 +11,17 @@ export default function useUpdateNowSeeing(chatRoomId: string) {
     [chatRoomId],
   );
 
+  const updateLatestSeenMessage = useCallback(async () => {
+    await fetchPost("/api/updateLatestSeenMessage", {
+      body: JSON.stringify({ updateTime: new Date(), chatRoomId }),
+    });
+  }, [chatRoomId]);
+
   const setNowSeeing = async () => await updateNowSeeing(true);
-  const clearNowSeeing = async () => await updateNowSeeing(false);
+  const clearNowSeeing = async () => {
+    await updateNowSeeing(false);
+    await updateLatestSeenMessage();
+  };
 
   useEffect(() => {
     setNowSeeing();
@@ -20,9 +29,10 @@ export default function useUpdateNowSeeing(chatRoomId: string) {
     return () => {
       clearNowSeeing();
     };
-  }, [chatRoomId, updateNowSeeing]);
+  }, [chatRoomId, setNowSeeing, clearNowSeeing]);
 
   // 페이지 이동하지 않고(= 언마운트x) 브라우저 종료할 경우
+  // fixme ? alt+f4는 대응 안됨
   useEventListener("beforeunload", () => {
     clearNowSeeing();
   });

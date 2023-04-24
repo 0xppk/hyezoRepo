@@ -1,5 +1,5 @@
 import Image from "next/image";
-import spinner from "~/public/svgs/spinner.svg";
+import spinner from "~/public/assets/spinner.svg";
 
 export default function Loading() {
   return (

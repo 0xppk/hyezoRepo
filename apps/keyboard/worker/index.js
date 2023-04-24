@@ -29,8 +29,6 @@ const app = firebase.initializeApp(self.firebaseConfig || defaultConfig);
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage(payload => {
-  console.log("부재중 메시지", payload);
-
   const { data } = payload;
 
   const notificationTitle = data.title;

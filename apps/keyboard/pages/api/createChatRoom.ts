@@ -2,24 +2,21 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
 
-type Data = string;
-
-type Err = {
-  error: string;
-};
+type TData = { chatRoomId: string }; // chatRoomId 바로 전달
+type TError = { message: string };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data | Err>,
+  res: NextApiResponse<TData | TError>,
 ) {
   if (req.method !== "POST") {
-    res.status(405).json({ error: "Method Not Allowed" });
+    res.status(405).json({ message: "Method Not Allowed" });
     return;
   }
 
   const session = await getServerAuthSession({ req, res });
   if (!session?.user?.nickname) {
-    res.status(401).json({ error: "Unauthorized to create chatroom 🦠" });
+    res.status(401).json({ message: "Unauthorized to create chatroom 🦠" });
     return;
   }
 
@@ -39,7 +36,8 @@ export default async function handler(
       },
     });
 
-    if (checkExistingChatRoom) res.status(200).json(checkExistingChatRoom.id);
+    if (checkExistingChatRoom)
+      res.status(200).json({ chatRoomId: checkExistingChatRoom.id });
     else {
       const newChatRoom = await prisma.chatRoom.create({
         data: {
@@ -70,9 +68,9 @@ export default async function handler(
         },
       });
 
-      return res.status(200).json(newChatRoom.id);
+      return res.status(200).json({ chatRoomId: newChatRoom.id });
     }
   } catch (error) {
-    return res.status(500).json({ error: (error as Error).message });
+    return res.status(500).json({ message: (error as Error).message });
   }
 }

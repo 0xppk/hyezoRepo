@@ -1,18 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "~/server/db";
+import { type TItems } from "~/types/prisma";
 
-type Data = Post[];
-
-type Err = {
-  error: string;
-};
+type TData = TItems[] | { alert: string };
+type TError = { message: string };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data | Err>,
+  res: NextApiResponse<TData | TError>,
 ) {
   if (req.method !== "GET") {
-    res.status(405).json({ error: "Method Not Allowed" });
+    res.status(405).json({ message: "Method Not Allowed" });
     return;
   }
 
@@ -33,10 +31,9 @@ export default async function handler(
       },
     });
 
-    if (!allPosts) return;
-    // @ts-ignore
+    if (!allPosts) res.status(202).json({ alert: "There is no post" });
     else return res.status(202).json(allPosts);
   } catch (error) {
-    return res.status(500).json({ error: (error as Error).message });
+    return res.status(500).json({ message: (error as Error).message });
   }
 }

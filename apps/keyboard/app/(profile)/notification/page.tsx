@@ -8,7 +8,7 @@ export default function Notification() {
         Notification
       </Text>
       <Text variant="xs/normal" className="mb-10">
-        부재중 수신한 채팅 메시지를 알림으로 받습니다.
+        부재시 채팅 메시지를 알림으로 전송받습니다.
       </Text>
       <NotificationToggle />
     </>

@@ -2,6 +2,7 @@ import { useClickOutside } from "@hyezo/hooks";
 import { Button } from "@hyezo/ui";
 import { useRouter } from "next/navigation";
 import { useCallback, useRef } from "react";
+import { Icons } from "~/components/server";
 import { useLoadChatRooms, useQueryString } from "~/hooks";
 import { fetchPost } from "~/lib/utils";
 
@@ -41,7 +42,7 @@ export default function ChatRoomPopup({
     <div className="rounded-inherit absolute z-20 grid h-full w-full place-items-center bg-black/90">
       <div className="flex gap-5" ref={cancelRef}>
         <Button outline onClick={() => openChatRoom(authorId)} color="black">
-          채팅
+          <Icons.chat className="h-6 w-6" />
         </Button>
       </div>
     </div>

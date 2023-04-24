@@ -82,11 +82,11 @@ export default function ChatRoomList() {
           return (
             <div
               key={chatRoomId}
-              className={`flex items-center justify-between px-3 ${
-                targetUser?.id === authorId &&
-                "text-glow decoration-salary-600 underline decoration-wavy underline-offset-4"
-              }`}
+              className="relative flex items-center justify-between px-3"
             >
+              {targetUser?.id === authorId && (
+                <div className="blue-dot absolute -left-4 animate-pulse" />
+              )}
               <div className="flex items-center gap-3" onClick={() => setTab("chat")}>
                 <Image
                   className="aspect-1 rounded-full"
@@ -101,7 +101,13 @@ export default function ChatRoomList() {
                     targetUser?.id || "deletedAccount",
                   )}`}
                 >
-                  <span>{targetUser?.nickname || "empty room"}</span>
+                  <span
+                    className={`${
+                      targetUser?.id === authorId && "text-glow text-twitter-200"
+                    }`}
+                  >
+                    {targetUser?.nickname || "empty room"}
+                  </span>
                 </Link>
               </div>
               <form
@@ -111,7 +117,7 @@ export default function ChatRoomList() {
                     : exitRoom(e, chatRoomId, "deleteEmptyChatRoom");
                 }}
               >
-                <button className="grid place-items-center p-2">
+                <button className="hover:text-90 grid place-items-center p-2 text-white/60">
                   <Icons.exit className="hover:animate-wiggle h-5 w-5 duration-300" />
                 </button>
               </form>

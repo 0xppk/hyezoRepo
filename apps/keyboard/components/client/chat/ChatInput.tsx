@@ -85,7 +85,7 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
       <Input
         name="text"
         placeholder="메시지를 입력하세요"
-        className="rounded-full text-sm"
+        className="rounded-full pl-5 pr-8 text-sm"
         fullWidth
       />
       <SubmitButton className="absolute right-0 top-0 grid h-full place-items-center rounded-full rounded-l-none px-4">

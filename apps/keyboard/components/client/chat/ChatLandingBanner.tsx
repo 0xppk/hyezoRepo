@@ -17,7 +17,7 @@ export default function ChatLandingBanner() {
 
   return (
     <div
-      className={`bg-mix fixed inset-0 hidden h-screen place-items-center duration-500 lg:grid ${
+      className={`bg-mix fixed inset-0 hidden place-items-center duration-500 lg:grid ${
         isOpen ? "z-10 opacity-100" : "-z-10 opacity-0"
       }`}
     >

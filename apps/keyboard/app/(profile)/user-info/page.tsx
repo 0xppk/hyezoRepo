@@ -19,7 +19,7 @@ export default function Info() {
   return (
     <Form
       onSubmit={onSubmit}
-      className="grid w-full place-items-center gap-10 px-20 py-5"
+      className="grid w-full place-items-center gap-10 px-5 py-5 md:px-20"
     >
       <Image
         src={user?.image || "/images/pingu.webp"}

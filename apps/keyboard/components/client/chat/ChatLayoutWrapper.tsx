@@ -10,7 +10,7 @@ export default function ChatLayoutWrapper({ children }: TChatLayoutWrapper) {
 
   return (
     <div
-      className={`flex h-[85vh] w-screen duration-200 lg:contents lg:h-full ${
+      className={`flex h-[80vh] w-screen duration-200 lg:contents lg:h-full ${
         tab === "chat"
           ? "translate-x-0"
           : tab === "userList"

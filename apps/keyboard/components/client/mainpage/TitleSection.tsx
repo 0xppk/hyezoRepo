@@ -1,15 +1,13 @@
 import { Text } from "@hyezo/ui";
 import { useState } from "react";
 import { Icons } from "~/components/server";
-import { type TBrand } from "~/types/prisma";
 import { MainPageModal } from ".";
 
 type ThirdSectionProps = {
-  brands: TBrand[];
   page: number;
 };
 
-export default function ThirdSection({ brands, page }: ThirdSectionProps) {
+export default function ThirdSection({ page }: ThirdSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalChanger, setModalChanger] = useState<"search" | "post" | undefined>();
   const openModal = (type: "search" | "post") => {
@@ -18,7 +16,7 @@ export default function ThirdSection({ brands, page }: ThirdSectionProps) {
   };
 
   return (
-    <div className="col-span-2 h-52 border-b border-gray-900 sm:h-72 lg:h-[30vh]">
+    <div className="col-span-2 h-[30vh] border-b border-gray-900">
       <div className="grid h-full grid-cols-3 place-items-center">
         <div className="stack col-span-2">
           <ThirdSection.TitleSlider page={page} />
@@ -41,12 +39,7 @@ export default function ThirdSection({ brands, page }: ThirdSectionProps) {
           </div>
         </div>
       </div>
-      <MainPageModal
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        as={modalChanger}
-        brands={brands}
-      />
+      <MainPageModal isOpen={isOpen} setIsOpen={setIsOpen} as={modalChanger} />
     </div>
   );
 }
@@ -60,11 +53,7 @@ ThirdSection.TitleSlider = ({ page }: { page: number }) => {
           key={title}
           variant="3xl/semibold"
           className={`font-point cursor-default uppercase duration-500 ${
-            i > page
-              ? "translate-y-full opacity-0"
-              : i < page
-              ? "-translate-y-full opacity-0"
-              : "translate-y-0 opacity-100"
+            page === i ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
           }`}
         >
           {title}

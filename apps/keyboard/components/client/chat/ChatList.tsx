@@ -40,7 +40,7 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
             >
               <div
                 key={m.id}
-                className={`flex max-w-lg items-center rounded-2xl p-2 py-1 ${
+                className={`flex max-w-xs items-center rounded-2xl p-2 py-1 sm:max-w-sm md:max-w-md lg:max-w-lg ${
                   messageByMe
                     ? "bg-twitter-500 flex-row-reverse"
                     : "bg-smoke-500 flex-row text-black"
@@ -56,7 +56,7 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
                   />
                 )}
                 {!messageByMe && <p className="min-w-[2rem]">{m.username}</p>} */}
-                <p className="p-2">{m.message}</p>
+                <p className="overflow-hidden text-ellipsis p-2">{m.message}</p>
               </div>
               <time className="text-[12px] text-gray-400">
                 {timeIndicator.format(new Date(m.created_at))}

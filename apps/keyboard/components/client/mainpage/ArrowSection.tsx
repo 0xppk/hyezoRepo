@@ -9,10 +9,7 @@ type FourthSectionProps = {
 
 export default function FourthSection({ setPage }: FourthSectionProps) {
   return (
-    <div
-      className="interactable col-span-2 h-40 border-y border-gray-900 sm:h-60 lg:col-span-1 lg:h-[30vh]"
-      data-type="circle"
-    >
+    <div className="col-span-2 h-[20vh] border-y border-gray-900 lg:col-span-1 lg:h-[30vh]">
       <div className="grid h-full grid-cols-2 place-items-center">
         <Image
           src={arrow}
@@ -22,7 +19,7 @@ export default function FourthSection({ setPage }: FourthSectionProps) {
           className="-rotate-90 cursor-pointer select-none duration-500 hover:scale-125 active:-translate-x-10 active:scale-150"
           onClick={() =>
             setPage(prev => {
-              if (prev === 0) return prev;
+              if (prev === 0) return images.length - 1;
               return prev - 1;
             })
           }
@@ -37,7 +34,7 @@ export default function FourthSection({ setPage }: FourthSectionProps) {
           priority
           onClick={() =>
             setPage(prev => {
-              if (prev === images.length - 1) return prev;
+              if (prev === images.length - 1) return 0;
               return prev + 1;
             })
           }

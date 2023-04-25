@@ -76,7 +76,7 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       const dbUser = await prisma.user.findFirst({
         where: {
-          email: user.email || token.email,
+          email: token.email,
         },
       });
 
@@ -108,6 +108,7 @@ export const authOptions: NextAuthOptions = {
         session.user.role = token.role;
       }
 
+      console.log("세션 :::", session);
       return session;
     },
   },

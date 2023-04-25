@@ -55,10 +55,10 @@ export default function MessageAlarm({ app }: MessageAlarmProps) {
   return (
     <Link href={"/chat"}>
       <div
-        className={`fixed right-3 top-[13vh] z-20 flex h-12 w-20 items-center justify-center gap-7 rounded-lg bg-gray-900 text-white duration-500 ${
+        className={`fixed right-3 top-[13vh] flex h-12 w-20 items-center justify-center gap-7 rounded-lg bg-gray-900 text-white duration-500 ${
           message
-            ? "trasnlate-y-0 skew-x-0 skew-y-0 opacity-100"
-            : "-translate-y-3 -skew-x-6 -skew-y-6 opacity-0"
+            ? "trasnlate-y-0 z-20 skew-x-0 skew-y-0 opacity-100"
+            : "-z-10 -translate-y-3 -skew-x-6 skew-y-12 opacity-0"
         }`}
       >
         <Icons.chat className="h-5 w-5" />

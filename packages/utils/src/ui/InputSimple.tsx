@@ -58,7 +58,7 @@ export default function InputSimple<T>({
   );
 
   return (
-    <div className="relative flex items-center overflow-clip">
+    <div className="relative flex items-center overflow-x-clip">
       <button
         ref={buttonRef}
         onClick={() => {

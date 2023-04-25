@@ -26,7 +26,7 @@ export default function Info() {
         alt="profile"
         width={120}
         height={120}
-        className="rounded-full"
+        className="aspect-1 rounded-full"
       />
       <div className="grid gap-2">
         <Text variant="xs/normal">닉네임</Text>

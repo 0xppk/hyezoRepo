@@ -14,7 +14,7 @@ export default function ChatRecentInfo() {
           alt="profile"
           width={200}
           height={200}
-          className="rounded-full"
+          className="aspect-1 rounded-full"
         />
         <Text variant="md/normal" className="place-self-center self-start">
           {authorPost?.nickname}

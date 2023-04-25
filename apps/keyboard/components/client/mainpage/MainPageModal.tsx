@@ -49,7 +49,7 @@ export default function MainPageModal({ isOpen, setIsOpen, as }: ModalProps) {
       className="drop-shadow-blue flex min-w-max flex-col items-stretch rounded-xl bg-gray-900 px-8 pb-6 pt-7"
     >
       {as === "post" ? (
-        <Modal.Content className="grid gap-4">
+        <Modal.Content className="grid max-h-96 gap-4 overflow-auto sm:max-h-full sm:min-w-[22rem]">
           <div className="flex w-full justify-between gap-5 duration-700">
             <p className={`duration-300 ${itemType && "text-gray-700/70"}`}>
               1. 카테고리를 설정해주세요.

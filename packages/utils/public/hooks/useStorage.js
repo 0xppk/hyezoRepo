@@ -1,18 +1,18 @@
 'use strict';
 
-var chunkQ745T5AB_js = require('./chunk-Q745T5AB.js');
+var chunkRYRWJ7JG_js = require('./chunk-RYRWJ7JG.js');
 
 
 
 Object.defineProperty(exports, 'useLocalStorage', {
 	enumerable: true,
-	get: function () { return chunkQ745T5AB_js.a; }
+	get: function () { return chunkRYRWJ7JG_js.a; }
 });
 Object.defineProperty(exports, 'useSessionStorage', {
 	enumerable: true,
-	get: function () { return chunkQ745T5AB_js.b; }
+	get: function () { return chunkRYRWJ7JG_js.b; }
 });
 Object.defineProperty(exports, 'useStorage', {
 	enumerable: true,
-	get: function () { return chunkQ745T5AB_js.c; }
+	get: function () { return chunkRYRWJ7JG_js.c; }
 });

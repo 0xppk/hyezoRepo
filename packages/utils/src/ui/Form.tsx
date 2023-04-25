@@ -92,7 +92,7 @@ export function FieldError({ name }: FieldErrorProps) {
 
   return (
     <p
-      className={`absolute bottom-0 left-0 ml-2 mt-2 text-xs font-semibold text-rose-400 ${
+      className={`pointer-events-none absolute inset-y-0 ml-3 text-xs font-light text-red-500 duration-300 ${
         error ? "opacity-100" : "opacity-0"
       }`}
     >

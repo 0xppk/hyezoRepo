@@ -1,15 +1,14 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { type GetServerSidePropsContext } from "next";
 import { getServerSession, type NextAuthOptions } from "next-auth";
+import DiscordProvider from "next-auth/providers/discord";
 import EmailProvider from "next-auth/providers/email";
 import GithubProvider from "next-auth/providers/github";
-import DiscordProvider from "next-auth/providers/discord";
 import KakaoProvider from "next-auth/providers/kakao";
 import nodemailer from "nodemailer";
 import { env } from "~/env.mjs";
 import { ActivationMail, SignInMail, TextMail } from "~/lib/smtp";
 import { prisma } from "./db";
-import { JWT } from "next-auth/jwt";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),

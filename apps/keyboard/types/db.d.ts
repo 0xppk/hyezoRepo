@@ -35,4 +35,4 @@ type InputDataForRegisterManufacture = {
   select3: "ING" | "END" | "PENDING";
 };
 
-
+type TResponse = { success?: boolean; message?: string };

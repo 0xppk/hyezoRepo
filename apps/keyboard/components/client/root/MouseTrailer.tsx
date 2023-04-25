@@ -56,14 +56,14 @@ export default function MouseTrailer() {
   });
 
   return (
-    <>
+    <div className="hidden md:block">
       <div className="trailer" ref={trailerRef} />
       <div className="trailer-hover" ref={circleRef}>
         <div className="trailer-circle stack capitalize">
           {createTitle(SplitWord.MouseCircle, "hello keyboard﹒hello keyboard﹒")}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

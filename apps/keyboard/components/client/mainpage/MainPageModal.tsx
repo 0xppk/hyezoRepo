@@ -37,7 +37,7 @@ export default function MainPageModal({ isOpen, setIsOpen, as }: ModalProps) {
     const res = await fetchPost<TResponse>("/api/createPost", {
       body: JSON.stringify({ ...data, category, status: "ING" }),
     });
-    if (res.message) alert(res.message);
+    if (res.message) alert("로그인이 필요합니다 😢");
     setIsOpen(false);
   };
 

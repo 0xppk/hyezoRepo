@@ -28,25 +28,27 @@ export default async function ChatLayout({
 
   return (
     <TabProvider>
-      <ChatTabBarOnMobile />
-      <ChatLayoutWrapper>
-        <div className="min-w-full lg:col-span-2 lg:h-[60vh] lg:border-r lg:border-gray-900">
-          {children}
-        </div>
+      <div className="overflow-hidden">
+        <ChatTabBarOnMobile />
+        <ChatLayoutWrapper>
+          <div className="min-w-full lg:col-span-2 lg:h-[60vh] lg:border-r lg:border-gray-900">
+            {children}
+          </div>
 
-        {/* replace @recentInfo for bug in deploy url */}
-        <div className="min-w-full p-7 lg:h-[60vh] lg:p-10">
-          <ChatSearchUserInput />
-          <ChatRoomList />
-        </div>
+          {/* replace @recentInfo for bug in deploy url */}
+          <div className="min-w-full overflow-auto p-7 lg:h-[60vh] lg:p-10">
+            <ChatSearchUserInput />
+            <ChatRoomList />
+          </div>
 
-        {/* replace @userList for bug in deploy url */}
-        <div className="min-w-full lg:col-span-2 lg:h-[30vh] lg:border-r lg:border-t lg:border-gray-900">
-          <ChatRecentInfo />
-        </div>
+          {/* replace @userList for bug in deploy url */}
+          <div className="min-w-full lg:col-span-2 lg:h-[30vh] lg:border-r lg:border-t lg:border-gray-900">
+            <ChatRecentInfo />
+          </div>
 
-        <div className="hidden lg:block lg:h-[30vh] lg:border-t lg:border-t-gray-900"></div>
-      </ChatLayoutWrapper>
+          <div className="hidden lg:block lg:h-[30vh] lg:border-t lg:border-t-gray-900"></div>
+        </ChatLayoutWrapper>
+      </div>
     </TabProvider>
   );
 }

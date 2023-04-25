@@ -9,7 +9,7 @@ export default function Info() {
   const user = useUserSession();
 
   const onSubmit: zodSubmitHandler = async ({ nickname }) => {
-    const res = await fetchPost<{ success: boolean }>("/api/updateNickname", {
+    const res = await fetchPost<TResponse>("/api/updateNickname", {
       body: JSON.stringify(nickname),
     });
     if (res.success) alert("Successfully updated");

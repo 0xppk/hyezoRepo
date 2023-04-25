@@ -122,7 +122,7 @@ export default function MainPageModal({ isOpen, setIsOpen, as }: ModalProps) {
             <p className="pb-3">3. 나머지 항목을 작성해주세요.</p>
             <Form onSubmit={onSubmit} className="gap-3">
               {/* 브랜드 인풋 */}
-              <div className="flex items-center justify-between gap-5">
+              <div className="flex items-center justify-between gap-5 sm:gap-12">
                 <div className="flex items-center">
                   <div className="blue-dot" />
                   <span>브랜드</span>

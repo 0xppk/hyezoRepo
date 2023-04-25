@@ -8,7 +8,7 @@ import { type InputNameProps } from "./Form";
 import { FieldError } from "./index";
 
 const inputStyles = cva(
-  "peer w-full touch-manipulation duration-300 bg-white text-gray-800 focus:outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200",
+  "peer w-full touch-manipulation duration-300 bg-white text-gray-800 outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200",
   {
     variants: {
       color: {

@@ -18,6 +18,12 @@ module.exports = {
       transitionDuration: {
         3000: "3000ms",
       },
+      transitionProperty: {
+        height: "height",
+        width: "width",
+        size: "height, width",
+        spacing: "margin, padding",
+      },
       keyframes: {
         wiggle: {
           "0%, 100%": { transform: "rotate(-3deg)" },
@@ -147,7 +153,10 @@ module.exports = {
       mono: ["ui-monospace", "SFMono-Regular"],
     },
   },
-
+  variants: {
+    height: ["responsive", "hover", "focus"],
+    width: ["responsive", "hover", "focus"],
+  },
   plugins: [
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/typography"),

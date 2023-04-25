@@ -19,7 +19,8 @@ export default async function handler(
     return res.status(401).json({ message: "Unauthorized to load users info 🦠" });
 
   const { authorId } = req.query;
-  if (typeof authorId !== "string") throw new Error("Invalid query string");
+  if (typeof authorId !== "string" || authorId === "deletedAccount")
+    return res.status(404).json({ message: "It seems the user deleted the account 🥶" });
 
   try {
     const authorsPost = await prisma.user.findUniqueOrThrow({

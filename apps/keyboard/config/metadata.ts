@@ -32,7 +32,14 @@ export const rootMetadata: Metadata = {
     // { media: "(prefers-color-scheme: light)", color: "orange" },
     { media: "(prefers-color-scheme: dark)", color: "#041044" },
   ],
-
+  viewport: {
+    width: "device-width",
+    height: "device-height",
+    initialScale: 1,
+    maximumScale: 1,
+    minimumScale: 1,
+    userScalable: false,
+  },
   alternates: {
     canonical: "/",
     languages: {

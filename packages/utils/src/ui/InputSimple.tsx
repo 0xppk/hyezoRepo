@@ -58,7 +58,7 @@ export default function InputSimple<T>({
   );
 
   return (
-    <div className="relative flex max-w-max items-center">
+    <div className="relative flex items-center overflow-clip">
       <button
         ref={buttonRef}
         onClick={() => {
@@ -95,7 +95,7 @@ export default function InputSimple<T>({
 
       {history && (
         <div
-          className={`absolute inset-x-0 -bottom-9 line-clamp-1 flex w-full items-center gap-4 overflow-x-auto text-xs text-white/30 duration-200 ${
+          className={`absolute inset-x-0 -bottom-9 flex min-w-max items-center gap-4 overflow-x-hidden text-xs text-white/30 duration-200 ${
             storedValue[0] ? "opacity-100" : "opacity-0"
           }`}
         >

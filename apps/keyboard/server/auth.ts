@@ -73,29 +73,17 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    session({ session, token }) {
-      if (token) {
-        session.user.id = token.id;
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.picture;
-        session.user.nickname = token.nickname;
-        session.user.role = token.role;
-      }
-
-      return session;
-    },
-
     async jwt({ token, user }) {
       const dbUser = await prisma.user.findFirst({
         where: {
-          id: token.id,
+          email: user.email || token.email,
         },
       });
 
       if (!dbUser) {
         if (user) {
-          token.id = user?.id;
+          token = { ...user, picture: user.image };
+          delete token.image;
         }
         return token;
       }
@@ -108,6 +96,19 @@ export const authOptions: NextAuthOptions = {
         nickname: dbUser.nickname,
         role: dbUser.role,
       };
+    },
+
+    session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image = token.picture;
+        session.user.nickname = token.nickname;
+        session.user.role = token.role;
+      }
+
+      return session;
     },
   },
 };

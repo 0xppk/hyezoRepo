@@ -76,15 +76,16 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       const dbUser = await prisma.user.findFirst({
         where: {
-          email: token.email,
+          AND: [{ email: token.email }, { name: token.name }], // FIXME: 카카오 이메일 미발급으로 인한 임시 편법
         },
       });
 
       if (!dbUser) {
         if (user) {
-          token = { ...user, picture: user.image };
+          token = { ...user, picture: user.image, role: "USER" };
           delete token.image;
         }
+
         return token;
       }
 
@@ -108,7 +109,6 @@ export const authOptions: NextAuthOptions = {
         session.user.role = token.role;
       }
 
-      console.log("세션 :::", session);
       return session;
     },
   },

@@ -8,13 +8,14 @@ import { type InputNameProps } from "./Form";
 import { FieldError } from "./index";
 
 const inputStyles = cva(
-  "peer w-full duration-300 bg-white text-gray-800 focus:outline-0 disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200",
+  "peer w-full touch-manipulation duration-300 bg-white text-gray-800 focus:outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200",
   {
     variants: {
       color: {
         twitter: "focus:border-twitter-600 border rounded-lg",
         orange: "focus:border-orange-300 border rounded-lg",
         pink: "focus:border-rose-300 border rounded-lg",
+        transparent: "rounded-lg",
         darkNavy:
           "border-gray-800 placeholder:text-right border-b rounded-none text-white/80 placeholder:text-gray-600 bg-gray-900 hover:border-gray-700/70",
       },
@@ -65,7 +66,7 @@ export default function Input({
     <div className={`relative ${fullWidth ? "w-full" : ""}`}>
       <input
         spellCheck={false}
-        className={cn(inputStyles({ color, peer, className }))}
+        className={cn(inputStyles({ color, peer }), className)}
         type={type}
         placeholder={placeholder ?? " "}
         {...props}

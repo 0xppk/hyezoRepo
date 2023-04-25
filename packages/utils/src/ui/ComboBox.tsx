@@ -8,7 +8,7 @@ import { cn } from "../utils";
 import { removeDuplicated } from "../utils/removeDuplicated";
 import { InputNameProps } from "./Form";
 
-const comboStyles = cva("", {
+const comboStyles = cva("touch-manipulation", {
   variants: {
     color: {
       twitter: "bg-twitter-100 text-twitter-900",

@@ -32,7 +32,7 @@ export default async function ItemPage({
   params: { category },
 }: PageProps<ItemPageParams>) {
   const allItems = await fetcher<TItems[]>("/api/getAllPost", {
-    next: { revalidate: 60 },
+    cache: "no-cache",
   });
 
   const filteredItems = allItems.filter(item => item.category === category.toUpperCase());

@@ -52,10 +52,13 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
           Nothing Found
         </Text>
       ) : (
-        <div className="gridcards text-white" ref={gridRef}>
+        <div
+          className="gridcards sm:grid-cols-keyboard-layout snap-y snap-mandatory pb-8 text-white"
+          ref={gridRef}
+        >
           {allItems.map((card, i) => (
             <div
-              className={`gridcard duration-500 ${
+              className={`gridcard h-56 snap-center duration-500 sm:h-64 ${
                 isVisible[i]
                   ? "translate-y-0 skew-x-0 skew-y-0 scale-y-100 opacity-100"
                   : "translate-y-24 -skew-x-6 skew-y-6 scale-y-50 opacity-0"
@@ -101,15 +104,15 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
               >
                 <div className="flex flex-col pb-2 pl-3">
                   <div className="flex items-center gap-3 pb-2">
-                    <p
+                    <span
                       className={`px-2  py-px uppercase text-black ${
                         card.brandName === "gmk" ? "bg-orange-400" : "bg-white"
                       }`}
                     >
                       {card.brandName}
-                    </p>
-                    <p>{card.layout}</p>
-                    <p>{card.color}</p>
+                    </span>
+                    <span className="word-spacing">{card.layout}</span>
+                    <span>{card.color}</span>
                   </div>
                   <p className="font-cute line-clamp-1 text-2xl font-bold">
                     {createTitle(SplitWord.Title, card.title)}

@@ -28,7 +28,7 @@ export default function ChatRecentInfo() {
             authorPost.posts.map(post => (
               <div key={post.id} className="flex items-center gap-3">
                 <Text variant="sm/normal">
-                  {post.brandName.toUpperCase()} · {post.title}
+                  {post.brandName.toUpperCase()} · {post.title} ··· {post.price}만원
                 </Text>
                 <Text
                   variant="xs/light"
@@ -38,7 +38,6 @@ export default function ChatRecentInfo() {
                 >
                   {post.category === "SELL" ? "판매" : "구매"}
                 </Text>
-                <Text variant="xs/light"> ··· {post.price}만원</Text>
               </div>
             ))
           ) : (

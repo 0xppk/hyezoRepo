@@ -12,13 +12,13 @@ export default function SearchItemInput({
   setSearchedItems,
 }: SearchItemInputProps) {
   return (
-    <div className="flex items-center justify-center pb-14">
+    <div className="sticky top-4 z-10 flex items-center justify-center pb-14">
       <InputSimple<TItems>
         data={allItems}
         setData={setSearchedItems}
-        labelKeys={["title", "brandName"]}
+        labelKeys={["title", "brandName", "author"]}
         placeholder="Search..."
-        debounceTime={20}
+        debounceTime={30}
         history
       />
     </div>

@@ -125,6 +125,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         "root-layout": "repeat(auto-fill, minmax(0, 1fr))",
+        "keyboard-layout": "repeat(auto-fill, minmax(20rem, 1fr))",
       },
       gridTemplateRows: {
         "chat-layout": "1fr 3rem",
@@ -170,6 +171,9 @@ module.exports = {
         addUtilities({
           ".keep-all": {
             "word-break": "keep-all",
+          },
+          ".word-spacing": {
+            "word-spacing": "0.6rem",
           },
           ".blue-dot": {
             width: "8px",

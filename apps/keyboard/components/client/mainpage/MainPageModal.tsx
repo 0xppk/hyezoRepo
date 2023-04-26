@@ -197,7 +197,7 @@ export default function MainPageModal({ isOpen, setIsOpen, as }: ModalProps) {
               </div>
               <TextArea
                 name="message"
-                className="border-gray-700/70 bg-gray-900 text-white/80"
+                className="border-gray-700/70 bg-gray-900 text-white/80 placeholder:text-gray-600"
               />
               <SubmitButton>작성</SubmitButton>
             </Form>

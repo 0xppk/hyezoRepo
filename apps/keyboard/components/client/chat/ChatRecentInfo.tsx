@@ -17,7 +17,7 @@ export default function ChatRecentInfo() {
           className="aspect-1 rounded-full"
         />
         <Text variant="md/normal" className="place-self-center self-start">
-          {authorPost?.nickname}
+          {authorPost?.nickname || "탈퇴한 회원입니다"}
         </Text>
       </div>
 

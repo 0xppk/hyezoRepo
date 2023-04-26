@@ -23,7 +23,7 @@ export default async function handler(
     return res.status(401).json({ message: "Unauthorized to load users info 🦠" });
 
   const { authorId, chatRoomId } = StringQuerySchema.parse(req.query);
-  if (authorId === "deletedAccount")
+  if (!authorId || authorId === "deletedAccount")
     return res.status(404).json({ message: "It seems the user deleted the account 🥶" });
 
   try {

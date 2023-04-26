@@ -29,8 +29,7 @@ export default async function handler(
       },
     });
 
-    if (!allPosts) res.status(202).json({ alert: "There is no post" });
-    else return res.status(202).json(allPosts);
+    return res.status(202).json(allPosts);
   } catch (error) {
     return res.status(500).json({ message: (error as Error).message });
   }

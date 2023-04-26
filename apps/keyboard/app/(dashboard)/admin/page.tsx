@@ -13,12 +13,12 @@ const brandType: BrandType[] = [
   { type: "VENDOR" },
 ];
 type BrandStatusType = {
-  type: "ING" | "END" | "PENDING";
+  type: "ING" | "DONE" | "HOLD";
 };
 const brandStatus: BrandStatusType[] = [
   { type: "ING" },
-  { type: "END" },
-  { type: "PENDING" },
+  { type: "DONE" },
+  { type: "HOLD" },
 ];
 type NationType = {
   nation: string;

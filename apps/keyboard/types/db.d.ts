@@ -21,7 +21,7 @@ type InputDataForRegisterItem = {
   color?: string;
   message?: string;
   category: "BUY" | "SELL";
-  status: "ING" | "END" | "PENDING";
+  status: "ING" | "DONE" | "HOLD";
   objDataCombo: Record<string, any>;
 };
 
@@ -32,7 +32,7 @@ type InputDataForRegisterManufacture = {
   title: string;
   select: "KEYCAP" | "HOUSING" | "VENDOR";
   select2: string;
-  select3: "ING" | "END" | "PENDING";
+  select3: "ING" | "DONE" | "HOLD";
 };
 
 type TResponse = { success?: boolean; message?: string };

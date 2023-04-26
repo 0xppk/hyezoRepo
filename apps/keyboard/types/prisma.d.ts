@@ -23,4 +23,4 @@ type TChatRoom = ChatRoom & {
     } | null;
   })[];
 };
-type TPostStatus = "ING" | "PENDING" | "END";
+type TPostStatus = "ING" | "HOLD" | "DONE";

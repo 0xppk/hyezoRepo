@@ -141,8 +141,8 @@ enum Role {
 
 enum Status {
   ING
-  END
-  PENDING
+  DONE
+  HOLD
 }
 
 enum KeyboardBrandType {

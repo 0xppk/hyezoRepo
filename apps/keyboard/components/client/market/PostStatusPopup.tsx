@@ -14,7 +14,7 @@ type StatusPopupProps = {
   idx: number;
 };
 
-const statusType = ["ING", "PENDING", "END"] as const;
+const statusType = ["ING", "HOLD", "DONE"] as const;
 
 export default function PostStatusPopup({
   postId,
@@ -60,10 +60,10 @@ export default function PostStatusPopup({
             outline
             onClick={() => updatePostStatus(status)}
             color={`${
-              status === "PENDING" ? "orange" : status === "END" ? "red" : "twitter"
+              status === "HOLD" ? "orange" : status === "DONE" ? "red" : "twitter"
             }`}
           >
-            {status === "PENDING" ? "거래중" : status === "END" ? "거래완료" : "판매중"}
+            {status === "HOLD" ? "거래중" : status === "DONE" ? "거래완료" : "판매중"}
           </Button>
         ))}
       </div>

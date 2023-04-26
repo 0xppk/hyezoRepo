@@ -9,7 +9,7 @@ type GridCardProps = {
     color?: string | null;
     message?: string | null;
     category: "BUY" | "SELL";
-    status: "ING" | "END" | "PENDING";
+    status: "ING" | "DONE" | "HOLD";
   }[];
 };
 

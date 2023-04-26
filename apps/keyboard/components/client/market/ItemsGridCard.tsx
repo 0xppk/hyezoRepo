@@ -13,6 +13,7 @@ import { SplitWord } from "~/components/server";
 import { useCardMouseEffect, useUserSession } from "~/hooks";
 import { createTitle } from "~/lib/utils";
 import { type TItems } from "~/types/prisma";
+import { useISOLoop } from "@hyezo/hooks";
 
 type GridCardProps = {
   allItems: TItems[];
@@ -23,9 +24,9 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
   const gridRef = useRef<HTMLDivElement>(null);
   const user = useUserSession();
   const [statusPopup, setStatusPopup] = useState<boolean[]>([false]);
+  const [isoRef, isVisible] = useISOLoop();
 
   useCardMouseEffect(gridRef);
-
   useEffect(() => {
     if (!allItems) return;
     setStatusPopup(Array.from({ length: allItems.length }, () => false));
@@ -99,15 +100,15 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
                     {createTitle(SplitWord.Title, card.title)}
                   </p>
                 </div>
-                <div className="flex flex-col items-center pb-2 pr-1 lg:pr-2">
+                <div className="flex shrink-0 flex-col items-center pb-2">
                   <p className="text-2xl font-bold">
                     {createTitle(SplitWord.Price, String(card.price))}
                   </p>
                   <div
-                    className={`px-5 italic ${
+                    className={`px-5 capitalize italic ${
                       card.status === "ING"
                         ? "text-emerald-700"
-                        : card.status === "END"
+                        : card.status === "DONE"
                         ? "text-red-900"
                         : "text-orange-600"
                     }`}

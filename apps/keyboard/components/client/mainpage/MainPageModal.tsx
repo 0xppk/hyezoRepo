@@ -7,8 +7,10 @@ import {
   TextArea,
   zodSubmitHandler,
 } from "@hyezo/ui";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Dispatch, SetStateAction, useEffect, useState, useTransition } from "react";
 import useSWR from "swr";
+import { env } from "~/env.mjs";
 import { fetchPost, fetcher } from "~/lib/utils";
 import { type TBrand } from "~/types/prisma";
 
@@ -21,6 +23,8 @@ type ModalProps = {
 export default function MainPageModal({ isOpen, setIsOpen, as }: ModalProps) {
   const [category, setCategory] = useState<"BUY" | "SELL" | undefined>();
   const [itemType, setItemType] = useState<"HOUSING" | "KEYCAP" | undefined>();
+  const [, startTransition] = useTransition();
+  const router = useRouter();
   const { data: brands = [] } = useSWR("/api/getAllBrand", fetcher<TBrand[]>);
   const filteredBrands = brands?.filter(
     brand => brand.type === itemType || brand.type === "VENDOR",
@@ -36,6 +40,9 @@ export default function MainPageModal({ isOpen, setIsOpen, as }: ModalProps) {
   const onSubmit: zodSubmitHandler = async data => {
     const res = await fetchPost<TResponse>("/api/createPost", {
       body: JSON.stringify({ ...data, category, status: "ING" }),
+    });
+    startTransition(() => {
+      router.refresh();
     });
     if (res.message) alert("로그인이 필요합니다 😢");
     setIsOpen(false);

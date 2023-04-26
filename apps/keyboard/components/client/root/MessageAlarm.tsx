@@ -12,12 +12,12 @@ type MessageAlarmProps = {
 };
 
 type TMessagePayload = {
-  title?: string;
+  title: string;
   options: {
-    body?: string;
-    icon?: string;
+    body: string;
+    icon: string;
     data: {
-      link?: string;
+      link: string;
     };
   };
 };
@@ -31,19 +31,20 @@ export default function MessageAlarm({ app }: MessageAlarmProps) {
     if (message)
       setTimeout(() => {
         setMessage(undefined);
-      }, 5000);
+      }, 7000);
   }, [message]);
 
   onMessage(messaging, payload => {
     const { data } = payload;
+    if (!data) return;
 
     const notification = {
-      title: data?.title,
+      title: data.title,
       options: {
-        body: data?.body,
-        icon: data?.icon,
+        body: data.body,
+        icon: data.icon,
         data: {
-          link: data?.link,
+          link: data.link,
         },
       },
     };
@@ -53,21 +54,22 @@ export default function MessageAlarm({ app }: MessageAlarmProps) {
   });
 
   return (
-    <Link href={"/chat"}>
+    <Link href={message?.options.data.link || "/chat"}>
       <div
-        className={`fixed right-3 top-[13vh] flex h-12 w-20 items-center justify-center gap-7 rounded-lg bg-gray-900 text-white duration-500 ${
+        className={`bg-twitter-500 fixed right-3 top-[13vh] flex h-12 w-20 items-center justify-center gap-7 rounded-lg text-white duration-500 ${
           message
-            ? "trasnlate-y-0 z-20 skew-x-0 skew-y-0 opacity-100"
+            ? "trasnlate-y-0 animate-wiggle z-20 skew-x-0 skew-y-0 opacity-100"
             : "-z-10 -translate-y-3 -skew-x-6 skew-y-12 opacity-0"
         }`}
       >
         <Icons.chat className="h-5 w-5" />
         <Image
-          src={message?.options.icon || ""}
+          src={message?.options.icon || "/images/pingu.webp"}
           alt="프로필"
           width={7}
           height={7}
           priority
+          className="aspect-1 rounded-full"
         />
       </div>
     </Link>

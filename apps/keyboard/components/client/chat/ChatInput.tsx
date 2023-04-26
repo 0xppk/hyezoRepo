@@ -65,9 +65,11 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
         const sendNotification = await fetchPost("/api/sendMessageToFirebase", {
           body: JSON.stringify({
             receiverId: authorId,
+            senderId: userId,
             senderName: nickname,
             senderImage: image,
             content: messageToSend,
+            chatRoomId,
           }),
         });
 

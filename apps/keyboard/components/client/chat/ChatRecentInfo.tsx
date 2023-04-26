@@ -38,6 +38,7 @@ export default function ChatRecentInfo() {
                 >
                   {post.category === "SELL" ? "판매" : "구매"}
                 </Text>
+                <Text variant="xs/light"> ··· {post.price}만원</Text>
               </div>
             ))
           ) : (

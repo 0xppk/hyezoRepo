@@ -32,10 +32,11 @@ export default function PostStatusPopup({
       await fetchPost<TPostStatus>("/api/updatePostStatus", {
         body: JSON.stringify({ status, postId }),
       });
-      await fetcher(`/api/revalidate?secret=${env.NEXT_PUBLIC_HYEZO_SECRET}`);
-      closeCardOverlay(idx);
+      // FIXME: 작동안하는듯
+      // await fetcher(`/api/revalidate?secret=${env.NEXT_PUBLIC_HYEZO_SECRET}`);
 
       startTransition(() => {
+        closeCardOverlay(idx);
         setSearchedItems(prev => {
           const copy = [...prev];
           copy[idx].status = status;

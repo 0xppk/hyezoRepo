@@ -56,18 +56,18 @@ export default function MessageAlarm({ app }: MessageAlarmProps) {
   return (
     <Link href={message?.options.data.link || "/chat"}>
       <div
-        className={`bg-twitter-500 fixed right-3 top-[13vh] flex h-12 w-20 items-center justify-center gap-7 rounded-lg text-white duration-500 ${
+        className={`bg-twitter-500 fixed right-3 top-[13vh] flex h-12 w-20 items-center justify-evenly rounded-lg text-white duration-500 ${
           message
-            ? "trasnlate-y-0 animate-wiggle z-20 skew-x-0 skew-y-0 opacity-100"
+            ? "trasnlate-y-0 z-20 skew-x-0 skew-y-0 opacity-100"
             : "-z-10 -translate-y-3 -skew-x-6 skew-y-12 opacity-0"
         }`}
       >
-        <Icons.chat className="h-5 w-5" />
+        <Icons.chat className="h-7 w-7" />
         <Image
           src={message?.options.icon || "/images/pingu.webp"}
           alt="프로필"
-          width={7}
-          height={7}
+          width={30}
+          height={30}
           priority
           className="aspect-1 rounded-full"
         />

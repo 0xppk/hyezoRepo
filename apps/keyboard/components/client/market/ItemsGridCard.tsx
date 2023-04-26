@@ -109,7 +109,7 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
                     {createTitle(SplitWord.Price, String(card.price))}
                   </p>
                   <div
-                    className={`px-5 capitalize italic brightness-100 ${
+                    className={`px-5 capitalize italic ${
                       card.status === "ING"
                         ? "text-emerald-700"
                         : card.status === "DONE"

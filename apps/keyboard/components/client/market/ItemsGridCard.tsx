@@ -26,6 +26,7 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
   const [statusPopup, setStatusPopup] = useState<boolean[]>([false]);
   const [handleRef, isVisible] = useISOLoop({
     threshold: 0.1,
+    freezeAfterVisible: true,
   });
 
   useCardMouseEffect(gridRef);
@@ -53,7 +54,7 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
         </Text>
       ) : (
         <div
-          className="gridcards sm:grid-cols-keyboard-layout snap-y snap-mandatory pb-8 text-white"
+          className="gridcards sm:grid-cols-keyboard-layout pb-8 text-white"
           ref={gridRef}
         >
           {allItems.map((card, i) => (
@@ -111,7 +112,7 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
                     >
                       {card.brandName}
                     </span>
-                    <div className="break- flex">
+                    <div className="flex gap-3">
                       <span className="word-spacing break-keep">{card.layout}</span>
                       <span>{card.color}</span>
                     </div>

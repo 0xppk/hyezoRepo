@@ -94,12 +94,13 @@ export default function ComboBox<T>({
             >
               <Combobox.Input
                 className={cn(
-                  `w-full rounded-lg border-none py-2 pl-3 text-xs text-gray-900 focus:outline-none focus:ring-0 ${comboStyles(
+                  `w-full rounded-lg border-none py-2 pl-3 text-xs text-gray-900 placeholder:text-gray-600 focus:outline-none focus:ring-0 ${comboStyles(
                     { width },
                   )} ${color === "darkNavy" && "bg-gray-900 text-white/80"}`,
                 )}
                 placeholder="Search..."
-                spellCheck="false"
+                spellCheck={false}
+                autoComplete="off"
                 displayValue={(value: T) => String(value[labelKey])}
                 onChange={event => setQuery(event.target.value)}
               />

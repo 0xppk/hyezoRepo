@@ -11,7 +11,7 @@ import { cn } from "../utils";
 type Props<T> = {
   data: T[];
   setData: Dispatch<SetStateAction<T[]>>;
-  labelKeys: string[];
+  labelKeys: Array<keyof T>;
   debounceTime?: number;
   placeholder?: string;
   className?: string;
@@ -34,7 +34,7 @@ export default function InputSimple<T>({
     includeScore: true,
     minMatchCharLength: 2,
     threshold: 0.3,
-    keys: labelKeys,
+    keys: labelKeys as string[],
   });
   const submitAction = async (value: string) => {
     const filteredItems =
@@ -73,7 +73,8 @@ export default function InputSimple<T>({
       </button>
       <input
         type="text"
-        spellCheck="false"
+        spellCheck={false}
+        autoComplete="off"
         ref={inputRef}
         className={cn(
           `text-smoke-500 h-10 resize-none rounded-full bg-white/20 py-2 pl-10 pr-10 caret-orange-500 saturate-150 backdrop-blur-md placeholder:text-white/40 focus:outline-none ${className}`,

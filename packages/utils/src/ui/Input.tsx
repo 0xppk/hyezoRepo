@@ -66,6 +66,7 @@ export default function Input({
     <div className={`relative ${fullWidth ? "w-full" : ""}`}>
       <input
         spellCheck={false}
+        autoComplete="off"
         className={cn(inputStyles({ color, peer }), className)}
         type={type}
         placeholder={placeholder ?? " "}

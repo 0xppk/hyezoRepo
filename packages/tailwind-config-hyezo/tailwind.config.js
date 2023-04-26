@@ -148,6 +148,7 @@ module.exports = {
     },
     fontFamily: {
       point: ["LeferiPointSpecial"],
+      cute: ["omyu_pretty"],
       sans: ["NunitoSans", "LINESeedKR-Rg", "ui-sans-serif", "system-ui"],
       serif: ["ui-serif", "Georgia"],
       mono: ["ui-monospace", "SFMono-Regular"],

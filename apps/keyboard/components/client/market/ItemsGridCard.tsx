@@ -95,7 +95,7 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
                     <p>{card.layout}</p>
                     <p>{card.color}</p>
                   </div>
-                  <p className="font-point line-clamp-1 text-2xl font-bold">
+                  <p className="font-cute line-clamp-1 text-2xl font-bold">
                     {createTitle(SplitWord.Title, card.title)}
                   </p>
                 </div>

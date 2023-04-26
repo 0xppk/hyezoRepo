@@ -41,9 +41,12 @@ export default function MainPageModal({ isOpen, setIsOpen, as }: ModalProps) {
     const res = await fetchPost<TResponse>("/api/createPost", {
       body: JSON.stringify({ ...data, category, status: "ING" }),
     });
+    await fetcher(`/api/revalidate?secret=${env.NEXT_PUBLIC_HYEZO_SECRET}`);
+
     startTransition(() => {
       router.refresh();
     });
+
     if (res.message) alert("로그인이 필요합니다 😢");
     setIsOpen(false);
   };

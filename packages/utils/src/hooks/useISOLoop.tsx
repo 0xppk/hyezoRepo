@@ -27,7 +27,7 @@ export default function useISOLoop<T extends HTMLElement = HTMLImageElement>(
   };
 
   const { freezeAfterVisible, root, rootMargin, threshold } = defaultConfig;
-  const frozen = isVisible.every(v => v === true);
+  const frozen = isVisible.every(visibility => visibility === true);
 
   const updateEntry: IntersectionObserverCallback = entries => {
     entries.forEach(entry => {
@@ -55,6 +55,5 @@ export default function useISOLoop<T extends HTMLElement = HTMLImageElement>(
     return () => observer.disconnect();
   }, [imageRef, threshold, root, rootMargin, frozen, ...deps]);
 
-  console.log(isVisible);
   return [handleRef, isVisible] as const;
 }

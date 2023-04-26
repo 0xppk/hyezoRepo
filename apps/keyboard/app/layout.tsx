@@ -11,10 +11,11 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps) {
+  console.log(process.env.NODE_ENV);
   return (
     <html lang="en">
       <body
-        className={`bg-mix cursor-default ${
+        className={`bg-mix dvh-screen cursor-default ${
           process.env.NODE_ENV === "development" && "debug-screens"
         }`}
       >

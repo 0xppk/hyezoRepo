@@ -172,6 +172,9 @@ module.exports = {
           ".word-spacing": {
             "word-spacing": "0.5rem",
           },
+          ".dvh-screen": {
+            height: ["100vh", "100dvh"],
+          },
           ".blue-dot": {
             width: "8px",
             height: "8px",

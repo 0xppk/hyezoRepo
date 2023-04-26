@@ -36,6 +36,7 @@ export default function InputSimple<T>({
     threshold: 0.3,
     keys: labelKeys as string[],
   });
+
   const submitAction = async (value: string) => {
     const filteredItems =
       value === "" ? data : fuse.search(value).map(res => ({ ...res.item }));
@@ -50,9 +51,7 @@ export default function InputSimple<T>({
   useEventListener(
     "keypress",
     e => {
-      if (e.key === "Enter") {
-        buttonRef.current?.click();
-      }
+      if (e.key === "Enter") buttonRef.current?.click();
     },
     inputRef,
   );
@@ -63,9 +62,7 @@ export default function InputSimple<T>({
         ref={buttonRef}
         onClick={() => {
           onSubmit();
-          if (inputRef.current?.value) {
-            inputRef.current.value = "";
-          }
+          if (inputRef.current?.value) inputRef.current.value = "";
         }}
         className="absolute z-10 flex h-10 items-center py-2 pl-3 text-black/70 hover:text-black/90"
       >

@@ -67,7 +67,7 @@ export default function InputSimple<T>({
             inputRef.current.value = "";
           }
         }}
-        className="pointer-events-none absolute z-10 flex h-10 items-center py-2 pl-3 text-black/70 hover:text-black/90"
+        className="absolute z-10 flex h-10 items-center py-2 pl-3 text-black/70 hover:text-black/90"
       >
         <RiSearchLine className="h-5 w-5" />
       </button>

@@ -1,3 +1,5 @@
+import { useISO, useISOLoop } from "@hyezo/hooks";
+import { Text } from "@hyezo/ui";
 import Image from "next/image";
 import {
   Dispatch,
@@ -7,13 +9,11 @@ import {
   useRef,
   useState,
 } from "react";
-import { Text } from "@hyezo/ui";
 import { ChatRoomPopup, PostStatusPopup } from "~/components/client";
 import { SplitWord } from "~/components/server";
 import { useCardMouseEffect, useUserSession } from "~/hooks";
 import { createTitle } from "~/lib/utils";
 import { type TItems } from "~/types/prisma";
-import { useISOLoop } from "@hyezo/hooks";
 
 type GridCardProps = {
   allItems: TItems[];
@@ -24,7 +24,9 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
   const gridRef = useRef<HTMLDivElement>(null);
   const user = useUserSession();
   const [statusPopup, setStatusPopup] = useState<boolean[]>([false]);
-  const [isoRef, isVisible] = useISOLoop();
+  const [handleRef, isVisible] = useISOLoop({
+    threshold: 0.1,
+  });
 
   useCardMouseEffect(gridRef);
   useEffect(() => {
@@ -52,7 +54,16 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
       ) : (
         <div className="gridcards text-white" ref={gridRef}>
           {allItems.map((card, i) => (
-            <div className="gridcard" key={card.id}>
+            <div
+              className={`gridcard duration-500 ${
+                isVisible[i]
+                  ? "translate-y-0 skew-x-0 skew-y-0 scale-y-100 opacity-100"
+                  : "translate-y-24 -skew-x-6 skew-y-6 scale-y-50 opacity-0"
+              }
+            `}
+              key={card.id}
+              ref={handleRef}
+            >
               {statusPopup[i] &&
                 (card.author.id === user?.id ? (
                   <PostStatusPopup

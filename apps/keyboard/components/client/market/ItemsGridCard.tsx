@@ -1,4 +1,4 @@
-import { useISO, useISOLoop } from "@hyezo/hooks";
+import { useISOLoop } from "@hyezo/hooks";
 import { Text } from "@hyezo/ui";
 import Image from "next/image";
 import {
@@ -103,16 +103,18 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
                 }`}
               >
                 <div className="flex flex-col pb-2 pl-3">
-                  <div className="flex items-center gap-3 pb-2">
+                  <div className="flex items-end gap-3 pb-2">
                     <span
-                      className={`px-2  py-px uppercase text-black ${
+                      className={`shrink-0 px-2 py-px uppercase text-black ${
                         card.brandName === "gmk" ? "bg-orange-400" : "bg-white"
                       }`}
                     >
                       {card.brandName}
                     </span>
-                    <span className="word-spacing">{card.layout}</span>
-                    <span>{card.color}</span>
+                    <div className="break- flex">
+                      <span className="word-spacing break-keep">{card.layout}</span>
+                      <span>{card.color}</span>
+                    </div>
                   </div>
                   <p className="font-cute line-clamp-1 text-2xl font-bold">
                     {createTitle(SplitWord.Title, card.title)}

@@ -10,7 +10,6 @@ import {
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect, useState, useTransition } from "react";
 import useSWR from "swr";
-import { env } from "~/env.mjs";
 import { fetchPost, fetcher } from "~/lib/utils";
 import { type TBrand } from "~/types/prisma";
 

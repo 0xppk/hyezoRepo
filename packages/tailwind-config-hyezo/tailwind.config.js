@@ -169,11 +169,8 @@ module.exports = {
     plugin(
       ({ addUtilities, addComponents, addBase, addVariant, matchVariant, theme }) => {
         addUtilities({
-          ".keep-all": {
-            "word-break": "keep-all",
-          },
           ".word-spacing": {
-            "word-spacing": "0.6rem",
+            "word-spacing": "0.5rem",
           },
           ".blue-dot": {
             width: "8px",

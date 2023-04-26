@@ -2,8 +2,7 @@ import { useClickOutside } from "@hyezo/hooks";
 import { Button } from "@hyezo/ui";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useCallback, useRef, useTransition } from "react";
-import { env } from "~/env.mjs";
-import { fetchPost, fetcher } from "~/lib/utils";
+import { fetchPost } from "~/lib/utils";
 import { type TItems, type TPostStatus } from "~/types/prisma";
 
 type StatusPopupProps = {

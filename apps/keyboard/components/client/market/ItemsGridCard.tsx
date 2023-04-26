@@ -83,7 +83,11 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
                 />
                 <p>{createTitle(SplitWord.Aurhor, card.author.nickname || "")}</p>
               </div>
-              <div className="gridcard_content flex items-end justify-between">
+              <div
+                className={`gridcard_content flex items-end justify-between ${
+                  card.status === "DONE" ? "brightness-50" : "brightness-100"
+                }`}
+              >
                 <div className="flex flex-col pb-2 pl-3">
                   <div className="flex items-center gap-3 pb-2">
                     <p
@@ -100,12 +104,12 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
                     {createTitle(SplitWord.Title, card.title)}
                   </p>
                 </div>
-                <div className="flex shrink-0 flex-col items-center pb-2">
+                <div className="flex shrink-0 flex-col items-center pb-2 pr-2">
                   <p className="text-2xl font-bold">
                     {createTitle(SplitWord.Price, String(card.price))}
                   </p>
                   <div
-                    className={`px-5 capitalize italic ${
+                    className={`px-5 capitalize italic brightness-100 ${
                       card.status === "ING"
                         ? "text-emerald-700"
                         : card.status === "DONE"

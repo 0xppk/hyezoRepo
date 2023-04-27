@@ -24,10 +24,13 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
   const gridRef = useRef<HTMLDivElement>(null);
   const user = useUserSession();
   const [statusPopup, setStatusPopup] = useState<boolean[]>([false]);
-  const [handleRef, isVisible] = useISOLoop({
-    threshold: 0.1,
-    freezeAfterVisible: true,
-  });
+  const [handleRef, isVisible] = useISOLoop(
+    {
+      threshold: 0.1,
+      rootMargin: "0% 0% -30% 0%",
+    },
+    [allItems],
+  );
 
   useCardMouseEffect(gridRef);
   useEffect(() => {
@@ -46,6 +49,7 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
     [setStatusPopup],
   );
 
+  console.log(isVisible);
   return (
     <>
       {!allItems[0] ? (
@@ -60,9 +64,7 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
           {allItems.map((card, i) => (
             <div
               className={`gridcard h-56 snap-center duration-500 sm:h-64 ${
-                isVisible[i]
-                  ? "translate-y-0 skew-x-0 skew-y-0 scale-y-100 opacity-100"
-                  : "translate-y-24 -skew-x-6 skew-y-6 scale-y-50 opacity-0"
+                isVisible[i] ? "opacity-100" : "opacity-0"
               }`}
               key={card.id}
               ref={handleRef}

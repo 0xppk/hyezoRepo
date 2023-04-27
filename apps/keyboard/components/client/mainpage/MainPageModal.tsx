@@ -55,7 +55,7 @@ export default function MainPageModal({ isOpen, setIsOpen, as }: ModalProps) {
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       width="narrow"
-      className="drop-shadow-blue flex min-w-max flex-col items-stretch rounded-xl bg-gray-900 px-4 pb-3 pt-7 sm:px-8 sm:pb-5"
+      className="drop-shadow-blue flex min-w-max scale-95 flex-col items-stretch rounded-xl bg-gray-900 px-8 pb-6 pt-7"
     >
       {as === "post" ? (
         <Modal.Content className="grid max-h-96 gap-4 overflow-auto sm:max-h-full sm:min-w-[22rem]">

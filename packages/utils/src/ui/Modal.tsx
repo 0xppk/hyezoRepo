@@ -84,7 +84,7 @@ export default function Modal({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="modal rounded-xl">
+            <div className="modal scale-90 rounded-xl sm:scale-100">
               <Dialog.Panel className={cn(modalStyles({ width, center, className }))}>
                 {children}
               </Dialog.Panel>

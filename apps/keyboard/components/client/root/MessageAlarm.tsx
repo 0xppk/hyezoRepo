@@ -53,7 +53,7 @@ export default function MessageAlarm({ app }: MessageAlarmProps) {
   });
 
   return (
-    <Link href={message?.options.data.link || "/chat"}>
+    <Link href={message?.options.data.link || "/chat"} aria-label="link to chatRoom">
       <div
         className={`bg-smoke-600 fixed right-3 top-[13vh] flex h-16 w-64 items-center gap-3 rounded-3xl px-3 py-1 text-black shadow-lg drop-shadow-xl backdrop-blur-lg duration-500 ${
           message

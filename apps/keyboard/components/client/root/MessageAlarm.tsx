@@ -1,11 +1,11 @@
 "use client";
 
+import { Text } from "@hyezo/ui";
 import { FirebaseApp } from "firebase/app";
 import { getMessaging, onMessage } from "firebase/messaging";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Icons } from "~/components/server";
 
 type MessageAlarmProps = {
   app: FirebaseApp;
@@ -26,7 +26,7 @@ export default function MessageAlarm({ app }: MessageAlarmProps) {
   const messaging = getMessaging(app);
   const [message, setMessage] = useState<TMessagePayload>();
 
-  /** 메시지 수신 2초후 꺼지기 */
+  /** 메시지 수신 7초후 꺼지기 */
   useEffect(() => {
     if (message)
       setTimeout(() => {
@@ -49,28 +49,36 @@ export default function MessageAlarm({ app }: MessageAlarmProps) {
       },
     };
 
-    console.log("메시지 도착:", notification);
     setMessage(notification);
   });
 
   return (
     <Link href={message?.options.data.link || "/chat"}>
       <div
-        className={`bg-twitter-500 fixed right-3 top-[13vh] flex h-12 w-20 items-center justify-evenly rounded-lg text-white duration-500 ${
+        className={`bg-smoke-600 fixed right-3 top-[13vh] flex h-16 w-64 items-center gap-6 rounded-3xl text-black shadow-lg drop-shadow-xl backdrop-blur-lg duration-500 ${
           message
-            ? "trasnlate-y-0 z-20 skew-x-0 skew-y-0 opacity-100"
-            : "-z-10 -translate-y-3 -skew-x-6 skew-y-12 opacity-0"
+            ? "trasnlate-y-0 pointer-events-auto z-20 skew-x-0 skew-y-0 opacity-100"
+            : "pointer-events-none -z-10 -translate-y-3 -skew-x-6 skew-y-12 opacity-0"
         }`}
       >
-        <Icons.chat className="h-7 w-7" />
-        <Image
-          src={message?.options.icon || "/images/pingu.webp"}
-          alt="프로필"
-          width={30}
-          height={30}
-          priority
-          className="aspect-1 rounded-full"
-        />
+        {message && (
+          <>
+            <Image
+              src={message.options.icon}
+              alt="프로필"
+              width={30}
+              height={30}
+              priority
+              className="aspect-1 grow-0 rounded-full"
+            />
+            <div className="flex grow flex-col gap-3">
+              <Text variant="xs/bold">{message.title}</Text>
+              <Text variant="xs/light" className="line-clamp-2 truncate">
+                {message.options.body}
+              </Text>
+            </div>
+          </>
+        )}
       </div>
     </Link>
   );

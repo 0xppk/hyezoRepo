@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useUserSession } from "~/hooks";
 import { fetchPost, reloadSession } from "~/lib/utils";
 
-export default function Info() {
+export default function UserInfo() {
   const user = useUserSession();
 
   const onSubmit: zodSubmitHandler = async ({ nickname }) => {
@@ -30,7 +30,7 @@ export default function Info() {
       />
       <div className="grid gap-2">
         <Text variant="xs/normal">닉네임</Text>
-        <Input name="nickname" placeholder={user?.nickname || ""} />
+        <Input autoFocus={false} name="nickname" placeholder={user?.nickname || ""} />
       </div>
       <SubmitButton>Save Cahnges</SubmitButton>
     </Form>

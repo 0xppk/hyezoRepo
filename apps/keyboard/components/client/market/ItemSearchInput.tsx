@@ -7,7 +7,7 @@ type SearchItemInputProps = {
   setSearchedItems: Dispatch<SetStateAction<TItems[]>>;
 };
 
-export default function SearchItemInput({
+export default function ItemSearchInput({
   allItems,
   setSearchedItems,
 }: SearchItemInputProps) {

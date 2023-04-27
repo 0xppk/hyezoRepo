@@ -71,7 +71,7 @@
 ┃ ┃ ┣ 📜ItemsGridCard.tsx
 ┃ ┃ ┣ 📜ItemsPage.tsx
 ┃ ┃ ┣ 📜PostStatusPopup.tsx
-┃ ┃ ┣ 📜SearchItemInput.tsx
+┃ ┃ ┣ 📜ItemSearchInput.tsx
 ┃ ┃ ┗ 📜index.ts
 ┃ ┣ 📂profile
 ┃ ┃ ┣ 📜NotificationToggle.tsx

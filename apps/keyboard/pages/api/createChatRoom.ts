@@ -35,7 +35,7 @@ export default async function handler(
     });
 
     if (checkExistingChatRoom)
-      res.status(200).json({ chatRoomId: checkExistingChatRoom.id });
+      return res.status(200).json({ chatRoomId: checkExistingChatRoom.id });
     else {
       const newChatRoom = await prisma.chatRoom.create({
         data: {

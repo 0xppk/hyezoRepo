@@ -5,6 +5,7 @@ import {
   useUpdateNowSeeing,
   useUserSession,
 } from "~/hooks";
+import useSubscribeNewMessage from "~/hooks/useSubscribeMessage";
 
 type ChatRoomProps = {
   chatRoomId: string;
@@ -12,11 +13,12 @@ type ChatRoomProps = {
 
 export default function ChatList({ chatRoomId }: ChatRoomProps) {
   const user = useUserSession();
-  const { messages } = useLoadMessages(chatRoomId);
+  const { messages, reloadMessages } = useLoadMessages(chatRoomId);
   const messageBoxRef = useRef<HTMLDivElement>(null);
 
   useFocusToLatestMessage(messageBoxRef, [messages]);
   useUpdateNowSeeing(chatRoomId);
+  useSubscribeNewMessage(messages, reloadMessages, chatRoomId);
 
   return (
     <div className="flex h-full flex-col gap-3 overflow-y-scroll" ref={messageBoxRef}>
@@ -46,16 +48,6 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
                     : "bg-smoke-500 flex-row text-black"
                 }`}
               >
-                {/* {!messageByMe && (
-                  <Image
-                    className="mx-2 rounded-full"
-                    width={40}
-                    height={40}
-                    src={m.profilePic}
-                    alt={m.username}
-                  />
-                )}
-                {!messageByMe && <p className="min-w-[2rem]">{m.username}</p>} */}
                 <p className="overflow-hidden text-ellipsis p-2">{m.message}</p>
               </div>
               <time className="text-[12px] text-gray-400">

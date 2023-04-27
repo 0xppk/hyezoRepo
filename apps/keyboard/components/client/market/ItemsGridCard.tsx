@@ -49,7 +49,6 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
     [setStatusPopup],
   );
 
-  console.log(isVisible);
   return (
     <>
       {!allItems[0] ? (

@@ -78,13 +78,13 @@ export default function Modal({
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
-            enterFrom="opacity-0 scale-90"
-            enterTo="opacity-100 scale-100"
+            enterFrom="opacity-0 scale-75 sm:scale-90"
+            enterTo="opacity-100 scale-90 sm:scale-100"
             leave="ease-in duration-200"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
+            leaveFrom="opacity-100 scale-90 sm:scale-100"
+            leaveTo="opacity-0 scale-90 sm:scale-95"
           >
-            <div className="modal scale-90 rounded-xl sm:scale-100">
+            <div className="modal rounded-xl">
               <Dialog.Panel className={cn(modalStyles({ width, center, className }))}>
                 {children}
               </Dialog.Panel>

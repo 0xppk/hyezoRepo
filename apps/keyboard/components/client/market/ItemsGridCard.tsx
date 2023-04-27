@@ -59,7 +59,11 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
         >
           {allItems.map((card, i) => (
             <div
-              className="gridcard h-56 snap-center duration-500 sm:h-64"
+              className={`gridcard h-56 snap-center duration-500 sm:h-64 ${
+                isVisible[i]
+                  ? "translate-y-0 skew-x-0 skew-y-0 scale-y-100 opacity-100"
+                  : "translate-y-24 -skew-x-6 skew-y-6 scale-y-50 opacity-0"
+              }`}
               key={card.id}
               ref={handleRef}
             >
@@ -79,6 +83,7 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
                     idx={i}
                   />
                 ))}
+              {/* 프로필 */}
               <div
                 className="interactable absolute right-0 top-0 z-10 m-3 flex cursor-pointer flex-col items-center"
                 onClick={() => toggleCardOverlay(i)}
@@ -97,10 +102,6 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
               <div
                 className={`gridcard_content flex items-end justify-between ${
                   card.status === "DONE" ? "brightness-50" : "brightness-100"
-                } ${
-                  isVisible[i]
-                    ? "translate-y-0 skew-x-0 skew-y-0 scale-y-100 opacity-100"
-                    : "translate-y-24 -skew-x-6 skew-y-6 scale-y-50 opacity-0"
                 }`}
               >
                 <div className="flex flex-col pb-2 pl-3">

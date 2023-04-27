@@ -42,7 +42,7 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
             >
               <div
                 key={m.id}
-                className={`flex max-w-xs items-center rounded-2xl p-2 py-1 sm:max-w-sm md:max-w-md lg:max-w-lg ${
+                className={`flex max-w-xs break-keep items-center rounded-2xl p-2 py-1 sm:max-w-sm md:max-w-md lg:max-w-lg ${
                   messageByMe
                     ? "bg-twitter-500 flex-row-reverse"
                     : "bg-smoke-500 flex-row text-black"

@@ -9,7 +9,7 @@ export default async function handler(
   res: NextApiResponse<TData | TError>,
 ) {
   if (req.query.secret !== env.NEXT_PUBLIC_HYEZO_SECRET)
-    res.status(401).json({ message: "Invalid token" });
+    return res.status(401).json({ message: "Invalid token" });
 
   try {
     await res.revalidate("/");

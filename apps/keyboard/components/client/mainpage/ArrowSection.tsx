@@ -9,7 +9,7 @@ type FourthSectionProps = {
 
 export default function FourthSection({ setPage }: FourthSectionProps) {
   return (
-    <div className="col-span-2 h-[20vh] border-y border-gray-900 lg:col-span-1 lg:h-[30vh]">
+    <div className="col-span-2 h-[20vh] lg:col-span-1 lg:h-[30vh] lg:border-y lg:border-gray-900">
       <div className="grid h-full grid-cols-2 place-items-center">
         <Image
           src={arrow}

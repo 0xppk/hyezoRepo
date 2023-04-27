@@ -21,7 +21,7 @@ export default function UserInfo() {
             <Link href="/user-info">
               <Image
                 src={user?.image || "/images/pingu.webp"}
-                className="interactable w-auto cursor-pointer rounded-full"
+                className="interactable aspect-1 w-auto cursor-pointer rounded-full"
                 data-type="circle"
                 alt="프로필"
                 sizes="100%"

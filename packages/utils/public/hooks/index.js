@@ -3,7 +3,7 @@
 var chunkDDCYFJSF_js = require('./chunk-DDCYFJSF.js');
 var chunkB6ECVEQL_js = require('./chunk-B6ECVEQL.js');
 var chunkCAI5KPXM_js = require('./chunk-CAI5KPXM.js');
-var chunkQ745T5AB_js = require('./chunk-Q745T5AB.js');
+var chunkRYRWJ7JG_js = require('./chunk-RYRWJ7JG.js');
 var chunkD4BDR2BD_js = require('./chunk-D4BDR2BD.js');
 var chunkRVKHN7NT_js = require('./chunk-RVKHN7NT.js');
 var chunkC65LAMSY_js = require('./chunk-C65LAMSY.js');
@@ -51,11 +51,11 @@ Object.defineProperty(exports, 'useRenderCounter', {
 });
 Object.defineProperty(exports, 'useLocalStorage', {
 	enumerable: true,
-	get: function () { return chunkQ745T5AB_js.a; }
+	get: function () { return chunkRYRWJ7JG_js.a; }
 });
 Object.defineProperty(exports, 'useSessionStorage', {
 	enumerable: true,
-	get: function () { return chunkQ745T5AB_js.b; }
+	get: function () { return chunkRYRWJ7JG_js.b; }
 });
 Object.defineProperty(exports, 'useToggle', {
 	enumerable: true,

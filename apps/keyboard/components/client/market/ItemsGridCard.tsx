@@ -1,3 +1,5 @@
+import { useISOLoop } from "@hyezo/hooks";
+import { Text } from "@hyezo/ui";
 import Image from "next/image";
 import {
   Dispatch,
@@ -7,7 +9,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { Text } from "@hyezo/ui";
 import { ChatRoomPopup, PostStatusPopup } from "~/components/client";
 import { SplitWord } from "~/components/server";
 import { useCardMouseEffect, useUserSession } from "~/hooks";
@@ -23,9 +24,12 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
   const gridRef = useRef<HTMLDivElement>(null);
   const user = useUserSession();
   const [statusPopup, setStatusPopup] = useState<boolean[]>([false]);
+  const [handleRef, isVisible] = useISOLoop({
+    threshold: 0.1,
+    freezeAfterVisible: true,
+  });
 
   useCardMouseEffect(gridRef);
-
   useEffect(() => {
     if (!allItems) return;
     setStatusPopup(Array.from({ length: allItems.length }, () => false));
@@ -49,9 +53,21 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
           Nothing Found
         </Text>
       ) : (
-        <div className="gridcards text-white" ref={gridRef}>
+        <div
+          className="gridcards sm:grid-cols-keyboard-layout pb-8 text-white"
+          ref={gridRef}
+        >
           {allItems.map((card, i) => (
-            <div className="gridcard" key={card.id}>
+            <div
+              className={`gridcard h-56 snap-center duration-500 sm:h-64 ${
+                isVisible[i]
+                  ? "translate-y-0 skew-x-0 skew-y-0 scale-y-100 opacity-100"
+                  : "translate-y-24 -skew-x-6 skew-y-6 scale-y-50 opacity-0"
+              }
+            `}
+              key={card.id}
+              ref={handleRef}
+            >
               {statusPopup[i] &&
                 (card.author.id === user?.id ? (
                   <PostStatusPopup
@@ -82,32 +98,38 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
                 />
                 <p>{createTitle(SplitWord.Aurhor, card.author.nickname || "")}</p>
               </div>
-              <div className="gridcard_content flex items-end justify-between">
+              <div
+                className={`gridcard_content flex items-end justify-between ${
+                  card.status === "DONE" ? "brightness-50" : "brightness-100"
+                }`}
+              >
                 <div className="flex flex-col pb-2 pl-3">
-                  <div className="flex items-center gap-3 pb-2">
-                    <p
-                      className={`px-2  py-px uppercase text-black ${
+                  <div className="flex items-end gap-3 pb-2">
+                    <span
+                      className={`shrink-0 px-2 py-px uppercase text-black ${
                         card.brandName === "gmk" ? "bg-orange-400" : "bg-white"
                       }`}
                     >
                       {card.brandName}
-                    </p>
-                    <p>{card.layout}</p>
-                    <p>{card.color}</p>
+                    </span>
+                    <div className="flex gap-3">
+                      <span className="word-spacing break-keep">{card.layout}</span>
+                      <span>{card.color}</span>
+                    </div>
                   </div>
-                  <p className="font-point line-clamp-1 text-2xl font-bold">
+                  <p className="font-cute line-clamp-1 text-2xl font-bold">
                     {createTitle(SplitWord.Title, card.title)}
                   </p>
                 </div>
-                <div className="flex flex-col items-center pb-2 pr-1 lg:pr-2">
+                <div className="flex shrink-0 flex-col items-center pb-2 pr-2">
                   <p className="text-2xl font-bold">
                     {createTitle(SplitWord.Price, String(card.price))}
                   </p>
                   <div
-                    className={`px-5 italic ${
+                    className={`px-5 capitalize italic ${
                       card.status === "ING"
                         ? "text-emerald-700"
-                        : card.status === "END"
+                        : card.status === "DONE"
                         ? "text-red-900"
                         : "text-orange-600"
                     }`}

@@ -153,7 +153,8 @@ function SearchBar({ changeHandeler }: SearchBarProps) {
       <HiMagnifyingGlass className="h-5 w-5" aria-hidden="true" />
       <input
         type="text"
-        spellCheck="false"
+        spellCheck={false}
+        autoComplete="off"
         className="w-full bg-transparent p-2 text-xs text-gray-600 caret-orange-400 outline-none placeholder:text-gray-400"
         placeholder="Search..."
         onChange={changeHandeler}

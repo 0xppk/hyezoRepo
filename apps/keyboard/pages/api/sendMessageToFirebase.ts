@@ -23,27 +23,31 @@ type TError = { message: string };
 
 type SenderInfo = {
   receiverId: string;
+  senderId: string;
   senderName: string;
   senderImage: string;
   content: string;
+  chatRoomId: string;
 };
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<TData | TError>,
 ) {
-  if (req.method !== "POST") {
-    res.status(405).json({ message: "Method Not Allowed" });
-    return;
-  }
+  if (req.method !== "POST")
+    return res.status(405).json({ message: "Method Not Allowed" });
 
   const session = await getServerAuthSession({ req, res });
-  if (!session?.user) {
-    res.status(401).json({ message: "You are not logined 🦠" });
-    return;
-  }
+  if (!session?.user) return res.status(401).json({ message: "You are not logined 🦠" });
 
-  const { senderName, senderImage, content, receiverId }: SenderInfo = req.body;
+  const {
+    senderName,
+    senderImage,
+    content,
+    receiverId,
+    chatRoomId,
+    senderId,
+  }: SenderInfo = req.body;
 
   const config = require("/worker/firebase-account.ts").config;
   const serviceAccount = JSON.parse(JSON.stringify(config)) as ServiceAccount;
@@ -79,10 +83,10 @@ export default async function handler(
 
       const message: MulticastMessage = {
         data: {
-          title: `${senderName}님이 메시지를 보냈습니다`,
+          title: `${senderName}님의 메시지`,
           body: content,
-          icon: "/assets/favicon-96x96.png",
-          link: "/",
+          icon: senderImage,
+          link: `/chat/${chatRoomId}?authorId=${senderId}`,
         },
         tokens: endpoints,
       };

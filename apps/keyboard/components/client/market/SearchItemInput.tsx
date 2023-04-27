@@ -16,9 +16,9 @@ export default function SearchItemInput({
       <InputSimple<TItems>
         data={allItems}
         setData={setSearchedItems}
-        labelKeys={["title", "brandName"]}
+        labelKeys={["title", "brandName", "author"]}
         placeholder="Search..."
-        debounceTime={20}
+        debounceTime={30}
         history
       />
     </div>

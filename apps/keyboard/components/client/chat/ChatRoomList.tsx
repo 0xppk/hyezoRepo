@@ -68,8 +68,8 @@ export default function ChatRoomList() {
     await fetchPost<string>(`/api/${deleteApi}`, {
       body: JSON.stringify(deleteKey),
     });
+    await reloadChatRooms();
     router.push("/chat");
-    reloadChatRooms();
   };
 
   return (

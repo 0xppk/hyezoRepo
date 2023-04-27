@@ -35,7 +35,7 @@ export default async function ChatLayout({
         </div>
 
         {/* replace @recentInfo for bug in deploy url */}
-        <div className="min-w-full p-7 lg:h-[60vh] lg:p-10">
+        <div className="min-w-full overflow-auto p-7 lg:h-[60vh] lg:p-10">
           <ChatSearchUserInput />
           <ChatRoomList />
         </div>

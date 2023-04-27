@@ -17,6 +17,7 @@ export default function useServiceWorker(pushAgree: boolean) {
             await fetchPost("/api/createSubscription", {
               body: JSON.stringify(token),
             });
+            console.log("웹푸시 동의");
           } catch (error) {
             console.error(error);
           }
@@ -24,7 +25,7 @@ export default function useServiceWorker(pushAgree: boolean) {
         await fetchPost("/api/deleteSubscription", {
           body: JSON.stringify(token),
         });
-        console.log("알림 수신 거부");
+        console.log("웹푸시 거부");
       }
     })();
   }, [pushAgree, user]);

@@ -12,7 +12,7 @@ export default function LoginPage({ className, children }: LoginModalProps) {
   return (
     <div className={className}>
       <div className="modal rounded-xl">
-        <div className="drop-shadow-blue min-w-[400px] rounded-xl bg-gray-900 px-8 py-6">
+        <div className="drop-shadow-blue rounded-xl bg-gray-900 px-8 py-6 sm:min-w-[22rem]">
           {children}
         </div>
         <div

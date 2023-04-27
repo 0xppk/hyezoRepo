@@ -14,10 +14,10 @@ export default function ChatRecentInfo() {
           alt="profile"
           width={200}
           height={200}
-          className="rounded-full"
+          className="aspect-1 rounded-full"
         />
         <Text variant="md/normal" className="place-self-center self-start">
-          {authorPost?.nickname}
+          {authorPost?.nickname || "탈퇴한 회원입니다"}
         </Text>
       </div>
 
@@ -28,7 +28,7 @@ export default function ChatRecentInfo() {
             authorPost.posts.map(post => (
               <div key={post.id} className="flex items-center gap-3">
                 <Text variant="sm/normal">
-                  {post.brandName.toUpperCase()} · {post.title}
+                  {post.brandName.toUpperCase()} · {post.title} ··· {post.price}만원
                 </Text>
                 <Text
                   variant="xs/light"

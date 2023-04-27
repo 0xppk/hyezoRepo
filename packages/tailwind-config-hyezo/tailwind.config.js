@@ -18,6 +18,12 @@ module.exports = {
       transitionDuration: {
         3000: "3000ms",
       },
+      transitionProperty: {
+        height: "height",
+        width: "width",
+        size: "height, width",
+        spacing: "margin, padding",
+      },
       keyframes: {
         wiggle: {
           "0%, 100%": { transform: "rotate(-3deg)" },
@@ -119,6 +125,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         "root-layout": "repeat(auto-fill, minmax(0, 1fr))",
+        "keyboard-layout": "repeat(auto-fill, minmax(20rem, 1fr))",
       },
       gridTemplateRows: {
         "chat-layout": "1fr 3rem",
@@ -135,19 +142,23 @@ module.exports = {
       xs: "clamp(0.85rem, calc(0.68rem + 0.40vw), 1.04rem)",
       sm: "clamp(0.97rem, calc(0.74rem + 0.56vw), 1.25rem)",
       md: "clamp(1.05rem, calc(0.80rem + 0.77vw), 1.50rem)",
-      lg: "clamp(1.21rem, calc(0.86rem + 1.04vw), 1.80rem)",
-      xl: "clamp(1.34rem, calc(0.92rem + 1.37vw), 2.16rem)",
-      "2xl": "clamp(1.52rem, calc(0.98rem + 1.79vw), 2.59rem)",
-      "3xl": "clamp(1.70rem, calc(1.04rem + 2.30vw), 3.11rem)",
+      lg: "clamp(1.4rem, calc(0.95rem + 1.04vw), 1.80rem)",
+      xl: "clamp(1.7rem, calc(1.2rem + 1.4vw), 2.16rem)",
+      "2xl": "clamp(2.1rem, calc(1.5rem + 1.79vw), 2.59rem)",
+      "3xl": "clamp(2.4rem, calc(1.78rem + 2.30vw), 3.11rem)",
     },
     fontFamily: {
       point: ["LeferiPointSpecial"],
+      cute: ["omyu_pretty"],
       sans: ["NunitoSans", "LINESeedKR-Rg", "ui-sans-serif", "system-ui"],
       serif: ["ui-serif", "Georgia"],
       mono: ["ui-monospace", "SFMono-Regular"],
     },
   },
-
+  variants: {
+    height: ["responsive", "hover", "focus"],
+    width: ["responsive", "hover", "focus"],
+  },
   plugins: [
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/typography"),
@@ -158,8 +169,11 @@ module.exports = {
     plugin(
       ({ addUtilities, addComponents, addBase, addVariant, matchVariant, theme }) => {
         addUtilities({
-          ".keep-all": {
-            "word-break": "keep-all",
+          ".word-spacing": {
+            "word-spacing": "0.5rem",
+          },
+          ".dvh-screen": {
+            height: ["100vh", "100dvh"],
           },
           ".blue-dot": {
             width: "8px",

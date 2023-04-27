@@ -18,8 +18,8 @@ export default function ChatSearchUserInput() {
         body: JSON.stringify(targetUser?.id),
       },
     );
+    await reloadChatRooms();
     router.push(`/chat/${chatRoomId}?${createQueryString("authorId", targetUser?.id)}`);
-    reloadChatRooms();
   };
 
   return (
@@ -30,7 +30,7 @@ export default function ChatSearchUserInput() {
         labelKey="nickname"
         imageKey="image"
       />
-      <SubmitButton className="pointer-events-none absolute flex h-10 items-center border-none bg-transparent py-2 pl-3 text-black/70 hover:text-black/90">
+      <SubmitButton className="absolute flex h-10 items-center border-none bg-transparent px-0 py-2 pl-3 text-black/70 hover:text-black/90">
         <Icons.search className="h-5 w-5" />
       </SubmitButton>
     </Form>

@@ -1,11 +1,10 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Button, Modal, ModalContent } from "@hyezo/ui";
+import { Button, Modal } from "@hyezo/ui";
 import { useState } from "react";
 
 export default {
   title: "UI/Modal",
   component: Modal,
-  // tags: ["autodocs"],
   argTypes: {
     width: {
       description: "The modal width.",
@@ -36,21 +35,22 @@ const Template: StoryFn<typeof Modal> = ({ center, width, ...args }) => {
           Open Modal
         </Button>
       </div>
+
       <Modal
         isOpen={open}
+        className={`h-[10vh] bg-white`}
         setIsOpen={setOpen}
         width={width}
         center={center}
-        title="It just Test"
       >
-        <ModalContent>
-          I don'k know what you want to do. But if I find you need it, I can help.
-        </ModalContent>
-        <div className="mt-5 flex space-x-4">
-          <Button onClick={() => setOpen(false)} color="twitter" fullWidth={center}>
-            Okay, I understand.
-          </Button>
-        </div>
+        <Modal.Content className="grid gap-4">
+          <div className="grid w-full justify-between gap-5 duration-700">
+            <p>1. 카테고리를 설정해주세요.</p>
+            <p>1. 카테고리를 설정해주세요.</p>
+            <p>1. 카테고리를 설정해주세요.</p>
+            <p>1. 카테고리를 설정해주세요.</p>
+          </div>
+        </Modal.Content>
       </Modal>
     </>
   );

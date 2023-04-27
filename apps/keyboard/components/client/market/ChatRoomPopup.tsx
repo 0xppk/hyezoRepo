@@ -32,7 +32,7 @@ export default function ChatRoomPopup({
           body: JSON.stringify(authorId),
         },
       );
-      reloadChatRooms();
+      await reloadChatRooms();
       router.push(`/chat/${chatRoomId}?${createQueryString("authorId", authorId)}`);
     },
     [reloadChatRooms, createQueryString, router],

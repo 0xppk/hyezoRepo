@@ -1,9 +1,9 @@
 import { Form, Input, SubmitButton, zodSubmitHandler } from "@hyezo/ui";
 import { v4 } from "uuid";
 import { z } from "zod";
+import { Icons } from "~/components/server";
 import { useCheckNowSeeing, useLoadMessages, useUserSession } from "~/hooks";
 import { fetchPost } from "~/lib/utils";
-import { Icons } from "~/components/server";
 
 const Message = z.object({
   id: z.string().uuid(),
@@ -55,9 +55,12 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
 
     await reloadMessages(uploadMesageToUpstash, {
       optimisticData: [...messages, message],
+      populateCache: true,
+      revalidate: false,
       rollbackOnError: true,
     });
 
+    // TODO 로컬스토리지로 대체해도 될까?
     await reloadNowSeeing();
 
     if (!areYouSeeing)
@@ -65,9 +68,11 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
         const sendNotification = await fetchPost("/api/sendMessageToFirebase", {
           body: JSON.stringify({
             receiverId: authorId,
+            senderId: userId,
             senderName: nickname,
             senderImage: image,
             content: messageToSend,
+            chatRoomId,
           }),
         });
 
@@ -86,9 +91,10 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
         name="text"
         placeholder="메시지를 입력하세요"
         className="rounded-full pl-5 pr-8 text-sm"
+        color="transparent"
         fullWidth
       />
-      <SubmitButton className="absolute right-0 top-0 grid h-full place-items-center rounded-full rounded-l-none px-4">
+      <SubmitButton className="text-twitter-500 absolute right-0 top-0 grid h-full place-items-center rounded-full rounded-l-none border-none bg-transparent px-4 focus:ring-0">
         <Icons.send className="h-5 w-5" />
       </SubmitButton>
     </Form>

@@ -11,7 +11,7 @@ import { cn } from "../utils";
 type Props<T> = {
   data: T[];
   setData: Dispatch<SetStateAction<T[]>>;
-  labelKeys: string[];
+  labelKeys: Array<keyof T>;
   debounceTime?: number;
   placeholder?: string;
   className?: string;
@@ -34,8 +34,9 @@ export default function InputSimple<T>({
     includeScore: true,
     minMatchCharLength: 2,
     threshold: 0.3,
-    keys: labelKeys,
+    keys: labelKeys as string[],
   });
+
   const submitAction = async (value: string) => {
     const filteredItems =
       value === "" ? data : fuse.search(value).map(res => ({ ...res.item }));
@@ -50,30 +51,27 @@ export default function InputSimple<T>({
   useEventListener(
     "keypress",
     e => {
-      if (e.key === "Enter") {
-        buttonRef.current?.click();
-      }
+      if (e.key === "Enter") buttonRef.current?.click();
     },
     inputRef,
   );
 
   return (
-    <div className="relative flex max-w-max items-center">
+    <div className="relative flex items-center overflow-x-clip">
       <button
         ref={buttonRef}
         onClick={() => {
           onSubmit();
-          if (inputRef.current?.value) {
-            inputRef.current.value = "";
-          }
+          if (inputRef.current?.value) inputRef.current.value = "";
         }}
-        className="pointer-events-none absolute z-10 flex h-10 items-center py-2 pl-3 text-black/70 hover:text-black/90"
+        className="absolute z-10 flex h-10 items-center py-2 pl-3 text-black/70 hover:text-black/90"
       >
         <RiSearchLine className="h-5 w-5" />
       </button>
       <input
         type="text"
-        spellCheck="false"
+        spellCheck={false}
+        autoComplete="off"
         ref={inputRef}
         className={cn(
           `text-smoke-500 h-10 resize-none rounded-full bg-white/20 py-2 pl-10 pr-10 caret-orange-500 saturate-150 backdrop-blur-md placeholder:text-white/40 focus:outline-none ${className}`,
@@ -95,7 +93,7 @@ export default function InputSimple<T>({
 
       {history && (
         <div
-          className={`absolute inset-x-0 -bottom-9 line-clamp-1 flex w-full items-center gap-4 overflow-x-auto text-xs text-white/30 duration-200 ${
+          className={`absolute inset-x-0 -bottom-9 flex min-w-max items-center gap-4 overflow-x-hidden text-xs text-white/30 duration-200 ${
             storedValue[0] ? "opacity-100" : "opacity-0"
           }`}
         >

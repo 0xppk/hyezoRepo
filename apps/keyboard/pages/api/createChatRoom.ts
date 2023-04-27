@@ -15,10 +15,8 @@ export default async function handler(
   }
 
   const session = await getServerAuthSession({ req, res });
-  if (!session?.user?.nickname) {
-    res.status(401).json({ message: "Unauthorized to create chatroom 🦠" });
-    return;
-  }
+  if (!session?.user?.nickname)
+    return res.status(401).json({ message: "Unauthorized to create chatroom 🦠" });
 
   const myUserId = session.user.id;
   const theOthersUserId: string = req.body;

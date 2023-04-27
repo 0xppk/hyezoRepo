@@ -20,6 +20,14 @@ export function generateMetadata({
   };
 }
 
+export async function generateStaticParams() {
+  const allItems = await fetcher<TItems[]>("/api/getAllPost");
+
+  return allItems.map(item => ({
+    category: item.category.toLowerCase(),
+  }));
+}
+
 export default async function ItemPage({
   params: { category },
 }: PageProps<ItemPageParams>) {

@@ -15,10 +15,8 @@ export default async function handler(
   }
 
   const session = await getServerAuthSession({ req, res });
-  if (!session?.user?.nickname) {
-    res.status(401).json({ message: "Unauthorized to create post 🦠" });
-    return;
-  }
+  if (!session?.user?.nickname)
+    return res.status(401).json({ message: "Unauthorized to create post 🦠" });
 
   const data: InputDataForRegisterItem = req.body;
   const { title, price, layout, color, message, category, status, objDataCombo } = data;

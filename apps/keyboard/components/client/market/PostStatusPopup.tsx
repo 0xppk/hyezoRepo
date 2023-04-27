@@ -2,8 +2,7 @@ import { useClickOutside } from "@hyezo/hooks";
 import { Button } from "@hyezo/ui";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useCallback, useRef, useTransition } from "react";
-import { env } from "~/env.mjs";
-import { fetchPost, fetcher } from "~/lib/utils";
+import { fetchPost } from "~/lib/utils";
 import { type TItems, type TPostStatus } from "~/types/prisma";
 
 type StatusPopupProps = {
@@ -14,7 +13,7 @@ type StatusPopupProps = {
   idx: number;
 };
 
-const statusType = ["ING", "PENDING", "END"] as const;
+const statusType = ["ING", "HOLD", "DONE"] as const;
 
 export default function PostStatusPopup({
   postId,
@@ -32,10 +31,11 @@ export default function PostStatusPopup({
       await fetchPost<TPostStatus>("/api/updatePostStatus", {
         body: JSON.stringify({ status, postId }),
       });
-      await fetcher(`/api/revalidate?secret=${env.NEXT_PUBLIC_HYEZO_SECRET}`);
-      closeCardOverlay(idx);
+      // FIXME: 작동안하는듯
+      // await fetcher(`/api/revalidate?secret=${env.NEXT_PUBLIC_HYEZO_SECRET}`);
 
       startTransition(() => {
+        closeCardOverlay(idx);
         setSearchedItems(prev => {
           const copy = [...prev];
           copy[idx].status = status;
@@ -59,10 +59,10 @@ export default function PostStatusPopup({
             outline
             onClick={() => updatePostStatus(status)}
             color={`${
-              status === "PENDING" ? "orange" : status === "END" ? "red" : "twitter"
+              status === "HOLD" ? "orange" : status === "DONE" ? "red" : "twitter"
             }`}
           >
-            {status === "PENDING" ? "거래중" : status === "END" ? "거래완료" : "판매중"}
+            {status === "HOLD" ? "거래중" : status === "DONE" ? "거래완료" : "판매중"}
           </Button>
         ))}
       </div>

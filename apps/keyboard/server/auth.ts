@@ -1,15 +1,14 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { type GetServerSidePropsContext } from "next";
 import { getServerSession, type NextAuthOptions } from "next-auth";
+import DiscordProvider from "next-auth/providers/discord";
 import EmailProvider from "next-auth/providers/email";
 import GithubProvider from "next-auth/providers/github";
-import DiscordProvider from "next-auth/providers/discord";
 import KakaoProvider from "next-auth/providers/kakao";
 import nodemailer from "nodemailer";
 import { env } from "~/env.mjs";
 import { ActivationMail, SignInMail, TextMail } from "~/lib/smtp";
 import { prisma } from "./db";
-import { JWT } from "next-auth/jwt";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -74,6 +73,32 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    async jwt({ token, user }) {
+      const dbUser = await prisma.user.findFirst({
+        where: {
+          AND: [{ email: token.email }, { name: token.name }], // FIXME: 카카오 이메일 미발급으로 인한 임시 편법
+        },
+      });
+
+      if (!dbUser) {
+        if (user) {
+          token = { ...user, picture: user.image, role: "USER" };
+          delete token.image;
+        }
+
+        return token;
+      }
+
+      return {
+        id: dbUser.id,
+        name: dbUser.name,
+        email: dbUser.email,
+        picture: dbUser.image,
+        nickname: dbUser.nickname,
+        role: dbUser.role,
+      };
+    },
+
     session({ session, token }) {
       if (token) {
         session.user.id = token.id;
@@ -85,30 +110,6 @@ export const authOptions: NextAuthOptions = {
       }
 
       return session;
-    },
-
-    async jwt({ token, user }) {
-      const dbUser = await prisma.user.findFirst({
-        where: {
-          email: token.email,
-        },
-      });
-
-      if (!dbUser) {
-        if (user) {
-          token.id = user?.id;
-        }
-        return token;
-      }
-
-      return {
-        id: dbUser.id,
-        name: dbUser.name,
-        email: dbUser.email,
-        picture: dbUser.image,
-        nickname: dbUser.nickname,
-        role: dbUser.role,
-      } as JWT;
     },
   },
 };

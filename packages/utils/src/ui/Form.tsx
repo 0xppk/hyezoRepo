@@ -24,10 +24,7 @@ const InputSchema = z
       .max(10, "닉네임은 2~10자 사이의 길이로 지어주세요.")
       .transform(v => v.replace(/\s/g, "")),
     title: z.string().min(1, "필수입력 사항입니다"),
-    price: z.coerce
-      .number()
-      .min(1, "만원 이상 필수!")
-      .max(100, "100만원 이하의 상품만 등록해주세요"),
+    price: z.coerce.number().min(1, "최소 1만원입니다").max(100, "최대 100만원입니다"),
     layout: z.string().nullish(),
     color: z.string().nullish(),
     message: z.string().nullish(),
@@ -91,12 +88,12 @@ export function FieldError({ name }: FieldErrorProps) {
   const error = errors[name];
 
   return (
-    <>
-      {error && (
-        <p className="pl-2 pt-2 text-xs font-semibold text-rose-500">
-          {error.message as string}
-        </p>
-      )}
-    </>
+    <p
+      className={`pointer-events-none absolute inset-y-0 right-0 z-10 mr-3 grid place-items-center break-keep text-xs font-light text-red-500 duration-300 ${
+        error ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      {error?.message as string}
+    </p>
   );
 }

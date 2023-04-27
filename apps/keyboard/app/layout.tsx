@@ -11,7 +11,6 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps) {
-  console.log(process.env.NODE_ENV);
   return (
     <html lang="en">
       <body

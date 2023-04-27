@@ -1,9 +1,9 @@
 import { Form, Input, SubmitButton, zodSubmitHandler } from "@hyezo/ui";
 import { v4 } from "uuid";
 import { z } from "zod";
+import { Icons } from "~/components/server";
 import { useCheckNowSeeing, useLoadMessages, useUserSession } from "~/hooks";
 import { fetchPost } from "~/lib/utils";
-import { Icons } from "~/components/server";
 
 const Message = z.object({
   id: z.string().uuid(),
@@ -55,9 +55,12 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
 
     await reloadMessages(uploadMesageToUpstash, {
       optimisticData: [...messages, message],
+      populateCache: true,
+      revalidate: false,
       rollbackOnError: true,
     });
 
+    // TODO 로컬스토리지로 대체해도 될까?
     await reloadNowSeeing();
 
     if (!areYouSeeing)

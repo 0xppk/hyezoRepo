@@ -32,7 +32,6 @@ export default async function handler(
       },
     });
 
-    if (!allUsers) return;
     return res.status(202).json(allUsers);
   } catch (error) {
     return res.status(500).json({ message: (error as Error).message });

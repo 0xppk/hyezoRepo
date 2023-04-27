@@ -2,32 +2,31 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { serverPusher } from "~/server/pusher";
 import redis from "~/server/redis";
 
-type Data = Message;
-
-type Error = {
-  warning: string;
-};
+type TData = Message;
+type TError = { message: string };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data | Error>,
+  res: NextApiResponse<TData | TError>,
 ) {
-  if (req.method !== "POST") {
-    res.status(405).json({ warning: "Method Not Allowed" });
-    return;
-  }
+  if (req.method !== "POST")
+    return res.status(405).json({ message: "Method Not Allowed" });
 
   const { message }: { message: Message } = req.body;
 
-  /** 채팅룸 아이디 */
-  const { id } = req.query;
+  const { id: chatRoomId } = req.query;
 
   const data = {
     [`${message.id}`]: message,
   };
 
-  if (typeof id !== "string") return;
-  await redis.hset(id, data);
-  serverPusher.trigger(id, "new-message", message);
-  res.status(202).json(message);
+  if (typeof chatRoomId !== "string") return;
+
+  try {
+    await redis.hset(chatRoomId, data);
+    await serverPusher.trigger(chatRoomId, "new-message", message);
+    return res.status(202).json(message);
+  } catch (error) {
+    return res.status(500).json({ message: (error as Error).message });
+  }
 }

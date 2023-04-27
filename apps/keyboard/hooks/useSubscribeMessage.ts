@@ -10,9 +10,10 @@ export default function useSubscribeNewMessage(
 ) {
   useEffect(() => {
     const channel = clientPusher.subscribe(chatRoomId);
+
     channel.bind("new-message", async (newMessage: Message) => {
       if (!messages) return;
-      if (messages?.find(message => message.id === newMessage.id)) return;
+      if (messages.find(message => message.id === newMessage.id)) return;
 
       const fetcher = async () => {
         const data = await fetch<Message[]>(`/api/getMessages/${chatRoomId}`);

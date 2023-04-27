@@ -8,17 +8,17 @@ import { TiDelete } from "react-icons/ti";
 import { useEventListener, useInput, useLocalStorage } from "../hooks";
 import { cn } from "../utils";
 
-type Props<T> = {
+type Props<T, K extends keyof T> = {
   data: T[];
   setData: Dispatch<SetStateAction<T[]>>;
-  labelKeys: Array<keyof T>;
+  labelKeys: Array<keyof T | keyof T[K]>;
   debounceTime?: number;
   placeholder?: string;
   className?: string;
   history?: boolean;
 };
 
-export default function InputSimple<T>({
+export default function InputSimple<T, K extends keyof T = keyof T>({
   data,
   setData,
   labelKeys,
@@ -26,7 +26,7 @@ export default function InputSimple<T>({
   placeholder = "",
   className,
   history,
-}: Props<T>) {
+}: Props<T, K extends keyof T ? K : never>) {
   const [storedValue, setStoredValue, reset] = useLocalStorage<string[]>("search", []);
   const id = useId();
 

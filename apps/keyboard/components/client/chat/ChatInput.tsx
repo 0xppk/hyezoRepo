@@ -94,7 +94,7 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
         color="transparent"
         fullWidth
       />
-      <SubmitButton className="absolute right-0 top-0 grid h-full place-items-center rounded-full rounded-l-none px-4">
+      <SubmitButton className="text-twitter-500 absolute right-0 top-0 grid h-full place-items-center rounded-full rounded-l-none border-none bg-transparent px-4 focus:ring-0">
         <Icons.send className="h-5 w-5" />
       </SubmitButton>
     </Form>

@@ -83,7 +83,11 @@ export default function KeyboardComboBox<T>({
                             {imageKey && (
                               <img
                                 className="h-10 w-10 rounded-full"
-                                src={String(item[imageKey]) || "/images/pingu.png"}
+                                src={
+                                  item[imageKey] != null
+                                    ? String(item[imageKey])
+                                    : "/images/pingu.png"
+                                }
                               />
                             )}
                             <span

@@ -1,10 +1,5 @@
 import { useRef } from "react";
-import {
-  useFocusToLatestMessage,
-  useLoadMessages,
-  useUpdateNowSeeing,
-  useUserSession,
-} from "~/hooks";
+import { useFocusToLatestMessage, useLoadMessages, useUserSession } from "~/hooks";
 import useSubscribeNewMessage from "~/hooks/useSubscribeMessage";
 
 type ChatRoomProps = {
@@ -17,7 +12,6 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
   const messageBoxRef = useRef<HTMLDivElement>(null);
 
   useFocusToLatestMessage(messageBoxRef, [messages]);
-  useUpdateNowSeeing(chatRoomId);
   useSubscribeNewMessage(messages, reloadMessages, chatRoomId);
 
   return (

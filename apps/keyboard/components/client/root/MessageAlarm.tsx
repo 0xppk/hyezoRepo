@@ -5,7 +5,9 @@ import { FirebaseApp } from "firebase/app";
 import { getMessaging, onMessage } from "firebase/messaging";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useLoadAuthorId } from "~/hooks";
 
 type MessageAlarmProps = {
   app: FirebaseApp;
@@ -25,6 +27,8 @@ type TMessagePayload = {
 export default function MessageAlarm({ app }: MessageAlarmProps) {
   const messaging = getMessaging(app);
   const [message, setMessage] = useState<TMessagePayload>();
+  const pathName = usePathname();
+  const { authorId } = useLoadAuthorId();
 
   /** 메시지 수신 7초후 꺼지기 */
   useEffect(() => {
@@ -49,7 +53,9 @@ export default function MessageAlarm({ app }: MessageAlarmProps) {
       },
     };
 
-    setMessage(notification);
+    // 내가 채팅방에 들어와 있으면 알림 x 아니면 o
+    if (notification.options.data.link === `${pathName}?authorId=${authorId}`) return;
+    else setMessage(notification);
   });
 
   return (

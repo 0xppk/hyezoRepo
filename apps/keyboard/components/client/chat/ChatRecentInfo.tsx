@@ -10,7 +10,7 @@ export default function ChatRecentInfo() {
     <div className="flex h-full flex-col items-center gap-10 overflow-y-auto p-10 lg:flex-row lg:items-stretch lg:gap-20 lg:px-24 lg:py-10">
       <div className="grid place-items-end gap-5">
         <Image
-          src={authorPost?.image || "/images/pingu.webp"}
+          src={authorPost?.image || "/images/pingu.png"}
           alt="profile"
           width={200}
           height={200}

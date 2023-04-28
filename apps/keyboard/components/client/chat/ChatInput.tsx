@@ -36,7 +36,7 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
       message: messageToSend,
       created_at: Date.now(),
       username: nickname ?? `${userId} 님`,
-      profilePic: image ?? "/images/pingu.webp",
+      profilePic: image ?? "/images/pingu.png",
     };
 
     const uploadMesageToUpstash = async () => {

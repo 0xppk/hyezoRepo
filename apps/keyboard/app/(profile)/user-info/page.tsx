@@ -22,7 +22,7 @@ export default function UserInfo() {
       className="grid w-full place-items-center gap-10 p-5 md:px-20"
     >
       <Image
-        src={user?.image || "/images/pingu.webp"}
+        src={user?.image || "/images/pingu.png"}
         alt="profile"
         width={120}
         height={120}

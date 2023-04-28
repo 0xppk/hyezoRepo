@@ -189,7 +189,7 @@
 ┃ ┣ 📜cursor-pointer.png
 ┃ ┣ 📜cursor-see.png
 ┃ ┣ 📜logo.png
-┃ ┣ 📜pingu.webp
+┃ ┣ 📜pingu.png
 ┃ ┣ 📜sample0.webp
 ┃ ┣ 📜sample1.webp
 ┃ ┣ 📜sample2.webp

@@ -20,7 +20,7 @@ export default function UserInfo() {
           <div className="relative h-8 w-8 sm:h-9 sm:w-9">
             <Link href="/user-info">
               <Image
-                src={user?.image || "/images/pingu.webp"}
+                src={user?.image || "/images/pingu.png"}
                 className="interactable aspect-1 w-auto cursor-pointer rounded-full"
                 data-type="circle"
                 alt="프로필"

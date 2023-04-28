@@ -13,18 +13,8 @@ export default async function handler(
   if (req.method !== "GET")
     return res.status(405).json({ message: "Method Not Allowed" });
 
-  const session = await getServerAuthSession({ req, res });
-
-  if (!session?.user?.nickname)
-    return res.status(401).json({ message: "Unauthorized to load users info 🦠" });
-
   try {
     const allUsers = await prisma.user.findMany({
-      where: {
-        id: {
-          not: session.user.id,
-        },
-      },
       select: {
         id: true,
         nickname: true,

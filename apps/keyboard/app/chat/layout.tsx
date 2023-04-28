@@ -8,6 +8,8 @@ import {
 } from "~/components/client";
 import { TabProvider } from "~/lib/contexts";
 import { requireSignIn } from "~/lib/session";
+import { fetcher } from "~/lib/utils";
+import { type TUser } from "~/types/prisma";
 
 export const metadata: Metadata = {
   title: "Chat",
@@ -25,6 +27,7 @@ export default async function ChatLayout({
   userList,
 }: ChatLayoutProps) {
   await requireSignIn();
+  const users = await fetcher<TUser[]>("/api/getAllUsers");
 
   return (
     <TabProvider>
@@ -36,7 +39,7 @@ export default async function ChatLayout({
 
         {/* replace @recentInfo for bug in deploy url */}
         <div className="min-w-full overflow-auto p-7 lg:h-[60vh] lg:p-10">
-          <ChatSearchUserInput />
+          <ChatSearchUserInput users={users} />
           <ChatRoomList />
         </div>
 

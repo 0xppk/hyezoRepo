@@ -108,11 +108,8 @@
 📦hooks
 ┣ 📜index.ts
 ┣ 📜useCardMouseEffect.ts
-┣ 📜useCheckNowSeeing.ts
 ┣ 📜useFocusToLatestMessage.ts
 ┣ 📜useForceLinkToCreateNickname.ts
-┣ 📜useLoadAllPosts.ts
-┣ 📜useLoadAllUsers.ts
 ┣ 📜useLoadAuthorId.ts
 ┣ 📜useLoadAuthorPostsInfo.ts
 ┣ 📜useLoadChatRooms.ts
@@ -122,7 +119,6 @@
 ┣ 📜useQueryString.ts
 ┣ 📜useServiceWorker.ts
 ┣ 📜useSubscribeMessage.ts
-┣ 📜useUpdateNowSeeing.ts
 ┗ 📜useUserSession.ts
 
 📦pages
@@ -146,13 +142,11 @@
 ┃ ┣ 📜getAllUsers.ts
 ┃ ┣ 📜getAuthorsPosts.ts
 ┃ ┣ 📜getChatRoomList.ts
-┃ ┣ 📜getNowSeeing.ts
 ┃ ┣ 📜revalidate.ts
 ┃ ┣ 📜sendMessageToFirebase.ts
 ┃ ┣ 📜updateChatRoomLatestMessage.ts
 ┃ ┣ 📜updateLatestSeenMessage.ts
 ┃ ┣ 📜updateNickname.ts
-┃ ┣ 📜updateNowSeeing.ts
 ┃ ┗ 📜updatePostStatus.ts
 
 📦server

@@ -26,7 +26,7 @@ const ChatRoomSchema = (myUserId: string) =>
               user: z
                 .object({
                   id: z.string().cuid(),
-                  nickname: z.string(),
+                  nickname: z.string().nullable(),
                   image: z.string().nullish(),
                 })
                 .nullable(),

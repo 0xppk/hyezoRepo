@@ -86,14 +86,14 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
                 ))}
               {/* 프로필 */}
               <div
-                className="interactable absolute right-0 top-0 z-10 m-3 flex cursor-pointer flex-col items-center"
+                className="interactable absolute right-0 top-0 z-10 m-3 flex cursor-pointer flex-col items-end"
                 onClick={() => toggleCardOverlay(i)}
                 data-type="circle"
               >
                 <Image
                   width={33}
                   height={33}
-                  src={card.author.image || "/images/defaultImage.png"}
+                  src={card.author.image || "/images/pingu.png"}
                   alt="프사"
                   className="splitword_author rounded-full pb-1"
                 />

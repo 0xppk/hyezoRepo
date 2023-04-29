@@ -13,9 +13,7 @@ const Template: StoryFn<typeof Toggle> = args => {
 
   return (
     <div className="flex items-center justify-center">
-      <Toggle enabled={enabled} setEnabled={setEnabled}>
-        uhhui
-      </Toggle>
+      <Toggle enabled={enabled} setEnabled={setEnabled} />
     </div>
   );
 };

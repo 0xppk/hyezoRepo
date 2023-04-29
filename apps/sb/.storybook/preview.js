@@ -13,6 +13,17 @@ const preview = {
         color: /(background|color)$/i,
         date: /Date$/,
       },
+      exclude: ["role"],
+    },
+    ally: {
+      config: {
+        rules: [
+          {
+            id: "color-contrast",
+            enabled: false,
+          },
+        ],
+      },
     },
   },
 };

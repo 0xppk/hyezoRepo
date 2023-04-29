@@ -10,7 +10,7 @@ export default {
 const Template: StoryFn<typeof TextArea> = ({ label, ...args }) => {
   return (
     <Form onSubmit={data => alert(JSON.stringify(data))}>
-      <TextArea label="Message" required={true} {...args} />
+      <TextArea {...args} label="Message" name="textarea" required />
       <SubmitButton>제출</SubmitButton>
     </Form>
   );

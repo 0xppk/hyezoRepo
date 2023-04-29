@@ -3,7 +3,7 @@ import { cn } from "../utils";
 import { default as ButtonOrLink, ButtonOrLinkProps } from "./ButtonOrLink";
 
 const buttonStyles = cva(
-  "px-4 border outline-none py-2 rounded-lg font-medium focus:bg-transparent focus:ring-1 hover:bg-transparent dark:hover:bg-transparent disabled:cursor-not-allowed duration-300",
+  "flex itmes-center justify-center px-4 border outline-none py-2 rounded-lg font-medium focus:bg-transparent focus:ring-1 hover:bg-transparent dark:hover:bg-transparent disabled:cursor-not-allowed duration-300",
   {
     variants: {
       color: {

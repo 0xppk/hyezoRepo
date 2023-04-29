@@ -24,10 +24,13 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
   const gridRef = useRef<HTMLDivElement>(null);
   const user = useUserSession();
   const [statusPopup, setStatusPopup] = useState<boolean[]>([false]);
-  const [handleRef, isVisible] = useISOLoop({
-    threshold: 0.1,
-    freezeAfterVisible: true,
-  });
+  const [handleRef, isVisible] = useISOLoop(
+    {
+      threshold: 0.1,
+      rootMargin: "0% 0% -30% 0%",
+    },
+    [allItems],
+  );
 
   useCardMouseEffect(gridRef);
   useEffect(() => {
@@ -60,11 +63,8 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
           {allItems.map((card, i) => (
             <div
               className={`gridcard h-56 snap-center duration-500 sm:h-64 ${
-                isVisible[i]
-                  ? "translate-y-0 skew-x-0 skew-y-0 scale-y-100 opacity-100"
-                  : "translate-y-24 -skew-x-6 skew-y-6 scale-y-50 opacity-0"
-              }
-            `}
+                isVisible[i] ? "opacity-100" : "opacity-0"
+              }`}
               key={card.id}
               ref={handleRef}
             >
@@ -84,20 +84,22 @@ export default function GridCard({ allItems, setSearchedItems }: GridCardProps) 
                     idx={i}
                   />
                 ))}
+              {/* 프로필 */}
               <div
-                className="interactable absolute right-0 top-0 z-10 m-3 flex cursor-pointer flex-col items-center"
+                className="interactable absolute right-0 top-0 z-10 m-3 flex cursor-pointer flex-col items-end"
                 onClick={() => toggleCardOverlay(i)}
                 data-type="circle"
               >
                 <Image
                   width={33}
                   height={33}
-                  src={card.author.image || "/images/defaultImage.png"}
+                  src={card.author.image || "/images/pingu.png"}
                   alt="프사"
                   className="splitword_author rounded-full pb-1"
                 />
                 <p>{createTitle(SplitWord.Aurhor, card.author.nickname || "")}</p>
               </div>
+              {/* 카드 컨텐츠 */}
               <div
                 className={`gridcard_content flex items-end justify-between ${
                   card.status === "DONE" ? "brightness-50" : "brightness-100"

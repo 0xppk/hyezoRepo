@@ -7,16 +7,16 @@ type SearchItemInputProps = {
   setSearchedItems: Dispatch<SetStateAction<TItems[]>>;
 };
 
-export default function SearchItemInput({
+export default function ItemSearchInput({
   allItems,
   setSearchedItems,
 }: SearchItemInputProps) {
   return (
     <div className="flex items-center justify-center pb-14">
-      <InputSimple<TItems>
+      <InputSimple<TItems, "author">
         data={allItems}
         setData={setSearchedItems}
-        labelKeys={["title", "brandName", "author"]}
+        labelKeys={["title", "brandName", "layout", "nickname"]}
         placeholder="Search..."
         debounceTime={30}
         history

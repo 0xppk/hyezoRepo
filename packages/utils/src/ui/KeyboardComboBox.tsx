@@ -67,43 +67,50 @@ export default function KeyboardComboBox<T>({
                     Nothing found
                   </div>
                 ) : (
-                  filteredItems.map((item, i) => (
-                    <Combobox.Option
-                      key={`${String(item[labelKey])}+ ${i}`}
-                      className={({ active }) =>
-                        `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                          active ? "bg-white/10 text-white/90" : "text-white/70"
-                        }`
-                      }
-                      value={item}
-                    >
-                      {({ selected, active }) => (
-                        <>
-                          <div className="flex items-center gap-3">
-                            {imageKey && (
-                              <img
-                                className="h-10 w-10 rounded-full"
-                                src={String(item[imageKey])}
-                              />
-                            )}
-                            <span
-                              className={`block truncate ${
-                                selected ? "font-extrabold text-white" : "font-normal"
-                              }`}
-                            >
-                              {String(item[labelKey])}
-                            </span>
-                          </div>
+                  filteredItems.map((item, i) => {
+                    if (item[labelKey] === null) return;
+                    return (
+                      <Combobox.Option
+                        key={`${String(item[labelKey])}+ ${i}`}
+                        className={({ active }) =>
+                          `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                            active ? "bg-white/10 text-white/90" : "text-white/70"
+                          }`
+                        }
+                        value={item}
+                      >
+                        {({ selected, active }) => (
+                          <>
+                            <div className="flex items-center gap-3">
+                              {imageKey && (
+                                <img
+                                  className="h-10 w-10 rounded-full"
+                                  src={
+                                    item[imageKey] != null
+                                      ? String(item[imageKey])
+                                      : "/images/pingu.png"
+                                  }
+                                />
+                              )}
+                              <span
+                                className={`block truncate ${
+                                  selected ? "font-extrabold text-white" : "font-normal"
+                                }`}
+                              >
+                                {String(item[labelKey])}
+                              </span>
+                            </div>
 
-                          {selected ? (
-                            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-white/90">
-                              <HiCheck className="h-5 w-5" aria-hidden="true" />
-                            </span>
-                          ) : null}
-                        </>
-                      )}
-                    </Combobox.Option>
-                  ))
+                            {selected ? (
+                              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-white/90">
+                                <HiCheck className="h-5 w-5" aria-hidden="true" />
+                              </span>
+                            ) : null}
+                          </>
+                        )}
+                      </Combobox.Option>
+                    );
+                  })
                 )}
               </Combobox.Options>
             </Transition>

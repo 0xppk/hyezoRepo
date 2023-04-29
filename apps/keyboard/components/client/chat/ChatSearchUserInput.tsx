@@ -1,15 +1,24 @@
 import { Form, KeyboardComboBox, SubmitButton, zodSubmitHandler } from "@hyezo/ui";
 import { useRouter } from "next/navigation";
+import { useMemo } from "react";
 import { Icons } from "~/components/server";
-import { useLoadAllUsers, useLoadChatRooms, useQueryString } from "~/hooks";
+import { useLoadChatRooms, useQueryString, useUserSession } from "~/hooks";
 import { fetchPost } from "~/lib/utils";
 import { type TUser } from "~/types/prisma";
 
-export default function ChatSearchUserInput() {
-  const { allUsers } = useLoadAllUsers();
+type ChatSearchUserInput = {
+  users: TUser[];
+};
+
+export default function ChatSearchUserInput({ users }: ChatSearchUserInput) {
   const { reloadChatRooms } = useLoadChatRooms();
   const { createQueryString } = useQueryString();
   const router = useRouter();
+  const myUser = useUserSession();
+  const allUsers = useMemo(
+    () => users.filter(user => user.id !== myUser?.id),
+    [users, myUser],
+  );
 
   const onSubmit: zodSubmitHandler = async ({ allUsersCombo: targetUser }) => {
     const { chatRoomId } = await fetchPost<{ chatRoomId: string }>(
@@ -24,9 +33,9 @@ export default function ChatSearchUserInput() {
 
   return (
     <Form onSubmit={onSubmit} className="relative min-w-full flex-row items-center">
-      <KeyboardComboBox<TUser>
+      <KeyboardComboBox
         name="allUsersCombo"
-        list={allUsers || []}
+        list={allUsers}
         labelKey="nickname"
         imageKey="image"
       />

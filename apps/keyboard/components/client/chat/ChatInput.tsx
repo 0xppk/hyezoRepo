@@ -2,7 +2,7 @@ import { Form, Input, SubmitButton, zodSubmitHandler } from "@hyezo/ui";
 import { v4 } from "uuid";
 import { z } from "zod";
 import { Icons } from "~/components/server";
-import { useCheckNowSeeing, useLoadMessages, useUserSession } from "~/hooks";
+import { useLoadAuthorId, useLoadMessages, useUserSession } from "~/hooks";
 import { fetchPost } from "~/lib/utils";
 
 const Message = z.object({
@@ -23,11 +23,7 @@ type ChatInputProps = {
 export default function ChatInput({ chatRoomId }: ChatInputProps) {
   const user = useUserSession();
   const { messages, reloadMessages } = useLoadMessages(chatRoomId);
-  const {
-    nowSeeing: areYouSeeing,
-    reloadNowSeeing,
-    authorId,
-  } = useCheckNowSeeing(chatRoomId);
+  const authorId = useLoadAuthorId();
 
   const onSubmit: zodSubmitHandler = async ({ text: messageToSend }) => {
     if (!messageToSend || !user) return;
@@ -40,7 +36,7 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
       message: messageToSend,
       created_at: Date.now(),
       username: nickname ?? `${userId} 님`,
-      profilePic: image ?? "/images/pingu.webp",
+      profilePic: image ?? "/images/pingu.png",
     };
 
     const uploadMesageToUpstash = async () => {
@@ -60,29 +56,24 @@ export default function ChatInput({ chatRoomId }: ChatInputProps) {
       rollbackOnError: true,
     });
 
-    // TODO 로컬스토리지로 대체해도 될까?
-    await reloadNowSeeing();
+    try {
+      const sendNotification = await fetchPost("/api/sendMessageToFirebase", {
+        body: JSON.stringify({
+          receiverId: authorId,
+          senderId: userId,
+          senderName: nickname,
+          senderImage: image,
+          content: messageToSend,
+          chatRoomId,
+        }),
+      });
 
-    if (!areYouSeeing)
-      try {
-        const sendNotification = await fetchPost("/api/sendMessageToFirebase", {
-          body: JSON.stringify({
-            receiverId: authorId,
-            senderId: userId,
-            senderName: nickname,
-            senderImage: image,
-            content: messageToSend,
-            chatRoomId,
-          }),
-        });
-
-        console.log("메시지를 보냈어요 🧤", sendNotification);
-        await fetchPost("/api/updateChatRoomLatestMessage", {
-          body: JSON.stringify({ updateTime: new Date(), chatRoomId }),
-        });
-      } catch (error) {
-        console.error(error);
-      }
+      await fetchPost("/api/updateChatRoomLatestMessage", {
+        body: JSON.stringify({ updateTime: new Date(), chatRoomId }),
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

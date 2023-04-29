@@ -1,10 +1,5 @@
 import { useRef } from "react";
-import {
-  useFocusToLatestMessage,
-  useLoadMessages,
-  useUpdateNowSeeing,
-  useUserSession,
-} from "~/hooks";
+import { useFocusToLatestMessage, useLoadMessages, useUserSession } from "~/hooks";
 import useSubscribeNewMessage from "~/hooks/useSubscribeMessage";
 
 type ChatRoomProps = {
@@ -17,7 +12,6 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
   const messageBoxRef = useRef<HTMLDivElement>(null);
 
   useFocusToLatestMessage(messageBoxRef, [messages]);
-  useUpdateNowSeeing(chatRoomId);
   useSubscribeNewMessage(messages, reloadMessages, chatRoomId);
 
   return (
@@ -42,7 +36,7 @@ export default function ChatList({ chatRoomId }: ChatRoomProps) {
             >
               <div
                 key={m.id}
-                className={`flex max-w-xs items-center rounded-2xl p-2 py-1 sm:max-w-sm md:max-w-md lg:max-w-lg ${
+                className={`flex max-w-xs items-center break-keep rounded-2xl p-2 py-1 sm:max-w-sm md:max-w-md lg:max-w-lg ${
                   messageByMe
                     ? "bg-twitter-500 flex-row-reverse"
                     : "bg-smoke-500 flex-row text-black"

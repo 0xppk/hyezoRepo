@@ -11,7 +11,7 @@ export default function FirstSection({ page }: FirstSectionProps) {
       {images.map((image, i) => (
         <Image
           src={image}
-          alt="image"
+          alt="슬라이더 이미지"
           key={image}
           priority
           fill

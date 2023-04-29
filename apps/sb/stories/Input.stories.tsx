@@ -5,13 +5,12 @@ export default {
   title: "UI/Input",
   component: Input,
   tags: ["autodocs"],
-  argTypes: {},
 } as Meta<typeof Input>;
 
 const Template: StoryFn<typeof Input> = ({ name, ...args }) => {
   return (
     <Form onSubmit={data => alert(JSON.stringify(data))}>
-      <Input label={name} name={name} placeholder="입력란" />
+      <Input {...args} name="nickname" />
       <SubmitButton>Submit</SubmitButton>
     </Form>
   );

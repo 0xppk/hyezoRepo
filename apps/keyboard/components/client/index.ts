@@ -24,7 +24,7 @@ export { default as ChatRoomPopup } from "./market/ChatRoomPopup";
 export { default as PostStatusPopup } from "./market/PostStatusPopup";
 export { default as ItemsGridCard } from "./market/ItemsGridCard";
 export { default as ItemsPage } from "./market/ItemsPage";
-export { default as SearchItemInput } from "./market/SearchItemInput";
+export { default as ItemSearchInput } from "./market/ItemSearchInput";
 
 export { default as NotificationToggle } from "./profile/NotificationToggle";
 export { default as UserInfo } from "./profile/UserInfo";

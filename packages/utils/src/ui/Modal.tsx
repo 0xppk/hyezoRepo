@@ -74,15 +74,15 @@ export default function Modal({
         >
           <div className="fixed inset-0 bg-black bg-opacity-70" aria-hidden="true" />
         </Transition.Child>
-        <div className="fixed inset-0 flex items-center justify-center overflow-y-auto">
+        <div className="fixed inset-0 flex min-h-full items-center justify-center">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
-            enterFrom="opacity-0 scale-90"
-            enterTo="opacity-100 scale-100"
+            enterFrom="opacity-0 scale-75 sm:scale-90"
+            enterTo="opacity-100 scale-90 sm:scale-100"
             leave="ease-in duration-200"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
+            leaveFrom="opacity-100 scale-90 sm:scale-100"
+            leaveTo="opacity-0 scale-75 sm:scale-95"
           >
             <div className="modal rounded-xl">
               <Dialog.Panel className={cn(modalStyles({ width, center, className }))}>

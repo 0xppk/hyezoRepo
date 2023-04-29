@@ -20,24 +20,24 @@ export const InputForm = Template.bind({});
 InputForm.args = {
   children: (
     <>
-      <Input label="email" type="email" />
-      <Input label="password" type="password" />
+      <Input label="email" type="email" name="email" />
+      <Input label="password" type="password" name="password" />
     </>
   ),
 };
 
 export const TextareaForm = Template.bind({});
 TextareaForm.args = {
-  children: <TextArea label="message" />,
+  children: <TextArea label="message" name="textarea" />,
 };
 
 export const SyntheticForm = Template.bind({});
 SyntheticForm.args = {
   children: (
     <>
-      <Input label="email" type="email" placeholder="이메일" />
-      <Input label="url" type="url" placeholder="https://www." />
-      <TextArea label="message" />
+      <Input label="email" type="email" name="email" />
+      <Input label="url" type="url" name="url" />
+      <TextArea placeholder="메시지를 입력하세요" name="textarea" />
     </>
   ),
 };

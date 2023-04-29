@@ -1,11 +1,13 @@
 "use client";
 
+import { Text } from "@hyezo/ui";
 import { FirebaseApp } from "firebase/app";
 import { getMessaging, onMessage } from "firebase/messaging";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Icons } from "~/components/server";
+import { useLoadAuthorId } from "~/hooks";
 
 type MessageAlarmProps = {
   app: FirebaseApp;
@@ -25,8 +27,10 @@ type TMessagePayload = {
 export default function MessageAlarm({ app }: MessageAlarmProps) {
   const messaging = getMessaging(app);
   const [message, setMessage] = useState<TMessagePayload>();
+  const pathName = usePathname();
+  const { authorId } = useLoadAuthorId();
 
-  /** 메시지 수신 2초후 꺼지기 */
+  /** 메시지 수신 7초후 꺼지기 */
   useEffect(() => {
     if (message)
       setTimeout(() => {
@@ -49,28 +53,38 @@ export default function MessageAlarm({ app }: MessageAlarmProps) {
       },
     };
 
-    console.log("메시지 도착:", notification);
-    setMessage(notification);
+    // 내가 채팅방에 들어와 있으면 알림 x 아니면 o
+    if (notification.options.data.link === `${pathName}?authorId=${authorId}`) return;
+    else setMessage(notification);
   });
 
   return (
-    <Link href={message?.options.data.link || "/chat"}>
+    <Link href={message?.options.data.link || "/chat"} aria-label="link to chatRoom">
       <div
-        className={`bg-twitter-500 fixed right-3 top-[13vh] flex h-12 w-20 items-center justify-evenly rounded-lg text-white duration-500 ${
+        className={`bg-smoke-600 fixed right-3 top-[13vh] flex h-16 w-64 items-center gap-3 rounded-3xl px-3 py-1 text-black shadow-lg drop-shadow-xl backdrop-blur-lg duration-500 ${
           message
-            ? "trasnlate-y-0 z-20 skew-x-0 skew-y-0 opacity-100"
-            : "-z-10 -translate-y-3 -skew-x-6 skew-y-12 opacity-0"
+            ? "trasnlate-y-0 pointer-events-auto z-20 skew-x-0 skew-y-0 opacity-100"
+            : "pointer-events-none -z-10 -translate-y-3 -skew-x-6 skew-y-12 opacity-0"
         }`}
       >
-        <Icons.chat className="h-7 w-7" />
-        <Image
-          src={message?.options.icon || "/images/pingu.webp"}
-          alt="프로필"
-          width={30}
-          height={30}
-          priority
-          className="aspect-1 rounded-full"
-        />
+        {message && (
+          <>
+            <Image
+              src={message.options.icon}
+              alt="프로필"
+              width={40}
+              height={40}
+              priority
+              className="aspect-1 grow-0 rounded-full"
+            />
+            <div className="flex grow flex-col">
+              <Text variant="xs/bold">{message.title}</Text>
+              <Text variant="xs/light" className="line-clamp-1 w-full truncate pr-1">
+                {message.options.body}
+              </Text>
+            </div>
+          </>
+        )}
       </div>
     </Link>
   );

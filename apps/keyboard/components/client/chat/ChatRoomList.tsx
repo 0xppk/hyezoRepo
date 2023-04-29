@@ -26,8 +26,8 @@ const ChatRoomSchema = (myUserId: string) =>
               user: z
                 .object({
                   id: z.string().cuid(),
-                  nickname: z.string(),
-                  image: z.string().nullable(),
+                  nickname: z.string().nullable(),
+                  image: z.string().nullish(),
                 })
                 .nullable(),
             }),
@@ -92,7 +92,7 @@ export default function ChatRoomList() {
                   className="aspect-1 rounded-full"
                   width={44}
                   height={44}
-                  src={targetUser?.image || "/images/pingu.webp"}
+                  src={targetUser?.image || "/images/pingu.png"}
                   alt="프로필 사진"
                 />
                 <Link

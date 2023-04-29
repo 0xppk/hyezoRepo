@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ItemsGridCard, SearchItemInput } from "~/components/client";
+import { ItemsGridCard, ItemSearchInput } from "~/components/client";
 import { type TItems } from "~/types/prisma";
 
 type ItemsPageProps = {
@@ -11,7 +11,7 @@ export default function ItemsPage({ allItems }: ItemsPageProps) {
 
   return (
     <>
-      <SearchItemInput allItems={allItems} setSearchedItems={setSearchedItems} />
+      <ItemSearchInput allItems={allItems} setSearchedItems={setSearchedItems} />
       <ItemsGridCard allItems={searchedItems} setSearchedItems={setSearchedItems} />
     </>
   );

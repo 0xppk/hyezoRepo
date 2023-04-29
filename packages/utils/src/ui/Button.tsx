@@ -3,7 +3,7 @@ import { cn } from "../utils";
 import { default as ButtonOrLink, ButtonOrLinkProps } from "./ButtonOrLink";
 
 const buttonStyles = cva(
-  "flex itmes-center justify-center px-4 border outline-none py-2 rounded-lg font-medium focus:bg-transparent focus:ring-1 hover:bg-transparent dark:hover:bg-transparent disabled:cursor-not-allowed duration-300 focus:font-bold",
+  "px-4 border outline-none py-2 rounded-lg font-medium focus:bg-transparent focus:ring-1 hover:bg-transparent dark:hover:bg-transparent disabled:cursor-not-allowed duration-300",
   {
     variants: {
       color: {
@@ -79,17 +79,17 @@ export interface ButtonProps
     VariantProps<typeof buttonStyles> {}
 
 /**
- * Button component that can be used as a link or button. If `href` is provided, it will be rendered as a children of Next.js `<Link>` component. Otherwise, it will be rendered as a button.
- * @params {string} color - The color of the button.
- * @params {string} size - The size of the button. It is a combinations of `xs`, `sm`, `md`, `lg`.
- * @params {boolean} outline - Whether the button should have an outline & transparent.
- * @params {boolean} fullWidth - Whether the button should have a full width.
+ * 버튼 컴퍼넌트입니다. props로 `href`를 받을 경우엔 next.js의 `<Link>` 컴퍼넌트가 버튼을 감쌉니다.
  */
 export default function Button({
+  /** 몇 가지 색상이 지정되어 있습니다. */
   color,
-  fullWidth,
-  outline,
+  /** 네 개의 사이즈가 지정되어 있습니다. */
   size,
+  /** `true`일 경우 배경이 투명해지고 테두리만 보이게 됩니다. */
+  outline,
+  /** `true`일 경우 부모 요소의 넓이를 차지합니다. */
+  fullWidth,
   className,
   ...props
 }: ButtonProps) {

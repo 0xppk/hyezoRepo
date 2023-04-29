@@ -40,7 +40,7 @@ export default function MainPageModal({ isOpen, setIsOpen, as }: ModalProps) {
     const res = await fetchPost<TResponse>("/api/createPost", {
       body: JSON.stringify({ ...data, category, status: "ING" }),
     });
-    // FIXME: background revalidate를 없애고 onDemand에 전권을 줘야 함
+    // FIXME: background revalidate를 없애고 onDemand에 전권을 줘야 함. 이벤트 발생할 때만 리벨리데잇
     // await fetcher(`/api/revalidate?secret=${env.NEXT_PUBLIC_HYEZO_SECRET}`);
 
     startTransition(() => {
@@ -136,7 +136,7 @@ export default function MainPageModal({ isOpen, setIsOpen, as }: ModalProps) {
                   <div className="blue-dot" />
                   <span>브랜드</span>
                 </div>
-                <ComboBox<TBrand>
+                <ComboBox
                   name="objDataCombo"
                   labelKey="name"
                   list={filteredBrands}

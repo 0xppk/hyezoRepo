@@ -94,7 +94,7 @@ export default function ComboBox<T>({
             >
               <Combobox.Input
                 className={cn(
-                  `w-full rounded-lg border-none py-2 pl-3 text-xs text-gray-900 placeholder:text-gray-600 focus:outline-none focus:ring-0 ${comboStyles(
+                  `w-full touch-manipulation rounded-lg border-none py-2 pl-3 text-xs text-gray-900 placeholder:text-gray-600 focus:outline-none focus:ring-0 ${comboStyles(
                     { width },
                   )} ${color === "darkNavy" && "bg-gray-900 text-white/80"}`,
                 )}
@@ -105,7 +105,10 @@ export default function ComboBox<T>({
                 onChange={event => setQuery(event.target.value)}
               />
 
-              <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
+              <Combobox.Button
+                className="absolute inset-y-0 right-0 flex items-center pr-2"
+                aria-label="콤보박스 목록 펼치기"
+              >
                 <HiChevronUpDown className="h-5 w-5 text-gray-400" aria-hidden="true" />
               </Combobox.Button>
             </div>

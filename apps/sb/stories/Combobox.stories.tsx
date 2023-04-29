@@ -4,7 +4,30 @@ import { Meta, StoryFn } from "@storybook/react";
 export default {
   title: "UI/ComboBox",
   component: ComboBox,
-  argTypes: {},
+  argTypes: {
+    color: {
+      control: "select",
+      options: ["twitter", "orange", "pink", "emerald", "darkNavy"],
+      description: "콤보박스 리스트의 마우스 호버 색상을 정합니다",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "twitter" },
+      },
+    },
+    width: {
+      control: "select",
+      options: ["narrower", "narrow", "regular", "wide", "wider"],
+      description: "콤보박스 리스트의 최대 넓이를 지정합니다",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "twitter" },
+      },
+    },
+    name: {
+      control: "select",
+      options: ["combo"],
+    },
+  },
 } as Meta<typeof ComboBox>;
 
 const List = [
@@ -18,8 +41,14 @@ const List = [
 const Template: StoryFn<typeof ComboBox> = ({ ...args }) => {
   return (
     <div className="fixed inset-0 flex w-screen items-center justify-center">
-      <Form onSubmit={data => alert(JSON.stringify(data))}>
-        <ComboBox list={List} />
+      <Form onSubmit={({ objDataCombo }) => alert(objDataCombo?.title)}>
+        <ComboBox
+          {...args}
+          list={List}
+          labelKey="title"
+          name="objDataCombo"
+          color="pink"
+        />
         <SubmitButton>Submit</SubmitButton>
       </Form>
     </div>
@@ -27,7 +56,6 @@ const Template: StoryFn<typeof ComboBox> = ({ ...args }) => {
 };
 
 export const Sample = Template.bind({});
-Sample.args = {};
 Sample.parameters = {
   backgrounds: {
     default: "default",

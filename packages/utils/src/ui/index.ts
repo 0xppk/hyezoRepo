@@ -20,6 +20,7 @@ export { default as MouseTrailEffect } from "./MouseTrailEffect";
 export { default as MasonryGrid } from "./MasonryGrid";
 export { default as Spacer } from "./Spacer";
 export { default as FlipCard } from "./FlipCard";
+export { default as GridCard } from "./GridCard";
 export { default as Toggle } from "./Toggle";
 
 export { type TextProps } from "./Text";

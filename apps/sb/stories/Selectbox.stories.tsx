@@ -18,8 +18,8 @@ const people = [
 const Template: StoryFn<typeof SelectBox> = ({ ...args }) => {
   return (
     <div className="fixed inset-0 flex w-screen items-center justify-center">
-      <Form onSubmit={data => alert(JSON.stringify(data))}>
-        <SelectBox {...args} list={people} />
+      <Form onSubmit={({ select }) => alert(select)}>
+        <SelectBox {...args} list={people} name="select" labelKey="title" />
         <SubmitButton>Submit</SubmitButton>
       </Form>
     </div>
@@ -29,6 +29,7 @@ const Template: StoryFn<typeof SelectBox> = ({ ...args }) => {
 export const Sample = Template.bind({});
 Sample.args = {
   searchBar: true,
+  width: "wider",
 };
 Sample.parameters = {
   backgrounds: {

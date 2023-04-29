@@ -204,4 +204,4 @@
 ┣ 📜manifest.json
 ┣ 📜sw.js
 ┣ 📜workbox-b777c91b.js
-┗ 📜worker-1KUTgiAm90CyAAVZ5-rmf.js
+┗ 📜worker-1KUTgiAm90CyAAVZ5-rmf.js 

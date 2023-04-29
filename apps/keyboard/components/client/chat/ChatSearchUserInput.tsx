@@ -33,7 +33,7 @@ export default function ChatSearchUserInput({ users }: ChatSearchUserInput) {
 
   return (
     <Form onSubmit={onSubmit} className="relative min-w-full flex-row items-center">
-      <KeyboardComboBox<TUser>
+      <KeyboardComboBox
         name="allUsersCombo"
         list={allUsers}
         labelKey="nickname"

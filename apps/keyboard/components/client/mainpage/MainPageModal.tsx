@@ -136,7 +136,7 @@ export default function MainPageModal({ isOpen, setIsOpen, as }: ModalProps) {
                   <div className="blue-dot" />
                   <span>브랜드</span>
                 </div>
-                <ComboBox<TBrand>
+                <ComboBox
                   name="objDataCombo"
                   labelKey="name"
                   list={filteredBrands}

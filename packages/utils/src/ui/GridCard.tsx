@@ -63,14 +63,14 @@ export default function GridCard({ data }: GridCardProps) {
         <div className="gridcard_content flex items-end justify-between">
           <div className="flex flex-col pb-2 pl-3">
             <div className="flex gap-4 pb-1">
-              <p>레이아웃</p>
-              <p>색상</p>
+              <p></p>
+              <p></p>
             </div>
-            <p className="text-2xl font-bold">상미니</p>
+            <p className="text-2xl font-bold"></p>
           </div>
           <div className="flex flex-col items-center pb-2 pr-3">
-            <p className="pb-1 text-xl font-bold">가격</p>
-            <div className="bg-white px-5 py-1 text-black">상태</div>
+            <p className="pb-1 text-xl font-bold"></p>
+            <div className="bg-white text-black"></div>
           </div>
         </div>
       </div>

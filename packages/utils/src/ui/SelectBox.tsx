@@ -41,8 +41,8 @@ export interface Props<T, K extends keyof T>
     Omit<ComponentProps<"div">, "color"> {
   list: T[];
   name: keyof InputNameProps;
-  labelKey?: K;
-  uniqueKey?: keyof T;
+  labelKey: K;
+  uniqueKey?: K;
   searchBar?: boolean;
   removeDuplicates?: boolean;
 }
@@ -53,7 +53,7 @@ export default function SelectBox<T, K extends keyof T>({
   color = "twitter",
   width = "regular",
   labelKey = "name" as K,
-  uniqueKey = "name" as keyof T,
+  uniqueKey = "name" as K,
   removeDuplicates = false,
   searchBar,
 }: Props<T, K>) {
